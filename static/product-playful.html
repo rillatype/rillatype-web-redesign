@@ -334,45 +334,63 @@
     }
 
     .tester__controls {
-      display: flex; flex-wrap: wrap; gap: var(--space-lg);
+      display: flex; flex-wrap: wrap; gap: 8px;
       padding: var(--space-lg) var(--space-lg) 0;
       align-items: center;
     }
 
+    /* Row grouping */
+    .tester__row {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      width: 100%; align-items: center;
+    }
+    .tester__row + .tester__row { margin-top: 4px; }
+
     /* Slider — custom styled */
     .tester__slider {
-      display: flex; align-items: center; gap: var(--space-sm);
-      flex: 1; min-width: 180px;
+      display: flex; align-items: center; gap: 6px;
+      flex: 1; min-width: 140px;
     }
-    .tester__slider label { font-size: 13px; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+    .tester__slider label {
+      font-size: 11px; color: var(--text-muted); font-weight: 600; white-space: nowrap;
+      min-width: 3rem;
+    }
     .tester__slider input[type="range"] {
       flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
       background: #e0ddd8; border-radius: 2px; accent-color: var(--coral);
     }
     .tester__slider input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 18px; height: 18px;
+      -webkit-appearance: none; width: 16px; height: 16px;
       border-radius: 50%; background: var(--charcoal); cursor: pointer;
       border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.15);
       transition: transform .15s;
     }
     .tester__slider input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
     .tester__slider output {
-      font-size: 14px; color: var(--charcoal);
-      font-feature-settings: "tnum"; min-width: 3.5rem;
+      font-size: 12px; color: var(--charcoal);
+      font-feature-settings: "tnum"; min-width: 2.8rem;
       text-align: right; font-weight: 600;
     }
 
-    /* Style buttons — pill shaped */
-    .tester__styles { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tester__styles button {
-      padding: 6px 18px; border: 1.5px solid #e0ddd8;
-      border-radius: 50px; font-size: 14px; font-weight: 500;
-      transition: all .2s; white-space: nowrap;
+    /* Font selector */
+    .tester__font-select {
+      font-size: 12px; font-weight: 600;
+      padding: 4px 10px; border: 1.5px solid #e0ddd8;
+      border-radius: 6px; background: #fff; color: var(--charcoal);
+      font-family: inherit; cursor: pointer;
     }
-    .tester__styles button:hover { border-color: var(--text-muted); }
-    .tester__styles button.active {
-      background: var(--charcoal); color: #fff; border-color: var(--charcoal);
+    .tester__font-select:focus { outline: 2px dashed #2b6ed7; }
+
+    /* Alignment */
+    .tester__align { display: flex; gap: 3px; }
+    .tester__align button {
+      width: 34px; height: 32px; display: flex; align-items: center; justify-content: center;
+      border: 1.5px solid #e0ddd8; border-radius: 6px;
+      background: #fff; color: #4a4a4a; font-size: 16px;
+      transition: all .15s;
     }
+    .tester__align button:hover { border-color: var(--text-muted); }
+    .tester__align button.active { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
 
     /* Presets */
     .tester__presets {
@@ -433,7 +451,8 @@
     .glyph-cell {
       aspect-ratio: 1;
       display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 500;
+      font-size: var(--glyph-size, 18px);
+      font-weight: 500;
       font-family: 'MangoLetter', Georgia, serif;
       background: #f7f3ee; color: var(--charcoal);
       border-radius: 4px; user-select: none;
@@ -505,25 +524,6 @@
     }
     .sticky-bar__btn:hover { background: var(--coral); }
 
-    /* Payment icons */
-    .payment-row {
-      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-      margin-top: var(--space-md);
-    }
-    .payment-row span {
-      font-size: 11px; color: var(--text-muted); font-weight: 500;
-      margin-right: 4px;
-    }
-    .pay-icon {
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 10px; font-weight: 700; letter-spacing: .02em;
-      padding: 2px 10px; border-radius: 20px; color: #fff;
-      line-height: 1.4; height: 20px;
-    }
-    .pay-icon--visa { background: #1A1F71; }
-    .pay-icon--mc { background: linear-gradient(135deg, #EB001B 30%, #F79E1B 100%); }
-    .pay-icon--paypal { background: #003087; }
-    .pay-icon--amex { background: #2E77BC; }
     .pay-contact {
       font-size: 12px; color: var(--text-muted); margin-top: 6px;
     }
@@ -687,13 +687,6 @@
             <div class="product-actions">
               <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart — $18</button>
             </div>
-            <div class="payment-row">
-              <span>We accept</span>
-              <span class="pay-icon pay-icon--visa">Visa</span>
-              <span class="pay-icon pay-icon--mc">MC</span>
-              <span class="pay-icon pay-icon--paypal">PayPal</span>
-              <span class="pay-icon pay-icon--amex">Amex</span>
-            </div>
             <p class="pay-contact">Questions? <a href="mailto:hello@rillatype.com">hello@rillatype.com</a></p>
             <p class="product-guarantee">
               <strong>Lifetime updates</strong> included. <a href="/license/" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
@@ -712,18 +705,35 @@
           <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
           <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
           <div class="tester__controls">
-            <div class="tester__slider">
-              <label for="tester-size">Size</label>
-              <input type="range" id="tester-size" min="12" max="200" value="64" step="1" aria-label="Font size">
-              <output id="tester-size-value">64px</output>
+            <div class="tester__row">
+              <div class="tester__slider">
+                <label for="tester-size">Size</label>
+                <input type="range" id="tester-size" min="12" max="200" value="64" step="1" aria-label="Font size">
+                <output id="tester-size-value">64px</output>
+              </div>
+              <div class="tester__slider">
+                <label for="tester-leading">Lead</label>
+                <input type="range" id="tester-leading" min="50" max="250" value="110" step="5" aria-label="Leading">
+                <output id="tester-leading-value">1.1</output>
+              </div>
+              <div class="tester__slider">
+                <label for="tester-tracking">Track</label>
+                <input type="range" id="tester-tracking" min="-50" max="200" value="0" step="5" aria-label="Tracking">
+                <output id="tester-tracking-value">0</output>
+              </div>
             </div>
-            <div class="tester__styles" role="radiogroup" aria-label="Style">
-              <button class="active" data-weight="400" role="radio" aria-checked="true">Regular</button>
-              <button data-weight="700" role="radio" aria-checked="false">Bold</button>
-              <button data-weight="400" data-style="italic" role="radio" aria-checked="false">Italic</button>
+            <div class="tester__row">
+              <select class="tester__font-select" id="tester-font" style="flex:1;min-width:160px;">
+                <option value="MangoLetter">Mango Letter</option>
+              </select>
+              <div class="tester__align" role="radiogroup" aria-label="Alignment">
+                <button data-align="left" role="radio" aria-checked="false" aria-label="Align left" title="Align left">⫷</button>
+                <button class="active" data-align="center" role="radio" aria-checked="true" aria-label="Align center" title="Align center">⫿</button>
+                <button data-align="right" role="radio" aria-checked="false" aria-label="Align right" title="Align right">⫸</button>
+              </div>
             </div>
             <div class="tester__presets" aria-label="Quick text">
-              <button data-presets='["The quick brown fox jumps over the lazy dog","Amazingly few discotheques provide jukeboxes","Sphinx of black quartz, judge my vow","Waltz, bad nymph, for quick jigs vex","Pack my box with five dozen liquor jugs"]'>Aa Bb Cc</button>
+              <button data-presets='["The Quick Brown Fox Jumps Over The Lazy Dog","Amazingly Few Discotheques Provide Jukeboxes","Sphinx Of Black Quartz, Judge My Vow","Waltz, Bad Nymph, For Quick Jigs Vex","Pack My Box With Five Dozen Liquor Jugs"]'>Aa Bb Cc</button>
               <button data-presets='["HELLO WORLD","WELCOME TO RILLATYPE","HANDCRAFTED FONTS","MAKE IT BOLD","TYPOGRAPHY MATTERS"]'>ALL CAPS</button>
               <button data-presets='["Handcrafted with love","Designed with passion","For brands with soul","Type that speaks","Every letter tells a story"]'>Phrase</button>
               <button data-presets='["Pack my box with five dozen liquor jugs","How vexingly quick daft zebras jump","The five boxing wizards jump quickly","Crazy Fredrick bought many very exquisite opal jewels","Grumpy wizards make toxic brew for the evil queen and jack"]'>Pangram</button>
@@ -740,7 +750,13 @@
           <span>Character set</span>
           <span class="glyph-toggle__icon">+</span>
         </button>
-        <div class="glyph-grid" id="glyph-grid" style="display:none;">
+        <div class="glyph-controls" id="glyph-controls" style="display:none;">
+          <div class="tester__slider" style="margin-bottom:var(--space-md);max-width:300px;">
+            <label for="glyph-size">Size</label>
+            <input type="range" id="glyph-size" min="12" max="60" value="18" step="1" aria-label="Glyph size">
+            <output id="glyph-size-value">18px</output>
+          </div>
+          <div class="glyph-grid" id="glyph-grid">
           <span class="glyph-cell">A</span><span class="glyph-cell">B</span><span class="glyph-cell">C</span>
           <span class="glyph-cell">D</span><span class="glyph-cell">E</span><span class="glyph-cell">F</span>
           <span class="glyph-cell">G</span><span class="glyph-cell">H</span><span class="glyph-cell">I</span>
@@ -772,7 +788,7 @@
           <span class="glyph-cell">{</span><span class="glyph-cell">}</span><span class="glyph-cell">/</span>
           <span class="glyph-cell">\</span><span class="glyph-cell">|</span><span class="glyph-cell">~</span>
         </div>
-        <p style="font-size:13px;color:var(--text-muted);margin-top:var(--space-md);display:none;" id="glyph-count">350+ glyphs including alternates, ligatures, and multilingual support.</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:var(--space-md);display:none;" id="glyph-count">Showing a subset. The font contains 350+ glyphs including uppercase, lowercase, numerals, punctuation, ligatures, alternates, and multilingual support.</p>
       </div>
     </section>
 
@@ -910,15 +926,38 @@
         o.textContent = this.value + 'px';
       });
 
-      document.querySelectorAll('.tester__styles button').forEach(function(b){
+      // Leading
+      var ld = document.getElementById('tester-leading'),
+          lo = document.getElementById('tester-leading-value');
+      ld.addEventListener('input', function(){
+        var v = this.value / 100;
+        d.style.lineHeight = v;
+        lo.textContent = v.toFixed(1);
+      });
+
+      // Tracking
+      var tk = document.getElementById('tester-tracking'),
+          to = document.getElementById('tester-tracking-value');
+      tk.addEventListener('input', function(){
+        var v = this.value / 100;
+        d.style.letterSpacing = v + 'em';
+        to.textContent = (v * 100).toFixed(0);
+      });
+
+      // Alignment
+      document.querySelectorAll('.tester__align button').forEach(function(b){
         b.addEventListener('click', function(){
-          document.querySelectorAll('.tester__styles button').forEach(function(x){
+          document.querySelectorAll('.tester__align button').forEach(function(x){
             x.classList.remove('active'); x.setAttribute('aria-checked', 'false');
           });
           this.classList.add('active'); this.setAttribute('aria-checked', 'true');
-          d.style.fontWeight = this.dataset.weight;
-          d.style.fontStyle = this.dataset.style === 'italic' ? 'italic' : 'normal';
+          d.style.textAlign = this.dataset.align;
         });
+      });
+
+      // Font select
+      document.getElementById('tester-font').addEventListener('change', function(){
+        d.style.fontFamily = "'" + this.value + "', Georgia, serif";
       });
 
       document.querySelectorAll('.tester__presets button').forEach(function(b){
@@ -1046,14 +1085,26 @@
     (function(){
       var btn = document.getElementById('glyph-toggle');
       var grid = document.getElementById('glyph-grid');
+      var controls = document.getElementById('glyph-controls');
       var count = document.getElementById('glyph-count');
       if (!btn) return;
       btn.addEventListener('click', function(){
         var open = this.getAttribute('aria-expanded') === 'true';
         this.setAttribute('aria-expanded', !open);
-        grid.style.display = open ? 'none' : 'grid';
+        controls.style.display = open ? 'none' : 'block';
         count.style.display = open ? 'none' : 'block';
       });
+
+      // Glyph size
+      var gs = document.getElementById('glyph-size');
+      var gv = document.getElementById('glyph-size-value');
+      if (gs) {
+        gs.addEventListener('input', function(){
+          var fs = this.value + 'px';
+          grid.style.setProperty('--glyph-size', fs);
+          gv.textContent = fs;
+        });
+      }
     })();
 
     // Sticky cart bar
