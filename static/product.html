@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mango Letters — Playful Display Font | Rillatype Studio</title>
+  <meta name="description" content="Mango Letters is a playful display typeface. Warm, handcrafted, and full of personality. OTF, TTF, WOFF2. Commercial license included.">
+  <meta property="og:title" content="Mango Letters — Playful Display Font">
+  <meta property="og:type" content="product">
+  <meta property="product:price:amount" content="18.00">
+  <meta property="product:price:currency" content="USD">
+  <meta name="color-scheme" content="light">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <style>
+    /* ═══════════════════════════════════════════════════════
+        PRODUCT PAGE — bright, warm, typographic.
+        Taste ref: Notion warmth + Figma precision.
+       ═══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg);
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+      text-wrap: pretty;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul, ol { list-style: none; }
+
+    :root {
+      --bg:            #ffffff;
+      --bg-warm:       #fafaf8;
+      --bg-alt:        #f7f6f3;
+      --text:          #1a1a1a;
+      --text-soft:     #4a4a4a;
+      --text-muted:    #8c8c8c;
+      --text-subtle:   #c4c4c0;
+      --accent:        #e0553d;
+      --accent-hover:  #c44933;
+      --accent-soft:   #fef2ef;
+      --border:        #ecece8;
+      --border-light:  #f2f2ef;
+      --focus:         #2b6ed7;
+      --success:       #2d8a5e;
+
+      --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px;
+      --space-sm: 12px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px; --space-4xl: 96px;
+
+      --text-caption: 0.8125rem; --text-sm: 0.875rem; --text-base: 1rem;
+      --text-lead: 1.125rem; --text-lg: 1.25rem; --text-xl: 1.5rem;
+      --text-2xl: 2rem; --text-3xl: 2.75rem;
+
+      --container: min(1200px, 100% - var(--space-xl));
+      --ease: 200ms ease;
+
+      /* Z-index scale */
+      --z-header: 100;
+      --z-skip-link: 9999;
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .container { width: var(--container); margin-inline: auto; }
+    .skip-link { position:fixed; top:var(--space-sm); left:var(--space-sm); z-index:var(--z-skip-link); background:var(--text); color:#fff; padding:var(--space-xs) var(--space-md); font-size:var(--text-sm); font-weight:500; transform:translateY(-200%); border-radius:6px; }
+    .skip-link:focus { transform:translateY(0); outline:2px dashed var(--focus); outline-offset:2px; }
+    :focus-visible { outline:2px dashed var(--focus); outline-offset:3px; border-radius:2px; }
+
+    /* ── HEADER ────────────────────────────────────────── */
+    .site-header { position:sticky; top:0; z-index:var(--z-header); background:rgba(255,255,255,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid transparent; transition:border-color .3s; }
+    .site-header.scrolled { border-bottom-color:var(--border-light); box-shadow:0 1px 0 var(--border-light); }
+    .header-inner { display:flex; align-items:center; justify-content:space-between; padding:var(--space-md) 0; }
+    .site-logo { font-size:var(--text-xl); font-weight:600; letter-spacing:-.03em; }
+    .site-logo:hover { color:var(--accent); }
+    .site-logo span { color:var(--accent); font-weight:400; font-style:italic; }
+    .nav-main ul { display:flex; gap:var(--space-xl); align-items:center; }
+    .nav-main a { font-size:var(--text-sm); font-weight:500; letter-spacing:-.01em; color:var(--text-soft); transition:color var(--ease); padding:var(--space-2xs) 0; border-bottom:1.5px solid transparent; }
+    .nav-main a:hover, .nav-main a.active { color:var(--text); }
+    .nav-main a.active { border-bottom-color:var(--accent); }
+
+    /* ── BACK + BREADCRUMBS ────────────────────────────── */
+    .back-link { display:inline-flex; align-items:center; gap:var(--space-xs); font-size:var(--text-sm); color:var(--text-muted); margin-top:var(--space-lg); transition:color var(--ease); font-weight:450; }
+    .back-link:hover { color:var(--text); }
+    .back-link::before { content:'\2190'; font-size:var(--text-lead); }
+    .breadcrumbs { display:flex; gap:var(--space-xs); font-size:var(--text-sm); color:var(--text-subtle); margin-top:var(--space-sm); flex-wrap:wrap; font-weight:400; }
+    .breadcrumbs a { color:var(--text-muted); }
+    .breadcrumbs a:hover { color:var(--text); }
+
+    /* ── PRODUCT HERO ──────────────────────────────────── */
+    .product-hero { padding:var(--space-lg) 0 var(--space-3xl); }
+    .product-hero__grid { display:grid; gap:var(--space-2xl); }
+    @media (min-width: 768px) { .product-hero__grid { grid-template-columns:1fr 1fr; align-items:start; } }
+
+    /* Preview — 1200×800 landscape, sticky */
+    .product-preview {
+      background: #fef7f0;
+      aspect-ratio: 3/2;
+      display:flex; align-items:center; justify-content:center;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 700; color: #3d2a1a;
+      letter-spacing: -0.03em; text-align: center;
+      padding: var(--space-2xl); user-select: none;
+      position: sticky; top: 90px;
+    }
+
+    /* Product info */
+    .product-title { font-size:var(--text-3xl); font-weight:700; letter-spacing:-.03em; line-height:1.08; }
+    .product-subtitle { font-size:var(--text-lg); color:var(--text-muted); font-weight:400; margin-top:var(--space-xs); }
+    .product-price { font-size:var(--text-2xl); font-weight:700; margin-top:var(--space-lg); letter-spacing:-.02em; font-variant-numeric: tabular-nums; }
+    .product-meta { display:flex; gap:var(--space-lg); margin-top:var(--space-sm); font-size:var(--text-sm); color:var(--text-muted); font-weight:400; }
+
+    /* CTA */
+    .product-actions { display:flex; gap:var(--space-sm); margin-top:var(--space-xl); flex-wrap:wrap; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding:var(--space-sm) var(--space-xl); font-size:var(--text-sm); font-weight:600; letter-spacing:-.01em; transition:all var(--ease); min-height:48px; border-radius:50px; }
+    .btn-primary { background:var(--accent); color:#fff; }
+    .btn-primary:hover { background:var(--accent-hover); transform:scale(1.02); }
+    .btn-primary:active { transform:scale(.98); }
+    .btn-outline { border:1.5px solid var(--border); color:var(--text); }
+    .btn-outline:hover { border-color:var(--text); }
+
+    .product-guarantee { margin-top:var(--space-lg); font-size:var(--text-sm); color:var(--text-muted); line-height:1.5; }
+
+    /* ── SECTION LABEL ─────────────────────────────────── */
+    .section-label { font-size:var(--text-caption); font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:var(--space-xl); }
+
+    /* ── ⭐ FONT TESTER ⭐ ──────────────────────────────── */
+    .font-tester-section { padding:var(--space-3xl) 0; border-top:1px solid var(--border-light); background: radial-gradient(ellipse 80% 50% at 50% 0%, var(--accent-soft) 0%, transparent 70%); }
+    .font-tester { background:var(--bg); padding:var(--space-xl); border-radius:0; }
+    .font-tester__display {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(28px, 7vw, 80px);
+      font-weight: 400; line-height: 1.12;
+      word-break: break-word; min-height: 2.5em;
+      padding: var(--space-xl); background:var(--bg);
+      color:var(--text); transition: font-size .08s ease;
+      cursor: text; user-select: text;
+    }
+    .font-tester__display:empty::before { content:'Type here to try this font...'; color:var(--text-subtle); }
+    .font-tester__display:focus { outline:2px dashed var(--focus); outline-offset:2px; }
+    .font-tester__hint { font-size:var(--text-sm); color:var(--text-muted); padding:var(--space-xs) var(--space-xl) 0; font-weight:400; }
+
+    /* Controls row */
+    .font-tester__controls { display:flex; flex-wrap:wrap; gap:var(--space-lg); padding:var(--space-xl); align-items:center; }
+
+    /* Slider */
+    .font-tester__slider { display:flex; align-items:center; gap:var(--space-sm); flex:1; min-width:200px; }
+    .font-tester__slider label { font-size:var(--text-sm); color:var(--text-muted); font-weight:500; white-space:nowrap; }
+    .font-tester__slider input[type="range"] { flex:1; accent-color:var(--accent); height:4px; }
+    .font-tester__slider output { font-size:var(--text-sm); color:var(--text-muted); font-feature-settings:"tnum"; min-width:3.5rem; text-align:right; font-weight:450; }
+
+    /* Style buttons */
+    .font-tester__styles { display:flex; gap:var(--space-2xs); }
+    .font-tester__styles button { padding:var(--space-xs) var(--space-md); border:1.5px solid var(--border); border-radius:50px; font-size:var(--text-base); font-weight:500; transition:all var(--ease); white-space:nowrap; }
+    .font-tester__styles button:hover { border-color:var(--text-muted); }
+    .font-tester__styles button.active { background:var(--text); color:var(--bg); border-color:var(--text); }
+
+    /* Presets */
+    .font-tester__presets { display:flex; flex-wrap:wrap; gap:var(--space-xs); width:100%; padding-top:var(--space-sm); border-top:1px solid var(--border); }
+    .font-tester__presets button { font-size:var(--text-sm); color:var(--text-muted); padding:var(--space-xs) var(--space-sm); text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--border); transition:all var(--ease); font-weight:450; }
+    .font-tester__presets button:hover { color:var(--accent); text-decoration-color:var(--accent); }
+
+    /* ── DESCRIPTION ───────────────────────────────────── */
+    .product-description { padding:var(--space-3xl) 0; border-top:1px solid var(--border-light); }
+    .product-description__inner { max-width:680px; }
+    .product-description p { font-size:var(--text-lead); line-height:1.7; color:var(--text-soft); }
+    .product-description p + p { margin-top:var(--space-md); }
+    .product-description .highlight { color:var(--text); font-weight:550; }
+
+    /* ── SPECS ─────────────────────────────────────────── */
+    .product-specs { padding:var(--space-2xl) 0; border-top:1px solid var(--border-light); }
+    .specs-grid { display:grid; gap:var(--space-md); max-width:500px; }
+    @media (min-width:480px) { .specs-grid { grid-template-columns:auto 1fr; gap:var(--space-sm) var(--space-xl); } }
+    .specs-grid dt { font-size:var(--text-sm); font-weight:600; color:var(--text); }
+    .specs-grid dd { font-size:var(--text-base); color:var(--text-soft); font-weight:400; }
+    .specs-grid a { color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+
+    /* ── GALLERY ───────────────────────────────────────── */
+    .product-gallery { padding:var(--space-2xl) 0; border-top:1px solid var(--border-light); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:var(--space-md); }
+    .gallery-item { background:var(--bg-warm); aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; font-size:var(--text-sm); color:var(--text-subtle); font-weight:400; }
+
+    /* ── RELATED ───────────────────────────────────────── */
+    .product-related { padding:var(--space-3xl) 0; border-top:1px solid var(--border-light); }
+    .related-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:var(--space-lg); }
+    .related-item { display:block; }
+    .related-item__image { background:var(--bg-warm); aspect-ratio:3/2; display:flex; align-items:center; justify-content:center; font-family:Georgia,serif; font-size:var(--text-2xl); font-weight:600; letter-spacing:-.02em; transition:opacity var(--ease); }
+    .related-item:hover .related-item__image { opacity:.85; }
+    .related-item__name { margin-top:var(--space-sm); font-size:var(--text-base); font-weight:550; letter-spacing:-.01em; }
+    .related-item__price { font-size:var(--text-sm); color:var(--text-muted); font-weight:400; }
+
+    /* ── FAQ (flat list, not accordion) ─────────────────── */
+    .product-faq { padding:var(--space-3xl) 0; border-top:1px solid var(--border-light); background: var(--bg-warm); }
+    .faq-list { max-width:680px; display:grid; gap:var(--space-xl); }
+    .faq-item { border-bottom:1px solid var(--border-light); padding-bottom:var(--space-lg); }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-item h3 { font-size:var(--text-base); font-weight:600; margin-bottom:var(--space-xs); letter-spacing:-.01em; }
+    .faq-item p { color:var(--text-soft); font-size:var(--text-base); line-height:1.7; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    .site-footer { padding:var(--space-3xl) 0; border-top:1px solid var(--border-light); font-size:var(--text-sm); color:var(--text-muted); }
+    .footer-inner { display:flex; flex-wrap:wrap; justify-content:space-between; gap:var(--space-lg); }
+    .footer__links { display:flex; gap:var(--space-lg); }
+    .footer__links a { font-weight:450; transition:color var(--ease); }
+    .footer__links a:hover { color:var(--text); }
+    .footer__copy { color:var(--text-subtle); font-weight:400; }
+
+    @media (max-width:767px) {
+      .product-title { font-size:var(--text-2xl); }
+      .product-preview { position:static; font-size:clamp(2rem,10vw,4rem); padding:var(--space-xl); }
+      .product-hero { padding:var(--space-md) 0 var(--space-xl); }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" id="header">
+    <nav class="header-inner container">
+      <a href="/" class="site-logo">Rillatype <span>Studio</span></a>
+      <div class="nav-main"><ul>
+        <li><a href="/shop/" class="active">Shop</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/about/">About</a></li>
+      </ul></div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/shop/">Shop</a><span>/</span><a href="/product-category/display/">Display</a><span>/</span><span aria-current="page">Mango Letters</span>
+      </nav>
+    </div>
+
+    <!-- Product Hero -->
+    <section class="product-hero">
+      <div class="container"><div class="product-hero__grid">
+
+        <!-- Preview — 1200×800 landscape, sticky -->
+        <div class="product-preview" role="img" aria-label="Mango Letters font preview">
+          Mango<br>Letters
+        </div>
+
+        <!-- Info -->
+        <div>
+          <a href="/shop/" class="back-link">Back to Shop</a>
+          <h1 class="product-title">Mango Letters</h1>
+          <p class="product-subtitle">Playful display typeface</p>
+          <p class="product-price">$18.00 <span style="font-size:var(--text-sm);font-weight:400;color:var(--text-muted);">USD</span></p>
+          <div class="product-meta">
+            <span>OTF, TTF, WOFF2</span><span aria-hidden="true">&middot;</span>
+            <span>350+ glyphs</span><span aria-hidden="true">&middot;</span>
+            <span>In stock</span>
+          </div>
+          <div class="product-actions">
+            <button class="btn btn-primary" onclick="alert('Add to cart: Mango Letters \u2014 $18')">Add to Cart &mdash; $18</button>
+            <button class="btn btn-outline" onclick="alert('Buy now: Mango Letters \u2014 $18')">Buy Now</button>
+          </div>
+          <p class="product-guarantee">
+            <strong>Lifetime updates</strong> included. Commercial license for unlimited projects. Instant download.
+          </p>
+        </div>
+
+      </div></div>
+    </section>
+
+    <!-- ⭐ FONT TESTER ⭐ -->
+    <section class="font-tester-section" aria-label="Try this font">
+      <div class="container">
+        <p class="section-label">Try this font</p>
+        <div class="font-tester" id="font-tester" data-font-name="Mango Letters" role="region" aria-label="Interactive font tester">
+          <div class="font-tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
+          <p class="font-tester__hint">Click the text and start typing. Use controls below.</p>
+          <div class="font-tester__controls">
+            <div class="font-tester__slider">
+              <label for="tester-size">Size</label>
+              <input type="range" id="tester-size" min="16" max="200" value="80" step="1" aria-label="Font size">
+              <output id="tester-size-value">80px</output>
+            </div>
+            <div class="font-tester__styles" role="radiogroup" aria-label="Style">
+              <button class="active" data-weight="400" role="radio" aria-checked="true">Regular</button>
+              <button data-weight="700" role="radio" aria-checked="false">Bold</button>
+              <button data-weight="400" data-style="italic" role="radio" aria-checked="false">Italic</button>
+            </div>
+            <div class="font-tester__presets" aria-label="Quick text presets">
+              <button data-preset="The quick brown fox jumps over the lazy dog">Aa Bb Cc</button>
+              <button data-preset="HELLO WORLD">ALL CAPS</button>
+              <button data-preset="Handcrafted with love">Short phrase</button>
+              <button data-preset="Pack my box with five dozen liquor jugs">Pangram</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Description -->
+    <section class="product-description" aria-label="About this font">
+      <div class="container"><div class="product-description__inner">
+        <p class="section-label">About</p>
+        <p><span class="highlight">Mango Letters</span> was born from a fascination with hand-painted signage — the imperfect, warm kind you'd find at a tropical fruit stand. Every letter has its own personality.</p>
+        <p>Designed to be <span class="highlight">warm, playful, and unmistakably human</span>. Works beautifully for branding, packaging, posters, social media, and anywhere you need handcrafted charm.</p>
+        <p>Includes uppercase, lowercase, numbers, punctuation, and a full set of alternates — all carefully spaced and kerned.</p>
+      </div></div>
+    </section>
+
+    <!-- Specs -->
+    <section class="product-specs">
+      <div class="container">
+        <p class="section-label">Specifications</p>
+        <dl class="specs-grid">
+          <dt>Formats</dt><dd>OTF, TTF, WOFF2</dd>
+          <dt>Glyphs</dt><dd>350+</dd>
+          <dt>Styles</dt><dd>Regular, Bold, Italic</dd>
+          <dt>Languages</dt><dd>Latin, Western European</dd>
+          <dt>License</dt><dd><a href="/font-license/">Commercial</a></dd>
+          <dt>Designer</dt><dd>Gustian</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="product-gallery" aria-label="In use">
+      <div class="container">
+        <p class="section-label">In use</p>
+        <div class="gallery-grid">
+          <div class="gallery-item" style="background:#fef7f0;">Brand identity mockup</div>
+          <div class="gallery-item" style="background:#f4f7f2;">Poster & editorial layout</div>
+          <div class="gallery-item" style="background:#faf4fa;">Product packaging</div>
+          <div class="gallery-item" style="background:#f6f4f2;">Social media graphics</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="product-related" aria-label="Similar fonts">
+      <div class="container">
+        <p class="section-label">You might also like</p>
+        <div class="related-grid">
+          <a href="/product/bloom-script/" class="related-item">
+            <div class="related-item__image" style="background:#faf4fa;">Bloom</div>
+            <p class="related-item__name">Bloom Script</p><p class="related-item__price">$16</p>
+          </a>
+          <a href="/product/rustica/" class="related-item">
+            <div class="related-item__image" style="background:#f4f7f2;">Rustica</div>
+            <p class="related-item__name">Rustica Display</p><p class="related-item__price">$22</p>
+          </a>
+          <a href="/product/wilder-rough/" class="related-item">
+            <div class="related-item__image" style="background:#faf6ee;">Wilder</div>
+            <p class="related-item__name">Wilder Rough</p><p class="related-item__price">$15</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="product-faq">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <div class="faq-list">
+          <div class="faq-item"><h3>What file formats are included?</h3><p>OTF, TTF, and WOFF2. All fully functional with complete glyph set.</p></div>
+          <div class="faq-item"><h3>Can I use this for commercial projects?</h3><p>Yes. License covers logos, branding, packaging, merchandise, and client work — no extra fees.</p></div>
+          <div class="faq-item"><h3>Do I need a separate web license?</h3><p>No. The WOFF2 file is included. Self-host on your website with no pageview limits.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer__links"><a href="https://instagram.com/rillatype">Instagram</a><a href="/contact/">Contact</a><a href="/font-license/">License</a><a href="/privacy/">Privacy</a></div>
+      <p class="footer__copy">&copy; 2026 Rillatype Studio</p>
+    </div>
+  </footer>
+
+  <!-- ⭐ Font Tester JS -->
+  <script>
+  (function(){
+    var d=document.getElementById('tester-display'),
+        s=document.getElementById('tester-size'),
+        o=document.getElementById('tester-size-value'),
+        def=d.textContent.trim();
+    s.addEventListener('input',function(){var v=this.value;d.style.fontSize=v+'px';o.textContent=v+'px'});
+    document.querySelectorAll('.font-tester__styles button').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.font-tester__styles button').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-checked','false')});
+        this.classList.add('active');this.setAttribute('aria-checked','true');
+        d.style.fontWeight=this.dataset.weight;
+        d.style.fontStyle=this.dataset.style==='italic'?'italic':'normal';
+      });
+    });
+    document.querySelectorAll('.font-tester__presets button').forEach(function(b){
+      b.addEventListener('click',function(){d.textContent=this.dataset.preset;d.focus()});
+    });
+    d.addEventListener('blur',function(){if(!this.textContent.trim())this.textContent=def});
+  })();
+  </script>
+  <script>
+    var h=document.getElementById('header');
+    window.addEventListener('scroll',function(){h.classList.toggle('scrolled',scrollY>10)},{passive:true});
+  </script>
+</body>
+</html>

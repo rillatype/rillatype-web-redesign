@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mango Letter — Playful Display Font | Rillatype</title>
+  <meta name="description" content="Mango Letter is a playful display typeface. Warm, handcrafted, and full of personality. Try it live.">
+  <meta property="og:title" content="Mango Letter — Playful Display Font">
+  <meta property="og:type" content="product">
+  <meta property="product:price:amount" content="18.00">
+  <meta property="product:price:currency" content="USD">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#e0553d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px; line-height: 1.5;
+      color: #1a1a1a; background: #fafaf8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      --coral: #e0553d;
+      --coral-soft: #fef2ef;
+      --plum: #5a2d5a;
+      --gold: #d4a04a;
+      --charcoal: #1a1a1a;
+      --text-muted: #8c8c88;
+      --space-sm: 12px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px;
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .container { max-width: 1200px; margin-inline: auto; padding-inline: var(--space-lg); }
+
+    .skip-link {
+      position: fixed; top: var(--space-sm); left: var(--space-sm); z-index: 9999;
+      background: var(--charcoal); color: #fff; padding: var(--space-sm) var(--space-md);
+      font-size: 14px; font-weight: 500; border-radius: 50px;
+      transform: translateY(-200%); transition: transform .2s;
+    }
+    .skip-link:focus { transform: translateY(0); outline: 2px dashed #2b6ed7; }
+    :focus-visible { outline: 2px dashed #2b6ed7; outline-offset: 3px; }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent; transition: border-color .3s;
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: var(--space-md) 0; }
+    .site-logo { font-size: 22px; font-weight: 700; letter-spacing: -.04em; display: flex; align-items: baseline; gap: 2px; }
+    .site-logo__r { color: var(--coral); font-size: 28px; }
+    .nav-main ul { display: flex; gap: var(--space-xl); }
+    .nav-main a { font-size: 14px; font-weight: 500; color: #4a4a4a; position: relative; padding: 4px 0; }
+    .nav-main a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--coral); transition: width .3s cubic-bezier(.16,1,.3,1); }
+    .nav-main a:hover::after { width: 100%; }
+
+    /* ── BREADCRUMBS ────────────────────────────────── */
+    .breadcrumbs {
+      display: flex; gap: 8px; font-size: 13px; color: #b0aeaa;
+      padding: var(--space-lg) 0 var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .breadcrumbs a { color: var(--text-muted); transition: color .2s; }
+    .breadcrumbs a:hover { color: var(--coral); }
+    .breadcrumbs [aria-current] { font-weight: 500; color: var(--charcoal); }
+
+    /* ── PRODUCT HERO ───────────────────────────────── */
+    .product-hero {
+      padding: var(--space-sm) 0 var(--space-2xl);
+      position: relative;
+    }
+    .product-hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 300px;
+      background: linear-gradient(180deg, var(--coral-soft) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .product-hero__grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+      position: relative;
+    }
+    @media (max-width: 767px) {
+      .product-hero__grid { grid-template-columns: 1fr; }
+    }
+
+    /* Slider — larger, no border-radius */
+    .slider-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #f0ece8;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .slider-track img {
+      width: 100%; flex-shrink: 0;
+      aspect-ratio: 3/2; object-fit: cover;
+      display: block;
+    }
+
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,.9); color: var(--charcoal);
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      border: none; cursor: pointer; z-index: 5;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+      transition: all .2s;
+    }
+    .slider-btn:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+    .slider-btn:active { transform: translateY(-50%) scale(.95); }
+    .slider-btn--prev { left: var(--space-sm); }
+    .slider-btn--next { right: var(--space-sm); }
+    .slider-btn:disabled { opacity: 0; pointer-events: none; }
+
+    .slider-dots {
+      display: flex; justify-content: center; gap: 6px;
+      padding: var(--space-sm) 0;
+    }
+    .slider-dots button {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #d0ccc8; border: none; cursor: pointer;
+      transition: all .2s; padding: 0;
+    }
+    .slider-dots button.active { background: var(--coral); width: 24px; border-radius: 4px; }
+    .slider-dots button:hover { background: var(--text-muted); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 99999;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 90vw; max-height: 90vh; object-fit: contain;
+      border-radius: 4px; cursor: default;
+    }
+    .lightbox__close {
+      position: absolute; top: var(--space-lg); right: var(--space-lg);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.1); color: #fff;
+      font-size: 22px; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lightbox__close:hover { background: rgba(255,255,255,.2); }
+    .lightbox__nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,.1); color: #fff;
+      font-size: 24px; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .lightbox__nav:hover { background: rgba(255,255,255,.2); }
+    .lightbox__nav--prev { left: var(--space-lg); }
+    .lightbox__nav--next { right: var(--space-lg); }
+    .lightbox__counter {
+      position: absolute; bottom: var(--space-lg);
+      color: rgba(255,255,255,.5); font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Info */
+    /* Info panel */
+    .product-info { padding-top: 0; }
+    .product-badge {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--charcoal);
+      background: #f0ece8; padding: 3px 10px; border-radius: 4px;
+      margin-bottom: var(--space-md);
+    }
+    .product-title {
+      font-size: 26px; font-weight: 750; letter-spacing: -.03em; line-height: .95;
+      margin-bottom: 4px;
+    }
+    .product-subtitle {
+      font-size: 14px; color: var(--text-muted); font-weight: 400;
+    }
+    .product-meta {
+      display: flex; gap: var(--space-md);
+      margin-top: var(--space-sm); font-size: 13px; color: var(--text-muted);
+    }
+    .product-meta span { display: flex; align-items: center; gap: 4px; }
+    .product-meta span::before { content: '·'; color: #d0ccc8; }
+    .product-meta span:first-child::before { content: none; }
+
+    .product-formats {
+      display: flex; gap: 5px; flex-wrap: wrap;
+      margin-top: var(--space-sm);
+    }
+    .fmt-badge {
+      font-size: 10px; font-weight: 600; letter-spacing: .04em;
+      padding: 2px 8px; border-radius: 3px;
+      background: #f0ece8; color: #4a4a4a;
+    }
+
+    /* License stack */
+    .license-select {
+      margin-top: var(--space-lg);
+    }
+    .license-select__label {
+      font-size: 11px; font-weight: 600; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: var(--space-sm); display: block;
+    }
+    .license-tier {
+      display: block;
+      padding: 10px 14px;
+      border: 1.5px solid #e0ddd8;
+      cursor: pointer;
+      transition: all .2s;
+      background: #fff;
+    }
+    .license-tier:first-child { border-radius: 8px 8px 0 0; }
+    .license-tier:last-child { border-radius: 0 0 8px 8px; }
+    .license-tier + .license-tier { border-top: none; }
+    .license-tier:hover { border-color: #c0bcb8; z-index: 1; position: relative; }
+    .license-tier.selected {
+      border-color: var(--coral); background: var(--coral-soft);
+      z-index: 2; position: relative;
+    }
+    .license-tier input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .license-tier__row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .license-tier__info { flex: 1; }
+    .license-tier__name {
+      font-size: 14px; font-weight: 600; letter-spacing: -.01em;
+    }
+    .license-tier__desc {
+      font-size: 12px; color: var(--text-muted); margin-top: 1px;
+    }
+    .license-tier__price {
+      font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums;
+      white-space: nowrap; margin-left: var(--space-sm);
+    }
+    .license-tier.selected .license-tier__price { color: var(--coral); }
+
+    /* CTA */
+    .product-actions { margin-top: var(--space-lg); }
+    .product-actions .btn { width: 100%; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 28px; font-size: 14px; font-weight: 600;
+      border-radius: 50px; transition: all .25s cubic-bezier(.16,1,.3,1);
+      min-height: 48px;
+    }
+    .btn-primary { background: var(--charcoal); color: #fff; }
+    .btn-primary:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,85,61,.25); }
+    .btn-primary:active { transform: scale(.96); }
+    .btn-outline { border: 1.5px solid #d0ccc8; color: var(--charcoal); }
+    .btn-outline:hover { border-color: var(--coral); color: var(--coral); }
+    .btn-ghost { color: var(--text-muted); font-weight: 500; }
+    .btn-ghost:hover { color: var(--charcoal); }
+
+    .product-guarantee {
+      margin-top: var(--space-lg);
+      font-size: 14px; line-height: 1.6; color: var(--text-muted);
+      padding: var(--space-md); background: #f0ece8; border-radius: 8px;
+    }
+
+    /* ── SECTION LABEL ──────────────────────────────── */
+    .section-label {
+      display: flex; align-items: center; gap: var(--space-sm);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: var(--space-xl);
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 2px;
+      background: var(--coral);
+    }
+
+    /* ── ⭐ FONT PLAYGROUND ⭐ ──────────────────────── */
+    .font-playground {
+      padding: var(--space-3xl) 0;
+      background: linear-gradient(180deg, var(--coral-soft) 0%, #fafaf8 100%);
+    }
+    .tester {
+      background: #fff; padding: var(--space-xl);
+      border: 1px solid #e8e4e0; border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.04);
+    }
+    .tester__display {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(28px, 6vw, 72px);
+      font-weight: 400; line-height: 1.1;
+      word-break: break-word; min-height: 2em;
+      padding: var(--space-lg);
+      background: #f7f3ee; cursor: text;
+      transition: font-size .08s ease, color .2s;
+      border-radius: 8px;
+    }
+    .tester__display:focus { outline: 2px dashed #2b6ed7; outline-offset: 2px; }
+    .tester__display:empty::before { content: 'Start typing...'; color: #b0aeaa; }
+    .tester__hint {
+      font-size: 13px; color: var(--text-muted); padding: var(--space-sm) var(--space-lg) 0;
+    }
+
+    .tester__controls {
+      display: flex; flex-wrap: wrap; gap: var(--space-lg);
+      padding: var(--space-lg) var(--space-lg) 0;
+      align-items: center;
+    }
+
+    /* Slider — custom styled */
+    .tester__slider {
+      display: flex; align-items: center; gap: var(--space-sm);
+      flex: 1; min-width: 180px;
+    }
+    .tester__slider label { font-size: 13px; color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+    .tester__slider input[type="range"] {
+      flex: 1; height: 4px; -webkit-appearance: none; appearance: none;
+      background: #e0ddd8; border-radius: 2px; accent-color: var(--coral);
+    }
+    .tester__slider input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px;
+      border-radius: 50%; background: var(--charcoal); cursor: pointer;
+      border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,.15);
+      transition: transform .15s;
+    }
+    .tester__slider input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .tester__slider output {
+      font-size: 14px; color: var(--charcoal);
+      font-feature-settings: "tnum"; min-width: 3.5rem;
+      text-align: right; font-weight: 600;
+    }
+
+    /* Style buttons — pill shaped */
+    .tester__styles { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tester__styles button {
+      padding: 6px 18px; border: 1.5px solid #e0ddd8;
+      border-radius: 50px; font-size: 14px; font-weight: 500;
+      transition: all .2s; white-space: nowrap;
+    }
+    .tester__styles button:hover { border-color: var(--text-muted); }
+    .tester__styles button.active {
+      background: var(--charcoal); color: #fff; border-color: var(--charcoal);
+    }
+
+    /* Presets */
+    .tester__presets {
+      display: flex; flex-wrap: wrap; gap: 8px; width: 100%;
+      padding-top: var(--space-md); margin-top: var(--space-md);
+      border-top: 1px solid #f0ece8;
+    }
+    .tester__presets button {
+      font-size: 13px; color: var(--text-muted);
+      padding: 4px 14px; border: 1px solid #f0ece8;
+      border-radius: 50px; transition: all .2s; font-weight: 450;
+    }
+    .tester__presets button:hover {
+      color: var(--coral); border-color: var(--coral); background: var(--coral-soft);
+    }
+
+    /* ── DESCRIPTION ────────────────────────────────── */
+    .product-desc { padding: var(--space-3xl) 0; }
+    .product-desc__inner { max-width: 680px; }
+    .product-desc__inner p { font-size: 18px; line-height: 1.7; color: #4a4a4a; }
+    .product-desc__inner p + p { margin-top: var(--space-md); }
+    .product-desc__inner .hl { color: var(--charcoal); font-weight: 600; }
+
+    /* ── SPECS ──────────────────────────────────────── */
+    .product-specs { padding: var(--space-2xl) 0; background: #f0ece8; }
+    .specs-grid {
+      display: grid; gap: var(--space-md); max-width: 500px;
+    }
+    @media (min-width: 480px) {
+      .specs-grid { grid-template-columns: auto 1fr; gap: var(--space-sm) var(--space-xl); }
+    }
+    .specs-grid dt { font-size: 14px; font-weight: 600; color: var(--charcoal); }
+    .specs-grid dd { font-size: 16px; color: #4a4a4a; }
+    .specs-grid a { color: var(--coral); text-decoration: underline; }
+
+    /* ── RELATED ────────────────────────────────────── */
+    .product-related { padding: var(--space-3xl) 0; border-top: 1px solid #e8e4e0; }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
+    @media (max-width: 640px) { .related-grid { grid-template-columns: 1fr 1fr; } }
+    .related-item { display: block; }
+    .related-item__img {
+      aspect-ratio: 3/2;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.25rem, 2vw, 2rem); font-weight: 700;
+      letter-spacing: -.02em; border-radius: 8px;
+      transition: transform .3s cubic-bezier(.16,1,.3,1);
+      background-size: cover; background-position: center;
+    }
+    .related-item:hover .related-item__img { transform: scale(1.02); }
+    .related-item__name { margin-top: var(--space-sm); font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+    .related-item__price { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+    /* ── FAQ ────────────────────────────────────────── */
+    .product-faq {
+      padding: var(--space-3xl) 0;
+      background: linear-gradient(180deg, var(--coral-soft) 0%, transparent 100%);
+    }
+    .faq-list { max-width: 680px; display: grid; gap: var(--space-lg); }
+    .faq-item {
+      background: #fff; padding: var(--space-lg); border-radius: 12px;
+      border: 1px solid #e8e4e0;
+    }
+    .faq-item h3 { font-size: 16px; font-weight: 700; margin-bottom: var(--space-xs); letter-spacing: -.01em; }
+    .faq-item p { color: #4a4a4a; font-size: 15px; line-height: 1.7; }
+
+    /* ── FOOTER ─────────────────────────────────────── */
+    .site-footer { padding: var(--space-2xl) 0; font-size: 14px; color: var(--text-muted); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-lg); align-items: center; }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a:hover { color: var(--coral); }
+
+    @media (max-width: 767px) {
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="header-inner container" aria-label="Main">
+      <a href="/" class="site-logo"><span class="site-logo__r">R</span>illatype</a>
+      <div class="nav-main">
+        <ul>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about/">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Breadcrumbs -->
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span>/</span>
+        <a href="/shop/">Shop</a><span>/</span>
+        <a href="/product-category/display/">Display</a><span>/</span>
+        <span aria-current="page">Mango Letters</span>
+      </nav>
+    </div>
+
+    <!-- Product Hero -->
+    <section class="product-hero">
+      <div class="container">
+        <div class="product-hero__grid">
+
+          <!-- Preview carousel (9 images, slide left/right) -->
+          <div class="slider-wrap" id="slider">
+            <div class="slider-track" id="slider-track">
+              <img src="/static/previews/mango-1.jpg" alt="Mango Letter preview 1">
+              <img src="/static/previews/mango-2.jpg" alt="Mango Letter preview 2">
+              <img src="/static/previews/mango-3.jpg" alt="Mango Letter preview 3">
+              <img src="/static/previews/mango-4.jpg" alt="Mango Letter preview 4">
+              <img src="/static/previews/mango-5.jpg" alt="Mango Letter preview 5">
+              <img src="/static/previews/mango-6.jpg" alt="Mango Letter preview 6">
+              <img src="/static/previews/mango-7.jpg" alt="Mango Letter preview 7">
+              <img src="/static/previews/mango-8.jpg" alt="Mango Letter preview 8">
+              <img src="/static/previews/mango-9.jpg" alt="Mango Letter preview 9">
+            </div>
+            <button class="slider-btn slider-btn--prev" id="slider-prev" aria-label="Previous preview">‹</button>
+            <button class="slider-btn slider-btn--next" id="slider-next" aria-label="Next preview">›</button>
+            <div class="slider-dots" id="slider-dots"></div>
+          </div>
+
+          <!-- Info -->
+          <div class="product-info">
+            <span class="product-badge">New</span>
+            <h1 class="product-title">Mango Letter</h1>
+            <p class="product-subtitle">Playful display typeface</p>
+            <div class="product-meta">
+              <span>OTF, TTF</span>
+              <span>350+ glyphs</span>
+              <span>Latin</span>
+            </div>
+
+            <div class="license-select">
+              <span class="license-select__label">License</span>
+              <label class="license-tier selected" data-price="18">
+                <input type="radio" name="license" value="personal" checked>
+                <div class="license-tier__row">
+                  <div class="license-tier__info">
+                    <div class="license-tier__name">Personal &amp; Commercial</div>
+                    <div class="license-tier__desc">Logos, branding, print, social</div>
+                  </div>
+                  <span class="license-tier__price">$18</span>
+                </div>
+              </label>
+              <label class="license-tier" data-price="50">
+                <input type="radio" name="license" value="web">
+                <div class="license-tier__row">
+                  <div class="license-tier__info">
+                    <div class="license-tier__name">Web &amp; App</div>
+                    <div class="license-tier__desc">Website embedding, apps, ePUB</div>
+                  </div>
+                  <span class="license-tier__price">$50</span>
+                </div>
+              </label>
+              <label class="license-tier" data-price="150">
+                <input type="radio" name="license" value="extended">
+                <div class="license-tier__row">
+                  <div class="license-tier__info">
+                    <div class="license-tier__name">Extended</div>
+                    <div class="license-tier__desc">Unlimited users, broadcast, OEM</div>
+                  </div>
+                  <span class="license-tier__price">$150</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn btn-primary" id="add-to-cart-btn">Add to Cart — $18</button>
+            </div>
+            <p class="product-guarantee">
+              <strong>Lifetime updates</strong> included. <a href="/license/" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ⭐ Font Playground ⭐ -->
+    <section class="font-playground" aria-label="Try this font">
+      <div class="container">
+        <p class="section-label">Playground</p>
+        <div class="tester" role="region" aria-label="Interactive font tester">
+          <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
+          <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
+          <div class="tester__controls">
+            <div class="tester__slider">
+              <label for="tester-size">Size</label>
+              <input type="range" id="tester-size" min="12" max="200" value="64" step="1" aria-label="Font size">
+              <output id="tester-size-value">64px</output>
+            </div>
+            <div class="tester__styles" role="radiogroup" aria-label="Style">
+              <button class="active" data-weight="400" role="radio" aria-checked="true">Regular</button>
+              <button data-weight="700" role="radio" aria-checked="false">Bold</button>
+              <button data-weight="400" data-style="italic" role="radio" aria-checked="false">Italic</button>
+            </div>
+            <div class="tester__presets" aria-label="Quick text">
+              <button data-preset="The quick brown fox jumps over the lazy dog">Aa Bb Cc</button>
+              <button data-preset="HELLO WORLD">ALL CAPS</button>
+              <button data-preset="Handcrafted with love">Phrase</button>
+              <button data-preset="Pack my box with five dozen liquor jugs">Pangram</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Description -->
+    <section class="product-desc" aria-label="About this font">
+      <div class="container">
+        <div class="product-desc__inner">
+          <p class="section-label">About</p>
+          <p><span class="hl">Mango Letters</span> was born from a fascination with hand-painted signage — the imperfect, warm kind you'd find at a tropical fruit stand. Every letter has its own personality.</p>
+          <p>Designed to be <span class="hl">warm, playful, and unmistakably human</span>. Works beautifully for branding, packaging, posters, social media, and anywhere you need handcrafted charm.</p>
+          <p>Includes uppercase, lowercase, numbers, punctuation, and a full set of alternates — all carefully spaced and kerned.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Specs -->
+    <section class="product-specs">
+      <div class="container">
+        <p class="section-label">Specifications</p>
+        <dl class="specs-grid">
+          <dt>Formats</dt><dd>OTF, TTF, WOFF2</dd>
+          <dt>Glyphs</dt><dd>350+</dd>
+          <dt>Styles</dt><dd>Regular, Bold, Italic</dd>
+          <dt>Languages</dt><dd>Latin, Western European</dd>
+          <dt>License</dt><dd><a href="/font-license/">Commercial</a></dd>
+          <dt>Designer</dt><dd>Gustian</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Full preview">
+      <button class="lightbox__close" id="lb-close" aria-label="Close">✕</button>
+      <button class="lightbox__nav lightbox__nav--prev" id="lb-prev" aria-label="Previous">‹</button>
+      <img id="lb-img" src="" alt="Full preview">
+      <button class="lightbox__nav lightbox__nav--next" id="lb-next" aria-label="Next">›</button>
+      <span class="lightbox__counter" id="lb-counter"></span>
+    </div>
+
+    <!-- Related -->
+    <section class="product-related" aria-label="Similar fonts">
+      <div class="container">
+        <p class="section-label">You might also like</p>
+        <div class="related-grid">
+          <a href="/product/crimson-queen/" class="related-item">
+            <div class="related-item__img" style="background-image:url('/static/previews/crimson-queen-1.jpg');background-size:cover;background-position:center;">Crimson Queen</div>
+            <p class="related-item__name">Crimson Queen</p>
+            <p class="related-item__price">$22</p>
+          </a>
+          <a href="/product/baldock/" class="related-item">
+            <div class="related-item__img" style="background-image:url('/static/previews/baldock-1.jpg');background-size:cover;background-position:center;">Baldock</div>
+            <p class="related-item__name">Baldock</p>
+            <p class="related-item__price">$20</p>
+          </a>
+          <a href="/product/bawden/" class="related-item">
+            <div class="related-item__img" style="background-image:url('/static/previews/bawden-1.jpg');background-size:cover;background-position:center;">Bawden</div>
+            <p class="related-item__name">Bawden</p>
+            <p class="related-item__price">$18</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="product-faq">
+      <div class="container">
+        <p class="section-label">FAQ</p>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>What file formats are included?</h3>
+            <p>OTF, TTF, and WOFF2. All fully functional with complete glyph set.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Can I use this for commercial projects?</h3>
+            <p>Yes. License covers logos, branding, packaging, merchandise, and client work — no extra fees.</p>
+          </div>
+          <div class="faq-item">
+            <h3>Do I need a separate web license?</h3>
+            <p>No. The WOFF2 file is included. Self-host on your website with no pageview limits.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-links">
+        <a href="https://instagram.com/rillatype" rel="me">Instagram</a>
+        <a href="/contact/">Contact</a>
+        <a href="/font-license/">License</a>
+        <a href="/privacy/">Privacy</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Rillatype Studio</p>
+    </div>
+  </footer>
+
+  <script>
+    // Font tester
+    (function(){
+      var d = document.getElementById('tester-display'),
+          s = document.getElementById('tester-size'),
+          o = document.getElementById('tester-size-value'),
+          def = d.textContent.trim();
+
+      s.addEventListener('input', function(){
+        d.style.fontSize = this.value + 'px';
+        o.textContent = this.value + 'px';
+      });
+
+      document.querySelectorAll('.tester__styles button').forEach(function(b){
+        b.addEventListener('click', function(){
+          document.querySelectorAll('.tester__styles button').forEach(function(x){
+            x.classList.remove('active'); x.setAttribute('aria-checked', 'false');
+          });
+          this.classList.add('active'); this.setAttribute('aria-checked', 'true');
+          d.style.fontWeight = this.dataset.weight;
+          d.style.fontStyle = this.dataset.style === 'italic' ? 'italic' : 'normal';
+        });
+      });
+
+      document.querySelectorAll('.tester__presets button').forEach(function(b){
+        b.addEventListener('click', function(){
+          d.textContent = this.dataset.preset; d.focus();
+        });
+      });
+
+      d.addEventListener('blur', function(){
+        if (!this.textContent.trim()) this.textContent = def;
+      });
+    })();
+
+    // License picker
+    (function(){
+      var opts = document.querySelectorAll('.license-tier');
+      var cartBtn = document.getElementById('add-to-cart-btn');
+
+      opts.forEach(function(opt){
+        opt.addEventListener('click', function(){
+          opts.forEach(function(o){ o.classList.remove('selected'); });
+          this.classList.add('selected');
+          var price = this.dataset.price;
+          cartBtn.textContent = 'Add to Cart — $' + price;
+        });
+      });
+    })();
+
+    // Slider
+    (function(){
+      var track = document.getElementById('slider-track');
+      if (!track) return;
+      var slides = track.querySelectorAll('img');
+      var total = slides.length;
+      var idx = 0;
+
+      // Build dots
+      var dotsEl = document.getElementById('slider-dots');
+      for (var i = 0; i < total; i++) {
+        var dot = document.createElement('button');
+        dot.setAttribute('aria-label', 'Go to preview ' + (i+1));
+        if (i === 0) dot.className = 'active';
+        (function(n){ dot.addEventListener('click', function(){ goTo(n); }); })(i);
+        dotsEl.appendChild(dot);
+      }
+
+      function goTo(n) {
+        idx = Math.max(0, Math.min(n, total - 1));
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        // update dots
+        var dots = dotsEl.querySelectorAll('button');
+        dots.forEach(function(d, i){ d.className = i === idx ? 'active' : ''; });
+        // arrows
+        document.getElementById('slider-prev').disabled = idx === 0;
+        document.getElementById('slider-next').disabled = idx === total - 1;
+      }
+
+      document.getElementById('slider-prev').addEventListener('click', function(){ goTo(idx - 1); });
+      document.getElementById('slider-next').addEventListener('click', function(){ goTo(idx + 1); });
+
+      // Keyboard
+      document.getElementById('slider').addEventListener('keydown', function(e){
+        if (e.key === 'ArrowLeft') { goTo(idx - 1); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { goTo(idx + 1); e.preventDefault(); }
+      });
+      document.getElementById('slider').setAttribute('tabindex', '0');
+
+      goTo(0);
+
+      // Lightbox
+      var lb = document.getElementById('lightbox');
+      var lbImg = document.getElementById('lb-img');
+      var lbCounter = document.getElementById('lb-counter');
+
+      // Click slider image → open lightbox
+      slides.forEach(function(img, i){
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function(){ openLightbox(i); });
+      });
+
+      function openLightbox(n) {
+        lbIdx = n;
+        lb.classList.add('open');
+        updateLightboxImg();
+        document.body.style.overflow = 'hidden';
+      }
+
+      var lbIdx = 0;
+      var srcMap = [];
+      slides.forEach(function(s){ srcMap.push(s.src); });
+
+      function updateLightboxImg() {
+        lbImg.src = srcMap[lbIdx];
+        lbCounter.textContent = (lbIdx + 1) + ' / ' + total;
+      }
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('lb-prev').addEventListener('click', function(e){ e.stopPropagation(); lbIdx = Math.max(0, lbIdx - 1); updateLightboxImg(); });
+      document.getElementById('lb-next').addEventListener('click', function(e){ e.stopPropagation(); lbIdx = Math.min(total - 1, lbIdx + 1); updateLightboxImg(); });
+
+      function closeLightbox() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      lb.addEventListener('click', function(e){ if (e.target === lb) closeLightbox(); });
+      document.addEventListener('keydown', function(e){
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') { lbIdx = Math.max(0, lbIdx - 1); updateLightboxImg(); }
+        if (e.key === 'ArrowRight') { lbIdx = Math.min(total - 1, lbIdx + 1); updateLightboxImg(); }
+      });
+    })();
+
+    // Sticky header
+    var h = document.querySelector('.site-header');
+    window.addEventListener('scroll', function(){
+      h.style.borderBottomColor = scrollY > 10 ? '#e8e4e0' : 'transparent';
+    }, {passive: true});
+  </script>
+
+</body>
+</html>
