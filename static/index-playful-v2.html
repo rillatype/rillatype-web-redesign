@@ -1,19 +1,4 @@
 <!doctype html>
-<!--
-╔══════════════════════════════════════════════════╗
-║  RILLATYPE — Homepage Template                  ║
-║                                                  ║
-║  MUDAH DIEDIT — cari kata "EDIT" di halaman ini ║
-║                                                  ║
-║  Yang bisa diganti:                              ║
-║  1. Hero headline    → cari "type-morph"         ║
-║  2. Featured fonts   → cari "font-showcase"      ║
-║  3. Font preview img → cari "previews/"          ║
-║  4. Nav menu         → cari "nav-main"           ║
-║  5. Categories       → cari "categories__cloud"  ║
-║  6. Blog posts       → cari "blog-link"          ║
-╚══════════════════════════════════════════════════╝
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -81,45 +66,16 @@
     .site-logo__r { color: var(--coral); font-size: 28px; }
     .nav-main ul { display: flex; gap: var(--space-sm); align-items: center; }
     .nav-main a {
-      font-size: 14px; font-weight: 600; color: #2a2a2a;
-      position: relative; padding: 6px 10px;
+      font-size: 13px; font-weight: 500; color: #4a4a4a;
+      position: relative; padding: 4px 8px;
       transition: color .2s;
     }
     .nav-main a:hover { color: var(--charcoal); }
     .nav-main a::after {
-      content: ''; position: absolute; bottom: -2px; left: 10px; right: 10px; height: 2px;
+      content: ''; position: absolute; bottom: -2px; left: 8px; right: 8px; height: 2px;
       background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
     }
     .nav-main a:hover::after { transform: scaleX(1); }
-
-    /* Dropdown */
-    .nav-dropdown { position: relative; }
-    .nav-dropbtn {
-      font-size: 14px; font-weight: 600; color: #2a2a2a;
-      padding: 6px 10px; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;
-      transition: color .2s; position: relative;
-    }
-    .nav-dropbtn .arrow { font-size: 8px; transition: transform .2s; }
-    .nav-dropdown:hover .nav-dropbtn .arrow { transform: rotate(180deg); }
-    .nav-dropdown:hover .nav-dropbtn { color: var(--charcoal); }
-    .nav-dropdown::after {
-      content: ''; position: absolute; bottom: -2px; left: 10px; right: 10px; height: 2px;
-      background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
-    }
-    .nav-dropdown:hover::after { transform: scaleX(1); }
-    .nav-dropdown__menu {
-      position: absolute; top: 100%; left: 0; z-index: 200;
-      min-width: 180px; background: #fff; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.08);
-      padding: 6px; display: none; border: 1px solid #f0ece8;
-    }
-    .nav-dropdown:hover .nav-dropdown__menu { display: block; }
-    .nav-dropdown__menu a {
-      display: block; padding: 7px 12px; font-size: 13px; font-weight: 500;
-      color: #4a4a4a; border-radius: 4px;
-    }
-    .nav-dropdown__menu a::after { display: none !important; }
-    .nav-dropdown__menu a:hover { background: var(--coral-soft); color: var(--coral); }
 
     .nav-actions { display: flex; gap: var(--space-xs); align-items: center; }
     .nav-icon {
@@ -148,6 +104,12 @@
       content: ''; position: absolute; inset: 0;
       background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0553d' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       pointer-events: none;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('https://picsum.photos/seed/rillatype-hero/1600/900');
+      background-size: cover; background-position: center;
+      opacity: .08; pointer-events: none;
     }
 
     .hero__inner { position: relative; }
@@ -324,7 +286,15 @@
 
     .process__step {
       text-align: center;
+      position: relative;
     }
+    .process__img {
+      width: 100%; aspect-ratio: 3/2;
+      border-radius: 8px; margin-bottom: var(--space-lg);
+      background-size: cover; background-position: center;
+      transition: transform .3s;
+    }
+    .process__step:hover .process__img { transform: scale(1.02); }
     .process__icon {
       display: flex; align-items: center; justify-content: center;
       width: 72px; height: 72px; border-radius: 50%;
@@ -599,27 +569,9 @@
       <a href="/" class="site-logo"><span class="site-logo__r">R</span>illatype</a>
       <div class="nav-main">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li class="nav-dropdown">
-            <span class="nav-dropbtn">Shop <span class="arrow">▾</span></span>
-            <div class="nav-dropdown__menu">
-              <a href="/product-category/font/">Font</a>
-              <a href="/product-category/graphic/">Graphic</a>
-            </div>
-          </li>
-          <li class="nav-dropdown">
-            <span class="nav-dropbtn">Font <span class="arrow">▾</span></span>
-            <div class="nav-dropdown__menu">
-              <a href="/product-category/display/">Display</a>
-              <a href="/product-category/script/">Script</a>
-              <a href="/product-category/handwritten/">Handwritten</a>
-              <a href="/product-category/retro-vintage/">Retro &amp; Vintage</a>
-              <a href="/product-category/modern/">Modern</a>
-              <a href="/product-category/signature/">Signature</a>
-              <a href="/product-category/sans-serif/">Sans Serif</a>
-              <a href="/product-category/serif/">Serif</a>
-            </div>
-          </li>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/product-category/font/">Font</a></li>
           <li><a href="/product-category/freebies/">Freebies</a></li>
           <li><a href="/license/">License</a></li>
           <li><a href="/contact-us/">Contact</a></li>
@@ -627,12 +579,9 @@
         </ul>
       </div>
       <div class="nav-actions">
-        <a href="/?s=" class="nav-icon" aria-label="Search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </a>
+        <a href="/?s=" class="nav-icon" aria-label="Search">🔍</a>
         <a href="/cart-2/" class="nav-icon nav-cart-wrap" aria-label="Cart">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          <span class="nav-cart-count">0</span>
+          🛒<span class="nav-cart-count">0</span>
         </a>
       </div>
     </nav>
@@ -642,6 +591,7 @@
 
     <!-- Hero — animated type -->
     <section class="hero" aria-label="Welcome">
+      <div class="hero__bg"></div>
       <div class="hero__inner container">
         <p class="hero__tag">Playful typefaces</p>
         <div class="type-morph" id="type-morph">
@@ -705,17 +655,17 @@
         <p class="section-label">Behind the type</p>
         <div class="process__grid">
           <div class="process__step">
-            <div class="process__icon">✏️</div>
+            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-sketch/600/400');"></div>
             <h3>Sketch</h3>
             <p>Every font starts on paper. Rough curves, happy accidents, and ideas that refuse to fit in a grid.</p>
           </div>
           <div class="process__step">
-            <div class="process__icon">📐</div>
+            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-vector/600/400');"></div>
             <h3>Vector</h3>
             <p>Into FontLab for cleanup. Spacing, kerning, alternates — the invisible work that makes type breathe.</p>
           </div>
           <div class="process__step">
-            <div class="process__icon">📦</div>
+            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-ship/600/400');"></div>
             <h3>Ship</h3>
             <p>Packaged as OTF, TTF &amp; WOFF2. Tested, subset for web, and delivered — ready for your next project.</p>
           </div>

@@ -1,20 +1,4 @@
 <!doctype html>
-<!--
-╔══════════════════════════════════════════════════╗
-║  RILLATYPE — Product Page Template              ║
-║                                                  ║
-║  MUDAH DIEDIT — cari kata "EDIT" di halaman ini ║
-║                                                  ║
-║  Yang bisa diganti tanpa懂 HTML:                 ║
-║  1. Judul produk    → cari "product-title"       ║
-║  2. Harga lisensi   → cari "data-price"          ║
-║  3. Gambar preview  → cari "previews/mango"      ║
-║  4. Font file       → cari "mango-letter.otf"    ║
-║  5. Nav menu        → cari "nav-main"            ║
-║  6. FAQ             → cari "faq-item"            ║
-║  7. Specs           → cari "specs-grid"          ║
-╚══════════════════════════════════════════════════╝
--->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -80,59 +64,10 @@
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: var(--space-md) 0; }
     .site-logo { font-size: 22px; font-weight: 700; letter-spacing: -.04em; display: flex; align-items: baseline; gap: 2px; }
     .site-logo__r { color: var(--coral); font-size: 28px; }
-    .nav-main ul { display: flex; gap: 2px; align-items: center; }
-    .nav-main a, .nav-main .nav-dropbtn {
-      font-size: 14px; font-weight: 600; color: #2a2a2a;
-      position: relative; padding: 6px 10px;
-      transition: color .2s;
-      text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;
-    }
-    .nav-main a:hover, .nav-main .nav-dropbtn:hover { color: var(--charcoal); }
-    .nav-main a::after, .nav-dropdown::after {
-      content: ''; position: absolute; bottom: -2px; left: 10px; right: 10px; height: 2px;
-      background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
-    }
-    .nav-main a:hover::after, .nav-dropdown:hover::after { transform: scaleX(1); }
-
-    /* Dropdown */
-    .nav-dropdown {
-      position: relative;
-    }
-    .nav-dropbtn .arrow {
-      font-size: 8px; transition: transform .2s;
-    }
-    .nav-dropdown:hover .nav-dropbtn .arrow { transform: rotate(180deg); }
-    .nav-dropdown__menu {
-      position: absolute; top: 100%; left: 0; z-index: 200;
-      min-width: 180px; background: #fff; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.08);
-      padding: 6px; display: none;
-      border: 1px solid #f0ece8;
-    }
-    .nav-dropdown:hover .nav-dropdown__menu { display: block; }
-    .nav-dropdown__menu a {
-      display: block; padding: 7px 12px; font-size: 13px; font-weight: 500;
-      color: #4a4a4a; border-radius: 4px; border-bottom: none !important;
-    }
-    .nav-dropdown__menu a::after { display: none !important; }
-    .nav-dropdown__menu a:hover { background: var(--coral-soft); color: var(--coral); }
-
-    .nav-actions { display: flex; gap: var(--space-xs); align-items: center; }
-    .nav-icon {
-      display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 50%;
-      color: #4a4a4a; font-size: 16px;
-      transition: all .2s;
-    }
-    .nav-icon:hover { background: #f0ece8; color: var(--charcoal); }
-    .nav-cart-wrap { position: relative; }
-    .nav-cart-count {
-      position: absolute; top: -2px; right: -2px;
-      width: 16px; height: 16px; border-radius: 50%;
-      background: var(--coral); color: #fff;
-      font-size: 9px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .nav-main ul { display: flex; gap: var(--space-xl); }
+    .nav-main a { font-size: 14px; font-weight: 500; color: #4a4a4a; position: relative; padding: 4px 0; }
+    .nav-main a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--coral); transition: width .3s cubic-bezier(.16,1,.3,1); }
+    .nav-main a:hover::after { width: 100%; }
 
     /* ── BREADCRUMBS ────────────────────────────────── */
     .breadcrumbs {
@@ -267,10 +202,8 @@
       50% { opacity: 1; }
     }
     .product-title {
-      font-size: clamp(22px, 3.5vw, 34px);
-      font-weight: 800; letter-spacing: -.02em; line-height: 1.05;
+      font-size: 34px; font-weight: 800; letter-spacing: -.03em; line-height: .9;
       margin-bottom: 2px;
-      overflow-wrap: break-word; hyphens: none;
     }
     .product-title__sub {
       font-size: 14px; font-weight: 400; color: var(--text-muted);
@@ -379,8 +312,7 @@
     .tester__display:focus { outline: 2px dashed #2b6ed7; outline-offset: 2px; }
     .tester__display:empty::before { content: 'Start typing...'; color: #b0aeaa; }
     .tester__hint {
-      font-size: 12px; color: var(--text-muted); padding: 8px var(--space-lg) 0;
-      font-style: italic;
+      font-size: 13px; color: var(--text-muted); padding: var(--space-sm) var(--space-lg) 0;
     }
 
     .tester__controls {
@@ -483,20 +415,6 @@
     .product-desc__inner p { font-size: 18px; line-height: 1.7; color: #4a4a4a; }
     .product-desc__inner p + p { margin-top: var(--space-md); }
     .product-desc__inner .hl { color: var(--charcoal); font-weight: 600; }
-
-    /* Tags */
-    .tags-list { display: flex; gap: 6px; flex-wrap: wrap; }
-    .tag-link {
-      display: inline-block; font-size: 12px; font-weight: 500;
-      padding: 4px 12px; border-radius: 50px;
-      background: var(--coral-soft); color: var(--coral);
-      transition: all .2s; text-decoration: none;
-    }
-    .tag-link:hover { background: var(--coral); color: #fff; }
-    .tag-link--light {
-      background: #f0ece8; color: #4a4a4a;
-    }
-    .tag-link--light:hover { background: #e0dcd8; color: var(--charcoal); }
 
     /* ── SPECS ──────────────────────────────────────── */
     .product-specs { padding: var(--space-2xl) 0; background: #f0ece8; }
@@ -641,41 +559,10 @@
       <a href="/" class="site-logo"><span class="site-logo__r">R</span>illatype</a>
       <div class="nav-main">
         <ul>
-          <li><a href="/">Home</a></li>
-          <li class="nav-dropdown">
-            <span class="nav-dropbtn">Shop <span class="arrow">▾</span></span>
-            <div class="nav-dropdown__menu">
-              <a href="/product-category/font/">Font</a>
-              <a href="/product-category/graphic/">Graphic</a>
-            </div>
-          </li>
-          <li class="nav-dropdown">
-            <span class="nav-dropbtn">Font <span class="arrow">▾</span></span>
-            <div class="nav-dropdown__menu">
-              <a href="/product-category/display/">Display</a>
-              <a href="/product-category/script/">Script</a>
-              <a href="/product-category/handwritten/">Handwritten</a>
-              <a href="/product-category/retro-vintage/">Retro &amp; Vintage</a>
-              <a href="/product-category/modern/">Modern</a>
-              <a href="/product-category/signature/">Signature</a>
-              <a href="/product-category/sans-serif/">Sans Serif</a>
-              <a href="/product-category/serif/">Serif</a>
-            </div>
-          </li>
-          <li><a href="/product-category/freebies/">Freebies</a></li>
-          <li><a href="/license/">License</a></li>
-          <li><a href="/contact-us/">Contact</a></li>
-          <li><a href="/my-account/">Account</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/about/">About</a></li>
         </ul>
-      </div>
-      <div class="nav-actions">
-        <a href="/?s=" class="nav-icon" aria-label="Search">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </a>
-        <a href="/cart-2/" class="nav-icon nav-cart-wrap" aria-label="Cart">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-          <span class="nav-cart-count">0</span>
-        </a>
       </div>
     </nav>
   </header>
@@ -803,7 +690,7 @@
         <p class="section-label">Playground</p>
         <div class="tester" role="region" aria-label="Interactive font tester">
           <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
-          <p class="tester__hint">Click the text above to type your own words.</p>
+          <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
           <div class="tester__controls">
             <div class="tester__row">
               <div class="tester__slider">
@@ -901,7 +788,7 @@
           <span class="glyph-cell">{</span><span class="glyph-cell">}</span><span class="glyph-cell">/</span>
           <span class="glyph-cell">\</span><span class="glyph-cell">|</span><span class="glyph-cell">~</span>
         </div>
-        <p style="font-size:13px;color:var(--text-muted);margin-top:var(--space-md);display:none;" id="glyph-count">180+ glyphs — uppercase, lowercase, numbers, punctuation, and extras. Works for most Latin-based projects.</p>
+        <p style="font-size:13px;color:var(--text-muted);margin-top:var(--space-md);display:none;" id="glyph-count">Showing a subset. The font contains 350+ glyphs including uppercase, lowercase, numerals, punctuation, ligatures, alternates, and multilingual support.</p>
       </div>
     </section>
 
@@ -913,19 +800,6 @@
           <p><span class="hl">Mango Letters</span> was born from a fascination with hand-painted signage — the imperfect, warm kind you'd find at a tropical fruit stand. Every letter has its own personality.</p>
           <p>Designed to be <span class="hl">warm, playful, and unmistakably human</span>. Works beautifully for branding, packaging, posters, social media, and anywhere you need handcrafted charm.</p>
           <p>Includes uppercase, lowercase, numbers, punctuation, and a full set of alternates — all carefully spaced and kerned.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tags -->
-    <section class="product-tags" style="padding:0 0 var(--space-2xl);">
-      <div class="container">
-        <div class="tags-list">
-          <a href="/product-category/display/" class="tag-link">Display</a>
-          <a href="/product-category/handwritten/" class="tag-link">Handwritten</a>
-          <a href="/product-category/font/" class="tag-link">Font</a>
-          <span class="tag-link tag-link--light">OTF</span>
-          <span class="tag-link tag-link--light">TTF</span>
         </div>
       </div>
     </section>
@@ -1011,15 +885,15 @@
         <div class="faq-list">
           <div class="faq-item">
             <h3>What file formats are included?</h3>
-            <p>OTF and TTF. Both are fully functional with complete glyph set — ready for print, web, and desktop use.</p>
+            <p>OTF, TTF, and WOFF2. All fully functional with complete glyph set.</p>
           </div>
           <div class="faq-item">
             <h3>Can I use this for commercial projects?</h3>
-            <p>Yes. The Standard license covers logos, branding, packaging, merchandise, and client work — no extra fees.</p>
+            <p>Yes. License covers logos, branding, packaging, merchandise, and client work — no extra fees.</p>
           </div>
           <div class="faq-item">
-            <h3>How do I install the font?</h3>
-            <p>Download the ZIP, extract, double-click the .ttf or .otf file, and hit "Install". Works on Mac and Windows.</p>
+            <h3>Do I need a separate web license?</h3>
+            <p>No. The WOFF2 file is included. Self-host on your website with no pageview limits.</p>
           </div>
         </div>
       </div>
