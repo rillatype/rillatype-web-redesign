@@ -2737,31 +2737,6 @@ body {
 }
 
 /* Sort dropdown */
-.shop-breadcrumb {
-  font-size: 12px;
-  color: #b0aeaa;
-  padding: 40px 0 8px;
-}
-
-.shop-breadcrumb a {
-  color: #b0aeaa;
-  text-decoration: none;
-  transition: color .2s;
-}
-
-.shop-breadcrumb a:hover {
-  color: var(--coral);
-}
-
-.shop-breadcrumb__sep {
-  margin: 0 6px;
-  color: #d0ccc8;
-}
-
-.shop-breadcrumb__current {
-  color: #b0aeaa;
-}
-
 .shop-page__title {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -2780,9 +2755,8 @@ body {
   margin-bottom: var(--space-xl);
 }
 
-.woocommerce-result-count {
-  font-size: 13px;
-  color: #8a8682;
+.shop-page .woocommerce-result-count {
+  display: none;
 }
 
 .shop-sort {

@@ -3,9 +3,7 @@
 <main id="main" class="site-main shop-page">
   <div class="container">
 
-    <?php woocommerce_breadcrumb(); ?>
-
-    <p class="section-label">All fonts</p>
+    <p class="section-label">All products</p>
 
     <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
       <h1 class="shop-page__title"><?php woocommerce_page_title(); ?></h1>
