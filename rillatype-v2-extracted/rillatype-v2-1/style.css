@@ -2825,8 +2825,8 @@ body {
 }
 
 .shop-page .woocommerce-pagination ul li a:hover {
-  border-color: var(--coral);
-  color: var(--coral);
+  border-color: var(--charcoal);
+  color: var(--charcoal);
   transform: translateY(-1px);
 }
 
