@@ -2745,10 +2745,10 @@ body {
 }
 
 .shop-page__desc {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 400;
-  line-height: 1;
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.05;
   letter-spacing: -.04em;
   color: var(--text);
   margin-bottom: var(--space-lg);
