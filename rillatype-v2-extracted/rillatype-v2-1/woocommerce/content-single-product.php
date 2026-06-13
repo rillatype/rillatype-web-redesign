@@ -118,7 +118,7 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
         <?php endif; ?>
 
         <p class="product-guarantee">
-          <strong>Lifetime updates</strong> included. <a href="#license-details" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
+          <strong>Lifetime updates</strong> included. <a href="<?php echo esc_url(home_url('/font-license/')); ?>" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
         </p>
 
         <?php
