@@ -806,7 +806,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-top: var(--space-2xl);
+  margin-top: var(--space-xl);
   font-size: 15px;
   font-weight: 600;
   color: var(--charcoal);
@@ -1622,6 +1622,10 @@ body {
 
 .blog-link:hover .blog-link__arrow {
   transform: translateX(6px);
+}
+
+.blog-box .section-more {
+  margin-top: var(--space-md);
 }
 
 .blog-link__date {
