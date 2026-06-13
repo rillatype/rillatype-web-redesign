@@ -200,91 +200,116 @@ function rillatype_allow_font_uploads($mimes) {
   return $mimes;
 }
 
-add_action('acf/init', 'rillatype_register_product_preview_fields');
-function rillatype_register_product_preview_fields() {
-  if (!function_exists('acf_add_local_field_group')) return;
+add_action('add_meta_boxes_product', 'rillatype_add_product_preview_box');
+function rillatype_add_product_preview_box() {
+  add_meta_box('rillatype-product-preview', 'Product Preview', 'rillatype_render_product_preview_box', 'product', 'normal', 'default');
+}
 
-  acf_add_local_field_group(array(
-    'key' => 'group_rillatype_product_preview',
-    'title' => 'Product Preview',
-    'fields' => array(
-      array(
-        'key' => 'field_rillatype_font_tab',
-        'label' => 'Font',
-        'name' => '',
-        'type' => 'tab',
-        'placement' => 'left',
-      ),
-      array(
-        'key' => 'field_rillatype_font_preview',
-        'label' => 'Enable Font Preview',
-        'name' => '_font_preview',
-        'type' => 'true_false',
-        'ui' => 1,
-        'default_value' => 1,
-      ),
-      array(
-        'key' => 'field_rillatype_font_mode',
-        'label' => 'Font Preview Mode',
-        'name' => '_font_mode',
-        'type' => 'radio',
-        'choices' => array(
-          'image' => 'Secure IMAGE-based font preview (OTF/TTF), one-line preview only and no ligature support',
-          'text' => 'Secure TEXT-based font preview (WOFF/WOFF2), multi-line preview with ligature support',
-        ),
-        'default_value' => 'image',
-        'layout' => 'vertical',
-        'return_format' => 'value',
-      ),
-      array(
-        'key' => 'field_rillatype_font_data',
-        'label' => 'Add/Select Font',
-        'name' => '_font_data',
-        'type' => 'repeater',
-        'button_label' => 'Add/Select Font',
-        'layout' => 'table',
-        'sub_fields' => array(
-          array(
-            'key' => 'field_rillatype_font_name',
-            'label' => 'Font Name',
-            'name' => 'name',
-            'type' => 'text',
-          ),
-          array(
-            'key' => 'field_rillatype_font_file',
-            'label' => 'OTF/TTF Font File',
-            'name' => 'font',
-            'type' => 'file',
-            'return_format' => 'id',
-            'mime_types' => 'otf,ttf',
-          ),
-          array(
-            'key' => 'field_rillatype_font_web_file',
-            'label' => 'WOFF/WOFF2 Font File',
-            'name' => 'font_web',
-            'type' => 'file',
-            'return_format' => 'id',
-            'mime_types' => 'woff,woff2',
-          ),
-        ),
-      ),
-    ),
-    'location' => array(
-      array(
-        array(
-          'param' => 'post_type',
-          'operator' => '==',
-          'value' => 'product',
-        ),
-      ),
-    ),
-    'menu_order' => 20,
-    'position' => 'normal',
-    'style' => 'default',
-    'label_placement' => 'top',
-    'instruction_placement' => 'label',
-    'active' => true,
-  ));
+function rillatype_attachment_label($attachment_id) {
+  $attachment_id = absint($attachment_id);
+  if (!$attachment_id) return __('No font selected', 'rillatype-v2');
+  $path = get_attached_file($attachment_id);
+  return $path ? basename($path) : get_the_title($attachment_id);
+}
+
+function rillatype_render_font_file_field($name, $value) {
+  $field_id = esc_attr($name . '_' . wp_rand(1000, 9999));
+  ?>
+  <input type="hidden" class="rillatype-tester-font-url" id="<?php echo $field_id; ?>" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr(absint($value)); ?>">
+  <span class="rillatype-tester-font-name"><?php echo esc_html(rillatype_attachment_label($value)); ?></span>
+  <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo $field_id; ?>" data-value="id"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
+  <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo $field_id; ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
+  <?php
+}
+
+function rillatype_render_product_preview_box($post) {
+  wp_nonce_field('rillatype_save_product_preview', 'rillatype_product_preview_nonce');
+
+  $enabled = get_post_meta($post->ID, '_font_preview', true);
+  if ($enabled === '') $enabled = '1';
+  $mode = get_post_meta($post->ID, '_font_mode', true) ?: 'image';
+  $rows = absint(get_post_meta($post->ID, '_font_data', true));
+  ?>
+  <div class="rillatype-product-preview-box">
+    <p>
+      <label><strong><?php esc_html_e('Enable Font Preview', 'rillatype-v2'); ?></strong></label><br>
+      <label><input type="checkbox" name="_font_preview" value="1" <?php checked($enabled, '1'); ?>> <?php esc_html_e('Yes', 'rillatype-v2'); ?></label>
+    </p>
+
+    <p>
+      <label><strong><?php esc_html_e('Font Preview Mode', 'rillatype-v2'); ?></strong></label><br>
+      <label><input type="radio" name="_font_mode" value="image" <?php checked($mode, 'image'); ?>> <?php esc_html_e('Secure IMAGE-based font preview (OTF/TTF), one-line preview only and no ligature support', 'rillatype-v2'); ?></label><br>
+      <label><input type="radio" name="_font_mode" value="text" <?php checked($mode, 'text'); ?>> <?php esc_html_e('Secure TEXT-based font preview (WOFF/WOFF2), multi-line preview with ligature support', 'rillatype-v2'); ?></label>
+    </p>
+
+    <h4><?php esc_html_e('Add/Select Font', 'rillatype-v2'); ?></h4>
+    <table class="widefat rillatype-font-data-table">
+      <thead>
+        <tr>
+          <th><?php esc_html_e('Font Name', 'rillatype-v2'); ?></th>
+          <th><?php esc_html_e('OTF/TTF Font File', 'rillatype-v2'); ?></th>
+          <th><?php esc_html_e('WOFF/WOFF2 Font File', 'rillatype-v2'); ?></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php for ($i = 0; $i < max(1, $rows); $i++) : ?>
+          <tr>
+            <td><input type="text" class="widefat" name="rillatype_font_data[<?php echo esc_attr($i); ?>][name]" value="<?php echo esc_attr(get_post_meta($post->ID, '_font_data_' . $i . '_name', true)); ?>"></td>
+            <td><?php rillatype_render_font_file_field('rillatype_font_data[' . $i . '][font]', get_post_meta($post->ID, '_font_data_' . $i . '_font', true)); ?></td>
+            <td><?php rillatype_render_font_file_field('rillatype_font_data[' . $i . '][font_web]', get_post_meta($post->ID, '_font_data_' . $i . '_font_web', true)); ?></td>
+            <td><button type="button" class="button rillatype-remove-font-row"><?php esc_html_e('Remove', 'rillatype-v2'); ?></button></td>
+          </tr>
+        <?php endfor; ?>
+      </tbody>
+    </table>
+    <p><button type="button" class="button button-primary rillatype-add-font-row"><?php esc_html_e('Add/Select Font', 'rillatype-v2'); ?></button></p>
+  </div>
+  <?php
+}
+
+add_action('save_post_product', 'rillatype_save_product_preview_box');
+function rillatype_save_product_preview_box($post_id) {
+  if (!isset($_POST['rillatype_product_preview_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['rillatype_product_preview_nonce'])), 'rillatype_save_product_preview')) return;
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
+  if (!current_user_can('edit_post', $post_id)) return;
+
+  update_post_meta($post_id, '_font_preview', isset($_POST['_font_preview']) ? '1' : '0');
+  update_post_meta($post_id, '_font_mode', isset($_POST['_font_mode']) && $_POST['_font_mode'] === 'text' ? 'text' : 'image');
+
+  $old_rows = absint(get_post_meta($post_id, '_font_data', true));
+  for ($i = 0; $i < $old_rows; $i++) {
+    delete_post_meta($post_id, '_font_data_' . $i . '_name');
+    delete_post_meta($post_id, '_font_data_' . $i . '_font');
+    delete_post_meta($post_id, '_font_data_' . $i . '_font_web');
+  }
+
+  $rows = isset($_POST['rillatype_font_data']) && is_array($_POST['rillatype_font_data']) ? wp_unslash($_POST['rillatype_font_data']) : array();
+  $saved = 0;
+  foreach ($rows as $row) {
+    $name = isset($row['name']) ? sanitize_text_field($row['name']) : '';
+    $font = isset($row['font']) ? absint($row['font']) : 0;
+    $font_web = isset($row['font_web']) ? absint($row['font_web']) : 0;
+    if (!$name && !$font && !$font_web) continue;
+
+    update_post_meta($post_id, '_font_data_' . $saved . '_name', $name);
+    update_post_meta($post_id, '_font_data_' . $saved . '_font', $font);
+    update_post_meta($post_id, '_font_data_' . $saved . '_font_web', $font_web);
+    $saved++;
+  }
+  update_post_meta($post_id, '_font_data', $saved);
+}
+
+add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
+function rillatype_product_admin_assets($hook) {
+  global $post;
+  if (!in_array($hook, array('post.php', 'post-new.php'), true) || !$post || $post->post_type !== 'product') return;
+
+  wp_enqueue_media();
+  $admin_js = get_template_directory() . '/assets/js/admin-product.js';
+  if (file_exists($admin_js)) {
+    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), filemtime($admin_js), true);
+  }
 }
 
 // Cart is rendered directly in nav-actions--mobile
