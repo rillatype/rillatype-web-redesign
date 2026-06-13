@@ -884,11 +884,11 @@ body {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     justify-content: flex-start;
-    padding-bottom: 8px;
-    margin-bottom: 28px;
-    gap: 8px;
-    -webkit-mask-image: linear-gradient(to right, #000 80%, transparent 100%);
-    mask-image: linear-gradient(to right, #000 80%, transparent 100%);
+    padding-bottom: 0;
+    margin-bottom: 24px;
+    gap: 0;
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 88%, transparent 100%);
   }
   .categories__cloud::-webkit-scrollbar,
   .categories-bar::-webkit-scrollbar {
@@ -929,8 +929,30 @@ body {
 
 @media (max-width: 767px) {
   .categories__pill, .category-pill {
-    font-size: 12px;
-    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 14px;
+    border: none;
+    background: transparent;
+    color: #b0aeaa;
+    letter-spacing: -.01em;
+    white-space: nowrap;
+    border-radius: 0;
+    transition: color .2s;
+  }
+  .categories__pill:hover, .category-pill:hover {
+    border-color: transparent;
+    color: var(--charcoal);
+    transform: none;
+    box-shadow: none;
+  }
+  .categories__pill small, .category-pill small {
+    font-size: 10px;
+    font-weight: 400;
+    color: #d0ccc8;
+    vertical-align: super;
+    margin-left: 1px;
+    transition: color .2s;
   }
 }
 
