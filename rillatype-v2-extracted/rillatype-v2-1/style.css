@@ -848,6 +848,27 @@ body {
   transform: translateX(4px) scale(1.06);
 }
 
+/* Per-section hover effects */
+.freebies .section-more:hover .section-more__icon {
+  animation: iconBounce .5s cubic-bezier(.32,.72,0,1);
+}
+
+.latest .section-more:hover .section-more__icon {
+  transform: translate(4px, 3px) scale(1.06);
+}
+
+.blog-box .section-more:hover .section-more__icon {
+  transform: translateX(10px) scale(1.06);
+}
+
+@keyframes iconBounce {
+  0%   { transform: translateX(0) rotate(0deg); }
+  25%  { transform: translateX(6px) rotate(12deg); }
+  50%  { transform: translateX(-2px) rotate(-4deg); }
+  75%  { transform: translateX(3px) rotate(4deg); }
+  100% { transform: translateX(4px) rotate(0deg) scale(1.06); }
+}
+
 /* ============================================
    Categories
    ============================================ */
