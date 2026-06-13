@@ -1667,6 +1667,10 @@ body {
   transition: transform .25s ease;
 }
 
+.license-cta {
+  padding-bottom: var(--space-xl);
+}
+
 /* ============================================
    License CTA
    ============================================ */
