@@ -3,17 +3,34 @@
 <main id="main" class="site-main shop-page">
   <div class="container">
 
-    <div class="shop-page__header">
-      <?php woocommerce_breadcrumb(); ?>
-      <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
-        <h1 class="shop-page__title"><?php woocommerce_page_title(); ?></h1>
-      <?php endif; ?>
-      <?php do_action('woocommerce_archive_description'); ?>
-    </div>
+    <?php woocommerce_breadcrumb(); ?>
+
+    <p class="section-label">All fonts</p>
+
+    <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
+      <h1 class="shop-page__title"><?php woocommerce_page_title(); ?></h1>
+    <?php endif; ?>
+
+    <?php do_action('woocommerce_archive_description'); ?>
+
+    <!-- Category pills -->
+    <?php
+    $terms = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => true));
+    if (!empty($terms) && !is_wp_error($terms)) : ?>
+      <nav class="categories__cloud" aria-label="Font categories">
+        <?php foreach ($terms as $term) : ?>
+          <a href="<?php echo esc_url(get_term_link($term)); ?>" class="categories__pill anim-card">
+            <?php echo esc_html($term->name); ?> <small><?php echo esc_html($term->count); ?></small>
+          </a>
+        <?php endforeach; ?>
+      </nav>
+    <?php endif; ?>
 
     <?php if (woocommerce_product_loop()) : ?>
 
-      <?php do_action('woocommerce_before_shop_loop'); ?>
+      <div class="archive-toolbar">
+        <?php do_action('woocommerce_before_shop_loop'); ?>
+      </div>
 
       <?php woocommerce_product_loop_start(); ?>
       <?php if (wc_get_loop_prop('total')) : ?>

@@ -2715,7 +2715,7 @@ body {
    Shop Page
    ============================================ */
 .shop-page {
-  padding: var(--space-2xl) 0 var(--space-4xl);
+  padding: 0 0 var(--space-4xl);
 }
 
 .shop-page__header {
@@ -2738,13 +2738,13 @@ body {
 
 /* Sort dropdown */
 .shop-breadcrumb {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: var(--space-lg);
+  font-size: 12px;
+  color: #b0aeaa;
+  padding: 40px 0 8px;
 }
 
 .shop-breadcrumb a {
-  color: var(--text-muted);
+  color: #b0aeaa;
   text-decoration: none;
   transition: color .2s;
 }
@@ -2759,54 +2759,68 @@ body {
 }
 
 .shop-breadcrumb__current {
-  color: var(--text-soft);
+  color: #b0aeaa;
+}
+
+.shop-page__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  margin: 8px 0 var(--space-lg);
+}
+
+/* ── SHOP TOOLBAR ── */
+.archive-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: var(--space-xl);
 }
 
 .woocommerce-result-count {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin-bottom: var(--space-lg);
+  font-size: 13px;
+  color: #8a8682;
 }
 
 .shop-sort {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: var(--space-lg);
 }
 
 .shop-sort__select {
+  font-family: inherit;
   font-size: 13px;
   font-weight: 500;
-  color: var(--text-soft);
-  background: #fff;
-  border: 1.5px solid var(--border-light);
-  border-radius: 8px;
+  color: var(--charcoal);
   padding: 8px 32px 8px 14px;
-  appearance: none;
+  border: 1.5px solid #e0ddd8;
+  border-radius: 50px;
+  background: #fff;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238c8c88' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
+  appearance: none;
   cursor: pointer;
-  transition: border-color .2s, box-shadow .2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238A8682'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  min-width: 160px;
+  transition: border-color .2s;
 }
 
-.shop-sort__select:hover {
-  border-color: #d0ccc8;
-}
-
+.shop-sort__select:hover,
 .shop-sort__select:focus {
-  outline: 2px dashed var(--focus);
-  outline-offset: 2px;
+  border-color: var(--coral);
+  outline: none;
 }
 
 .font-showcase--shop {
   margin-bottom: var(--space-xl);
 }
 
-/* Pagination */
+/* ── PAGINATION ── */
 .shop-page .woocommerce-pagination {
-  margin-top: var(--space-2xl);
+  margin-top: 48px;
 }
 
 .shop-page .woocommerce-pagination ul {
@@ -2823,14 +2837,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 38px;
-  height: 38px;
-  font-size: 14px;
+  min-width: 36px;
+  height: 36px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--text);
+  color: #8a8682;
   background: #fff;
-  border: 1.5px solid var(--border-light);
+  border: 1.5px solid #e0ddd8;
   border-radius: 8px;
+  padding: 6px 10px;
   text-decoration: none;
   transition: all .2s;
 }
@@ -2838,12 +2853,13 @@ body {
 .shop-page .woocommerce-pagination ul li a:hover {
   border-color: var(--coral);
   color: var(--coral);
+  transform: translateY(-1px);
 }
 
 .shop-page .woocommerce-pagination ul li span.current {
   background: var(--charcoal);
-  color: #fff;
   border-color: var(--charcoal);
+  color: #fff;
 }
 
 /* Empty state */
