@@ -33,7 +33,7 @@ $tester_font_from_attachment = function ($attachment_id) {
   if ($font_path && file_exists($font_path)) {
     $filetype = wp_check_filetype($font_path);
     $mime = !empty($filetype['type']) ? $filetype['type'] : 'font/woff2';
-    return array($font_url, 'url(data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . ')');
+    return array($font_url, 'url("data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . '")');
   }
 
   return array($font_url, $font_url ? 'url("' . esc_url_raw($font_url) . '")' : '');
@@ -96,6 +96,7 @@ if (!$tester_font_src && !$tester_font_url && !empty($variation_ids)) {
 }
 $tester_font_src = $tester_font_src ?: ($tester_font_url ? 'url("' . esc_url_raw($tester_font_url) . '")' : '');
 $tester_font_family = 'RillatypeProductFont' . $product->get_id();
+$tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_URL_PATH)) : '';
 ?>
 
 <?php if ($tester_font_src) : ?>
@@ -226,9 +227,9 @@ $tester_font_family = 'RillatypeProductFont' . $product->get_id();
   <section class="font-playground" aria-label="Try this font">
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
-      <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>">
+      <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>" data-font-loaded="<?php echo $tester_font_src ? 'yes' : 'no'; ?>" data-font-source="<?php echo esc_attr($tester_font_file); ?>">
         <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0"<?php echo $tester_font_url ? ' style="font-family: ' . esc_attr($tester_font_family) . ', var(--font-body);"' : ''; ?>>The quick brown fox jumps over the lazy dog</div>
-        <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
+        <p class="tester__hint">Click the text and type. Adjust size & style below.<?php if (current_user_can('edit_products')) : ?> Font source: <?php echo $tester_font_file ? esc_html($tester_font_file) : esc_html__('not found', 'rillatype-v2'); ?><?php endif; ?></p>
         <div class="tester__controls">
           <div class="tester__row">
             <div class="tester__slider">
