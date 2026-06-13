@@ -2779,6 +2779,19 @@ body {
   margin-bottom: var(--space-xl);
 }
 
+@media (max-width: 767px) {
+  .archive-toolbar {
+    justify-content: center;
+  }
+  .archive-toolbar .shop-sort__select {
+    font-size: 12px;
+    padding: 6px 28px 6px 12px;
+    min-width: auto;
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
 .shop-page .woocommerce-result-count {
   display: none;
 }
