@@ -2893,9 +2893,8 @@ body {
   50% { opacity: 1; }
 }
 .product-title {
-  font-family: var(--font-serif);
   font-size: clamp(32px, 4vw, 42px);
-  font-weight: 400;
+  font-weight: 800;
   letter-spacing: -.03em;
   line-height: .95;
   margin-bottom: 2px;
