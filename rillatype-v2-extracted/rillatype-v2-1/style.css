@@ -2760,8 +2760,10 @@ body {
 }
 
 .shop-page__desc {
-  font-size: 15px;
-  color: var(--text-muted);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--text-soft);
   margin-bottom: var(--space-lg);
   max-width: 40ch;
 }
