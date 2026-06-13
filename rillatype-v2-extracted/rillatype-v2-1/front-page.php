@@ -267,6 +267,7 @@ if ($pq->have_posts()) {
         <?php endif; ?>
 
       </div>
+      <a href="<?php echo esc_url($has_woo ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/')); ?>" class="section-more">No catch <span>→</span></a>
     </div>
   </section>
 
@@ -338,6 +339,7 @@ if ($pq->have_posts()) {
         <?php endif; ?>
 
       </div>
+      <a href="<?php echo esc_url($has_woo ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/')); ?>" class="section-more">What dropped <span>→</span></a>
     </div>
   </section>
 
@@ -385,6 +387,7 @@ if ($pq->have_posts()) {
             </div>
           <?php endif; ?>
         </div>
+        <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-more">More words <span>→</span></a>
       </div>
     </div>
   </section>
