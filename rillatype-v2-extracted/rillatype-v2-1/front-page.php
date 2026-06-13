@@ -150,7 +150,6 @@ if ($pq->have_posts()) {
             $price  = rillatype_min_price($prod);
             $img_id = $prod ? $prod->get_image_id() : 0;
             $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'medium') : '';
-            $style  = $img_url ? 'background-image:url(\'' . esc_url($img_url) . '\');background-size:cover;background-position:center;' : '';
             // Split name on " — ", " – ", or " - " for title / subtitle
             if (preg_match('/^(.+?)\s*[—–]\s*(.+)$/', $full, $m) || preg_match('/^(.+?)\s*-\s*(.+)$/', $full, $m)) {
               $name  = trim($m[1]);
@@ -161,7 +160,11 @@ if ($pq->have_posts()) {
             }
             ?>
             <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="font-card anim-card">
-              <div class="font-card__preview" style="<?php echo $style; ?>"></div>
+              <?php if ($img_url) : ?>
+                <div class="font-card__preview"><img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy"></div>
+              <?php else : ?>
+                <div class="font-card__preview" style="display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:var(--font-serif);">Aa</div>
+              <?php endif; ?>
               <div class="font-card__body">
                 <div class="font-card__info">
                   <span class="font-card__name"><?php echo esc_html($name); ?></span>
@@ -204,17 +207,23 @@ if ($pq->have_posts()) {
       <h2 class="section-label">License &amp; perks</h2>
       <div class="process__grid">
         <div class="process__step">
-          <div class="process__icon">📜</div>
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
           <h3>Commercial License</h3>
           <p>Use it anywhere. Personal, client, commercial. No extra fees, no expiry.</p>
         </div>
         <div class="process__step">
-          <div class="process__icon">🔤</div>
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
+          </div>
           <h3>OTF &amp; TTF</h3>
           <p>Print and screen ready. Tested, subset, delivered.</p>
         </div>
         <div class="process__step">
-          <div class="process__icon">🎁</div>
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+          </div>
           <h3>Bonus Extras</h3>
           <p>Illustrations, logo templates, alternates — varies per font.</p>
         </div>
@@ -240,7 +249,11 @@ if ($pq->have_posts()) {
             ?>
             <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="freebie anim-card">
               <span class="freebie__badge">Free</span>
-              <div class="freebie__preview <?php echo esc_attr($free_preview_class); ?>" style="<?php echo $img_url ? 'background-image:url(\'' . esc_url($img_url) . '\');background-size:cover;background-position:center;' : ''; ?>"></div>
+              <?php if ($img_url) : ?>
+                <div class="freebie__preview"><img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy"></div>
+              <?php else : ?>
+                <div class="freebie__preview <?php echo esc_attr($free_preview_class); ?>">Aa</div>
+              <?php endif; ?>
               <div class="freebie__body">
                 <p class="freebie__name"><?php echo esc_html($name); ?></p>
                 <p class="freebie__desc">100% free. Commercial too.</p>
@@ -290,7 +303,6 @@ if ($pq->have_posts()) {
             $price      = rillatype_min_price($prod);
             $img_id = $prod ? $prod->get_image_id() : 0;
             $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'medium') : '';
-            $style  = $img_url ? 'background-image:url(\'' . esc_url($img_url) . '\');background-size:cover;background-position:center;' : 'background:#eef0f4;display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:var(--font-serif);';
             if (preg_match('/^(.+?)\s*[—–]\s*(.+)$/', $full, $m) || preg_match('/^(.+?)\s*-\s*(.+)$/', $full, $m)) {
               $name  = trim($m[1]);
               $sub   = ucwords(strtolower(trim($m[2])));
@@ -300,7 +312,11 @@ if ($pq->have_posts()) {
             }
             ?>
             <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="font-card anim-card">
-              <div class="font-card__preview" style="<?php echo $style; ?>"></div>
+              <?php if ($img_url) : ?>
+                <div class="font-card__preview"><img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy"></div>
+              <?php else : ?>
+                <div class="font-card__preview" style="display:flex;align-items:center;justify-content:center;font-size:2rem;font-family:var(--font-serif);background:#eef0f4;">Aa</div>
+              <?php endif; ?>
               <div class="font-card__body">
                 <div class="font-card__info">
                   <span class="font-card__name"><?php echo esc_html($name); ?></span>
@@ -401,6 +417,23 @@ if ($pq->have_posts()) {
           <p>We do custom type commissions, exclusive licenses, and brand font packages. One-off or full family.</p>
         </div>
         <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="license-cta__btn">Talk to us <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter" aria-label="Newsletter">
+    <div class="container">
+      <div class="newsletter__inner">
+        <div class="newsletter__text">
+          <p class="section-label">Stay in the loop</p>
+          <h2>New fonts, freebies &amp; early access.</h2>
+          <p>No spam. Just the good stuff — once or twice a month.</p>
+        </div>
+        <form class="newsletter__form" action="<?php echo esc_url(home_url('/')); ?>" method="post">
+          <input class="newsletter__input" type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+          <button class="newsletter__btn" type="submit">Subscribe →</button>
+        </form>
       </div>
     </div>
   </section>
