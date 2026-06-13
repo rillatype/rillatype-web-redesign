@@ -169,6 +169,11 @@
   }
 
   if (fontSelect && display) {
+    if (tester && tester.getAttribute('data-font-family')) {
+      fontSelect.value = tester.getAttribute('data-font-family');
+      display.style.fontFamily = '"' + tester.getAttribute('data-font-family') + '", var(--font-body)';
+    }
+
     fontSelect.addEventListener('change', function () {
       display.style.fontFamily = '"' + this.value + '", var(--font-body)';
     });

@@ -32,10 +32,15 @@ $tester_font_from_attachment = function ($attachment_id) {
   $font_path = get_attached_file($attachment_id);
   $ext = strtolower(pathinfo($font_path ?: $font_url, PATHINFO_EXTENSION));
   $format = $ext === 'otf' ? 'opentype' : ($ext === 'ttf' ? 'truetype' : $ext);
+  $mime_map = array(
+    'otf' => 'font/otf',
+    'ttf' => 'font/ttf',
+    'woff' => 'font/woff',
+    'woff2' => 'font/woff2',
+  );
 
   if ($font_path && file_exists($font_path)) {
-    $filetype = wp_check_filetype($font_path);
-    $mime = !empty($filetype['type']) ? $filetype['type'] : 'font/woff2';
+    $mime = isset($mime_map[$ext]) ? $mime_map[$ext] : 'application/octet-stream';
     return array($font_url, 'url("data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . '")', $format);
   }
 
