@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rillatype Studio — Playful Fonts</title>
+  <meta name="description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:title" content="Rillatype Studio — Playful Fonts">
+  <meta property="og:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rillatype.com/">
+  <meta property="og:image" content="https://rillatype.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rillatype Studio — Playful Fonts">
+  <meta name="twitter:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta name="twitter:image" content="https://rillatype.com/logo.png">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#e0553d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 16px; line-height: 1.5;
+      color: #1a1a1a; background: #fafaf8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      --coral: #e0553d;
+      --coral-bright: #f04e3a;
+      --coral-soft: #fef2ef;
+      --plum: #5a2d5a;
+      --gold: #d4a04a;
+      --cream: #f7f3ee;
+      --sand: #ede8e0;
+      --charcoal: #1a1a1a;
+      --text-muted: #8c8c88;
+      --space-sm: 12px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px; --space-4xl: 96px;
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .container { max-width: 1200px; margin-inline: auto; padding-inline: var(--space-lg); }
+
+    /* ── SKIP LINK ──────────────────────────────────── */
+    .skip-link {
+      position: fixed; top: var(--space-sm); left: var(--space-sm); z-index: 9999;
+      background: var(--charcoal); color: #fff; padding: var(--space-sm) var(--space-md);
+      font-size: 14px; font-weight: 500; border-radius: 50px;
+      transform: translateY(-200%); transition: transform .2s;
+    }
+    .skip-link:focus { transform: translateY(0); outline: 2px dashed #2b6ed7; outline-offset: 2px; }
+    :focus-visible { outline: 2px dashed #2b6ed7; outline-offset: 3px; }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-md) 0;
+    }
+    .site-logo { display: flex; align-items: center; }
+    .site-logo__img { height: 38px; width: auto; display: block; }
+    .nav-main ul { display: flex; gap: var(--space-sm); align-items: center; }
+    .nav-main a {
+      font-size: 13px; font-weight: 500; color: #4a4a4a;
+      position: relative; padding: 4px 8px;
+      transition: color .2s;
+    }
+    .nav-main a:hover { color: var(--charcoal); }
+    .nav-main a::after {
+      content: ''; position: absolute; bottom: -2px; left: 8px; right: 8px; height: 2px;
+      background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-main a:hover::after { transform: scaleX(1); }
+
+    .nav-signin {
+      font-size: 13px; font-weight: 700; color: #fff !important;
+      background: var(--charcoal, #1A1814);
+      padding: 7px 18px !important; border-radius: 50px;
+      transition: background .2s !important;
+      margin-left: 4px;
+    }
+    .nav-signin:hover { background: var(--coral) !important; }
+    .nav-signin::after { display: none !important; }
+
+    .nav-actions { display: flex; gap: var(--space-xs); align-items: center; }
+    .nav-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: #4a4a4a; font-size: 16px;
+      transition: all .2s;
+    }
+    .nav-icon:hover { background: #f0ece8; color: var(--charcoal); }
+    .nav-cart-wrap { position: relative; }
+    .nav-cart-count {
+      position: absolute; top: -2px; right: -2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--coral); color: #fff;
+      font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── HERO — animated type playground ────────────── */
+    .hero {
+      padding: var(--space-4xl) 0 var(--space-3xl);
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, var(--coral-soft) 0%, #fafaf8 100%);
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0553d' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('https://picsum.photos/seed/rillatype-hero/1600/900');
+      background-size: cover; background-position: center;
+      opacity: .08; pointer-events: none;
+    }
+
+    .hero__inner { position: relative; }
+
+    .hero__tag {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: var(--coral);
+      background: #fff; padding: 4px 14px; border-radius: 50px;
+      margin-bottom: var(--space-xl);
+    }
+
+    /* Animated type specimen — the fun part */
+    .type-morph {
+      font-size: clamp(3.5rem, 12vw, 9rem);
+      font-weight: 800; line-height: .85;
+      letter-spacing: -.05em;
+      margin-bottom: var(--space-lg);
+      position: relative;
+    }
+    .type-morph__line {
+      display: block;
+      animation: typeSlide .8s cubic-bezier(.16,1,.3,1) both;
+    }
+    .type-morph__line:nth-child(2) { animation-delay: .15s; }
+    .type-morph__line:nth-child(3) { animation-delay: .3s; }
+
+    @keyframes typeSlide {
+      from { opacity: 0; transform: translateY(40px) rotate(-2deg); }
+      to { opacity: 1; transform: translateY(0) rotate(0); }
+    }
+
+    .type-morph__accent { color: var(--coral); }
+    .type-morph__italic { font-style: italic; font-weight: 400; color: #6a6a6a; }
+
+    /* Interactive shuffle button */
+    .hero__shuffle {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 500; color: var(--charcoal);
+      background: #fff; padding: 8px 20px; border-radius: 50px;
+      border: 1.5px solid #e0ddd8;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+      margin-top: var(--space-md);
+    }
+    .hero__shuffle:hover {
+      border-color: var(--coral); color: var(--coral);
+      transform: translateY(-2px); box-shadow: 0 4px 16px rgba(224,85,61,.15);
+    }
+    .hero__shuffle:active { transform: scale(.95); }
+    .hero__shuffle span { display: inline-block; transition: transform .4s; }
+    .hero__shuffle:hover span { transform: rotate(180deg); }
+
+    .hero__cta-row {
+      display: flex; gap: var(--space-md); align-items: center; flex-wrap: wrap;
+      margin-top: var(--space-2xl);
+    }
+    .hero__cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600;
+      color: #fff; background: var(--charcoal);
+      padding: 14px 28px; border-radius: 50px;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .hero__cta:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,85,61,.25); }
+    .hero__cta:active { transform: scale(.96); }
+
+    /* ── SECTION LABEL (playful) ────────────────────── */
+    .section-label {
+      display: flex; align-items: center; gap: var(--space-sm);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: var(--space-xl);
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 2px;
+      background: var(--coral);
+    }
+
+    /* ── FEATURED — clean 3-col, playful from color & hover ── */
+    .featured {
+      padding: var(--space-3xl) 0 var(--space-4xl);
+    }
+
+    .font-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+    @media (max-width: 639px) {
+      .font-showcase { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .font-showcase { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .font-card {
+      display: block; position: relative;
+      background: #fff;
+      border: 1px solid #f0ece8;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: transform .35s cubic-bezier(.16,1,.3,1),
+                  box-shadow .35s;
+    }
+    .font-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .font-card:active { transform: scale(.97); }
+
+    .font-card__preview {
+      aspect-ratio: 3/2;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px;
+      position: relative; overflow: hidden;
+      cursor: pointer;
+    }
+    .font-card__preview::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.03));
+      pointer-events: none;
+    }
+
+    .font-card--mango .font-card__preview {
+      background: linear-gradient(135deg, #fef0e0 0%, #f7d4b8 100%);
+      color: #3d2a1a;
+    }
+    .font-card--rustica .font-card__preview {
+      background: linear-gradient(135deg, #eaf0e4 0%, #d4dec8 100%);
+      color: #1f2e1c;
+    }
+    .font-card--bloom .font-card__preview {
+      background: linear-gradient(135deg, #f4eaf4 0%, #e4d0e4 100%);
+      color: #2e1f2e;
+    }
+
+    .font-card__name-display {
+      font-size: clamp(1.75rem, 3vw, 3rem);
+      font-weight: 800; line-height: .9;
+      letter-spacing: -.04em; text-align: center;
+      position: relative; z-index: 1;
+      transition: transform .3s;
+    }
+    .font-card:hover .font-card__name-display { transform: scale(1.04); }
+
+    .font-card__sub {
+      font-size: clamp(.85rem, 1.5vw, 1.25rem);
+      font-weight: 400; font-style: italic;
+      text-align: center; opacity: .65;
+      position: relative; z-index: 1;
+    }
+
+    .font-card__body {
+      padding: var(--space-md) var(--space-md) var(--space-lg);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .font-card__info { display: flex; flex-direction: column; gap: 2px; }
+    .font-card__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .font-card__style { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+    .font-card__price { font-size: 16px; font-weight: 700; color: var(--coral); font-variant-numeric: tabular-nums; }
+
+    /* ── BEHIND THE SCENES — the process ────────────── */
+    .process {
+      padding: var(--space-3xl) 0 var(--space-4xl);
+      background: var(--coral-soft);
+    }
+    .process__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2xl);
+    }
+    @media (max-width: 639px) {
+      .process__grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .process__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .process__step {
+      text-align: center;
+      position: relative;
+    }
+    .process__img {
+      width: 100%; aspect-ratio: 3/2;
+      border-radius: 8px; margin-bottom: var(--space-lg);
+      background-size: cover; background-position: center;
+      transition: transform .3s;
+    }
+    .process__step:hover .process__img { transform: scale(1.02); }
+    .process__icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #fff; margin: 0 auto var(--space-lg);
+      font-size: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+    .process__step h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: var(--space-xs);
+    }
+    .process__step p {
+      font-size: 15px; line-height: 1.6;
+      color: #4a4a4a; max-width: 300px; margin: 0 auto;
+    }
+    .process__arrow {
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      .process__step { position: relative; }
+      .process__step:not(:last-child)::after {
+        content: '→'; position: absolute; top: 20px; right: -32px;
+        font-size: 20px; color: #d0ccc8; font-weight: 300;
+      }
+    }
+
+    /* ── FREEBIES ───────────────────────────────────── */
+    .freebies {
+      padding: var(--space-3xl) 0;
+      background: #fff;
+    }
+    .freebies__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+    @media (max-width: 639px) {
+      .freebies__grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .freebies__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .freebie {
+      display: block; position: relative;
+      border-radius: 12px; overflow: hidden;
+    }
+    .freebie:hover .freebie__preview {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+    }
+
+    .freebie__preview {
+      aspect-ratio: 3/2;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-weight: 700; letter-spacing: -.03em;
+      text-align: center;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
+    }
+    .freebie__preview--swashes { background: linear-gradient(135deg, #f0e8f8 0%, #e0d0f0 100%); color: #2a1a3a; }
+    .freebie__preview--ornaments { background: linear-gradient(135deg, #fef2ef 0%, #fad8c8 100%); color: #4a2818; }
+    .freebie__preview--sample { background: linear-gradient(135deg, #e8f0ec 0%, #d0e0d8 100%); color: #1a2e22; }
+
+    .freebie__badge {
+      position: absolute; top: var(--space-sm); right: var(--space-sm);
+      background: var(--coral); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: .04em;
+      padding: 4px 12px; border-radius: 4px;
+      z-index: 1;
+    }
+    .freebie__body { margin-top: var(--space-sm); }
+    .freebie__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .freebie__desc { font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── OTHER PRODUCTS ─────────────────────────────── */
+    .other-products {
+      padding: var(--space-3xl) 0;
+      background: var(--coral-soft);
+    }
+    .other-products__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+    @media (max-width: 639px) {
+      .other-products__grid { grid-template-columns: 1fr; }
+    }
+
+    .product-type {
+      display: block;
+      background: #fff; border-radius: 12px; padding: var(--space-xl);
+      text-align: center;
+      border: 1.5px solid transparent;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .product-type:hover {
+      transform: translateY(-4px);
+      border-color: var(--coral);
+      box-shadow: 0 8px 24px rgba(224,85,61,.08);
+    }
+    .product-type__icon { font-size: 32px; margin-bottom: var(--space-md); }
+    .product-type h3 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; }
+    .product-type p {
+      font-size: 14px; line-height: 1.6;
+      color: var(--text-muted); margin-top: var(--space-xs);
+    }
+
+    /* ── NEWSLETTER ──────────────────────────────────── */
+    .newsletter {
+      padding: var(--space-3xl) 0 var(--space-4xl);
+      background: var(--charcoal); color: #fff;
+    }
+    .newsletter .section-label { color: #6a6a6a; }
+    .newsletter .section-label::before { background: var(--coral); }
+
+    .newsletter__inner {
+      display: grid; gap: var(--space-lg);
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+    @media (max-width: 767px) {
+      .newsletter__inner { grid-template-columns: 1fr; }
+    }
+    .newsletter__text h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -.03em;
+      margin-bottom: var(--space-sm);
+    }
+    .newsletter__text p {
+      font-size: 15px; line-height: 1.6;
+      color: #9a9a98; max-width: 400px;
+    }
+    .newsletter__form {
+      display: flex; gap: var(--space-xs);
+      flex-wrap: wrap;
+    }
+    .newsletter__input {
+      flex: 1; min-width: 200px;
+      padding: 14px 20px; border-radius: 50px;
+      border: 1.5px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      color: #fff; font-size: 14px; font-family: inherit;
+    }
+    .newsletter__input::placeholder { color: #6a6a6a; }
+    .newsletter__input:focus {
+      outline: 2px dashed var(--coral); outline-offset: 2px;
+      border-color: transparent;
+    }
+    .newsletter__btn {
+      padding: 14px 28px; border-radius: 50px;
+      background: var(--coral); color: #fff;
+      font-size: 14px; font-weight: 600; white-space: nowrap;
+      transition: all .25s;
+    }
+    .newsletter__btn:hover { background: var(--coral-bright); transform: translateY(-2px); }
+    .newsletter__btn:active { transform: scale(.96); }
+    .newsletter__status {
+      width: 100%; font-size: 13px; color: var(--gold);
+      min-height: 20px; margin-top: 4px;
+    }
+
+    /* ── LATEST — clean 4-col ────────────────────────── */
+    .latest { padding: var(--space-3xl) 0 var(--space-4xl); }
+
+    .latest__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+    }
+    @media (max-width: 639px) {
+      .latest__grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .latest__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .latest__item {
+      display: block;
+      background: #fff;
+      border: 1px solid #f0ece8;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: transform .35s cubic-bezier(.16,1,.3,1),
+                  box-shadow .35s;
+    }
+    .latest__item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .latest__item:active { transform: scale(.97); }
+
+    .latest__preview {
+      aspect-ratio: 3/2;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.5rem, 3vw, 2.75rem);
+      font-weight: 700; letter-spacing: -.03em; text-align: center;
+    }
+
+    .latest__preview--neon { background: linear-gradient(135deg, #eef0f4 0%, #d8dce6 100%); color: #1a1e26; }
+    .latest__preview--wilder { background: linear-gradient(135deg, #f7f0e4 0%, #ede0cc 100%); color: #2e2416; }
+    .latest__preview--luna { background: linear-gradient(135deg, #eef2f6 0%, #d6dee8 100%); color: #16202a; }
+    .latest__preview--koda { background: linear-gradient(135deg, #f2eee8 0%, #e4ded6 100%); color: #1e1a16; }
+
+    .latest__body {
+      padding: var(--space-md) var(--space-md) var(--space-lg);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .latest__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .latest__price { font-size: 16px; font-weight: 700; color: var(--coral); font-variant-numeric: tabular-nums; }
+
+    /* ── CATEGORIES — pill cloud ─────────────────────── */
+    .categories { padding: var(--space-2xl) 0; }
+    .categories__cloud {
+      display: flex; flex-wrap: wrap; gap: var(--space-sm);
+    }
+    .categories__pill {
+      font-size: 15px; font-weight: 500; letter-spacing: -.01em;
+      color: var(--charcoal); background: #fff;
+      padding: 8px 20px; border-radius: 50px;
+      border: 1.5px solid #e0ddd8;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .categories__pill:hover {
+      border-color: var(--coral); color: var(--coral);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(224,85,61,.15);
+    }
+    .categories__pill small {
+      font-size: 12px; font-weight: 400; color: #b0aeaa;
+      margin-left: 4px;
+    }
+
+    /* ── BLOG ────────────────────────────────────────── */
+    .blog-section {
+      padding: var(--space-3xl) 0 var(--space-lg);
+    }
+    .blog-box {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    }
+    .blog-box .section-label { margin-bottom: var(--space-lg); }
+    .blog-list { display: flex; flex-direction: column; gap: 2px; }
+    .blog-link {
+      display: flex; align-items: center; gap: var(--space-md);
+      padding: var(--space-md) var(--space-sm);
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .blog-link:hover { background: rgba(255,255,255,.6); }
+    .blog-link__date {
+      font-size: 12px; color: #b0aca8;
+      font-feature-settings: "tnum";
+      min-width: 4.5rem;
+    }
+    .blog-link__title {
+      font-size: 16px; font-weight: 480; letter-spacing: -.01em;
+      color: var(--charcoal);
+    }
+    .blog-link__arrow {
+      margin-left: auto; font-size: 12px; color: #c8c4c0;
+    }
+
+    /* ── CUSTOM LICENSE ──────────────────────────────── */
+    .license-cta {
+      padding: 0 0 var(--space-3xl);
+    }
+    .license-cta__box {
+      background: var(--sand);
+      border-radius: 16px;
+      padding: var(--space-2xl) var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    .license-cta__text h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: 4px;
+    }
+    .license-cta__text p {
+      font-size: 14px; color: #6a6a66; line-height: 1.5;
+    }
+    .license-cta__btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: #fff;
+      background: var(--charcoal);
+      padding: 12px 24px; border-radius: 50px;
+      transition: all .25s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .license-cta__btn:hover {
+      background: var(--coral);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(224,85,61,.2);
+    }
+    .license-cta__btn .arrow {
+      display: inline-block;
+      transition: transform .25s;
+    }
+    .license-cta__btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ── MICRO-ANIMATIONS ──────────────────────────── */
+
+    .anim-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1),
+                  transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .anim-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label::before {
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .section-label.is-visible::before {
+      transform: scaleX(1);
+    }
+
+    @keyframes badge-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .freebie__badge {
+      animation: badge-pulse 3s ease-in-out infinite;
+    }
+
+    .site-header {
+      transition: background .3s, backdrop-filter .3s;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    .site-footer { padding: var(--space-2xl) 0; font-size: 14px; color: var(--text-muted); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-lg); align-items: center; }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { transition: color .2s; }
+    .footer-links a:hover { color: var(--coral); }
+    .footer-copy { color: #b0aeaa; font-weight: 400; }
+
+    @media (max-width: 767px) {
+      .font-showcase { grid-template-columns: 1fr; }
+      .font-showcase__secondary { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+      .hero { padding: var(--space-3xl) 0 var(--space-2xl); }
+      .hero__cta-row { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="header-inner container" aria-label="Main">
+      <a href="/" class="site-logo"><img src="logo.png" alt="Rillatype" class="site-logo__img"></a>
+      <div class="nav-main">
+        <ul>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/shop/">Shop</a></li>
+          <li><a href="/product-category/font/">Font</a></li>
+          <li><a href="/product-category/freebies/">Freebies</a></li>
+          <li><a href="/license/">License</a></li>
+          <li><a href="/contact-us/">Contact</a></li>
+          <li><a href="sign-in.html" class="nav-signin">Sign In</a></li>
+        </ul>
+      </div>
+      <div class="nav-actions">
+        <a href="/?s=" class="nav-icon" aria-label="Search">🔍</a>
+        <a href="/cart-2/" class="nav-icon nav-cart-wrap" aria-label="Cart">
+          🛒<span class="nav-cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero — animated type -->
+    <section class="hero" aria-label="Welcome">
+      <div class="hero__bg"></div>
+      <div class="hero__inner container">
+        <p class="hero__tag">The un-curated type foundry</p>
+        <div class="type-morph" id="type-morph">
+          <span class="type-morph__line">Fonts for</span>
+          <span class="type-morph__line">the messy,</span>
+          <span class="type-morph__line type-morph__italic">the bold, the real.</span>
+        </div>
+        <button class="hero__shuffle" id="shuffle-btn" aria-label="Shuffle headline">
+          <span>↻</span> Shuffle
+        </button>
+        <div class="hero__cta-row">
+          <a href="/shop/" class="hero__cta">Browse fonts →</a>
+          <!-- Meet the maker removed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured — clean 3-col, playful hover -->
+    <section class="featured" aria-label="Featured fonts">
+      <div class="container">
+        <p class="section-label">Featured specimens</p>
+        <div class="font-showcase">
+
+          <a href="/product/mango-letter/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/mango-1.jpg');background-size:cover;background-position:center;">
+            </div>
+            <div class="font-card__body">
+              <div class="font-card__info">
+                <span class="font-card__name">Mango Letter</span>
+                <span class="font-card__style">playful display</span>
+              </div>
+              <span class="font-card__price">$18</span>
+            </div>
+          </a>
+
+          <a href="/product/crimson-queen/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/crimson-queen-1.jpg');background-size:cover;background-position:center;">
+            </div>
+            <div class="font-card__body">
+              <div class="font-card__info">
+                <span class="font-card__name">Crimson Queen</span>
+                <span class="font-card__style">bold display</span>
+              </div>
+              <span class="font-card__price">$22</span>
+            </div>
+          </a>
+
+          <a href="/product/baldock/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/baldock-1.jpg');background-size:cover;background-position:center;">
+            </div>
+            <div class="font-card__body">
+              <div class="font-card__info">
+                <span class="font-card__name">Baldock</span>
+                <span class="font-card__style">vintage serif</span>
+              </div>
+              <span class="font-card__price">$20</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- License & perks -->
+    <section class="process" aria-label="License and perks">
+      <div class="container">
+        <p class="section-label">License &amp; perks</p>
+        <div class="process__grid">
+          <div class="process__step">
+            <div class="process__icon">📜</div>
+            <h3>Commercial License</h3>
+            <p>Use it anywhere. Personal, client, commercial. No extra fees, no expiry.</p>
+          </div>
+          <div class="process__step">
+            <div class="process__icon">🔤</div>
+            <h3>OTF &amp; TTF</h3>
+            <p>Print and screen ready. Tested, subset, delivered.</p>
+          </div>
+          <div class="process__step">
+            <div class="process__icon">🎁</div>
+            <h3>Bonus Extras</h3>
+            <p>Illustrations, logo templates, alternates — varies per font.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Freebies -->
+    <section class="freebies" aria-label="Free fonts">
+      <div class="container">
+        <p class="section-label">Free stuff</p>
+        <div class="freebies__grid">
+          <a href="/freebies/radiant-summertime/" class="freebie anim-card">
+            <span class="freebie__badge">Free</span>
+            <div class="freebie__preview freebie__preview--swashes" style="background-image:url('previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__body">
+              <p class="freebie__name">Radiant Summertime</p>
+              <p class="freebie__desc">Warm display font. Full lowercase + numerals. Free for personal use.</p>
+            </div>
+          </a>
+          <a href="/freebies/daisy-hotline/" class="freebie anim-card">
+            <span class="freebie__badge">Free</span>
+            <div class="freebie__preview freebie__preview--ornaments" style="background-image:url('previews/daisy-hotline-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__body">
+              <p class="freebie__name">Daisy Hotline</p>
+              <p class="freebie__desc">Playful script font. Includes alternates and swashes. Free download.</p>
+            </div>
+          </a>
+          <a href="/freebies/bromrose-sands/" class="freebie anim-card">
+            <span class="freebie__badge">Free</span>
+            <div class="freebie__preview freebie__preview--sample" style="background-image:url('previews/mango-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__body">
+              <p class="freebie__name">Mango Letter Sample</p>
+              <p class="freebie__desc">Try before you buy. Full specimen set for Mango Letter.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Graphic Assets -->
+    <section class="other-products" aria-label="Graphic assets">
+      <div class="container">
+        <p class="section-label">Graphic assets</p>
+        <div class="other-products__grid">
+          <a href="/product-category/graphic/" class="product-type">
+            <div class="product-type__icon">🎨</div>
+            <h3>Social Media Templates</h3>
+            <p>Ready-to-use Canva & PSD templates for Instagram, Pinterest, and Facebook posts.</p>
+          </a>
+          <a href="/product-category/graphic/" class="product-type">
+            <div class="product-type__icon">✏️</div>
+            <h3>Branding Kits</h3>
+            <p>Logo templates, color palettes, and mockup sets for designers and small businesses.</p>
+          </a>
+          <a href="/product-category/font/" class="product-type">
+            <div class="product-type__icon">🔤</div>
+            <h3>Font Bundles</h3>
+            <p>Coming soon — curated font packs at bundle pricing. Stay tuned.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest releases — offset grid -->
+    <section class="latest" aria-label="Latest releases">
+      <div class="container">
+        <p class="section-label">Fresh drops</p>
+        <div class="latest__grid">
+          <a href="/product/bawden/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--neon" style="background-image:url('previews/bawden-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Bawden</p>
+              <p class="latest__price">$18</p>
+            </div>
+          </a>
+          <a href="/product/moyshire/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--wilder" style="background-image:url('previews/moyshire-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Moyshire</p>
+              <p class="latest__price">$16</p>
+            </div>
+          </a>
+          <a href="/product/mordial/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--luna" style="background-image:url('previews/mordial-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Mordial</p>
+              <p class="latest__price">$24</p>
+            </div>
+          </a>
+          <a href="/product/radiant-summertime/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--koda" style="background-image:url('previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Radiant Summertime</p>
+              <p class="latest__price">$15</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories — pill cloud -->
+    <section class="categories" aria-label="Categories">
+      <div class="container">
+        <p class="section-label">Browse by style</p>
+        <div class="categories__cloud">
+          <a href="/product-category/display/" class="categories__pill anim-card">Display <small>12</small></a>
+          <a href="/product-category/script/" class="categories__pill anim-card">Script <small>8</small></a>
+          <a href="/product-category/handwritten/" class="categories__pill anim-card">Handwritten <small>6</small></a>
+          <a href="/product-category/sans-serif/" class="categories__pill anim-card">Sans <small>10</small></a>
+          <a href="/product-category/serif/" class="categories__pill anim-card">Serif <small>5</small></a>
+          <a href="/product-category/freebies/" class="categories__pill anim-card">Freebies <small>4</small></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section class="blog-section" aria-label="Blog">
+      <div class="container">
+        <div class="blog-box">
+          <p class="section-label">From the studio</p>
+          <div class="blog-list">
+            <a href="/blog/choosing-fonts/" class="blog-link">
+              <span class="blog-link__date">Jun 3</span>
+              <span class="blog-link__title">How to Choose the Right Display Font</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+            <a href="/blog/font-pairing/" class="blog-link">
+              <span class="blog-link__date">May 18</span>
+              <span class="blog-link__title">Font Pairing 101: Combinations That Work</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+            <a href="/blog/behind-mango/" class="blog-link">
+              <span class="blog-link__date">Apr 22</span>
+              <span class="blog-link__title">Behind the Design: Making of Mango Letters</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom License -->
+    <section class="license-cta" aria-label="Custom license">
+      <div class="container">
+        <div class="license-cta__box">
+          <div class="license-cta__text">
+            <h3>Need something custom?</h3>
+            <p>We do custom type commissions, exclusive licenses, and brand font packages. One-off or full family.</p>
+          </div>
+          <a href="/contact/" class="license-cta__btn">Talk to us <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter" aria-label="Newsletter signup">
+      <div class="container">
+        <p class="section-label">Stay in the loop</p>
+        <div class="newsletter__inner">
+          <div class="newsletter__text">
+            <h2>New fonts, freebies &amp;<br>occasional chaos.</h2>
+            <p>No spam. Just the good stuff — once or twice a month.</p>
+          </div>
+          <div>
+            <form class="newsletter__form" id="newsletter-form">
+              <input type="email" class="newsletter__input" placeholder="your@email.com" required aria-label="Email address">
+              <button type="submit" class="newsletter__btn">Subscribe</button>
+              <span class="newsletter__status" id="newsletter-status"></span>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-links">
+        <a href="https://instagram.com/rillatype" rel="me">Instagram</a>
+        <a href="/contact/">Contact</a>
+        <a href="/font-license/">License</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Rillatype Studio</p>
+    </div>
+  </footer>
+
+  <script>
+    // Shuffle headlines
+    const headlines = [
+      ['Fonts for', 'the messy,', '<span class="type-morph__italic">the bold, the real.</span>'],
+      ['Not another', 'sans serif.', '<span class="type-morph__italic">— probably.</span>'],
+      ['Good letters', 'do not need', '<span class="type-morph__italic">an intro.</span>'],
+      ['Un-curated,', 'un-filtered.', '<span class="type-morph__italic">— just drawn.</span>'],
+      ['From our', 'desk to', '<span class="type-morph__italic">your project.</span>']
+    ];
+    let hIdx = 0;
+    document.getElementById('shuffle-btn').addEventListener('click', function() {
+      hIdx = (hIdx + 1) % headlines.length;
+      const lines = document.querySelectorAll('.type-morph__line');
+      headlines[hIdx].forEach((html, i) => {
+        if (lines[i]) {
+          lines[i].style.animation = 'none';
+          lines[i].innerHTML = html;
+          void lines[i].offsetWidth; // reflow
+          lines[i].style.animation = 'typeSlide .6s cubic-bezier(.16,1,.3,1) both';
+          lines[i].style.animationDelay = (i * .12) + 's';
+        }
+      });
+    });
+
+    // Newsletter
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var input = this.querySelector('input');
+      var status = document.getElementById('newsletter-status');
+      if (input.value && input.validity.valid) {
+        status.textContent = 'Thanks! You\'re on the list.';
+        input.value = '';
+        setTimeout(function(){ status.textContent = ''; }, 4000);
+      } else {
+        status.style.color = '#d4a04a';
+        status.textContent = 'Please enter a valid email.';
+        setTimeout(function(){ status.textContent = ''; status.style.color = ''; }, 3000);
+      }
+    });
+
+    // Sticky header border + blur
+    const header = document.querySelector('.site-header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          header.style.borderBottomColor = y > 10 ? '#e8e4e0' : 'transparent';
+          header.style.backdropFilter = y > 10 ? 'blur(20px)' : 'blur(12px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive: true});
+
+    // ── Intersection Observer: staggered cards + label line ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('anim-card')) {
+            entry.target.style.transitionDelay = (i % 12 * 60) + 'ms';
+          }
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    // Observe all anim-card elements
+    document.querySelectorAll('.anim-card').forEach(el => observer.observe(el));
+    // Observe section labels for line animation
+    document.querySelectorAll('.section-label').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
