@@ -200,44 +200,91 @@ function rillatype_allow_font_uploads($mimes) {
   return $mimes;
 }
 
-// Product tester font upload: one direct font file in the Variations tab.
-add_action('woocommerce_product_data_panels', 'rillatype_tester_font_variations_panel_field');
-function rillatype_tester_font_variations_panel_field() {
-  global $post;
-  if (!$post) return;
+add_action('acf/init', 'rillatype_register_product_preview_fields');
+function rillatype_register_product_preview_fields() {
+  if (!function_exists('acf_add_local_field_group')) return;
 
-  $field_id = '_rillatype_tester_font_url';
-  $value = get_post_meta($post->ID, $field_id, true);
-  ?>
-  <div class="options_group show_if_variable rillatype-tester-font-parent-field">
-    <p class="form-field">
-      <label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Tester Font File', 'rillatype-v2'); ?></label>
-      <input type="hidden" class="rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>">
-      <span class="rillatype-tester-font-name"><?php echo $value ? esc_html(basename(parse_url($value, PHP_URL_PATH))) : esc_html__('No font selected', 'rillatype-v2'); ?></span>
-      <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
-      <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
-      <span class="description"><?php esc_html_e('Upload once here. This font is used by the product playground. ZIP files cannot be previewed.', 'rillatype-v2'); ?></span>
-    </p>
-  </div>
-  <?php
-}
-
-add_action('woocommerce_process_product_meta', 'rillatype_save_tester_font_parent_field');
-function rillatype_save_tester_font_parent_field($post_id) {
-  $font_url = isset($_POST['_rillatype_tester_font_url']) ? esc_url_raw(wp_unslash($_POST['_rillatype_tester_font_url'])) : '';
-  update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
-}
-
-add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
-function rillatype_product_admin_assets($hook) {
-  global $post;
-  if (!in_array($hook, array('post.php', 'post-new.php'), true) || !$post || $post->post_type !== 'product') return;
-
-  wp_enqueue_media();
-  $admin_js = get_template_directory() . '/assets/js/admin-product.js';
-  if (file_exists($admin_js)) {
-    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), filemtime($admin_js), true);
-  }
+  acf_add_local_field_group(array(
+    'key' => 'group_rillatype_product_preview',
+    'title' => 'Product Preview',
+    'fields' => array(
+      array(
+        'key' => 'field_rillatype_font_tab',
+        'label' => 'Font',
+        'name' => '',
+        'type' => 'tab',
+        'placement' => 'left',
+      ),
+      array(
+        'key' => 'field_rillatype_font_preview',
+        'label' => 'Enable Font Preview',
+        'name' => '_font_preview',
+        'type' => 'true_false',
+        'ui' => 1,
+        'default_value' => 1,
+      ),
+      array(
+        'key' => 'field_rillatype_font_mode',
+        'label' => 'Font Preview Mode',
+        'name' => '_font_mode',
+        'type' => 'radio',
+        'choices' => array(
+          'image' => 'Secure IMAGE-based font preview (OTF/TTF), one-line preview only and no ligature support',
+          'text' => 'Secure TEXT-based font preview (WOFF/WOFF2), multi-line preview with ligature support',
+        ),
+        'default_value' => 'image',
+        'layout' => 'vertical',
+        'return_format' => 'value',
+      ),
+      array(
+        'key' => 'field_rillatype_font_data',
+        'label' => 'Add/Select Font',
+        'name' => '_font_data',
+        'type' => 'repeater',
+        'button_label' => 'Add/Select Font',
+        'layout' => 'table',
+        'sub_fields' => array(
+          array(
+            'key' => 'field_rillatype_font_name',
+            'label' => 'Font Name',
+            'name' => 'name',
+            'type' => 'text',
+          ),
+          array(
+            'key' => 'field_rillatype_font_file',
+            'label' => 'OTF/TTF Font File',
+            'name' => 'font',
+            'type' => 'file',
+            'return_format' => 'id',
+            'mime_types' => 'otf,ttf',
+          ),
+          array(
+            'key' => 'field_rillatype_font_web_file',
+            'label' => 'WOFF/WOFF2 Font File',
+            'name' => 'font_web',
+            'type' => 'file',
+            'return_format' => 'id',
+            'mime_types' => 'woff,woff2',
+          ),
+        ),
+      ),
+    ),
+    'location' => array(
+      array(
+        array(
+          'param' => 'post_type',
+          'operator' => '==',
+          'value' => 'product',
+        ),
+      ),
+    ),
+    'menu_order' => 20,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'active' => true,
+  ));
 }
 
 // Cart is rendered directly in nav-actions--mobile
