@@ -58,7 +58,7 @@
 
       if (name) el.attr('name', name.replace(/rillatype_font_data\[\d+\]/, 'rillatype_font_data[' + index + ']'));
       if (id) {
-        var newId = id.replace(/_\d+$/, '_' + Date.now() + '_' + index);
+        var newId = 'rillatype_font_field_' + Date.now() + '_' + index + '_' + Math.floor(Math.random() * 10000);
         el.attr('id', newId);
         row.find('[data-target="#' + id + '"]').attr('data-target', '#' + newId);
       }

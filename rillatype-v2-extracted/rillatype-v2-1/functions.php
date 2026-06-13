@@ -213,7 +213,7 @@ function rillatype_attachment_label($attachment_id) {
 }
 
 function rillatype_render_font_file_field($name, $value) {
-  $field_id = esc_attr($name . '_' . wp_rand(1000, 9999));
+  $field_id = 'rillatype_font_field_' . md5($name . wp_rand(1000, 9999));
   ?>
   <input type="hidden" class="rillatype-tester-font-url" id="<?php echo $field_id; ?>" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_attr(absint($value)); ?>">
   <span class="rillatype-tester-font-name"><?php echo esc_html(rillatype_attachment_label($value)); ?></span>
@@ -302,13 +302,13 @@ function rillatype_save_product_preview_box($post_id) {
 
 add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
 function rillatype_product_admin_assets($hook) {
-  global $post;
-  if (!in_array($hook, array('post.php', 'post-new.php'), true) || !$post || $post->post_type !== 'product') return;
+  $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+  if (!in_array($hook, array('post.php', 'post-new.php'), true) || !$screen || $screen->post_type !== 'product') return;
 
   wp_enqueue_media();
   $admin_js = get_template_directory() . '/assets/js/admin-product.js';
   if (file_exists($admin_js)) {
-    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), filemtime($admin_js), true);
+    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery', 'media-editor', 'media-views'), filemtime($admin_js), true);
   }
 }
 
