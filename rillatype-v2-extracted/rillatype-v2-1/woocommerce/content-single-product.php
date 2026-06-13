@@ -19,6 +19,21 @@ $attachment_ids = array_unique($attachment_ids);
 
 $is_variable = $product->is_type('variable');
 $variations  = $is_variable ? $product->get_available_variations() : [];
+
+$tester_font_url = '';
+if (function_exists('get_field')) {
+  $tester_font_url = get_field('specimen_regular_url', $product->get_id());
+}
+if (!$tester_font_url && $product->is_downloadable()) {
+  foreach ($product->get_downloads() as $download) {
+    $file_url = $download->get_file();
+    if (preg_match('/\.(otf|ttf|woff2?|eot)(\?.*)?$/i', $file_url)) {
+      $tester_font_url = $file_url;
+      break;
+    }
+  }
+}
+$tester_font_family = 'RillatypeProductFont' . $product->get_id();
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
@@ -137,7 +152,7 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
   <section class="font-playground" aria-label="Try this font">
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
-      <div class="tester" role="region" aria-label="Interactive font tester">
+      <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>">
         <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
         <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
         <div class="tester__controls">
@@ -159,6 +174,9 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
             </div>
           </div>
           <div class="tester__row">
+            <select class="tester__font-select" id="tester-font" aria-label="Font style">
+              <option value="<?php echo esc_attr($tester_font_family); ?>"><?php echo esc_html($title); ?></option>
+            </select>
             <div class="tester__align" role="radiogroup" aria-label="Alignment">
               <button data-align="left" role="radio" aria-checked="false" aria-label="Align left" title="Left">
                 <svg width="18" height="14" viewBox="0 0 18 14" fill="none"><rect x="0" y="0" width="14" height="2" rx="1" fill="currentColor"/><rect x="0" y="4" width="10" height="2" rx="1" fill="currentColor"/><rect x="0" y="8" width="16" height="2" rx="1" fill="currentColor"/><rect x="0" y="12" width="12" height="2" rx="1" fill="currentColor"/></svg>

@@ -3021,6 +3021,21 @@ body {
 }
 .tester__row + .tester__row { margin-top: 4px; }
 
+.tester__font-select {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border: 1.5px solid #e0ddd8;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--charcoal);
+  font-family: inherit;
+  cursor: pointer;
+  flex: 2;
+  min-width: 140px;
+}
+.tester__font-select:focus { outline: 2px dashed #2b6ed7; }
+
 .tester__slider {
   display: flex; align-items: center; gap: 5px;
   flex: 1; min-width: 120px;

@@ -136,13 +136,37 @@
   });
 
   /* ── Font Tester ── */
+  var tester = document.querySelector('.tester');
   var display = document.getElementById('tester-display');
+  var fontSelect = document.getElementById('tester-font');
   var sizeSlider = document.getElementById('tester-size');
   var sizeOutput = document.getElementById('tester-size-value');
   var leadingSlider = document.getElementById('tester-leading');
   var leadingOutput = document.getElementById('tester-leading-value');
   var trackingSlider = document.getElementById('tester-tracking');
   var trackingOutput = document.getElementById('tester-tracking-value');
+
+  if (tester && display) {
+    var fontFamily = tester.getAttribute('data-font-family');
+    var fontUrl = tester.getAttribute('data-font-url');
+
+    if (fontFamily && fontUrl) {
+      var fontFormat = 'opentype';
+      if (/\.woff2?(\?|$)/i.test(fontUrl)) fontFormat = fontUrl.match(/\.woff2(\?|$)/i) ? 'woff2' : 'woff';
+      if (/\.ttf(\?|$)/i.test(fontUrl)) fontFormat = 'truetype';
+
+      var style = document.createElement('style');
+      style.textContent = '@font-face{font-family:"' + fontFamily + '";src:url("' + fontUrl + '") format("' + fontFormat + '");font-weight:400;font-style:normal;font-display:swap;}';
+      document.head.appendChild(style);
+      display.style.fontFamily = '"' + fontFamily + '", var(--font-body)';
+    }
+  }
+
+  if (fontSelect && display) {
+    fontSelect.addEventListener('change', function () {
+      display.style.fontFamily = '"' + this.value + '", var(--font-body)';
+    });
+  }
 
   if (sizeSlider && display) {
     sizeSlider.addEventListener('input', function () {
