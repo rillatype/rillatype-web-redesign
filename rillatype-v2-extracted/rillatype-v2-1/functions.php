@@ -200,26 +200,28 @@ function rillatype_allow_font_uploads($mimes) {
   return $mimes;
 }
 
-// Product tester font upload: one direct font file for the single product playground.
-add_action('woocommerce_product_after_variable_attributes', 'rillatype_tester_font_variation_notice', 5, 3);
-function rillatype_tester_font_variation_notice($loop, $variation_data, $variation) {
-  if ((int) $loop !== 0) return;
+// Product tester font upload: one direct font file in the Variations tab.
+add_action('woocommerce_product_data_panels', 'rillatype_tester_font_variations_panel_field');
+function rillatype_tester_font_variations_panel_field() {
+  global $post;
+  if (!$post) return;
 
-  $parent_id = wp_get_post_parent_id($variation->ID);
   $field_id = '_rillatype_tester_font_url';
-  $value = get_post_meta($parent_id, $field_id, true);
+  $value = get_post_meta($post->ID, $field_id, true);
   ?>
-  <p class="form-row form-row-full rillatype-tester-font-parent-field">
-    <label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Tester Font File', 'rillatype-v2'); ?></label>
-    <input type="text" class="short rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php esc_attr_e('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'); ?>" readonly>
-    <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
-    <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
-    <span class="description"><?php esc_html_e('Upload once here. This font is used by the product playground. ZIP files cannot be previewed.', 'rillatype-v2'); ?></span>
-  </p>
+  <div class="options_group show_if_variable rillatype-tester-font-parent-field">
+    <p class="form-field">
+      <label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Tester Font File', 'rillatype-v2'); ?></label>
+      <input type="text" class="short rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php esc_attr_e('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'); ?>" readonly>
+      <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
+      <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
+      <span class="description"><?php esc_html_e('Upload once here. This font is used by the product playground. ZIP files cannot be previewed.', 'rillatype-v2'); ?></span>
+    </p>
+  </div>
   <?php
 }
 
-add_action('woocommerce_process_product_meta_variable', 'rillatype_save_tester_font_parent_field');
+add_action('woocommerce_process_product_meta', 'rillatype_save_tester_font_parent_field');
 function rillatype_save_tester_font_parent_field($post_id) {
   $font_url = isset($_POST['_rillatype_tester_font_url']) ? esc_url_raw(wp_unslash($_POST['_rillatype_tester_font_url'])) : '';
   update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
