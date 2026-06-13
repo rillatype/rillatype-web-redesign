@@ -190,24 +190,49 @@ add_filter('loop_shop_per_page', function($cols) {
   return 15;
 });
 
-// Product tester font URL: paste a direct .otf/.ttf/.woff/.woff2 file URL for the single product playground.
+// Allow font files for the product tester upload field.
+add_filter('upload_mimes', 'rillatype_allow_font_uploads');
+function rillatype_allow_font_uploads($mimes) {
+  $mimes['ttf'] = 'font/ttf';
+  $mimes['otf'] = 'font/otf';
+  $mimes['woff'] = 'font/woff';
+  $mimes['woff2'] = 'font/woff2';
+  return $mimes;
+}
+
+// Product tester font upload: direct .otf/.ttf/.woff/.woff2 file used by the single product playground.
 add_action('woocommerce_product_options_general_product_data', 'rillatype_tester_font_product_field');
 function rillatype_tester_font_product_field() {
   if (!function_exists('woocommerce_wp_text_input')) return;
 
   woocommerce_wp_text_input(array(
     'id'          => '_rillatype_tester_font_url',
-    'label'       => __('Tester Font URL', 'rillatype-v2'),
-    'placeholder' => 'https://example.com/font.woff2',
+    'label'       => __('Tester Font File', 'rillatype-v2'),
+    'placeholder' => __('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'),
     'desc_tip'    => true,
-    'description' => __('Direct font file URL used by the product playground. Use .woff2, .woff, .ttf, or .otf. ZIP files cannot be previewed by the browser.', 'rillatype-v2'),
+    'description' => __('Upload a direct font file used by the product playground. ZIP files cannot be previewed by the browser.', 'rillatype-v2'),
+    'custom_attributes' => array('readonly' => 'readonly'),
   ));
+
+  echo '<p class="form-field"><button type="button" class="button rillatype-upload-tester-font">' . esc_html__('Upload / Choose Font', 'rillatype-v2') . '</button> <button type="button" class="button rillatype-clear-tester-font">' . esc_html__('Clear', 'rillatype-v2') . '</button></p>';
 }
 
 add_action('woocommerce_process_product_meta', 'rillatype_save_tester_font_product_field');
 function rillatype_save_tester_font_product_field($post_id) {
   $font_url = isset($_POST['_rillatype_tester_font_url']) ? esc_url_raw(wp_unslash($_POST['_rillatype_tester_font_url'])) : '';
   update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
+}
+
+add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
+function rillatype_product_admin_assets($hook) {
+  global $post;
+  if (!in_array($hook, array('post.php', 'post-new.php'), true) || !$post || $post->post_type !== 'product') return;
+
+  wp_enqueue_media();
+  $admin_js = get_template_directory() . '/assets/js/admin-product.js';
+  if (file_exists($admin_js)) {
+    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), wp_get_theme()->get('Version'), true);
+  }
 }
 
 // Cart is rendered directly in nav-actions--mobile
