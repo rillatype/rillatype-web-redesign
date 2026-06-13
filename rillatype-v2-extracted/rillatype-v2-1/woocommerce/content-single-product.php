@@ -108,6 +108,10 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
       font-style: normal;
       font-display: swap;
     }
+
+    #tester-display {
+      font-family: '<?php echo esc_html($tester_font_family); ?>', var(--font-body) !important;
+    }
   </style>
 <?php endif; ?>
 
