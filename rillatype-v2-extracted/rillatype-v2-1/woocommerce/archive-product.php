@@ -6,8 +6,6 @@
     <p class="section-label">All products</p>
     <p class="shop-page__desc">Every font, every pack, every extra we make.</p>
 
-    <?php do_action('woocommerce_archive_description'); ?>
-
     <!-- Category pills -->
     <?php
     $terms = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => true));
