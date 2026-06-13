@@ -200,43 +200,29 @@ function rillatype_allow_font_uploads($mimes) {
   return $mimes;
 }
 
-// Product tester font upload: direct .otf/.ttf/.woff/.woff2 file used by the single product playground.
-add_action('woocommerce_variation_options', 'rillatype_tester_font_variation_field', 20, 3);
-function rillatype_tester_font_variation_field($loop, $variation_data, $variation) {
-  $field_id = '_rillatype_tester_font_url_' . $variation->ID;
-  $value = get_post_meta($variation->ID, '_rillatype_tester_font_url', true);
+// Product tester font upload: one direct font file for the single product playground.
+add_action('woocommerce_product_after_variable_attributes', 'rillatype_tester_font_variation_notice', 5, 3);
+function rillatype_tester_font_variation_notice($loop, $variation_data, $variation) {
+  if ((int) $loop !== 0) return;
+
+  $parent_id = wp_get_post_parent_id($variation->ID);
+  $field_id = '_rillatype_tester_font_url';
+  $value = get_post_meta($parent_id, $field_id, true);
   ?>
-  <p class="form-row form-row-full">
+  <p class="form-row form-row-full rillatype-tester-font-parent-field">
     <label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Tester Font File', 'rillatype-v2'); ?></label>
-    <input type="text" class="short rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="rillatype_tester_font_url[<?php echo esc_attr($variation->ID); ?>]" value="<?php echo esc_attr($value); ?>" placeholder="<?php esc_attr_e('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'); ?>" readonly>
+    <input type="text" class="short rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php esc_attr_e('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'); ?>" readonly>
     <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
     <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
-    <span class="description"><?php esc_html_e('Direct font file for the product playground. ZIP files cannot be previewed by the browser.', 'rillatype-v2'); ?></span>
+    <span class="description"><?php esc_html_e('Upload once here. This font is used by the product playground. ZIP files cannot be previewed.', 'rillatype-v2'); ?></span>
   </p>
   <?php
 }
 
-add_action('woocommerce_save_product_variation', 'rillatype_save_tester_font_variation_field', 10, 2);
-function rillatype_save_tester_font_variation_field($variation_id, $i) {
-  $font_urls = isset($_POST['rillatype_tester_font_url']) && is_array($_POST['rillatype_tester_font_url']) ? wp_unslash($_POST['rillatype_tester_font_url']) : array();
-  $font_url = isset($font_urls[$variation_id]) ? esc_url_raw($font_urls[$variation_id]) : '';
-  update_post_meta($variation_id, '_rillatype_tester_font_url', $font_url);
-}
-
-add_action('woocommerce_process_product_meta_variable', 'rillatype_copy_variation_tester_font_to_parent');
-function rillatype_copy_variation_tester_font_to_parent($post_id) {
-  $product = wc_get_product($post_id);
-  if (!$product || !$product->is_type('variable')) return;
-
-  foreach ($product->get_children() as $variation_id) {
-    $font_url = get_post_meta($variation_id, '_rillatype_tester_font_url', true);
-    if ($font_url) {
-      update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
-      return;
-    }
-  }
-
-  delete_post_meta($post_id, '_rillatype_tester_font_url');
+add_action('woocommerce_process_product_meta_variable', 'rillatype_save_tester_font_parent_field');
+function rillatype_save_tester_font_parent_field($post_id) {
+  $font_url = isset($_POST['_rillatype_tester_font_url']) ? esc_url_raw(wp_unslash($_POST['_rillatype_tester_font_url'])) : '';
+  update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
 }
 
 add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
@@ -247,7 +233,7 @@ function rillatype_product_admin_assets($hook) {
   wp_enqueue_media();
   $admin_js = get_template_directory() . '/assets/js/admin-product.js';
   if (file_exists($admin_js)) {
-    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), wp_get_theme()->get('Version'), true);
+    wp_enqueue_script('rillatype-admin-product', get_template_directory_uri() . '/assets/js/admin-product.js', array('jquery'), filemtime($admin_js), true);
   }
 }
 
