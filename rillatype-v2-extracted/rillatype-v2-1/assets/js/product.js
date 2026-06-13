@@ -158,9 +158,7 @@
         productFont.load().then(function (loadedFont) {
           document.fonts.add(loadedFont);
           display.style.fontFamily = fontStack;
-        }).catch(function () {
-          display.style.fontFamily = 'var(--font-body)';
-        });
+        }).catch(function () {});
       } else {
         var style = document.createElement('style');
         style.textContent = '@font-face{font-family:"' + fontFamily + '";src:url("' + fontUrl + '");font-weight:400;font-style:normal;font-display:swap;}';

@@ -212,7 +212,8 @@ function rillatype_tester_font_variations_panel_field() {
   <div class="options_group show_if_variable rillatype-tester-font-parent-field">
     <p class="form-field">
       <label for="<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Tester Font File', 'rillatype-v2'); ?></label>
-      <input type="text" class="short rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>" placeholder="<?php esc_attr_e('Upload .ttf/.otf/.woff/.woff2', 'rillatype-v2'); ?>" readonly>
+      <input type="hidden" class="rillatype-tester-font-url" id="<?php echo esc_attr($field_id); ?>" name="<?php echo esc_attr($field_id); ?>" value="<?php echo esc_attr($value); ?>">
+      <span class="rillatype-tester-font-name"><?php echo $value ? esc_html(basename(parse_url($value, PHP_URL_PATH))) : esc_html__('No font selected', 'rillatype-v2'); ?></span>
       <button type="button" class="button rillatype-upload-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Upload / Choose Font', 'rillatype-v2'); ?></button>
       <button type="button" class="button rillatype-clear-tester-font" data-target="#<?php echo esc_attr($field_id); ?>"><?php esc_html_e('Clear', 'rillatype-v2'); ?></button>
       <span class="description"><?php esc_html_e('Upload once here. This font is used by the product playground. ZIP files cannot be previewed.', 'rillatype-v2'); ?></span>
