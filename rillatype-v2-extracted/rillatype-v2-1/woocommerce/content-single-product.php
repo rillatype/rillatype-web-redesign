@@ -58,8 +58,8 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
       <!-- Info panel -->
       <div class="product-info">
         <?php
-        $post_date = get_post_field('post_date', $product->get_id());
-        $days_old  = floor((time() - strtotime($post_date)) / DAY_IN_SECONDS);
+        $post_time = get_post_time('U', true, $product->get_id());
+        $days_old  = $post_time ? floor((time() - $post_time) / 86400) : 31;
         if ($days_old <= 30) : ?>
           <span class="product-badge">New</span>
         <?php endif; ?>
@@ -89,7 +89,7 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
                   <input type="radio" name="variation_id" value="<?php echo esc_attr($v_id); ?>" data-attributes='<?php echo $attrs_json; ?>' <?php checked($v === reset($variations)); ?>>
                   <div class="license-tier__row">
                     <div class="license-tier__info">
-                      <div class="license-tier__name"><?php echo esc_html($v_name); ?> License</div>
+                      <div class="license-tier__name"><?php echo esc_html($v_name); ?></div>
                       <div class="license-tier__desc">Single user, personal & commercial projects</div>
                     </div>
                     <span class="license-tier__price"><?php echo wc_price($v_price); ?></span>
