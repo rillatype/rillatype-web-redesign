@@ -1795,6 +1795,19 @@ body {
   color: var(--coral);
 }
 
+@media (max-width: 639px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: var(--space-lg);
+    text-align: center;
+  }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm) var(--space-md);
+  }
+}
+
 .footer-copy {
   font-size: 14px;
   color: var(--text-muted);
