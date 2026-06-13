@@ -13,7 +13,7 @@
       <nav class="categories__cloud" aria-label="Font categories">
         <?php foreach ($terms as $term) : ?>
           <a href="<?php echo esc_url(get_term_link($term)); ?>" class="categories__pill anim-card">
-            <?php echo esc_html($term->name); ?> <span class="cat-count">(<?php echo esc_html($term->count); ?>)</span>
+            <?php echo esc_html($term->name); ?> <span class="cat-count"><?php echo esc_html($term->count); ?></span>
           </a>
         <?php endforeach; ?>
       </nav>
