@@ -2793,21 +2793,15 @@ body {
 }
 
 /* ── PAGINATION ── */
-.shop-page .woocommerce-pagination {
+.shop-page .pagination {
   margin-top: 48px;
-}
-
-.shop-page .woocommerce-pagination ul {
   display: flex;
   gap: 6px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
   justify-content: center;
 }
 
-.shop-page .woocommerce-pagination ul li a,
-.shop-page .woocommerce-pagination ul li span {
+.shop-page .pagination a,
+.shop-page .pagination span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2824,13 +2818,13 @@ body {
   transition: all .2s;
 }
 
-.shop-page .woocommerce-pagination ul li a:hover {
+.shop-page .pagination a:hover {
   border-color: var(--charcoal);
   color: var(--charcoal);
   transform: translateY(-1px);
 }
 
-.shop-page .woocommerce-pagination ul li span.current {
+.shop-page .pagination span.current {
   background: var(--charcoal);
   border-color: var(--charcoal);
   color: #fff;
