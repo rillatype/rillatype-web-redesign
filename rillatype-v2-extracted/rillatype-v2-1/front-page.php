@@ -267,7 +267,7 @@ if ($pq->have_posts()) {
         <?php endif; ?>
 
       </div>
-      <a href="<?php echo esc_url($has_woo ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/')); ?>" class="section-more">No catch <span class="section-more__icon">→</span></a>
+      <a href="<?php echo esc_url(home_url('/product-category/freebies/')); ?>" class="section-more">No catch <span class="section-more__icon">→</span></a>
     </div>
   </section>
 
