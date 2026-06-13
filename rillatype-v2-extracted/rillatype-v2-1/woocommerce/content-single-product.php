@@ -57,7 +57,12 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
 
       <!-- Info panel -->
       <div class="product-info">
-        <span class="product-badge">Best Seller</span>
+        <?php
+        $post_date = get_post_field('post_date', $product->get_id());
+        $days_old  = floor((time() - strtotime($post_date)) / DAY_IN_SECONDS);
+        if ($days_old <= 30) : ?>
+          <span class="product-badge">New</span>
+        <?php endif; ?>
         <h1 class="product-title"><?php echo esc_html($title); ?></h1>
         <?php if ($sub) : ?>
           <p class="product-title__sub"><?php echo esc_html($sub); ?></p>
