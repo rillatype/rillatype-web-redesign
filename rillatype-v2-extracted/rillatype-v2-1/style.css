@@ -2893,7 +2893,11 @@ body {
   50% { opacity: 1; }
 }
 .product-title {
-  font-size: 34px; font-weight: 800; letter-spacing: -.03em; line-height: .9;
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 42px);
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: .95;
   margin-bottom: 2px;
 }
 .product-title__sub {

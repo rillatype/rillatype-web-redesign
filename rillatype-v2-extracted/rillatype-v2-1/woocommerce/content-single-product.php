@@ -74,9 +74,15 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
               <span class="license-select__label">Choose your license</span>
               <?php foreach ($variations as $v) :
                 $v_id    = $v['variation_id'];
-                $v_name  = implode(' / ', $v['attributes']);
+                $att_names = [];
+                foreach ($v['attributes'] as $tax => $slug) {
+                  if (empty($slug)) continue;
+                  $tax_name = str_replace('attribute_', '', $tax);
+                  $term = get_term_by('slug', $slug, $tax_name);
+                  $att_names[] = $term ? ucwords($term->name) : ucwords(str_replace('-', ' ', $slug));
+                }
+                $v_name  = implode(' / ', $att_names);
                 $v_price = $v['display_price'];
-                $v_slug  = sanitize_title($v_name);
                 $attrs_json = htmlspecialchars(json_encode($v['attributes']), ENT_QUOTES, 'UTF-8');
               ?>
                 <label class="license-tier<?php echo $v === reset($variations) ? ' selected' : ''; ?>" data-price="<?php echo esc_attr($v_price); ?>" data-variation="<?php echo esc_attr($v_id); ?>">
