@@ -2756,7 +2756,7 @@ body {
 }
 
 .shop-page .section-label {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .shop-sort {
