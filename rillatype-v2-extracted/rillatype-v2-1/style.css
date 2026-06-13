@@ -782,7 +782,7 @@ body {
   letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: var(--space-lg);
+  margin: 0 0 var(--space-lg) 0;
 }
 
 .section-label::before {

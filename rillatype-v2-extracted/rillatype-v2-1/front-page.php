@@ -125,11 +125,11 @@ if ($pq->have_posts()) {
     <div class="hero__bg"></div>
     <div class="hero__inner container">
       <p class="hero__tag">The un-curated type foundry</p>
-      <div class="type-morph" id="type-morph">
+      <h1 class="type-morph" id="type-morph">
         <span class="type-morph__line">Fonts for</span>
         <span class="type-morph__line">the messy,</span>
         <span class="type-morph__line type-morph__italic">the bold, the real.</span>
-      </div>
+      </h1>
       <div class="hero__actions">
         <a href="<?php echo esc_url($has_woo ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/')); ?>" class="hero__cta">Browse fonts →</a>
       </div>
@@ -139,7 +139,7 @@ if ($pq->have_posts()) {
   <!-- Featured — clean 3-col -->
   <section class="featured" aria-label="Featured fonts">
     <div class="container">
-      <p class="section-label">Featured specimens</p>
+      <h2 class="section-label">Featured specimens</h2>
       <div class="font-showcase">
 
         <?php if (!empty($featured_products)) : ?>
@@ -201,7 +201,7 @@ if ($pq->have_posts()) {
   <!-- License & perks -->
   <section class="process" aria-label="License and perks">
     <div class="container">
-      <p class="section-label">License &amp; perks</p>
+      <h2 class="section-label">License &amp; perks</h2>
       <div class="process__grid">
         <div class="process__step">
           <div class="process__icon">📜</div>
@@ -225,7 +225,7 @@ if ($pq->have_posts()) {
   <!-- Freebies -->
   <section class="freebies" aria-label="Free fonts">
     <div class="container">
-      <p class="section-label">Free stuff</p>
+      <h2 class="section-label">Free stuff</h2>
       <div class="freebies__grid">
 
         <?php if (!empty($freebies)) : ?>
@@ -276,7 +276,7 @@ if ($pq->have_posts()) {
   <!-- Latest releases -->
   <section class="latest" aria-label="Latest releases">
     <div class="container">
-      <p class="section-label">Fresh drops</p>
+      <h2 class="section-label">Fresh drops</h2>
       <div class="font-showcase font-showcase--wide">
 
         <?php if (!empty($latest_products)) : ?>
@@ -346,7 +346,7 @@ if ($pq->have_posts()) {
   <!-- Categories -->
   <section class="categories" aria-label="Categories">
     <div class="container">
-      <p class="section-label">Browse by style</p>
+      <h2 class="section-label">Browse by style</h2>
       <div class="categories__cloud">
         <?php if (!empty($product_cats)) : ?>
           <?php foreach ($product_cats as $cat) : ?>
@@ -370,7 +370,7 @@ if ($pq->have_posts()) {
   <section class="blog-section" aria-label="Blog">
     <div class="container">
       <div class="blog-box">
-        <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-label section-label--link">From the studio</a>
+        <h2><a href="<?php echo esc_url(get_permalink(get_option('page_for_posts'))); ?>" class="section-label section-label--link">From the studio</a></h2>
         <div class="blog-list">
           <?php if (!empty($latest_posts)) : ?>
             <?php foreach ($latest_posts as $p) : ?>

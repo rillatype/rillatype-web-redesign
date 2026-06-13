@@ -4,6 +4,31 @@
   <meta charset="<?php bloginfo('charset'); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="profile" href="https://gmpg.org/xfn/11">
+
+  <?php
+  // Open Graph / Social Meta
+  $og_title       = is_front_page() || is_home() ? get_bloginfo('name') : wp_get_document_title();
+  $og_description = get_bloginfo('description');
+  $og_url         = is_front_page() || is_home() ? home_url('/') : get_permalink();
+  $og_image       = '';
+  $logo_id        = get_theme_mod('custom_logo');
+  if ($logo_id) $og_image = wp_get_attachment_image_url($logo_id, 'full');
+  if (!$og_image) $og_image = get_template_directory_uri() . '/assets/images/logo.png';
+  ?>
+  <meta name="description" content="<?php echo esc_attr($og_description); ?>">
+  <meta property="og:title" content="<?php echo esc_attr($og_title); ?>">
+  <meta property="og:description" content="<?php echo esc_attr($og_description); ?>">
+  <meta property="og:url" content="<?php echo esc_url($og_url); ?>">
+  <meta property="og:image" content="<?php echo esc_url($og_image); ?>">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<?php echo esc_attr(get_bloginfo('name')); ?>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<?php echo esc_attr($og_title); ?>">
+  <meta name="twitter:description" content="<?php echo esc_attr($og_description); ?>">
+  <meta name="twitter:image" content="<?php echo esc_url($og_image); ?>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <?php wp_head(); ?>
 </head>
 
