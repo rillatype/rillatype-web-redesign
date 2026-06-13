@@ -2825,8 +2825,8 @@ body {
 }
 
 .shop-page .pagination span.current {
-  background: var(--charcoal);
-  border-color: var(--charcoal);
+  background: var(--coral);
+  border-color: var(--coral);
   color: #fff;
 }
 
