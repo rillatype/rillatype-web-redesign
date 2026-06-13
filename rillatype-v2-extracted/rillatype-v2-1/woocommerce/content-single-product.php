@@ -19,11 +19,12 @@ $attachment_ids = array_unique($attachment_ids);
 
 $is_variable = $product->is_type('variable');
 $variations  = $is_variable ? $product->get_available_variations() : [];
+$variation_ids = $is_variable ? $product->get_children() : [];
 
 $tester_font_url = '';
-if ($is_variable && !empty($variations)) {
-  foreach ($variations as $v) {
-    $variation_font_url = get_post_meta($v['variation_id'], '_rillatype_tester_font_url', true);
+if (!empty($variation_ids)) {
+  foreach ($variation_ids as $variation_id) {
+    $variation_font_url = get_post_meta($variation_id, '_rillatype_tester_font_url', true);
     if ($variation_font_url) {
       $tester_font_url = $variation_font_url;
       break;
@@ -45,9 +46,9 @@ if (!$tester_font_url && $product->is_downloadable()) {
     }
   }
 }
-if (!$tester_font_url && $is_variable && !empty($variations)) {
-  foreach ($variations as $v) {
-    $variation_product = wc_get_product($v['variation_id']);
+if (!$tester_font_url && !empty($variation_ids)) {
+  foreach ($variation_ids as $variation_id) {
+    $variation_product = wc_get_product($variation_id);
     if (!$variation_product || !$variation_product->is_downloadable()) continue;
     foreach ($variation_product->get_downloads() as $download) {
       $file_url = $download->get_file();

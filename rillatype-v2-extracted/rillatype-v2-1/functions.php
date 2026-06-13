@@ -116,24 +116,24 @@ function rillatype_enqueue_assets() {
   wp_enqueue_style('rillatype-fonts', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap', array(), null);
 
   // Main stylesheet (contains all CSS)
-  wp_enqueue_style('rillatype', get_stylesheet_uri(), array('rillatype-fonts'), $version);
+  wp_enqueue_style('rillatype', get_stylesheet_uri(), array('rillatype-fonts'), filemtime(get_stylesheet_directory() . '/style.css'));
 
   // Single Product JS
   $product_js = get_template_directory() . '/assets/js/product.js';
   if (class_exists('WooCommerce') && is_product() && file_exists($product_js)) {
-    wp_enqueue_script('rillatype-product', get_template_directory_uri() . '/assets/js/product.js', array(), $version, true);
+    wp_enqueue_script('rillatype-product', get_template_directory_uri() . '/assets/js/product.js', array(), filemtime($product_js), true);
   }
 
   // Main JS
   $main_js = get_template_directory() . '/assets/js/main.js';
   if (file_exists($main_js)) {
-    wp_enqueue_script('rillatype-main', get_template_directory_uri() . '/assets/js/main.js', array(), $version, true);
+    wp_enqueue_script('rillatype-main', get_template_directory_uri() . '/assets/js/main.js', array(), filemtime($main_js), true);
   }
 
   // Font Tester JS
   $font_tester_js = get_template_directory() . '/assets/js/font-tester.js';
   if (file_exists($font_tester_js)) {
-    wp_enqueue_script('rillatype-font-tester', get_template_directory_uri() . '/assets/js/font-tester.js', array(), $version, true);
+    wp_enqueue_script('rillatype-font-tester', get_template_directory_uri() . '/assets/js/font-tester.js', array(), filemtime($font_tester_js), true);
   }
 }
 

@@ -151,14 +151,22 @@
     var fontUrl = tester.getAttribute('data-font-url');
 
     if (fontFamily && fontUrl) {
-      var fontFormat = 'opentype';
-      if (/\.woff2?(\?|$)/i.test(fontUrl)) fontFormat = fontUrl.match(/\.woff2(\?|$)/i) ? 'woff2' : 'woff';
-      if (/\.ttf(\?|$)/i.test(fontUrl)) fontFormat = 'truetype';
+      var fontStack = '"' + fontFamily + '", var(--font-body)';
 
-      var style = document.createElement('style');
-      style.textContent = '@font-face{font-family:"' + fontFamily + '";src:url("' + fontUrl + '") format("' + fontFormat + '");font-weight:400;font-style:normal;font-display:swap;}';
-      document.head.appendChild(style);
-      display.style.fontFamily = '"' + fontFamily + '", var(--font-body)';
+      if ('FontFace' in window) {
+        var productFont = new FontFace(fontFamily, 'url("' + fontUrl + '")');
+        productFont.load().then(function (loadedFont) {
+          document.fonts.add(loadedFont);
+          display.style.fontFamily = fontStack;
+        }).catch(function () {
+          display.style.fontFamily = 'var(--font-body)';
+        });
+      } else {
+        var style = document.createElement('style');
+        style.textContent = '@font-face{font-family:"' + fontFamily + '";src:url("' + fontUrl + '");font-weight:400;font-style:normal;font-display:swap;}';
+        document.head.appendChild(style);
+        display.style.fontFamily = fontStack;
+      }
     }
   }
 
