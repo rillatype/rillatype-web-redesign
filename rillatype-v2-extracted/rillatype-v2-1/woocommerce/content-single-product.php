@@ -20,8 +20,8 @@ $attachment_ids = array_unique($attachment_ids);
 $is_variable = $product->is_type('variable');
 $variations  = $is_variable ? $product->get_available_variations() : [];
 
-$tester_font_url = '';
-if (function_exists('get_field')) {
+$tester_font_url = get_post_meta($product->get_id(), '_rillatype_tester_font_url', true);
+if (!$tester_font_url && function_exists('get_field')) {
   $tester_font_url = get_field('specimen_regular_url', $product->get_id());
 }
 if (!$tester_font_url && $product->is_downloadable()) {
@@ -30,6 +30,19 @@ if (!$tester_font_url && $product->is_downloadable()) {
     if (preg_match('/\.(otf|ttf|woff2?|eot)(\?.*)?$/i', $file_url)) {
       $tester_font_url = $file_url;
       break;
+    }
+  }
+}
+if (!$tester_font_url && $is_variable && !empty($variations)) {
+  foreach ($variations as $v) {
+    $variation_product = wc_get_product($v['variation_id']);
+    if (!$variation_product || !$variation_product->is_downloadable()) continue;
+    foreach ($variation_product->get_downloads() as $download) {
+      $file_url = $download->get_file();
+      if (preg_match('/\.(otf|ttf|woff2?|eot)(\?.*)?$/i', $file_url)) {
+        $tester_font_url = $file_url;
+        break 2;
+      }
     }
   }
 }

@@ -190,4 +190,24 @@ add_filter('loop_shop_per_page', function($cols) {
   return 15;
 });
 
+// Product tester font URL: paste a direct .otf/.ttf/.woff/.woff2 file URL for the single product playground.
+add_action('woocommerce_product_options_general_product_data', 'rillatype_tester_font_product_field');
+function rillatype_tester_font_product_field() {
+  if (!function_exists('woocommerce_wp_text_input')) return;
+
+  woocommerce_wp_text_input(array(
+    'id'          => '_rillatype_tester_font_url',
+    'label'       => __('Tester Font URL', 'rillatype-v2'),
+    'placeholder' => 'https://example.com/font.woff2',
+    'desc_tip'    => true,
+    'description' => __('Direct font file URL used by the product playground. Use .woff2, .woff, .ttf, or .otf. ZIP files cannot be previewed by the browser.', 'rillatype-v2'),
+  ));
+}
+
+add_action('woocommerce_process_product_meta', 'rillatype_save_tester_font_product_field');
+function rillatype_save_tester_font_product_field($post_id) {
+  $font_url = isset($_POST['_rillatype_tester_font_url']) ? esc_url_raw(wp_unslash($_POST['_rillatype_tester_font_url'])) : '';
+  update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
+}
+
 // Cart is rendered directly in nav-actions--mobile
