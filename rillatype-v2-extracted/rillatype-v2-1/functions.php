@@ -185,4 +185,9 @@ if (!function_exists('rillatype_min_price')) {
   }
 }
 
+// Products per page: ensure multiples of 3 for 3-col grid
+add_filter('loop_shop_per_page', function($cols) {
+  return 15;
+});
+
 // Cart is rendered directly in nav-actions--mobile
