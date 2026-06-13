@@ -62,6 +62,18 @@ if (!$tester_font_url && !empty($variation_ids)) {
 $tester_font_family = 'RillatypeProductFont' . $product->get_id();
 ?>
 
+<?php if ($tester_font_url) : ?>
+  <style>
+    @font-face {
+      font-family: '<?php echo esc_html($tester_font_family); ?>';
+      src: url('<?php echo esc_url($tester_font_url); ?>');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+<?php endif; ?>
+
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 
   <!-- Breadcrumbs -->
@@ -179,7 +191,7 @@ $tester_font_family = 'RillatypeProductFont' . $product->get_id();
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
       <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>">
-        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
+        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0"<?php echo $tester_font_url ? ' style="font-family: ' . esc_attr($tester_font_family) . ', var(--font-body);"' : ''; ?>>The quick brown fox jumps over the lazy dog</div>
         <p class="tester__hint">Click the text and type. Adjust size & style below.</p>
         <div class="tester__controls">
           <div class="tester__row">

@@ -223,6 +223,22 @@ function rillatype_save_tester_font_variation_field($variation_id, $i) {
   update_post_meta($variation_id, '_rillatype_tester_font_url', $font_url);
 }
 
+add_action('woocommerce_process_product_meta_variable', 'rillatype_copy_variation_tester_font_to_parent');
+function rillatype_copy_variation_tester_font_to_parent($post_id) {
+  $product = wc_get_product($post_id);
+  if (!$product || !$product->is_type('variable')) return;
+
+  foreach ($product->get_children() as $variation_id) {
+    $font_url = get_post_meta($variation_id, '_rillatype_tester_font_url', true);
+    if ($font_url) {
+      update_post_meta($post_id, '_rillatype_tester_font_url', $font_url);
+      return;
+    }
+  }
+
+  delete_post_meta($post_id, '_rillatype_tester_font_url');
+}
+
 add_action('admin_enqueue_scripts', 'rillatype_product_admin_assets');
 function rillatype_product_admin_assets($hook) {
   global $post;
