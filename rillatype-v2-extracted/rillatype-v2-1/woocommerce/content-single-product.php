@@ -20,7 +20,19 @@ $attachment_ids = array_unique($attachment_ids);
 $is_variable = $product->is_type('variable');
 $variations  = $is_variable ? $product->get_available_variations() : [];
 
-$tester_font_url = get_post_meta($product->get_id(), '_rillatype_tester_font_url', true);
+$tester_font_url = '';
+if ($is_variable && !empty($variations)) {
+  foreach ($variations as $v) {
+    $variation_font_url = get_post_meta($v['variation_id'], '_rillatype_tester_font_url', true);
+    if ($variation_font_url) {
+      $tester_font_url = $variation_font_url;
+      break;
+    }
+  }
+}
+if (!$tester_font_url) {
+  $tester_font_url = get_post_meta($product->get_id(), '_rillatype_tester_font_url', true);
+}
 if (!$tester_font_url && function_exists('get_field')) {
   $tester_font_url = get_field('specimen_regular_url', $product->get_id());
 }
