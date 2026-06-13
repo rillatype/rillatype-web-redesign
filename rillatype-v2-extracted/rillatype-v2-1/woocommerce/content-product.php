@@ -2,9 +2,8 @@
 global $product;
 if (!$product) return;
 $name = $product->get_name();
-$price = $product->get_price_html();
+$price = rillatype_min_price($product);
 $img_url = get_the_post_thumbnail_url($product->get_id(), 'medium');
-$is_free = $product->get_price() !== '' && (float) $product->get_price() <= 0;
 $raw_price = $product->is_type('variable') ? $product->get_variation_price('min') : $product->get_price();
 $has_free_class = $raw_price !== '' && (float) $raw_price <= 0;
 if (preg_match('/^(.+?)\s*[—–]\s*(.+)$/', $name, $m) || preg_match('/^(.+?)\s*-\s*(.+)$/', $name, $m)) {

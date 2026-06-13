@@ -5,15 +5,6 @@
  */
 get_header();
 
-// Helper: show only the minimum/standard price, not variable ranges
-function rillatype_min_price($product) {
-  if (!$product) return '';
-  if ($product->is_type('variable')) {
-    return wc_price($product->get_variation_price('min'));
-  }
-  return $product->get_price_html();
-}
-
 // Check if plugins are active
 $has_acf = function_exists('get_field');
 $has_woo = class_exists('WooCommerce');

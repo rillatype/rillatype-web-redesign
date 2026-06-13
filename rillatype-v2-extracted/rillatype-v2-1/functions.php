@@ -174,4 +174,15 @@ function rillatype_account_menu_items($items) {
   return $order;
 }
 
+// Reusable: get minimum price for variable products
+if (!function_exists('rillatype_min_price')) {
+  function rillatype_min_price($product) {
+    if (!$product) return '';
+    if ($product->is_type('variable')) {
+      return wc_price($product->get_variation_price('min'));
+    }
+    return $product->get_price_html();
+  }
+}
+
 // Cart is rendered directly in nav-actions--mobile
