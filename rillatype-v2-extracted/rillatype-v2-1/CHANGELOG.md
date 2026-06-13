@@ -90,11 +90,14 @@
 - Grid: 3 columns (`.font-showcase` base)
 - Product cards: same .font-card styling as homepage (border, hover lift, title/sub-title split, min price)
 - Sort dropdown: pill style (50px radius, coral hover)
-- Category pills: dynamic from WC categories with count
-- Toolbar: result count (hidden) + sort select
+- Category pills: dynamic from WC categories with count (superscript format)
+- Toolbar: sort select only (result count hidden)
 - Description: "Every font, every pack, every extra we make." — Plus Jakarta Sans bold 800, center
+- Section label: "All products" (left-aligned coral left-border)
 - Products per page: 15 (multiple of 3 for grid balance)
 - Breadcrumb removed
+- WooCommerce archive description removed
+- Mobile: category pills hidden entirely, sort compact + center (12px, max-width 200px)
 
 ## Pagination
 - Custom template: clean flat HTML (no `ul > li`), matches reference style
@@ -109,6 +112,9 @@
 
 ## Cart/Checkout/My Account
 - Basic wrapper (header + container + footer) — functional, not yet styled
+
+## Footer
+- Mobile: stack vertikal, link center wrap, copyright di bawah
 
 ## Known Issues (not yet fixed)
 - Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices. Parent href overridden to `javascript:void(0)` + `e.preventDefault()` — still no closure. Root cause likely mobile browser fast-click optimization bypassing click handler.
