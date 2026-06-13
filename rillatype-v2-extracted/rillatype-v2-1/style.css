@@ -2730,21 +2730,6 @@ body {
   margin-bottom: var(--space-sm);
 }
 
-.shop-page__header .woocommerce-result-count {
-  font-size: 14px;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* Sort dropdown */
-.shop-page__title {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 400;
-  letter-spacing: -.03em;
-  margin: 8px 0 var(--space-lg);
-}
-
 /* ── SHOP TOOLBAR ── */
 .archive-toolbar {
   display: flex;
@@ -2760,12 +2745,18 @@ body {
 }
 
 .shop-page__desc {
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  font-weight: 600;
-  letter-spacing: -.02em;
-  color: var(--text-soft);
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.04em;
+  color: var(--text);
   margin-bottom: var(--space-lg);
-  max-width: 40ch;
+  text-align: center;
+}
+
+.shop-page .section-label {
+  justify-content: center;
 }
 
 .shop-sort {
