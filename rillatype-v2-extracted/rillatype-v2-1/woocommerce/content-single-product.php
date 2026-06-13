@@ -23,20 +23,23 @@ $variation_ids = $is_variable ? $product->get_children() : [];
 
 $tester_font_url = '';
 $tester_font_src = '';
+$tester_font_format = '';
 $tester_font_from_attachment = function ($attachment_id) {
   $attachment_id = absint($attachment_id);
-  if (!$attachment_id) return array('', '');
+  if (!$attachment_id) return array('', '', '');
 
   $font_url = wp_get_attachment_url($attachment_id);
   $font_path = get_attached_file($attachment_id);
+  $ext = strtolower(pathinfo($font_path ?: $font_url, PATHINFO_EXTENSION));
+  $format = $ext === 'otf' ? 'opentype' : ($ext === 'ttf' ? 'truetype' : $ext);
 
   if ($font_path && file_exists($font_path)) {
     $filetype = wp_check_filetype($font_path);
     $mime = !empty($filetype['type']) ? $filetype['type'] : 'font/woff2';
-    return array($font_url, 'url("data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . '")');
+    return array($font_url, 'url("data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . '")', $format);
   }
 
-  return array($font_url, $font_url ? 'url("' . esc_url_raw($font_url) . '")' : '');
+  return array($font_url, $font_url ? 'url("' . esc_url_raw($font_url) . '")' : '', $format);
 };
 
 // Legacy LarisDigital font preview fields: _font_data repeater with font_web/font attachment IDs.
@@ -48,10 +51,11 @@ if ($legacy_font_rows) {
       $legacy_font_id = get_post_meta($product->get_id(), '_font_data_' . $i . '_font', true);
     }
 
-    list($legacy_font_url, $legacy_font_src) = $tester_font_from_attachment($legacy_font_id);
+    list($legacy_font_url, $legacy_font_src, $legacy_font_format) = $tester_font_from_attachment($legacy_font_id);
     if ($legacy_font_src) {
       $tester_font_url = $legacy_font_url;
       $tester_font_src = $legacy_font_src;
+      $tester_font_format = $legacy_font_format;
       break;
     }
   }
@@ -95,6 +99,8 @@ if (!$tester_font_src && !$tester_font_url && !empty($variation_ids)) {
   }
 }
 $tester_font_src = $tester_font_src ?: ($tester_font_url ? 'url("' . esc_url_raw($tester_font_url) . '")' : '');
+$tester_font_ext = strtolower(pathinfo(parse_url($tester_font_url, PHP_URL_PATH) ?: '', PATHINFO_EXTENSION));
+$tester_font_format = $tester_font_format ?: ($tester_font_ext === 'otf' ? 'opentype' : ($tester_font_ext === 'ttf' ? 'truetype' : $tester_font_ext));
 $tester_font_family = 'RillatypeProductFont' . $product->get_id();
 $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_URL_PATH)) : '';
 ?>
@@ -103,7 +109,7 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
   <style>
     @font-face {
       font-family: '<?php echo esc_html($tester_font_family); ?>';
-      src: <?php echo $tester_font_src; ?>;
+      src: <?php echo $tester_font_src; ?><?php echo $tester_font_format ? " format('" . esc_html($tester_font_format) . "')" : ''; ?>;
       font-weight: 400;
       font-style: normal;
       font-display: swap;
