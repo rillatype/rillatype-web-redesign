@@ -927,32 +927,56 @@ body {
   border-color: var(--charcoal);
 }
 
+.cat-count {
+  font-size: 11px;
+  font-weight: 400;
+  color: #b0aeaa;
+}
+
 @media (max-width: 767px) {
+  .categories__cloud, .categories-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+    padding-bottom: 0;
+    margin-bottom: 20px;
+    gap: 6px;
+  }
+  .categories__cloud::-webkit-scrollbar,
+  .categories-bar::-webkit-scrollbar {
+    display: none;
+  }
+  .categories__cloud > *,
+  .categories-bar > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
   .categories__pill, .category-pill {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
-    padding: 0 14px;
+    padding: 4px 12px;
+    background: #f3f0ec;
+    color: #6a6662;
     border: none;
-    background: transparent;
-    color: #b0aeaa;
-    letter-spacing: -.01em;
+    border-radius: 50px;
     white-space: nowrap;
-    border-radius: 0;
-    transition: color .2s;
+    transition: background .2s, color .2s;
   }
   .categories__pill:hover, .category-pill:hover {
-    border-color: transparent;
-    color: var(--charcoal);
+    background: var(--coral);
+    color: #fff;
     transform: none;
     box-shadow: none;
+    border: none;
   }
-  .categories__pill small, .category-pill small {
+  .cat-count {
     font-size: 10px;
     font-weight: 400;
-    color: #d0ccc8;
-    vertical-align: super;
+    color: #a09c98;
     margin-left: 1px;
-    transition: color .2s;
   }
 }
 
