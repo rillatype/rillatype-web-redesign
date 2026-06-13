@@ -79,7 +79,9 @@ $variations  = $is_variable ? $product->get_available_variations() : [];
                   if (empty($slug)) continue;
                   $tax_name = str_replace('attribute_', '', $tax);
                   $term = get_term_by('slug', $slug, $tax_name);
-                  $att_names[] = $term ? ucwords($term->name) : ucwords(str_replace('-', ' ', $slug));
+                  $raw_name = $term ? $term->name : $slug;
+                  $raw_name = preg_replace('/\s+license$/i', '', str_replace(['-', '_'], ' ', $raw_name));
+                  $att_names[] = ucwords(strtolower(trim($raw_name))) . ' License';
                 }
                 $v_name  = implode(' / ', $att_names);
                 $v_price = $v['display_price'];
