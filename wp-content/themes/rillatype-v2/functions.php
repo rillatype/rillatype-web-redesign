@@ -3,6 +3,12 @@
  * Rillatype V2 Theme Functions
  */
 
+// Load Customizer
+$customizer_file = get_template_directory() . '/inc/customizer.php';
+if (file_exists($customizer_file)) {
+  require_once $customizer_file;
+}
+
 // Theme Setup
 add_action('after_setup_theme', 'rillatype_theme_setup');
 function rillatype_theme_setup() {
@@ -17,6 +23,27 @@ function rillatype_theme_setup() {
     'primary' => __('Primary Menu', 'rillatype-v2'),
     'footer'  => __('Footer Menu', 'rillatype-v2'),
   ));
+
+  // Register Sidebar Widget Area
+  register_sidebar(array(
+    'name'          => __('Sidebar', 'rillatype-v2'),
+    'id'            => 'sidebar-1',
+    'description'   => __('Add widgets here to appear in the sidebar.', 'rillatype-v2'),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ));
+
+  register_sidebar(array(
+    'name'          => __('Footer Widgets', 'rillatype-v2'),
+    'id'            => 'footer-1',
+    'description'   => __('Add widgets here to appear in the footer.', 'rillatype-v2'),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title">',
+    'after_title'   => '</h2>',
+  ));
 }
 
 // WooCommerce Support
@@ -30,8 +57,8 @@ function rillatype_woocommerce_support() {
   }
 }
 
-// Remove WooCommerce Styles
-add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
+// Remove WooCommerce Styles —暂时禁用，等CSS custom lengkap baru aktifkan
+// add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
 function rillatype_remove_woocommerce_styles($enqueue_styles) {
   if (class_exists('WooCommerce')) {
     unset($enqueue_styles['woocommerce-general']);
@@ -69,19 +96,26 @@ function rillatype_enqueue_assets() {
   $theme = wp_get_theme();
   $version = $theme->get('Version');
 
-  // Styles
-  wp_enqueue_style('rillatype-main', get_template_directory_uri() . '/assets/css/main.css', array(), $version);
-  wp_enqueue_style('rillatype-home', get_template_directory_uri() . '/assets/css/home.css', array(), $version);
-  wp_enqueue_style('rillatype-font-tester', get_template_directory_uri() . '/assets/css/font-tester.css', array(), $version);
-  wp_enqueue_style('rillatype-category-links', get_template_directory_uri() . '/assets/css/category-links.css', array(), $version);
+  // Main stylesheet (contains all CSS)
+  wp_enqueue_style('rillatype', get_stylesheet_uri(), array(), $version);
 
-  if (class_exists('WooCommerce')) {
-    wp_enqueue_style('rillatype-woocommerce', get_template_directory_uri() . '/assets/css/woocommerce.css', array(), $version);
+  // Single Product JS
+  $product_js = get_template_directory() . '/assets/js/product.js';
+  if (class_exists('WooCommerce') && is_product() && file_exists($product_js)) {
+    wp_enqueue_script('rillatype-product', get_template_directory_uri() . '/assets/js/product.js', array(), $version, true);
   }
 
-  // Scripts
-  wp_enqueue_script('rillatype-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), $version, true);
-  wp_enqueue_script('rillatype-font-tester', get_template_directory_uri() . '/assets/js/font-tester.js', array('jquery'), $version, true);
+  // Main JS
+  $main_js = get_template_directory() . '/assets/js/main.js';
+  if (file_exists($main_js)) {
+    wp_enqueue_script('rillatype-main', get_template_directory_uri() . '/assets/js/main.js', array(), $version, true);
+  }
+
+  // Font Tester JS
+  $font_tester_js = get_template_directory() . '/assets/js/font-tester.js';
+  if (file_exists($font_tester_js)) {
+    wp_enqueue_script('rillatype-font-tester', get_template_directory_uri() . '/assets/js/font-tester.js', array(), $version, true);
+  }
 }
 
 // Custom Image Sizes
@@ -90,4 +124,33 @@ function rillatype_image_sizes() {
   add_image_size('rillatype-hero', 1400, 800, true);
   add_image_size('rillatype-font-preview', 600, 400, true);
   add_image_size('rillatype-square', 600, 600, true);
+}
+
+// Mini Cart Fragment Refresh
+add_filter('woocommerce_add_to_cart_fragments', 'rillatype_cart_fragment');
+function rillatype_cart_fragment($fragments) {
+  ob_start();
+  $count = 0;
+  if (function_exists('WC') && WC()->cart) {
+    $count = WC()->cart->get_cart_contents_count();
+  }
+  ?>
+  <span class="nav-cart-count"><?php echo esc_html($count); ?></span>
+  <?php
+  $fragments['.nav-cart-count'] = ob_get_clean();
+  return $fragments;
+}
+
+// My Account navigation — reorder & customize
+add_filter('woocommerce_account_menu_items', 'rillatype_account_menu_items');
+function rillatype_account_menu_items($items) {
+  $order = array(
+    'dashboard'       => __('Dashboard', 'rillatype-v2'),
+    'orders'          => __('Orders', 'rillatype-v2'),
+    'downloads'       => __('Downloads', 'rillatype-v2'),
+    'edit-address'    => __('Addresses', 'rillatype-v2'),
+    'edit-account'    => __('Details', 'rillatype-v2'),
+    'customer-logout' => __('Log Out', 'rillatype-v2'),
+  );
+  return $order;
 }

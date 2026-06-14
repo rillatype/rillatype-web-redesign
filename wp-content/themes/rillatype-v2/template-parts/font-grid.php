@@ -23,24 +23,3 @@ if (empty($product_ids)) {
     <?php get_template_part('template-parts/font-card', null, array('product_id' => $pid)); ?>
   <?php endforeach; ?>
 </div>
-
-<style>
-.font-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--font-grid-columns, 3), 1fr);
-  gap: var(--spacing-md, 2rem);
-}
-
-@media (max-width: 768px) {
-  .font-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-sm, 1rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .font-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>

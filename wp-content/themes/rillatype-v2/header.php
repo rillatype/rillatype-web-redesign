@@ -16,35 +16,35 @@ if (function_exists('wp_body_open')) {
 
 <div id="page" class="site">
   <header id="masthead" class="site-header">
-    <div class="header-inner container">
-      <div class="site-branding">
-        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="site-logo">Rillatype</a>
-      </div>
+    <div class="nav">
+      <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="nav-logo">Rillatype</a>
 
-      <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e('Primary Menu', 'rillatype-v2'); ?>">
-        <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
-          <span class="screen-reader-text"><?php esc_html_e('Menu', 'rillatype-v2'); ?></span>
-          <span class="menu-icon"></span>
-        </button>
+      <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false">
+        <span class="screen-reader-text"><?php esc_html_e('Menu', 'rillatype-v2'); ?></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
+      <div class="nav-links">
         <?php
         if (has_nav_menu('primary')) {
           wp_nav_menu(array(
             'theme_location' => 'primary',
-            'menu_id'        => 'primary-menu',
             'container'      => false,
+            'menu_id'        => 'primary-menu',
+            'menu_class'     => 'nav-menu',
+            'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
             'fallback_cb'    => false,
           ));
         } else {
           ?>
-          <ul id="primary-menu" class="menu">
-            <li><a href="<?php echo esc_url(home_url('/shop')); ?>"><?php esc_html_e('Shop', 'rillatype-v2'); ?></a></li>
-            <li><a href="<?php echo esc_url(home_url('/about')); ?>"><?php esc_html_e('About', 'rillatype-v2'); ?></a></li>
-            <li><a href="<?php echo esc_url(home_url('/blog')); ?>"><?php esc_html_e('Blog', 'rillatype-v2'); ?></a></li>
-          </ul>
+          <a href="<?php echo esc_url(home_url('/shop')); ?>"><?php esc_html_e('Shop', 'rillatype-v2'); ?></a>
+          <a href="<?php echo esc_url(home_url('/about')); ?>"><?php esc_html_e('About', 'rillatype-v2'); ?></a>
+          <a href="<?php echo esc_url(home_url('/blog')); ?>"><?php esc_html_e('Blog', 'rillatype-v2'); ?></a>
           <?php
         }
         ?>
-      </nav>
+      </div>
     </div>
   </header>

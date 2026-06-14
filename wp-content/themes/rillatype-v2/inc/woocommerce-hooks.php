@@ -48,6 +48,13 @@ add_action('wp', function () {
   }
 });
 
+// Remove default breadcrumb (we show our own)
+add_action('wp', function () {
+  if (is_shop() || is_product_category() || is_product_tag() || is_product()) {
+    remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+  }
+});
+
 // Set products per page
 add_filter('loop_shop_per_page', function () {
   return 12;

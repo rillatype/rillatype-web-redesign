@@ -139,6 +139,36 @@ git push origin master
 
 ---
 
+---
+
+## 📋 PROGRESS TRACKER — Wajib Diisi Setiap Selesai Ngerjain
+
+> **📁 File: `PROGRESS.md`** — Ini adalah satu-satunya source of truth untuk progress.
+> Setiap kali model AI selesai ngerjain sesuatu, **WAJIB update file ini**.
+
+### Aturan
+
+1. **Selesai suatu task** → update `PROGRESS.md`, commit, push
+2. **Ganti ke task lain** → update `PROGRESS.md` dulu
+3. **Ada error / blocker** → catat di PROGRESS.md biar AI selanjutnya tau
+4. **Formatnya jangan diubah** — append aja ke tabel
+
+### Template entry (copy-paste ke PROGRESS.md)
+
+```markdown
+| 2026-06-11 | #1 | ✅ | Generate WOFF2 specimen for Mango Letters | pyftsubset berhasil, file 12KB | 30m |
+```
+
+Kolom: `Tanggal | Task # | Status ✅/❌/🔄 | Deskripsi | Notes | Durasi`
+
+Atau kalo prefer ringkas:
+
+```
+2026-06-11  #1  ✅  Generate WOFF2 specimen for Mango Letters (12KB) — 30m
+```
+
+---
+
 ## 📝 Handoff — Untuk AI Selanjutnya
 
 ### Prompt yang bisa dipake

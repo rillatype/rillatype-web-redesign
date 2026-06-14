@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rillatype — Uncurated Type Foundry</title>
+  <meta name="description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:title" content="Rillatype — Uncurated Type Foundry">
+  <meta property="og:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rillatype.com/">
+  <meta property="og:image" content="https://rillatype.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rillatype — Uncurated Type Foundry">
+  <meta name="twitter:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta name="twitter:image" content="https://rillatype.com/logo.png">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 16px; line-height: 1.5;
+      color: rgba(255,255,255,0.85);
+      background: #070707;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    :root {
+      --glass: rgba(255,255,255,0.04);
+      --glass-hover: rgba(255,255,255,0.07);
+      --border-glass: rgba(255,255,255,0.08);
+      --border-active: rgba(255,255,255,0.15);
+      --accent: #e8654b;
+      --accent-glow: rgba(232,101,75,0.25);
+      --text: rgba(255,255,255,0.9);
+      --text-muted: rgba(255,255,255,0.45);
+      --text-subtle: rgba(255,255,255,0.25);
+      --space-xs: 8px; --space-sm: 16px; --space-md: 24px; --space-lg: 32px;
+      --space-xl: 48px; --space-2xl: 64px; --space-3xl: 96px; --space-4xl: 128px;
+      --radius-card: 20px;
+      --radius-pill: 9999px;
+      --ease-spring: cubic-bezier(0.32,0.72,0,1);
+    }
+
+    .container { max-width: 1280px; margin-inline: auto; padding-inline: var(--space-md); }
+
+    /* ── Bg Mesh ─────────────────────────────────────── */
+    .bg-mesh {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(232,101,75,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 20%, rgba(180,80,200,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 50% at 50% 80%, rgba(232,101,75,0.04) 0%, transparent 50%);
+    }
+    .bg-noise {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+    }
+
+    /* ── Scrollbar ────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* ── Glass Card ───────────────────────────────────── */
+    .glass {
+      background: var(--glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    /* ── Eyebrow Badge ───────────────────────────────── */
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px;
+      font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+      background: var(--glass); border: 1px solid var(--border-glass);
+      border-radius: var(--radius-pill);
+      color: var(--text-muted);
+      width: fit-content;
+    }
+
+    /* ── Section ──────────────────────────────────────── */
+    section { position: relative; z-index: 1; padding: var(--space-3xl) 0; }
+    .section-title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700; letter-spacing: -.03em;
+      line-height: 1.1;
+    }
+
+    /* ════════════════════════════════════════════
+       FLOATING GLASS NAV
+       ════════════════════════════════════════════ */
+    .nav-wrap {
+      position: fixed; top: var(--space-md); left: 50%; z-index: 1000;
+      transform: translateX(-50%);
+    }
+    .nav-glass {
+      display: flex; align-items: center; gap: var(--space-sm);
+      padding: 6px 8px 6px 20px;
+      background: rgba(10,10,10,0.75);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .nav-logo {
+      font-size: 18px; font-weight: 700; letter-spacing: -.03em;
+      color: var(--text); margin-right: var(--space-xs);
+    }
+    .nav-links { display: flex; gap: 2px; align-items: center; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      padding: 8px 14px; border-radius: var(--radius-pill);
+      transition: all .3s var(--ease-spring);
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+
+    .nav-actions { display: flex; gap: 4px; align-items: center; margin-left: var(--space-xs); }
+    .nav-icon {
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; color: var(--text-muted);
+      transition: all .3s var(--ease-spring);
+    }
+    .nav-icon:hover { background: var(--glass); color: var(--text); }
+    .nav-cart { position: relative; }
+    .nav-cart__count {
+      position: absolute; top: 2px; right: 2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .menu-toggle { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle {
+        display: flex; width: 36px; height: 36px;
+        align-items: center; justify-content: center;
+        position: relative;
+      }
+      .menu-toggle span {
+        display: block; width: 18px; height: 2px;
+        background: var(--text); border-radius: 2px;
+        position: absolute;
+        transition: all .35s var(--ease-spring);
+      }
+      .menu-toggle span:nth-child(1) { transform: translateY(-5px); }
+      .menu-toggle span:nth-child(2) { transform: translateY(0); }
+      .menu-toggle span:nth-child(3) { transform: translateY(5px); }
+      .menu-toggle.open span:nth-child(1) { transform: rotate(45deg) translateY(0); }
+      .menu-toggle.open span:nth-child(2) { opacity: 0; }
+      .menu-toggle.open span:nth-child(3) { transform: rotate(-45deg) translateY(0); }
+    }
+
+    /* Mobile overlay menu */
+    .nav-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(7,7,7,0.92);
+      backdrop-filter: blur(48px);
+      -webkit-backdrop-filter: blur(48px);
+    }
+    .nav-overlay.open { display: flex; align-items: center; justify-content: center; }
+    .nav-overlay__links {
+      display: flex; flex-direction: column; align-items: center; gap: var(--space-md);
+    }
+    .nav-overlay__links a {
+      font-size: 28px; font-weight: 600; letter-spacing: -.02em;
+      color: var(--text-muted);
+      transform: translateY(24px); opacity: 0;
+      transition: all .6s var(--ease-spring);
+    }
+    .nav-overlay.open .nav-overlay__links a {
+      transform: translateY(0); opacity: 1;
+    }
+    .nav-overlay.open .nav-overlay__links a:nth-child(1) { transition-delay: .08s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(2) { transition-delay: .14s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(3) { transition-delay: .2s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(4) { transition-delay: .26s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(5) { transition-delay: .32s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(6) { transition-delay: .38s; }
+    .nav-overlay.open .nav-overlay__links a:nth-child(7) { transition-delay: .44s; }
+    .nav-overlay__links a:hover { color: var(--text); }
+
+    /* ════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════ */
+    .hero {
+      min-height: 100dvh;
+      display: flex; align-items: center;
+      padding: var(--space-4xl) 0 var(--space-3xl);
+    }
+    .hero__inner { max-width: 900px; }
+    .hero__eyebrow { margin-bottom: var(--space-lg); }
+
+    .hero__headline {
+      font-size: clamp(48px, 10vw, 128px);
+      font-weight: 800; line-height: .82;
+      letter-spacing: -.05em;
+      margin-bottom: var(--space-lg);
+    }
+    .hero__headline-line {
+      display: block;
+      transform: translateY(40px); opacity: 0;
+      animation: heroFadeUp .8s var(--ease-spring) forwards;
+    }
+    .hero__headline-line:nth-child(1) { animation-delay: .3s; }
+    .hero__headline-line:nth-child(2) { animation-delay: .55s; }
+    .hero__headline-line:nth-child(3) { animation-delay: .8s; }
+
+    @keyframes heroFadeUp {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero__headline-accent { color: var(--accent); }
+    .hero__headline-italic {
+      font-family: 'Instrument Serif', serif;
+      font-weight: 400; font-style: italic;
+      color: var(--text-muted);
+      letter-spacing: -.03em;
+    }
+
+    .hero__desc {
+      font-size: clamp(16px, 1.2vw, 20px);
+      color: var(--text-muted);
+      max-width: 520px; line-height: 1.6;
+      margin-bottom: var(--space-xl);
+      transform: translateY(20px); opacity: 0;
+      animation: heroFadeUp .6s var(--ease-spring) 1s forwards;
+    }
+
+    .hero__actions {
+      display: flex; gap: var(--space-sm); align-items: center;
+      flex-wrap: wrap;
+      transform: translateY(20px); opacity: 0;
+      animation: heroFadeUp .6s var(--ease-spring) 1.2s forwards;
+    }
+
+    /* Button-in-Button CTA */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: var(--space-sm);
+      padding: 14px 14px 14px 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-pill);
+      font-size: 14px; font-weight: 600;
+      color: var(--text);
+      transition: all .4s var(--ease-spring);
+    }
+    .btn-primary:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: var(--border-active);
+      transform: scale(1.02);
+    }
+    .btn-primary:active { transform: scale(0.97); }
+
+    .btn-primary__icon {
+      display: flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      font-size: 14px;
+      transition: all .4s var(--ease-spring);
+    }
+    .btn-primary:hover .btn-primary__icon {
+      background: var(--accent);
+      transform: translateX(2px) scale(1.05);
+    }
+
+    .btn-ghost {
+      font-size: 14px; font-weight: 500;
+      color: var(--text-muted); padding: 14px 20px;
+      transition: color .3s var(--ease-spring);
+    }
+    .btn-ghost:hover { color: var(--text); }
+
+    /* ════════════════════════════════════════════
+       FEATURED — Asymmetrical Bento
+       ════════════════════════════════════════════ */
+    .featured { padding-top: var(--space-2xl); }
+
+    .featured__header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: var(--space-xl); flex-wrap: wrap; gap: var(--space-md);
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+
+    .bento-card {
+      position: relative; overflow: hidden;
+      background: var(--glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-card);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: all .5s var(--ease-spring);
+      padding: 2px;
+    }
+    .bento-card:hover {
+      background: var(--glass-hover);
+      border-color: var(--border-active);
+      transform: translateY(-4px);
+    }
+    .bento-card:active { transform: scale(0.98); }
+
+    .bento-card__inner {
+      background: rgba(0,0,0,0.2);
+      border-radius: calc(var(--radius-card) - 2px);
+      overflow: hidden;
+      height: 100%;
+    }
+
+    .bento-card--hero {
+      grid-column: 1 / -1;
+    }
+
+    .bento-card__image {
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .bento-card__image img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s var(--ease-spring);
+    }
+    .bento-card:hover .bento-card__image img { transform: scale(1.05); }
+
+    .bento-card__body {
+      padding: var(--space-md);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .bento-card__info { min-width: 0; }
+    .bento-card__name {
+      font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .bento-card__style {
+      font-size: 11px; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .08em;
+    }
+    .bento-card__price {
+      font-size: 16px; font-weight: 700; color: var(--accent);
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+
+    .bento-card__badge {
+      position: absolute; top: var(--space-sm); right: calc(var(--space-sm) + 2px);
+      padding: 4px 12px; font-size: 10px; font-weight: 700; letter-spacing: .04em;
+      background: var(--accent); color: #fff; border-radius: 6px; z-index: 2;
+    }
+    .bento-card__badge--free { background: rgba(255,255,255,0.2); }
+
+    @media (max-width: 768px) {
+      .bento { grid-template-columns: 1fr; }
+      .bento-card--hero { grid-column: 1; }
+      .bento-card__body { padding: var(--space-sm); }
+    }
+
+    /* ════════════════════════════════════════════
+       CATEGORIES — Glass Pills
+       ════════════════════════════════════════════ */
+    .categories-cloud {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .category-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 22px;
+      font-size: 14px; font-weight: 500;
+      background: var(--glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-pill);
+      color: var(--text-muted);
+      transition: all .35s var(--ease-spring);
+    }
+    .category-pill:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    .category-pill small {
+      font-size: 11px; font-weight: 400;
+      color: var(--text-subtle);
+    }
+
+    /* ════════════════════════════════════════════
+       LATEST RELEASES
+       ════════════════════════════════════════════ */
+    .latest { padding-bottom: var(--space-4xl); }
+
+    .latest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-sm);
+    }
+
+    .latest-card {
+      background: var(--glass);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: all .5s var(--ease-spring);
+      padding: 2px;
+    }
+    .latest-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-4px);
+    }
+    .latest-card__inner {
+      background: rgba(0,0,0,0.2);
+      border-radius: calc(var(--radius-card) - 2px);
+      overflow: hidden;
+    }
+    .latest-card__preview {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      font-size: clamp(18px, 2.5vw, 32px);
+      font-weight: 700; letter-spacing: -.03em; text-align: center;
+      padding: var(--space-md);
+    }
+    .latest-card__preview--neon { background: linear-gradient(135deg, #17191e, #1e1a16); color: #c8ccd4; }
+    .latest-card__preview--wilder { background: linear-gradient(135deg, #1e1810, #161210); color: #d4c8b8; }
+    .latest-card__preview--luna { background: linear-gradient(135deg, #12181e, #0e141a); color: #b8c8d8; }
+    .latest-card__preview--koda { background: linear-gradient(135deg, #1a1410, #12100e); color: #c8c0b8; }
+
+    .latest-card__body {
+      padding: var(--space-sm);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-xs);
+    }
+    .latest-card__name { font-size: 14px; font-weight: 700; letter-spacing: -.02em; }
+    .latest-card__price { font-size: 13px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+
+    @media (max-width: 1023px) { .latest-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .latest-grid { grid-template-columns: 1fr; } }
+
+    /* ════════════════════════════════════════════
+       LICENSE CTA
+       ════════════════════════════════════════════ */
+    .license-cta {
+      background: linear-gradient(180deg, rgba(232,101,75,0.06) 0%, transparent 100%);
+      border-top: 1px solid var(--border-glass);
+      border-bottom: 1px solid var(--border-glass);
+      text-align: center;
+    }
+    .license-cta__title {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700; letter-spacing: -.03em;
+      margin-bottom: var(--space-sm);
+    }
+    .license-cta__desc {
+      color: var(--text-muted);
+      max-width: 500px; margin: 0 auto var(--space-lg);
+      font-size: 15px; line-height: 1.6;
+    }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════ */
+    .site-footer {
+      position: relative; z-index: 1;
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--border-glass);
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      gap: var(--space-md); align-items: center;
+    }
+    .footer-links { display: flex; gap: var(--space-md); }
+    .footer-links a {
+      font-size: 13px; color: var(--text-muted);
+      transition: color .3s var(--ease-spring);
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 13px; color: var(--text-subtle); }
+
+    /* ════════════════════════════════════════════
+       SCROLL REVEAL
+       ════════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(48px) scale(0.98);
+      transition: opacity 1s var(--ease-spring),
+                  transform 1s var(--ease-spring);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE SECTION SPACING
+       ════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      :root {
+        --space-3xl: 64px;
+        --space-4xl: 80px;
+      }
+      .hero__headline { font-size: 40px; line-height: .9; }
+      .nav-glass { padding: 4px 6px 4px 16px; gap: 4px; }
+      .nav-links { display: none; }
+      .section-title { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-mesh"></div>
+<div class="bg-noise"></div>
+
+<!-- ─── Mobile Overlay ─── -->
+<div class="nav-overlay" id="navOverlay">
+  <div class="nav-overlay__links">
+    <a href="/">Home</a>
+    <a href="/shop/">Shop</a>
+    <a href="/product-category/freebies/">Freebies</a>
+    <a href="/font-license/">License</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="sign-in.html">Account</a>
+  </div>
+</div>
+
+<!-- ─── Floating Glass Nav ─── -->
+<header class="nav-wrap">
+  <nav class="nav-glass" aria-label="Main">
+    <a href="/" class="nav-logo">Rillatype</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/shop/">Shop</a>
+      <a href="/product-category/freebies/">Freebies</a>
+      <a href="/font-license/">License</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/?s=" class="nav-icon" aria-label="Search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </a>
+      <a href="/cart-2/" class="nav-icon nav-cart" aria-label="Cart">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="nav-cart__count">0</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ─── Hero ─── -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero__inner container">
+    <p class="eyebrow hero__eyebrow">The un-curated type foundry</p>
+    <h1 class="hero__headline">
+      <span class="hero__headline-line">Fonts for</span>
+      <span class="hero__headline-line">the messy,</span>
+      <span class="hero__headline-line hero__headline-italic">the bold, the real.</span>
+    </h1>
+    <p class="hero__desc">
+      Handcrafted typefaces with personality. For brands, artists, and misfits who refuse to blend in.
+    </p>
+    <div class="hero__actions">
+      <a href="/shop/" class="btn-primary">
+        Browse fonts
+        <span class="btn-primary__icon">→</span>
+      </a>
+      <a href="/font-license/" class="btn-ghost">View license</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Featured Fonts (Asymmetrical Bento) ─── -->
+<section class="featured container" aria-label="Featured fonts">
+  <div class="featured__header reveal">
+    <h2 class="section-title">Featured&nbsp;fonts</h2>
+    <a href="/shop/" class="btn-ghost" style="padding:0">View all →</a>
+  </div>
+
+  <div class="bento">
+    <div class="bento-card bento-card--hero reveal">
+      <div class="bento-card__inner">
+        <div class="bento-card__image">
+          <img src="previews/mango-1.jpg" alt="Mango Letters" loading="lazy">
+          <span class="bento-card__badge">New</span>
+        </div>
+        <div class="bento-card__body">
+          <div class="bento-card__info">
+            <span class="bento-card__name">Mango Letters</span>
+            <span class="bento-card__style">Serif</span>
+          </div>
+          <span class="bento-card__price">$49</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-card reveal">
+      <div class="bento-card__inner">
+        <div class="bento-card__image">
+          <img src="previews/baldock-1.jpg" alt="Baldock" loading="lazy">
+        </div>
+        <div class="bento-card__body">
+          <div class="bento-card__info">
+            <span class="bento-card__name">Baldock</span>
+            <span class="bento-card__style">Sans Serif</span>
+          </div>
+          <span class="bento-card__price">$39</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-card reveal">
+      <div class="bento-card__inner">
+        <div class="bento-card__image">
+          <img src="previews/bawden-1.jpg" alt="Bawden" loading="lazy">
+          <span class="bento-card__badge bento-card__badge--free">Free</span>
+        </div>
+        <div class="bento-card__body">
+          <div class="bento-card__info">
+            <span class="bento-card__name">Bawden</span>
+            <span class="bento-card__style">Display</span>
+          </div>
+          <span class="bento-card__price">Free</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-card reveal">
+      <div class="bento-card__inner">
+        <div class="bento-card__image">
+          <img src="previews/crimson-queen-1.jpg" alt="Crimson Queen" loading="lazy">
+        </div>
+        <div class="bento-card__body">
+          <div class="bento-card__info">
+            <span class="bento-card__name">Crimson Queen</span>
+            <span class="bento-card__style">Script</span>
+          </div>
+          <span class="bento-card__price">$59</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-card reveal">
+      <div class="bento-card__inner">
+        <div class="bento-card__image">
+          <img src="previews/daisy-hotline-1.jpg" alt="Daisy Hotline" loading="lazy">
+        </div>
+        <div class="bento-card__body">
+          <div class="bento-card__info">
+            <span class="bento-card__name">Daisy Hotline</span>
+            <span class="bento-card__style">Sans Serif</span>
+          </div>
+          <span class="bento-card__price">$44</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Categories ─── -->
+<section class="container reveal" aria-label="Categories">
+  <p class="eyebrow" style="margin-bottom:var(--space-md)">Categories</p>
+  <div class="categories-cloud">
+    <a href="/product-category/serif/" class="category-pill">Serif <small>12</small></a>
+    <a href="/product-category/sans-serif/" class="category-pill">Sans Serif <small>8</small></a>
+    <a href="/product-category/display/" class="category-pill">Display <small>6</small></a>
+    <a href="/product-category/script/" class="category-pill">Script <small>4</small></a>
+    <a href="/product-category/monospace/" class="category-pill">Mono <small>3</small></a>
+    <a href="/product-category/freebies/" class="category-pill">Freebies <small>5</small></a>
+    <a href="/product-category/handwritten/" class="category-pill">Handwritten <small>7</small></a>
+    <a href="/product-category/retro-vintage/" class="category-pill">Vintage <small>4</small></a>
+  </div>
+</section>
+
+<!-- ─── Latest Releases ─── -->
+<section class="latest container" aria-label="Latest releases">
+  <div class="featured__header reveal">
+    <h2 class="section-title">Fresh&nbsp;drops</h2>
+    <a href="/shop/" class="btn-ghost" style="padding:0">All releases →</a>
+  </div>
+
+  <div class="latest-grid">
+    <div class="latest-card reveal">
+      <div class="latest-card__inner">
+        <div class="latest-card__preview latest-card__preview--neon">
+          <span>Neon Script</span>
+        </div>
+        <div class="latest-card__body">
+          <span class="latest-card__name">Neon Script</span>
+          <span class="latest-card__price">$49</span>
+        </div>
+      </div>
+    </div>
+    <div class="latest-card reveal">
+      <div class="latest-card__inner">
+        <div class="latest-card__preview latest-card__preview--wilder">
+          <span>Wilder</span>
+        </div>
+        <div class="latest-card__body">
+          <span class="latest-card__name">Wilder</span>
+          <span class="latest-card__price">$39</span>
+        </div>
+      </div>
+    </div>
+    <div class="latest-card reveal">
+      <div class="latest-card__inner">
+        <div class="latest-card__preview latest-card__preview--luna">
+          <span>Luna Display</span>
+        </div>
+        <div class="latest-card__body">
+          <span class="latest-card__name">Luna Display</span>
+          <span class="latest-card__price">$59</span>
+        </div>
+      </div>
+    </div>
+    <div class="latest-card reveal">
+      <div class="latest-card__inner">
+        <div class="latest-card__preview latest-card__preview--koda">
+          <span>Koda Grotesk</span>
+        </div>
+        <div class="latest-card__body">
+          <span class="latest-card__name">Koda Grotesk</span>
+          <span class="latest-card__price">$44</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── License CTA ─── -->
+<section class="license-cta">
+  <div class="container reveal">
+    <p class="eyebrow" style="margin:0 auto var(--space-md)">Licensing</p>
+    <h2 class="license-cta__title">License &amp; perks</h2>
+    <p class="license-cta__desc">
+      Every purchase includes a standard desktop license. Need web, app, or embedding? We've got you covered.
+    </p>
+    <a href="/font-license/" class="btn-primary">
+      View license details
+      <span class="btn-primary__icon">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-links">
+      <a href="https://instagram.com/rillatype" rel="me">Instagram</a>
+      <a href="https://pinterest.com/rillatype" rel="me">Pinterest</a>
+      <a href="https://twitter.com/rillatype" rel="me">Twitter</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 Rillatype. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  /* ── Menu Toggle ── */
+  var toggle = document.getElementById('menuToggle');
+  var overlay = document.getElementById('navOverlay');
+  if (toggle && overlay) {
+    toggle.addEventListener('click', function() {
+      var open = overlay.classList.toggle('open');
+      toggle.classList.toggle('open');
+    });
+    overlay.addEventListener('click', function() {
+      overlay.classList.remove('open');
+      toggle.classList.remove('open');
+    });
+  }
+
+  /* ── Scroll Reveal ── */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(el) { obs.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* ── Sticky Header Detect ── */
+  var header = document.querySelector('.nav-wrap');
+  if (header) {
+    var headerObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        header.classList.toggle('scrolled', !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' });
+    headerObs.observe(document.body);
+  }
+})();
+</script>
+</body>
+</html>

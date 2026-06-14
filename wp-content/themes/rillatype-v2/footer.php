@@ -1,12 +1,11 @@
   <footer id="colophon" class="site-footer">
-    <div class="footer-inner container">
-      <div class="footer-social">
-        <a href="https://instagram.com/rillatype" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://pinterest.com/rillatype" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <div class="container footer-inner">
+      <div class="footer-links">
+        <a href="<?php echo esc_url(home_url('/font-license/')); ?>"><?php esc_html_e('License', 'rillatype-v2'); ?></a>
+        <a href="<?php echo esc_url(home_url('/privacy/')); ?>"><?php esc_html_e('Privacy', 'rillatype-v2'); ?></a>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>"><?php esc_html_e('Contact', 'rillatype-v2'); ?></a>
       </div>
-      <div class="footer-copyright">
-        <p>&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url(home_url('/')); ?>">Rillatype</a>. <?php esc_html_e('All rights reserved.', 'rillatype-v2'); ?></p>
-      </div>
+      <p class="footer-copy">&copy; <?php echo date('Y'); ?> <a href="<?php echo esc_url(home_url('/')); ?>">Rillatype</a>. <?php esc_html_e('All rights reserved.', 'rillatype-v2'); ?></p>
     </div>
   </footer>
 </div><!-- #page -->

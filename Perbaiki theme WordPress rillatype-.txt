@@ -1,0 +1,450 @@
+Perbaiki theme WordPress Rillatype V2 dari file theme yang sudah ada. Jangan bikin ulang dari nol, jangan edit theme lama LarisDigital, jangan utak-atik database, dan jangan edit wp-config.php lagi. Fokus hanya file theme Rillatype V2.
+
+Kondisi sekarang:
+- Theme lama LarisDigital masih dipakai untuk website utama.
+- Theme baru Rillatype V2 masih bermasalah saat preview/activate.
+- Sebelumnya muncul critical error dari WooCommerce template override.
+- Dari debug.log, fatal error utama adalah:
+  Call to undefined method WC_Product_Variable::is_free()
+  File:
+  wp-content/themes/rillatype-v2/woocommerce/content-product.php
+  line 8
+
+Yang harus dicek dan diperbaiki:
+
+1. Fix fatal error WooCommerce dulu
+File:
+wp-content/themes/rillatype-v2/woocommerce/content-product.php
+
+Masalah:
+Ada kode:
+$product->is_free()
+
+Itu salah karena WC_Product_Variable tidak punya method is_free().
+
+Perbaikan:
+- Hapus penggunaan $product->is_free().
+- Ganti dengan pengecekan harga manual yang aman.
+- Contoh:
+
+$is_free = false;
+
+if ( isset( $product ) && $product instanceof WC_Product ) {
+  $price = $product->get_price();
+  $is_free = ( $price !== '' && (float) $price <= 0 );
+}
+
+Lalu kalau ada:
+if ( $product->is_free() )
+
+ganti jadi:
+if ( $is_free )
+
+Target:
+Tidak ada critical error saat product grid/shop/product archive diload.
+
+2. Cek folder theme yang benar
+Sebelumnya ada kemungkinan folder:
+wp-content/themes/rillatype-v2/
+dan:
+wp-content/themes/rillatype-v2-2/
+
+Pastikan WordPress sedang preview folder yang mana.
+Perbaiki folder yang benar-benar dipakai.
+Jangan sampai edit rillatype-v2-2, tapi WordPress load rillatype-v2.
+
+Target:
+Hanya satu folder theme final yang dipakai, idealnya:
+wp-content/themes/rillatype-v2/
+
+3. Sementara nonaktifkan WooCommerce override kalau masih fatal
+Kalau content-product.php masih bikin error, rename sementara folder:
+woocommerce
+
+menjadi:
+woocommerce-disabled
+
+Tujuannya supaya WooCommerce pakai template default dulu.
+Setelah theme aman, baru aktifkan override WooCommerce satu per satu.
+
+Target:
+Theme bisa Live Preview tanpa fatal error dulu.
+
+4. Fix header menu di header.php
+Masalah:
+header.php memakai:
+items_wrap => '%3$s'
+
+Ini bikin menu keluar sebagai <li> mentah tanpa <ul>.
+Efeknya menu muncul bullet, dropdown turun acak, dan header berantakan.
+
+Perbaikan:
+Ganti wp_nav_menu menjadi:
+
+wp_nav_menu(array(
+  'theme_location' => 'primary',
+  'container'      => false,
+  'menu_id'        => 'primary-menu',
+  'menu_class'     => 'nav-menu',
+  'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+  'fallback_cb'    => false,
+));
+
+Tambahkan CSS untuk:
+.nav-menu
+.nav-menu li
+.nav-menu a
+.sub-menu
+.menu-item-has-children
+
+Target:
+Menu horizontal rapi, tidak ada bullet, dropdown rapi.
+
+5. Hapus Account dobel
+Masalah:
+Menu WordPress sudah punya Account/Cart, tapi header.php juga menambahkan Account/Sign In manual setelah wp_nav_menu.
+
+Perbaikan:
+- Hapus bagian manual Account/Sign In dari header.php.
+- Atau kalau tetap mau manual, hapus Account dari menu WordPress.
+- Untuk sekarang lebih aman hapus manual Account/Sign In dari header.php.
+
+Target:
+Account cuma muncul sekali.
+
+6. Guard semua WooCommerce function
+Cek semua file theme, terutama:
+header.php
+functions.php
+woocommerce/*.php
+template-parts/*.php
+
+Jangan panggil fungsi WooCommerce langsung tanpa pengecekan.
+
+Semua ini harus aman:
+wc_get_page_id()
+wc_get_cart_url()
+WC()->cart
+wc_get_product()
+is_shop()
+is_product()
+is_cart()
+is_checkout()
+
+Gunakan guard seperti:
+function_exists('wc_get_page_id')
+function_exists('wc_get_cart_url')
+function_exists('WC')
+class_exists('WooCommerce')
+$product instanceof WC_Product
+WC()->cart tidak null
+
+Target:
+Theme tidak fatal walau WooCommerce belum siap.
+
+7. Jangan matikan WooCommerce default CSS dulu
+File:
+functions.php
+
+Masalah:
+Theme mematikan CSS bawaan WooCommerce:
+woocommerce-general
+woocommerce-layout
+woocommerce-smallscreen
+
+Tapi CSS custom WooCommerce theme belum lengkap.
+Akibatnya product grid sempit, tombol Select Options default, pagination jelek.
+
+Perbaikan:
+Comment dulu filter ini:
+
+add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
+
+Jadi:
+
+// add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
+
+Target:
+WooCommerce kembali punya basic layout dulu.
+Setelah CSS custom lengkap, baru boleh matikan default WooCommerce CSS.
+
+8. Tambahkan CSS untuk markup asli WooCommerce
+File:
+style.css
+
+Theme sekarang banyak styling untuk:
+.product-grid
+.product-card
+
+Tapi WooCommerce shop biasanya output:
+.woocommerce ul.products
+.woocommerce ul.products li.product
+.woocommerce-loop-product__title
+.button
+
+Tambahkan styling untuk:
+.woocommerce ul.products
+.woocommerce ul.products li.product
+.woocommerce ul.products li.product img
+.woocommerce-loop-product__title
+.woocommerce ul.products li.product .button
+.woocommerce-pagination
+.woocommerce-result-count
+.woocommerce-ordering
+
+Target:
+Product grid rapi, card tidak sempit, tombol Select Options rapi, pagination rapi.
+
+9. Samakan class product card
+Masalah:
+style.css pakai:
+.product-card
+.product-card__image
+.product-card__body
+.product-card__name
+
+template-parts/font-card.php pakai:
+.font-card
+.font-card__image
+.font-card__body
+.font-card__title
+
+Perbaikan:
+Pilih sistem yang jelas:
+- Pakai .font-card untuk homepage/custom font grid.
+- Pakai .woocommerce ul.products li.product untuk shop WooCommerce.
+- Jangan berharap .product-card kena ke WooCommerce kalau markup WooCommerce tidak pakai .product-card.
+
+Target:
+Card homepage dan shop sama-sama rapi, tapi styling-nya tidak saling bentrok.
+
+10. Pindahkan inline <style> dari template-parts ke style.css
+File template-parts yang masih punya inline style:
+category-links.php
+font-card.php
+font-grid.php
+font-tester.php
+latest-posts.php
+skip-link.php
+
+Perbaikan:
+- Hapus semua inline <style> dari template part.
+- Pindahkan semua CSS ke style.css.
+- Template part cukup output HTML/PHP saja.
+
+Target:
+CSS tidak dobel, lebih gampang debug, tidak konflik antar file.
+
+11. Samakan CSS variable
+Masalah:
+style.css utama pakai:
+--bg
+--bg-alt
+--text
+--text-muted
+--accent
+--accent-hover
+--accent-soft
+--border
+--font-serif
+--font-sans
+
+Template-parts pakai:
+--color-white
+--color-text
+--color-accent
+--color-gray-100
+--color-gray-200
+--color-gray-300
+--color-gray-400
+--spacing-sm
+--spacing-md
+--spacing-lg
+--font-ui
+--font-heading
+
+Perbaikan:
+Samakan semua ke variable utama di style.css, atau buat alias di :root.
+
+Contoh alias:
+--color-white: #fff;
+--color-text: var(--text);
+--color-accent: var(--accent);
+--color-gray-100: var(--bg-alt);
+--color-gray-200: var(--border);
+--color-gray-400: var(--text-muted);
+--font-ui: var(--font-sans);
+--font-heading: var(--font-serif);
+--spacing-sm: 1rem;
+--spacing-md: 2rem;
+--spacing-lg: 4rem;
+
+Target:
+Warna, font, dan spacing konsisten.
+
+12. Fix category-links class mismatch
+Masalah:
+style.css punya class seperti:
+.category-link
+.category-pill
+
+category-links.php output:
+.category-links__item
+
+Perbaikan:
+Pilih satu sistem class.
+Rekomendasi:
+.category-links
+.category-link
+
+Ubah output category-links.php dari:
+class="category-links__item"
+
+menjadi:
+class="category-link"
+
+Target:
+Category links kena styling utama.
+
+13. Cek front-page.php
+Masalah:
+Homepage bisa masih menampilkan konten lama dari database/page builder, bukan layout theme baru.
+
+Perbaikan:
+Pastikan file ini ada:
+wp-content/themes/rillatype-v2/front-page.php
+
+Tambahkan marker sementara setelah get_header():
+
+echo '<!-- RILLATYPE FRONT PAGE LOADED -->';
+
+Lalu cek lewat View Source.
+
+Kalau marker tidak muncul:
+WordPress tidak memakai front-page.php dari folder theme itu.
+
+Kalau marker muncul tapi konten lama tetap muncul:
+front-page.php mungkin masih memanggil the_content() dari halaman lama.
+
+Target:
+Homepage benar-benar pakai layout theme baru.
+
+14. Cek page.php
+Masalah:
+page.php hanya output the_content().
+Kalau homepage diset ke page lama, konten lama dari database tetap muncul.
+
+Perbaikan:
+- Jangan andalkan page.php untuk homepage custom.
+- Buat front-page.php khusus untuk homepage.
+- page.php biarkan untuk halaman biasa saja.
+
+Target:
+Homepage theme baru tidak ketarik konten lama dari theme sebelumnya.
+
+15. Fix cart fragment di functions.php
+Masalah:
+functions.php mungkin langsung pakai:
+WC()->cart->get_cart_contents_count()
+
+Ini bisa fatal kalau cart belum ready.
+
+Perbaikan:
+Gunakan guard:
+
+$count = 0;
+if ( function_exists('WC') && WC()->cart ) {
+  $count = WC()->cart->get_cart_contents_count();
+}
+
+Target:
+Cart fragment aman.
+
+16. Cek ACF dependency
+Masalah:
+Theme tidak boleh fatal kalau plugin ACF aktif/nonaktif.
+Jangan langsung panggil ACF function tanpa guard.
+
+Perbaikan:
+Semua ACF function harus dicek:
+function_exists('get_field')
+function_exists('acf_add_options_page')
+function_exists('have_rows')
+
+Kalau ACF tidak aktif, theme harus pakai fallback default.
+
+Target:
+Theme tetap aman dengan atau tanpa plugin ACF.
+
+17. Cek require/include file
+File:
+functions.php
+
+Masalah:
+Require file yang tidak ada bisa bikin fatal error.
+
+Perbaikan:
+Semua require/include harus pakai file_exists.
+
+Contoh:
+
+$customizer_file = get_template_directory() . '/inc/customizer.php';
+if ( file_exists( $customizer_file ) ) {
+  require_once $customizer_file;
+}
+
+Target:
+Theme tidak fatal kalau file inc belum lengkap.
+
+18. Cek enqueue asset
+File:
+functions.php
+
+Masalah:
+Theme enqueue:
+assets/js/main.js
+assets/js/font-tester.js
+assets/js/product.js
+
+Kalau file tidak ada, bisa 404.
+
+Perbaikan:
+- Pastikan file benar-benar ada.
+- Gunakan file_exists sebelum enqueue asset tambahan.
+- CSS utama style.css sudah boleh tetap pakai get_stylesheet_uri().
+
+Target:
+Tidak ada asset 404 di F12 Network.
+
+19. Testing setelah fix
+Wajib cek:
+- Live Preview tidak critical error
+- Activate tidak fatal error
+- Header rapi
+- Tidak ada bullet di menu
+- Account tidak dobel
+- Dropdown rapi
+- Homepage pakai theme baru
+- Shop grid rapi
+- Product card tidak sempit
+- Select Options button rapi
+- Pagination rapi
+- Product page aman
+- Cart aman
+- Checkout aman
+- My Account aman
+- Tidak ada asset 404 di F12 > Network
+- Tidak ada fatal error di wp-content/debug.log
+
+Prioritas fix:
+1. Fix fatal error content-product.php karena $product->is_free().
+2. Pastikan edit folder theme yang benar.
+3. Kalau masih fatal, rename folder woocommerce jadi woocommerce-disabled dulu.
+4. Fix header menu items_wrap.
+5. Hapus Account dobel.
+6. Comment dulu remove WooCommerce default CSS.
+7. Tambahkan CSS untuk WooCommerce markup asli.
+8. Samakan class .font-card / .product-card.
+9. Pindahkan inline style template-parts ke style.css.
+10. Samakan CSS variable.
+11. Cek front-page.php benar-benar kepakai.

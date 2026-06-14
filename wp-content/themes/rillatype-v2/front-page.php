@@ -1,171 +1,230 @@
 <?php
+/**
+ * Rillatype V2 — Homepage (Works Without Plugins)
+ * Fallback content when ACF/WooCommerce not installed
+ */
 get_header();
 
-$hero_title       = get_field('hero_title') ?: 'Where type meets craft.';
-$hero_text        = get_field('hero_text') ?: 'Premium display & text fonts for designers who refuse to compromise.';
-$hero_image       = get_field('hero_image');
-$hero_cta_text    = get_field('hero_cta_text') ?: 'Browse Fonts';
-$hero_cta_url     = get_field('hero_cta_url') ?: home_url('/shop');
+// Debug marker — remove after testing
+echo '<!-- RILLATYPE FRONT PAGE LOADED -->';
 
-$featured_fonts_title = get_field('featured_fonts_title') ?: 'Featured Fonts';
-$featured_fonts       = get_field('featured_fonts');
-
-$categories_title = get_field('categories_title') ?: 'Browse by Category';
-$categories        = get_field('font_categories');
-
-$latest_title     = get_field('latest_releases_title') ?: 'Latest Releases';
-$latest_fonts     = get_field('latest_releases');
-
-$tester_title     = get_field('tester_title') ?: 'Try a font';
-$tester_text      = get_field('tester_text') ?: 'Type your message and see it come to life.';
+// Check if plugins are active
+$has_acf    = function_exists('get_field');
+$has_woo    = class_exists('WooCommerce');
 ?>
 
 <main id="main" class="site-main front-page">
 
+  <!-- ═══════ HERO ═══════ -->
   <section class="hero-section">
     <div class="hero-grid container">
       <div class="hero-content">
-        <h1 class="hero-title"><?php echo esc_html($hero_title); ?></h1>
-        <p class="hero-text"><?php echo esc_html($hero_text); ?></p>
-        <a href="<?php echo esc_url($hero_cta_url); ?>" class="button button-primary"><?php echo esc_html($hero_cta_text); ?></a>
+        <h1 class="hero-title">Where type meets craft.</h1>
+        <p class="hero-text">Premium display & text fonts for designers who refuse to compromise.</p>
+        <a href="<?php echo esc_url(home_url('/shop')); ?>" class="button button-primary">Browse Fonts</a>
       </div>
       <div class="hero-image">
-        <?php if ($hero_image) : ?>
-          <img src="<?php echo esc_url($hero_image['url']); ?>" alt="<?php echo esc_attr($hero_image['alt'] ?: $hero_title); ?>">
-        <?php else : ?>
-          <div class="hero-image-placeholder"></div>
-        <?php endif; ?>
+        <div class="hero-image-placeholder"></div>
       </div>
     </div>
   </section>
 
-  <section class="featured-fonts-section">
+  <!-- ═══════ FEATURED ═══════ -->
+  <?php if ($has_woo) : ?>
+    <?php
+    $featured_products = wc_get_products(array(
+      'limit'    => 3,
+      'orderby'  => 'date',
+      'order'    => 'DESC',
+      'status'   => 'publish',
+    ));
+    if (!empty($featured_products)) :
+    ?>
+  <section class="section section-featured">
     <div class="container">
-      <h2 class="section-title"><?php echo esc_html($featured_fonts_title); ?></h2>
-      <div class="font-grid grid-3">
-        <?php if (!empty($featured_fonts)) : ?>
-          <?php foreach ($featured_fonts as $font) : ?>
-            <div class="font-card">
-              <?php if (!empty($font['image'])) : ?>
-                <img src="<?php echo esc_url($font['image']['url']); ?>" alt="<?php echo esc_attr($font['title'] ?? ''); ?>">
-              <?php endif; ?>
-              <h3><?php echo esc_html($font['title'] ?? ''); ?></h3>
-              <?php if (!empty($font['description'])) : ?>
-                <p><?php echo esc_html($font['description']); ?></p>
-              <?php endif; ?>
+      <p class="section-label">Featured Specimens</p>
+      <div class="product-grid grid-3">
+        <?php foreach ($featured_products as $p) : ?>
+          <a href="<?php echo esc_url(get_permalink($p->get_id())); ?>" class="product-card">
+            <div class="product-card__image">
+              <?php echo $p->get_image('rillatype-font-preview'); ?>
             </div>
-          <?php endforeach; ?>
-        <?php else : ?>
-          <?php for ($i = 1; $i <= 3; $i++) : ?>
-            <div class="font-card font-card-placeholder">
-              <div class="placeholder-image"></div>
-              <h3>Font Name <?php echo $i; ?></h3>
-              <p>Description of this premium typeface and its best use cases.</p>
+            <div class="product-card__body">
+              <div class="product-card__info">
+                <span class="product-card__name"><?php echo esc_html($p->get_name()); ?></span>
+                <span class="product-card__style"><?php echo esc_html(wp_strip_all_tags(wc_get_product_category_list($p->get_id()))); ?></span>
+              </div>
+              <span class="product-card__price"><?php echo $p->get_price_html(); ?></span>
             </div>
-          <?php endfor; ?>
-        <?php endif; ?>
+          </a>
+        <?php endforeach; ?>
       </div>
     </div>
   </section>
+    <?php endif; ?>
+  <?php else : ?>
+  <!-- Fallback: No WooCommerce -->
+  <section class="section section-featured">
+    <div class="container">
+      <p class="section-label">Featured Specimens</p>
+      <div class="product-grid grid-3">
+        <div class="product-card product-card--placeholder">
+          <div class="product-card__image"><div class="placeholder-image"></div></div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Serif Display</span>
+              <span class="product-card__style">serif, display</span>
+            </div>
+            <span class="product-card__price">$24</span>
+          </div>
+        </div>
+        <div class="product-card product-card--placeholder">
+          <div class="product-card__image"><div class="placeholder-image"></div></div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Sans Modern</span>
+              <span class="product-card__style">sans-serif</span>
+            </div>
+            <span class="product-card__price">$18</span>
+          </div>
+        </div>
+        <div class="product-card product-card--placeholder">
+          <div class="product-card__image"><div class="placeholder-image"></div></div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Script Elegant</span>
+              <span class="product-card__style">script</span>
+            </div>
+            <span class="product-card__price">$20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
 
+  <!-- ═══════ CATEGORIES ═══════ -->
   <section class="categories-section">
     <div class="container">
-      <h2 class="section-title"><?php echo esc_html($categories_title); ?></h2>
+      <p class="section-label">Browse by style</p>
       <div class="categories-bar">
-        <?php if (!empty($categories)) : ?>
-          <?php foreach ($categories as $cat) : ?>
-            <a href="<?php echo esc_url($cat['link'] ?? '#'); ?>" class="category-link">
-              <?php echo esc_html($cat['name'] ?? ''); ?>
-            </a>
-          <?php endforeach; ?>
-        <?php else : ?>
+        <?php if ($has_woo) : ?>
           <?php
+          $product_cats = get_terms(array(
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => true,
+            'parent'     => 0,
+          ));
+          if (!empty($product_cats) && !is_wp_error($product_cats)) :
+            foreach ($product_cats as $cat) : ?>
+              <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="category-pill">
+                <?php echo esc_html($cat->name); ?>
+                <small><?php echo $cat->count; ?></small>
+              </a>
+            <?php endforeach;
+          else :
+            $default_cats = array('Serif', 'Sans Serif', 'Display', 'Script', 'Monospace', 'Variable');
+            foreach ($default_cats as $cat) : ?>
+              <a href="#" class="category-pill"><?php echo esc_html($cat); ?></a>
+            <?php endforeach;
+          endif;
+        else :
           $default_cats = array('Serif', 'Sans Serif', 'Display', 'Script', 'Monospace', 'Variable');
           foreach ($default_cats as $cat) : ?>
-            <a href="#" class="category-link"><?php echo esc_html($cat); ?></a>
-          <?php endforeach; ?>
-        <?php endif; ?>
+            <a href="#" class="category-pill"><?php echo esc_html($cat); ?></a>
+          <?php endforeach;
+        endif; ?>
       </div>
     </div>
   </section>
 
-  <section class="latest-releases-section">
+  <!-- ═══════ FONT TESTER ═══════ -->
+  <section class="section font-tester-section">
     <div class="container">
-      <h2 class="section-title"><?php echo esc_html($latest_title); ?></h2>
-      <div class="font-grid grid-3">
-        <?php if (!empty($latest_fonts)) : ?>
-          <?php foreach ($latest_fonts as $font) : ?>
-            <div class="font-card">
-              <?php if (!empty($font['image'])) : ?>
-                <img src="<?php echo esc_url($font['image']['url']); ?>" alt="<?php echo esc_attr($font['title'] ?? ''); ?>">
-              <?php endif; ?>
-              <h3><?php echo esc_html($font['title'] ?? ''); ?></h3>
-              <?php if (!empty($font['description'])) : ?>
-                <p><?php echo esc_html($font['description']); ?></p>
-              <?php endif; ?>
-            </div>
-          <?php endforeach; ?>
-        <?php else : ?>
-          <?php for ($i = 1; $i <= 3; $i++) : ?>
-            <div class="font-card font-card-placeholder">
-              <div class="placeholder-image"></div>
-              <h3>New Release <?php echo $i; ?></h3>
-              <p>Our latest typeface, freshly crafted for discerning designers.</p>
-            </div>
-          <?php endfor; ?>
-        <?php endif; ?>
-      </div>
-    </div>
-  </section>
-
-  <section class="font-tester-section">
-    <div class="container container-narrow">
-      <h2 class="section-title"><?php echo esc_html($tester_title); ?></h2>
-      <p class="tester-text"><?php echo esc_html($tester_text); ?></p>
+      <p class="section-label">Try a font</p>
+      <p class="tester-text">Type your message and see it come to life.</p>
       <div class="font-tester" id="font-tester">
-        <input type="text" id="tester-input" class="tester-input" placeholder="Type something..." value="The quick brown fox">
-        <div class="tester-preview" id="tester-preview">The quick brown fox</div>
+        <div class="font-tester-preview-box">The quick brown fox jumps over the lazy dog</div>
+        <div class="font-tester-controls-group">
+          <input type="text" class="font-tester-input" placeholder="Type something..." value="The quick brown fox jumps over the lazy dog">
+          <div class="font-tester-slider-group">
+            <label for="tester-size">Size <span id="tester-size-val">40</span>px</label>
+            <input type="range" class="font-tester-slider" id="tester-size" min="12" max="96" value="40" step="1">
+          </div>
+          <div class="font-tester-style-buttons">
+            <button class="font-tester-style-btn is-active" data-weight="normal" data-style="normal">Regular</button>
+            <button class="font-tester-style-btn" data-weight="bold" data-style="normal">Bold</button>
+            <button class="font-tester-style-btn" data-weight="normal" data-style="italic">Italic</button>
+            <button class="font-tester-style-btn" data-weight="bold" data-style="italic">Bold Italic</button>
+          </div>
+          <div class="font-tester-preset-buttons">
+            <button class="font-tester-preset-btn" data-text="The quick brown fox jumps over the lazy dog">Sphinx</button>
+            <button class="font-tester-preset-btn" data-text="ABCDEFGHIJKLMNOPQRSTUVWXYZ">Uppercase</button>
+            <button class="font-tester-preset-btn" data-text="abcdefghijklmnopqrstuvwxyz">Lowercase</button>
+            <button class="font-tester-preset-btn" data-text="0123456789">Numbers</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="journal-section">
+  <!-- ═══════ JOURNAL ═══════ -->
+  <section class="section section-journal">
     <div class="container">
-      <h2 class="section-title"><?php esc_html_e('Journal', 'rillatype-v2'); ?></h2>
-      <div class="journal-grid grid-3">
-        <?php
-        $journal_query = new WP_Query(array(
-          'post_type'      => 'post',
-          'posts_per_page' => 3,
-          'ignore_sticky_posts' => true,
-        ));
-        if ($journal_query->have_posts()) :
-          while ($journal_query->have_posts()) : $journal_query->the_post(); ?>
-            <article class="journal-card">
-              <?php if (has_post_thumbnail()) : ?>
-                <div class="journal-thumb"><?php the_post_thumbnail('medium'); ?></div>
-              <?php endif; ?>
-              <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-              <p><?php echo wp_trim_words(get_the_excerpt() ?: get_the_content(), 20); ?></p>
-              <a href="<?php the_permalink(); ?>" class="journal-read-more"><?php esc_html_e('Read More', 'rillatype-v2'); ?></a>
-            </article>
-          <?php endwhile;
-          wp_reset_postdata();
-        else : ?>
-          <?php for ($i = 1; $i <= 3; $i++) : ?>
-            <article class="journal-card journal-card-placeholder">
-              <div class="placeholder-image"></div>
-              <h3>Journal Entry <?php echo $i; ?></h3>
-              <p>Stories from the world of type design, typography, and visual culture.</p>
-              <a href="#" class="journal-read-more"><?php esc_html_e('Read More', 'rillatype-v2'); ?></a>
-            </article>
-          <?php endfor; ?>
-        <?php endif; ?>
+      <div class="blog-box">
+        <p class="section-label">Journal</p>
+        <div class="blog-list">
+          <?php
+          $journal_query = new WP_Query(array(
+            'post_type'      => 'post',
+            'posts_per_page' => 3,
+            'ignore_sticky_posts' => true,
+          ));
+          if ($journal_query->have_posts()) :
+            while ($journal_query->have_posts()) : $journal_query->the_post(); ?>
+              <a href="<?php the_permalink(); ?>" class="blog-link">
+                <span class="blog-link__date"><?php echo get_the_date('M j'); ?></span>
+                <span class="blog-link__title"><?php the_title(); ?></span>
+                <span class="blog-link__arrow">→</span>
+              </a>
+            <?php endwhile;
+            wp_reset_postdata();
+          else : ?>
+            <a href="#" class="blog-link">
+              <span class="blog-link__date">—</span>
+              <span class="blog-link__title">No journal entries yet</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+          <?php endif; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CUSTOM LICENSE ═══════ -->
+  <section class="section section-license">
+    <div class="container">
+      <div class="license-cta__box">
+        <div class="license-cta__text">
+          <h3>Need something custom?</h3>
+          <p>We do custom type commissions, exclusive licenses, and brand font packages. One-off or full family.</p>
+        </div>
+        <a href="<?php echo esc_url(home_url('/contact/')); ?>" class="license-cta__btn">Talk to us →</a>
       </div>
     </div>
   </section>
 
 </main>
+
+<script>
+(function(){
+  var s = document.getElementById('tester-size');
+  var v = document.getElementById('tester-size-val');
+  if (s && v) {
+    s.addEventListener('input', function(){ v.textContent = this.value; });
+  }
+})();
+</script>
 
 <?php
 get_footer();

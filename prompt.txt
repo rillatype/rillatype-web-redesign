@@ -1,0 +1,61 @@
+Aku mau theme WordPress Rillatype V2 berdiri sendiri, tidak bergantung Elementor.
+
+Gunakan semua static HTML sebagai referensi desain:
+- index-playful-v2.html untuk front-page.php
+- shop-playful.html untuk WooCommerce archive/shop
+- product.html untuk single product WooCommerce
+- checkout.html untuk styling checkout WooCommerce
+- sign-in.html dan sign-up.html untuk My Account login/register styling
+- 404.html untuk 404.php
+
+Prioritas:
+1. Rapikan global theme dulu:
+   functions.php, header.php, footer.php, style.css, assets/js/main.js, Google Fonts, CSS variables, button, container, typography.
+
+2. Gunakan font system global:
+   - Plus Jakarta Sans untuk body, menu, buttons, forms, product cards, checkout, account, cart, shop.
+   - Instrument Serif untuk headline besar/decorative/editorial.
+   - Jangan pakai DM Sans lagi. Kalau ada di static HTML, ganti ke Plus Jakarta Sans.
+   - Jangan fallback ke Georgia/Times kecuali fallback terakhir.
+
+3. Load Google Fonts lewat functions.php:
+   Plus Jakarta Sans + Instrument Serif.
+
+4. Pindahkan CSS inline dari HTML static ke style.css atau file CSS terpisah.
+   Jangan biarkan CSS tersebar di tiap template.
+
+5. Pindahkan JavaScript dari HTML static ke assets/js/main.js.
+
+6. Convert homepage:
+   index-playful-v2.html → front-page.php.
+   Jangan pakai the_content().
+   Jangan menarik homepage lama dari Elementor.
+
+7. Convert shop:
+   shop-playful.html → woocommerce/archive-product.php.
+   Produk harus dinamis dari WooCommerce, bukan hardcoded.
+
+8. Convert product page:
+   product.html → WooCommerce single product template.
+   Data harus dari WooCommerce: title, image, price, description, add to cart, category.
+
+9. Convert checkout/account:
+   checkout.html, sign-in.html, sign-up.html dipakai sebagai referensi styling.
+   Jangan hardcode form checkout/login/register.
+   Tetap gunakan form asli WooCommerce.
+
+10. Convert 404:
+   404.html → 404.php.
+
+11. Fix semua WooCommerce fatal error.
+   Jangan pakai $product->is_free().
+   Gunakan pengecekan harga manual yang aman.
+
+12. Pastikan theme tetap aman tanpa ACF.
+   Semua fungsi ACF harus pakai function_exists().
+
+13. Pastikan semua halaman utama aman:
+   homepage, shop, product, cart, checkout, my account, login/register, 404, blog/page biasa.
+
+Target akhir:
+Theme Rillatype V2 bisa diupload sebagai ZIP theme WordPress biasa, aktif sendiri, tidak bergantung Elementor, dan tampilannya mengikuti static HTML dengan font, warna, spacing, button, card, dan layout yang konsisten.

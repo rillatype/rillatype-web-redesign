@@ -1,0 +1,30 @@
+1.9.1 - 30 Oktober 2023
+
+updated : ACF PRO v6.2.1.1
+updated : WooCommerce outdate template file warning
+improved : support slider Swiper 8.5 di Elementor
+fixed : Elementor TP WC Product Number of Products Per Row (Mobile)
+fixed : currency tidak tampil di variation product
+fixed : variable product price tidak muncul, hanya nol saja
+fixed : variation details / description tidak tampil di email buyer.
+fixed : variation details / description (EULA) tidak tampil di PDF email
+fixed : variation details / description tidak tampil di halaman cart
+fixed : beberapa issue shortcode di EasyDigitalDownloads v3
+
+1.9.0 - 22 Desember 2022
+
+improved: kompatibel dengan PHP8.0 dan PHP8.1
+improved: support TutorLMS terbaru
+improved: support Sejoli terbaru
+
+untuk saat ini, penggunaan PHP8.1 masih belum direkomendasikan, karena WordPress dan WooCommerce masih belum sepenuhnya support PHP8.1 yang terbaru. Jika Anda ingin mencoba menggunakan PHP8.1, pastikan WP_DEBUG di-nonaktif-kan.
+
+1.8.0 - 12 April 2022
+
+improved : support WordPress 5.9.2
+improved : support WooCommerce 6.3.1
+improved : support Elementor 3.6.x
+improved : support TutorLMS 2.0
+improved : update ACF Pro 5.12.1
+fixed : Merlin installer bugs
+

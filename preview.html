@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Rillatype Studio</title>
+  <meta name="description" content="Browse our typefaces. Handcrafted fonts with personality.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#e0553d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px; line-height: 1.5;
+      color: #1a1a1a; background: #fafaf8;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul { list-style: none; }
+
+    :root {
+      --coral: #e0553d;
+      --coral-bright: #f04e3a;
+      --coral-soft: #fef2ef;
+      --charcoal: #1a1a1a;
+      --text-muted: #8c8c88;
+      --text-subtle: #b0aeaa;
+      --border-light: #f0ece8;
+      --border: #e0ddd8;
+      --space-sm: 12px; --space-md: 16px; --space-lg: 24px;
+      --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px; --space-4xl: 96px;
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+    .container { max-width: 1200px; margin-inline: auto; padding-inline: var(--space-lg); }
+
+    /* ── HEADER ──────────────────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: box-shadow .3s ease;
+    }
+    .site-header.scrolled {
+      border-bottom-color: var(--border-light);
+      box-shadow: 0 1px 8px rgba(0,0,0,.04);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-md) 0;
+    }
+    .site-logo { display: flex; align-items: center; }
+    .site-logo__img { height: 38px; width: auto; display: block; }
+
+    .nav-main ul { display: flex; gap: var(--space-sm); align-items: center; }
+    .nav-main a {
+      font-size: 14px; font-weight: 600; color: #2a2a2a;
+      position: relative; padding: 6px 10px;
+      transition: color .2s;
+    }
+    .nav-main a:hover { color: var(--charcoal); }
+    .nav-main a::after {
+      content: ''; position: absolute; bottom: -2px; left: 10px; right: 10px; height: 2px;
+      background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-main a:hover::after { transform: scaleX(1); }
+
+    .nav-signin {
+      font-size: 13px; font-weight: 700; color: #fff !important;
+      background: var(--charcoal, #1A1814);
+      padding: 7px 18px !important; border-radius: 50px;
+      transition: background .2s !important;
+      margin-left: 4px;
+    }
+    .nav-signin:hover { background: var(--coral) !important; }
+    .nav-signin::after { display: none !important; }
+
+    .nav-dropdown { position: relative; }
+    .nav-dropbtn {
+      font-size: 14px; font-weight: 600; color: #2a2a2a;
+      padding: 6px 10px; cursor: default; display: inline-flex; align-items: center; gap: 3px;
+      position: relative;
+    }
+    .nav-dropbtn .arrow { font-size: 8px; transition: transform .2s; }
+    .nav-dropdown:hover .nav-dropbtn .arrow { transform: rotate(180deg); }
+    .nav-dropdown__menu {
+      position: absolute; top: 100%; left: 0; z-index: 200;
+      min-width: 200px; background: #fff; border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      padding: 6px; display: none; border: 1px solid var(--border-light);
+    }
+    .nav-dropdown:hover .nav-dropdown__menu { display: block; }
+    .nav-dropdown__menu a {
+      display: block; padding: 8px 12px; font-size: 13px; font-weight: 500;
+      color: #4a4a4a; border-radius: 6px;
+    }
+    .nav-dropdown__menu a::after { display: none !important; }
+    .nav-dropdown__menu a:hover { background: var(--coral-soft); color: var(--coral); }
+
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .nav-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      color: #4a4a4a; transition: all .2s;
+    }
+    .nav-icon:hover { background: #f0ece8; color: var(--charcoal); }
+    .nav-cart-wrap { position: relative; }
+    .nav-cart-count {
+      position: absolute; top: -2px; right: -2px;
+      width: 16px; height: 16px; border-radius: 50%;
+      background: var(--coral); color: #fff;
+      font-size: 9px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── BREADCRUMB ──────────────────────────────────────── */
+    .breadcrumb {
+      padding-top: var(--space-xl);
+      font-size: 12px; color: var(--text-subtle); margin-bottom: 8px;
+    }
+    .breadcrumb a { color: var(--text-subtle); transition: color .2s; }
+    .breadcrumb a:hover { color: var(--coral); }
+
+    /* ── SECTION LABEL ───────────────────────────────────── */
+    .section-label {
+      display: flex; align-items: center; gap: var(--space-sm);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: var(--space-xl);
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 2px;
+      background: var(--coral);
+    }
+
+    .archive-shop { padding: 0 0 var(--space-4xl); }
+    .archive-shop__title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700; letter-spacing: -.03em;
+      margin: 8px 0 var(--space-xl);
+    }
+
+    /* ── CATEGORY PILLS ──────────────────────────────────── */
+    .categories__cloud {
+      display: flex; flex-wrap: wrap; gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    .categories__pill {
+      font-size: 15px; font-weight: 500; letter-spacing: -.01em;
+      color: var(--charcoal); background: #fff;
+      padding: 8px 20px; border-radius: 50px;
+      border: 1.5px solid var(--border);
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .categories__pill:hover {
+      border-color: var(--coral); color: var(--coral);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(224,85,61,.15);
+    }
+    .categories__pill small { font-size: 12px; font-weight: 400; color: var(--text-subtle); margin-left: 4px; }
+    .categories__pill.active { background: var(--charcoal); color: #fff; border-color: var(--charcoal); }
+
+    /* ── TOOLBAR ─────────────────────────────────────────── */
+    .archive-shop__toolbar {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: var(--space-sm); margin-bottom: var(--space-xl);
+    }
+    .woocommerce-result-count { font-size: 13px; color: var(--text-muted); margin: 0; }
+    .woocommerce-ordering select {
+      font-family: inherit; font-size: 13px; color: var(--charcoal);
+      padding: 8px 32px 8px 14px;
+      border: 1.5px solid var(--border); border-radius: 50px;
+      background: #fff;
+      -webkit-appearance: none; appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238C8C88'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+      min-width: 160px; transition: border-color .2s;
+    }
+    .woocommerce-ordering select:hover,
+    .woocommerce-ordering select:focus { border-color: var(--coral); outline: none; }
+
+    /* ── PRODUCT GRID ────────────────────────────────────── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--cols, 3), 1fr);
+      gap: var(--space-lg);
+    }
+
+    /* ── PRODUCT CARD ────────────────────────────────────── */
+    .product-card {
+      display: block; position: relative;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: transform .35s cubic-bezier(.16,1,.3,1),
+                  box-shadow .35s;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.08); }
+    .product-card:active { transform: scale(.97); }
+
+    .product-card__image {
+      aspect-ratio: 3 / 2; overflow: hidden;
+      background: var(--coral-soft); position: relative;
+    }
+    .product-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.16,1,.3,1); }
+    .product-card:hover .product-card__image img { transform: scale(1.06); }
+
+    .product-card__addtocart {
+      position: absolute; bottom: var(--space-sm); right: var(--space-sm); z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 300; line-height: 1;
+      color: var(--charcoal);
+      background: #fff;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all .3s cubic-bezier(.16,1,.3,1);
+      cursor: pointer; font-family: inherit; text-decoration: none;
+    }
+    .product-card:hover .product-card__addtocart {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .product-card__addtocart:hover {
+      background: var(--coral);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(224,85,61,0.3);
+      transform: translateY(0) scale(1.1);
+    }
+
+    .product-card__badge {
+      position: absolute; top: var(--space-sm); right: var(--space-sm);
+      background: var(--coral); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: .04em;
+      padding: 4px 12px; border-radius: 4px; z-index: 1;
+    }
+    .product-card__badge--free { background: var(--charcoal); }
+
+    .product-card__body {
+      padding: var(--space-md) var(--space-md) var(--space-lg);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .product-card__info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .product-card__name {
+      font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+      color: var(--charcoal);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .product-card__style {
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .product-card__price {
+      font-size: 16px; font-weight: 700; color: var(--coral);
+      font-variant-numeric: tabular-nums; white-space: nowrap;
+    }
+    .product-card__price del { font-size: 13px; color: var(--text-subtle); font-weight: 500; margin-right: 4px; }
+    .product-card__price ins { text-decoration: none; }
+
+    /* ── STAGGERED ANIMATION ───────────────────────────── */
+    .anim-card { opacity: 0; transform: translateY(20px); transition: opacity .5s cubic-bezier(.16,1,.3,1), transform .5s cubic-bezier(.16,1,.3,1); }
+    .anim-card.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* ── PAGINATION ──────────────────────────────────────── */
+    .woocommerce-pagination { margin-top: var(--space-2xl); }
+    .woocommerce-pagination ul {
+      display: flex; gap: 6px; justify-content: center;
+    }
+    .woocommerce-pagination ul li a,
+    .woocommerce-pagination ul li span {
+      display: flex; align-items: center; justify-content: center;
+      min-width: 36px; height: 36px; padding: 6px 10px;
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      background: #fff; border: 1.5px solid var(--border); border-radius: 8px;
+      transition: all .2s;
+    }
+    .woocommerce-pagination ul li a:hover {
+      border-color: var(--charcoal); color: var(--charcoal);
+      transform: translateY(-1px);
+    }
+    .woocommerce-pagination ul li span.current {
+      background: var(--charcoal); border-color: var(--charcoal); color: #fff;
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    .site-footer { padding: var(--space-2xl) 0; font-size: 14px; color: var(--text-muted); border-top: 1px solid var(--border-light); margin-top: var(--space-2xl); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-lg); align-items: center; }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { transition: color .2s; }
+    .footer-links a:hover { color: var(--coral); }
+    .footer-copy { color: var(--text-subtle); }
+
+    /* ── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 1023px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 767px) {
+      .archive-shop__title { font-size: 26px; }
+      .archive-shop__toolbar { flex-direction: column; align-items: flex-start; }
+      .product-grid { gap: var(--space-md); }
+      .header-inner { flex-wrap: wrap; gap: var(--space-sm); }
+      .nav-main ul { gap: 4px; flex-wrap: wrap; }
+    }
+    @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header" id="site-header">
+    <nav class="header-inner container" aria-label="Main">
+      <a href="/" class="site-logo"><img src="logo.png" alt="Rillatype" class="site-logo__img"></a>
+      <div class="nav-main">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li class="nav-dropdown">
+            <span class="nav-dropbtn">Shop <span class="arrow">▾</span></span>
+            <div class="nav-dropdown__menu">
+              <a href="#">Font</a>
+              <a href="#">Graphic</a>
+            </div>
+          </li>
+          <li class="nav-dropdown">
+            <span class="nav-dropbtn">Font <span class="arrow">▾</span></span>
+            <div class="nav-dropdown__menu">
+              <a href="#">Display</a>
+              <a href="#">Script</a>
+              <a href="#">Handwritten</a>
+              <a href="#">Retro &amp; Vintage</a>
+              <a href="#">Modern</a>
+              <a href="#">Sans Serif</a>
+              <a href="#">Serif</a>
+            </div>
+          </li>
+          <li><a href="#">Freebies</a></li>
+          <li><a href="#">License</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="sign-in.html" class="nav-signin">Sign In</a></li>
+        </ul>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="nav-icon" aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="#" class="nav-icon nav-cart-wrap" aria-label="Cart">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="nav-cart-count">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="archive-shop" aria-label="Font archive">
+      <div class="container">
+
+        <p class="breadcrumb"><a href="#">Home</a> / Shop</p>
+
+        <h1 class="archive-shop__title">Browse fonts</h1>
+
+        <nav class="categories__cloud">
+          <a href="#" class="categories__pill">Serif <small>12</small></a>
+          <a href="#" class="categories__pill">Sans Serif <small>8</small></a>
+          <a href="#" class="categories__pill">Display <small>6</small></a>
+          <a href="#" class="categories__pill">Script <small>4</small></a>
+          <a href="#" class="categories__pill">Mono <small>3</small></a>
+          <a href="#" class="categories__pill">Freebies <small>5</small></a>
+        </nav>
+
+        <div class="archive-shop__toolbar">
+          <p class="woocommerce-result-count">Showing 1–9 of 38 results</p>
+          <form class="woocommerce-ordering" method="get">
+            <select name="orderby" class="orderby" aria-label="Shop order">
+              <option value="popularity">Sort by popularity</option>
+              <option value="date" selected>Sort by latest</option>
+              <option value="price">Sort by price: low to high</option>
+              <option value="price-desc">Sort by price: high to low</option>
+            </select>
+          </form>
+        </div>
+
+        <div class="product-grid" style="--cols: 3">
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image">
+                <img src="static/previews/mango-1.jpg" alt="Mango Letters" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Mango Letters</span>
+                  <span class="product-card__style">Serif</span>
+                </div>
+                <span class="product-card__price">$49</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/baldock-1.jpg" alt="Baldock" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Baldock</span>
+                  <span class="product-card__style">Sans Serif</span>
+                </div>
+                <span class="product-card__price">$39</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/bawden-1.jpg" alt="Bawden" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Bawden</span>
+                  <span class="product-card__style">Display</span>
+                </div>
+                <span class="product-card__price">$69</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/crimson-queen-1.jpg" alt="Crimson Queen" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Crimson Queen</span>
+                  <span class="product-card__style">Script</span>
+                </div>
+                <span class="product-card__price">$59</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/daisy-hotline-1.jpg" alt="Daisy Hotline" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Daisy Hotline</span>
+                  <span class="product-card__style">Sans Serif</span>
+                </div>
+                <span class="product-card__price">$44</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/moyshire-1.jpg" alt="Moyshire" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Moyshire</span>
+                  <span class="product-card__style">Serif</span>
+                </div>
+                <span class="product-card__price">$54</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/mordial-1.jpg" alt="Mordial" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Mordial</span>
+                  <span class="product-card__style">Display</span>
+                </div>
+                <span class="product-card__price">$34</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image"><img src="static/previews/radiant-summertime-1.jpg" alt="Radiant Summertime" loading="lazy">
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Radiant Summertime</span>
+                  <span class="product-card__style">Script</span>
+                </div>
+                <span class="product-card__price">$49</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="anim-card">
+            <a href="#" class="product-card">
+              <div class="product-card__image">
+                <img src="static/previews/mango-5.jpg" alt="Mango Sans" loading="lazy">
+                <span class="product-card__badge product-card__badge--free">Free</span>
+                <span class="product-card__addtocart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></span>
+              </div>
+              <div class="product-card__body">
+                <div class="product-card__info">
+                  <span class="product-card__name">Mango Sans</span>
+                  <span class="product-card__style">Freebies</span>
+                </div>
+                <span class="product-card__price">Free</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <nav class="woocommerce-pagination">
+          <ul class="page-numbers">
+            <li><span aria-current="page" class="page-numbers current">1</span></li>
+            <li><a class="page-numbers" href="#">2</a></li>
+            <li><a class="page-numbers" href="#">3</a></li>
+            <li><a class="page-numbers" href="#">4</a></li>
+            <li><a class="next page-numbers" href="#">→</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Rillatype. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      /* Sticky header */
+      var header = document.getElementById('site-header');
+      if (header) {
+        var obs = new IntersectionObserver(function(e) {
+          e.forEach(function(e) { header.classList.toggle('scrolled', !e.isIntersecting); });
+        }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' });
+        obs.observe(document.body);
+      }
+
+      /* Staggered cards */
+      var cards = document.querySelectorAll('.anim-card');
+      cards.forEach(function(el, i) {
+        setTimeout(function() { el.classList.add('is-visible'); }, i * 60);
+      });
+
+      /* Nav dropdowns on touch */
+      document.querySelectorAll('.nav-dropdown > .nav-dropbtn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          var menu = this.parentElement.querySelector('.nav-dropdown__menu');
+          if (menu) menu.style.display = menu.style.display === 'block' ? '' : 'block';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

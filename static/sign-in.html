@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Rillatype</title>
+<meta name="description" content="Sign in to your Rillatype account.">
+<meta property="og:title" content="Sign In — Rillatype">
+<meta property="og:description" content="Sign in to your Rillatype account.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rillatype.com/sign-in/">
+<meta property="og:image" content="https://rillatype.com/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sign In — Rillatype">
+<meta name="twitter:description" content="Sign in to your Rillatype account.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --accent: #e0553d; --accent-soft: #fef2ef;
+    --text: #1A1814; --text-muted: #8c8c88;
+    --border: #d0ccc8; --border-light: #e8e4e0;
+    --bg: #fafaf8;
+    --coral: #e0553d;
+    --space-sm: 12px; --space-md: 16px; --space-lg: 24px; --space-xl: 32px; --space-2xl: 48px; --space-3xl: 64px;
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); }
+
+  .site-header { background: rgba(255,255,255,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-light); position: sticky; top: 0; z-index: 100; }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: var(--space-md); }
+  .site-logo { flex-shrink: 0; }
+  .site-logo__img { height: 38px; width: auto; display: block; }
+  .nav-main ul { display: flex; gap: var(--space-sm); list-style: none; align-items: center; }
+  .nav-main a { font-size: 14px; font-weight: 600; color: var(--text); position: relative; padding: 6px 10px; text-decoration: none; transition: color .2s; }
+  .nav-main a:hover { color: var(--coral); }
+  .nav-main a::after { content: ''; position: absolute; bottom: -2px; left: 10px; right: 10px; height: 2px; background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1); }
+  .nav-main a:hover::after { transform: scaleX(1); }
+  .nav-dropdown { position: relative; }
+  .nav-dropbtn { font-size: 14px; font-weight: 600; color: var(--text); padding: 6px 10px; cursor: default; display: inline-flex; align-items: center; gap: 3px; }
+  .nav-dropbtn .arrow { font-size: 8px; transition: transform .2s; }
+  .nav-dropdown:hover .nav-dropbtn .arrow { transform: rotate(180deg); }
+  .nav-dropdown__menu { display: none; position: absolute; top: 100%; left: 0; min-width: 180px; background: #fff; border: 1px solid var(--border-light); border-radius: 8px; padding: 6px 0; box-shadow: 0 12px 40px rgba(0,0,0,.08); z-index: 200; }
+  .nav-dropdown:hover .nav-dropdown__menu { display: block; }
+  .nav-dropdown__menu a { display: block; padding: 8px 16px; font-size: 13px; color: var(--text); font-weight: 500; }
+  .nav-dropdown__menu a::after { display: none; }
+  .nav-dropdown__menu a:hover { background: var(--accent-soft); color: var(--coral); }
+  .nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .nav-icon { color: var(--text); text-decoration: none; display: flex; padding: 4px; transition: color .2s; }
+  .nav-icon:hover { color: var(--coral); }
+  .nav-cart-wrap { position: relative; }
+  .nav-cart-count { position: absolute; top: -4px; right: -6px; width: 16px; height: 16px; border-radius: 50%; background: var(--coral); color: #fff; font-size: 9px; font-weight: 700; line-height: 16px; text-align: center; }
+
+  .account-page { padding: var(--space-3xl) 0; }
+  .account-card { max-width: 420px; margin: 0 auto; }
+  .account-card__title { font-size: 24px; font-weight: 800; letter-spacing: -.02em; margin-bottom: var(--space-lg); text-align: center; }
+  .form-field { margin-bottom: var(--space-md); }
+  .form-field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .form-field input { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 15px; transition: border-color .2s; }
+  .form-field input:focus { outline: none; border-color: var(--text); }
+  .form-checkbox { display: flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; line-height: 1; }
+  .form-checkbox input { accent-color: var(--accent); margin: 0; width: 16px; height: 16px; }
+  .account-link { text-align: center; font-size: 13px; margin-top: var(--space-sm); }
+  .account-link a { color: var(--text-muted); }
+  .account-link a:hover { color: var(--accent); }
+  .account-switch { text-align: center; margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--border-light); font-size: 14px; color: var(--text-muted); }
+  .account-switch a { color: var(--text); font-weight: 600; text-decoration: none; }
+  .account-switch a:hover { color: var(--accent); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 12px 28px; font-size: 14px; font-weight: 600; font-family: inherit; border-radius: 50px; cursor: pointer; transition: all .25s; text-decoration: none; border: none; white-space: nowrap; }
+  .btn--primary { background: var(--text); color: #fff; }
+  .btn--primary:hover { background: var(--accent); }
+  .btn--block { width: 100%; }
+
+  .site-footer { padding: var(--space-2xl) 0; border-top: 1px solid var(--border-light); margin-top: var(--space-3xl); }
+  .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm); }
+  .footer-copy { font-size: 14px; color: var(--text-muted); }
+  .footer-links { display: flex; gap: var(--space-lg); }
+  .footer-links a { font-size: 14px; color: var(--text); text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="header-inner container" aria-label="Main">
+    <a href="/" class="site-logo"><img src="logo.png" alt="Rillatype" class="site-logo__img"></a>
+    <div class="nav-main">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li class="nav-dropdown">
+          <span class="nav-dropbtn">Shop <span class="arrow">▾</span></span>
+          <div class="nav-dropdown__menu"><a href="/product-category/font/">Font</a><a href="/product-category/graphic/">Graphic</a></div>
+        </li>
+        <li class="nav-dropdown">
+          <span class="nav-dropbtn">Font <span class="arrow">▾</span></span>
+          <div class="nav-dropdown__menu"><a href="/product-category/display/">Display</a><a href="/product-category/script/">Script</a><a href="/product-category/handwritten/">Handwritten</a><a href="/product-category/retro-vintage/">Retro &amp; Vintage</a><a href="/product-category/modern/">Modern</a><a href="/product-category/sans-serif/">Sans Serif</a><a href="/product-category/serif/">Serif</a></div>
+        </li>
+        <li><a href="/product-category/freebies/">Freebies</a></li>
+        <li><a href="/font-license/">License</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="sign-in.html" class="nav-signin">Sign In</a></li>
+      </ul>
+    </div>
+    <div class="nav-actions">
+      <a href="/?s=" class="nav-icon" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+      <a href="/cart-2/" class="nav-icon nav-cart-wrap" aria-label="Cart"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="nav-cart-count">0</span></a>
+    </div>
+  </nav>
+</header>
+
+<main class="account-page">
+  <div class="container">
+    <div class="account-card">
+      <h1 class="account-card__title">Sign In</h1>
+      <form>
+        <p class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </p>
+        <p class="form-field">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••">
+        </p>
+        <p class="form-field" style="display:flex;align-items:center;justify-content:space-between;">
+          <label class="form-checkbox"><input type="checkbox" checked> <span>Remember me</span></label>
+          <a href="#" style="font-size:13px;color:var(--text-muted);">Forgot?</a>
+        </p>
+        <button type="submit" class="btn btn--primary btn--block">Sign In</button>
+      </form>
+      <p class="account-switch">Don't have an account? <a href="sign-up.html">Create one</a></p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">© 2026 Rillatype. All rights reserved.</p>
+    <div class="footer-links"><a href="/font-license/">License</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="/contact/">Contact</a></div>
+  </div>
+</footer>
+
+</body>
+</html>

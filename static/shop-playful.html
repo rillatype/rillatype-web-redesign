@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shop — Rillatype Studio</title>
+  <meta name="description" content="All fonts at Rillatype Studio. Browse our typefaces.">
+  <meta property="og:title" content="Shop — Rillatype Studio">
+  <meta property="og:description" content="All fonts at Rillatype Studio. Browse our typefaces.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rillatype.com/shop/">
+  <meta property="og:image" content="https://rillatype.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Shop — Rillatype Studio">
+  <meta name="twitter:description" content="All fonts at Rillatype Studio. Browse our typefaces.">
+  <meta name="twitter:image" content="https://rillatype.com/logo.png">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#e0553d">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --coral: #e0553d;
+      --coral-soft: #fef2ef;
+      --charcoal: #1a1a1a;
+      --cream: #f7f3ee;
+      --sand: #ede8e0;
+      --text-muted: #8c8c88;
+      --border-light: #f0ece8;
+      --space-4xl: 96px;
+      --space-3xl: 72px;
+      --space-2xl: 56px;
+      --space-xl: 32px;
+      --space-lg: 24px;
+      --space-md: 16px;
+      --space-sm: 12px;
+      --space-xs: 8px;
+    }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      background: var(--cream);
+      color: var(--charcoal);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container {
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+
+    /* ── SITE HEADER ────────────────────────────── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,243,238,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: background .3s, backdrop-filter .3s;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; max-width: 1200px; margin-inline: auto;
+    }
+    .site-logo {
+      font-size: 22px; font-weight: 700; letter-spacing: -.03em;
+    }
+    .site-logo img { height: 38px; width: auto; }
+    .header-nav { display: flex; gap: var(--space-lg); align-items: center; }
+    .header-nav a {
+      font-size: 13px; font-weight: 500; color: var(--text-muted);
+      transition: color .2s;
+    }
+    .header-nav a:hover { color: var(--charcoal); }
+    .header-nav a.active { color: var(--charcoal); font-weight: 600; }
+
+    .header-signin {
+      font-size: 13px; font-weight: 600; color: #fff !important;
+      background: var(--charcoal, #1A1814);
+      padding: 7px 18px; border-radius: 50px;
+      transition: background .2s !important;
+    }
+    .header-signin:hover { background: var(--coral) !important; color: #fff !important; }
+    .header-cart {
+      font-size: 13px; font-weight: 600; color: var(--charcoal);
+      padding: 6px 14px; border: 1.5px solid var(--charcoal);
+      border-radius: 50px; transition: all .2s;
+    }
+    .header-cart:hover {
+      background: var(--charcoal); color: #fff;
+    }
+
+    /* ── BREADCRUMB ──────────────────────────────── */
+    .breadcrumb {
+      font-size: 12px; color: #b0aeaa; padding: 40px 0 8px;
+    }
+    .breadcrumb a { color: #b0aeaa; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--coral); }
+
+    /* ── SECTION LABEL ──────────────────────────── */
+    .section-label {
+      display: flex; align-items: center; gap: var(--space-sm);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: var(--space-xl);
+    }
+    .section-label::before {
+      content: ''; display: inline-block; width: 24px; height: 2px;
+      background: var(--coral);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .section-label.is-visible::before {
+      transform: scaleX(1);
+    }
+
+    /* ── ARCHIVE HEADER ──────────────────────────── */
+    .archive-shop { padding: 0 0 var(--space-3xl); }
+    .archive-shop__title {
+      font-size: 32px; font-weight: 700; letter-spacing: -.03em;
+      margin: 8px 0 24px;
+    }
+
+    /* ── CATEGORY PILLS ──────────────────────────── */
+    .categories__cloud {
+      display: flex; flex-wrap: wrap; gap: var(--space-sm);
+      margin-bottom: 32px;
+    }
+    .categories__pill {
+      font-size: 15px; font-weight: 500; letter-spacing: -.01em;
+      color: var(--charcoal); background: #fff;
+      padding: 8px 20px; border-radius: 50px;
+      border: 1.5px solid #e0ddd8;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+    }
+    .categories__pill:hover {
+      border-color: var(--coral); color: var(--coral);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(224,85,61,.15);
+    }
+    .categories__pill small {
+      font-size: 12px; font-weight: 400; color: #b0aeaa;
+      margin-left: 4px;
+    }
+
+    /* ── TOOLBAR ──────────────────────────────────── */
+    .archive-toolbar {
+      display: flex; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 32px;
+    }
+    .result-count {
+      font-size: 13px; color: #8a8682;
+    }
+    .sort-wrap select {
+      font-family: inherit; font-size: 13px; color: var(--charcoal);
+      padding: 8px 32px 8px 14px;
+      border: 1.5px solid #e0ddd8; border-radius: 50px;
+      background: #fff;
+      -webkit-appearance: none; appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238A8682'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      min-width: 160px;
+      transition: border-color .2s;
+    }
+    .sort-wrap select:hover,
+    .sort-wrap select:focus { border-color: var(--coral); outline: none; }
+
+    /* ── PRODUCT GRID ────────────────────────────── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+    .product-card {
+      display: block;
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.08);
+    }
+    .product-card:active {
+      transform: scale(.97);
+    }
+    .product-card__image {
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      background: var(--coral-soft);
+      position: relative;
+    }
+    .product-card__image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .product-card__badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--coral);
+      color: #fff;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .04em;
+      padding: 4px 12px;
+      border-radius: 4px;
+      z-index: 1;
+    }
+    .product-card__body {
+      padding: 16px 16px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .product-card__info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .product-card__name {
+      font-size: 18px; font-weight: 700;
+      letter-spacing: -.02em;
+      color: var(--charcoal);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .product-card__style {
+      font-size: 12px; font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .product-card__price {
+      font-size: 16px; font-weight: 700;
+      color: var(--coral);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* ── PAGINATION ──────────────────────────────── */
+    .pagination {
+      margin-top: 48px;
+      display: flex; gap: 6px; justify-content: center;
+    }
+    .pagination a,
+    .pagination span {
+      display: flex; align-items: center; justify-content: center;
+      min-width: 36px; height: 36px;
+      padding: 6px 10px;
+      font-size: 13px; font-weight: 500; color: #8a8682;
+      background: #fff;
+      border: 1.5px solid #e0ddd8; border-radius: 8px;
+      transition: all .2s;
+    }
+    .pagination a:hover {
+      border-color: var(--charcoal); color: var(--charcoal);
+      transform: translateY(-1px);
+    }
+    .pagination span.current {
+      background: var(--charcoal); border-color: var(--charcoal);
+      color: #fff;
+    }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    .site-footer { padding: var(--space-2xl) 0; font-size: 14px; color: var(--text-muted); }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-lg); align-items: center; }
+    .footer-links { display: flex; gap: var(--space-lg); }
+    .footer-links a { transition: color .2s; }
+    .footer-links a:hover { color: var(--coral); }
+    .footer-copy { color: #b0aeaa; font-weight: 400; }
+
+    /* ── ANIMATIONS ──────────────────────────────── */
+    .anim-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1),
+                  transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .anim-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1023px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 767px) {
+      .archive-shop__title { font-size: 26px; }
+      .archive-toolbar { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index-playful.html" class="site-logo">
+        <img src="logo.png" alt="Rillatype Studio">
+      </a>
+      <nav class="header-nav">
+        <a href="index-playful.html">Home</a>
+        <a href="shop-playful.html" class="active">Fonts</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="sign-in.html" class="header-signin">Sign In</a>
+        <a href="/cart-2/" class="header-cart">Cart (0)</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Shop Archive -->
+  <section class="archive-shop" aria-label="Font archive">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="index-playful.html">Home</a> / Shop
+      </nav>
+
+      <!-- Section label -->
+      <p class="section-label is-visible">All fonts</p>
+      <h1 class="archive-shop__title">Browse fonts</h1>
+
+      <!-- Category pills -->
+      <nav class="categories__cloud" aria-label="Font categories">
+        <a href="/product-category/display/" class="categories__pill anim-card">Display <small>12</small></a>
+        <a href="/product-category/script/" class="categories__pill anim-card">Script <small>8</small></a>
+        <a href="/product-category/handwritten/" class="categories__pill anim-card">Handwritten <small>6</small></a>
+        <a href="/product-category/sans-serif/" class="categories__pill anim-card">Sans <small>10</small></a>
+        <a href="/product-category/serif/" class="categories__pill anim-card">Serif <small>5</small></a>
+        <a href="/product-category/freebies/" class="categories__pill anim-card">Freebies <small>4</small></a>
+      </nav>
+
+      <!-- Toolbar -->
+      <div class="archive-toolbar">
+        <span class="result-count">Showing all 12 fonts</span>
+        <div class="sort-wrap">
+          <select>
+            <option>Sort by latest</option>
+            <option>Sort by price: low</option>
+            <option>Sort by price: high</option>
+            <option>Sort by name: A&ndash;Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid">
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/mango-1.jpg" alt="Mango Letter" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Mango Letter</span>
+              <span class="product-card__style">Playful display</span>
+            </div>
+            <span class="product-card__price">$18</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/crimson-queen-1.jpg" alt="Crimson Queen" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Crimson Queen</span>
+              <span class="product-card__style">Bold display</span>
+            </div>
+            <span class="product-card__price">$22</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/baldock-1.jpg" alt="Baldock" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Baldock</span>
+              <span class="product-card__style">Vintage serif</span>
+            </div>
+            <span class="product-card__price">$20</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/bawden-1.jpg" alt="Bawden" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Bawden</span>
+              <span class="product-card__style">Playful display</span>
+            </div>
+            <span class="product-card__price">$24</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/moyshire-1.jpg" alt="Moyshire" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Moyshire</span>
+              <span class="product-card__style">Script</span>
+            </div>
+            <span class="product-card__price">$16</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/mordial-1.jpg" alt="Mordial" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Mordial</span>
+              <span class="product-card__style">Handwritten</span>
+            </div>
+            <span class="product-card__price">$14</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Radiant Summertime" loading="lazy">
+            <span class="product-card__badge">Sale</span>
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Radiant Summertime</span>
+              <span class="product-card__style">Display</span>
+            </div>
+            <span class="product-card__price">$12</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Neon Grotesk" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Neon Grotesk</span>
+              <span class="product-card__style">Sans serif</span>
+            </div>
+            <span class="product-card__price">$20</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Wilder Rough" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Wilder Rough</span>
+              <span class="product-card__style">Display</span>
+            </div>
+            <span class="product-card__price">$15</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Daisy Hotline" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Daisy Hotline</span>
+              <span class="product-card__style">Script</span>
+            </div>
+            <span class="product-card__price">$18</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Bromrose Sands" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Bromrose Sands</span>
+              <span class="product-card__style">Handwritten</span>
+            </div>
+            <span class="product-card__price">$10</span>
+          </div>
+        </a>
+
+        <a href="../product-playful.html" class="product-card anim-card">
+          <div class="product-card__image">
+            <img src="previews/radiant-summertime-1.jpg" alt="Luna Serif" loading="lazy">
+          </div>
+          <div class="product-card__body">
+            <div class="product-card__info">
+              <span class="product-card__name">Luna Serif</span>
+              <span class="product-card__style">Serif</span>
+            </div>
+            <span class="product-card__price">$24</span>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Pagination -->
+      <nav class="pagination" aria-label="Page navigation">
+        <span class="current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">&rarr;</a>
+      </nav>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner container">
+      <div class="footer-links">
+        <a href="https://instagram.com/rillatype" rel="me">Instagram</a>
+        <a href="/contact/">Contact</a>
+        <a href="/font-license/">License</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Rillatype Studio</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── Intersection Observer: staggered cards + label line ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('anim-card')) {
+            entry.target.style.transitionDelay = (i % 12 * 60) + 'ms';
+          }
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.anim-card').forEach(el => observer.observe(el));
+    document.querySelectorAll('.section-label').forEach(el => observer.observe(el));
+
+    // ── Sticky header blur ──
+    const header = document.querySelector('.site-header');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          header.style.borderBottomColor = y > 10 ? '#e8e4e0' : 'transparent';
+          header.style.backdropFilter = y > 10 ? 'blur(20px)' : 'blur(12px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {passive: true});
+  </script>
+
+</body>
+</html>

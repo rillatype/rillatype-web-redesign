@@ -149,29 +149,28 @@
   if (tester && display) {
     var fontFamily = tester.getAttribute('data-font-family');
     var fontUrl = tester.getAttribute('data-font-url');
-    var hint = tester.querySelector('.tester__hint');
 
     if (fontFamily && fontUrl) {
-      var fontStack = '"' + fontFamily + '", var(--font-body)';
+      tester.setAttribute('data-font-loaded', 'loading');
 
-      display.style.fontFamily = fontStack;
-
-      if (document.fonts && document.fonts.load) {
-        document.fonts.load('1em "' + fontFamily + '"').then(function (fonts) {
-          if (fonts.length) {
-            display.style.fontFamily = 'serif';
-            display.offsetHeight;
-            display.style.fontFamily = fontStack;
-            tester.setAttribute('data-font-loaded', 'loaded');
-          } else {
-            tester.setAttribute('data-font-loaded', 'failed');
-            if (hint) hint.textContent += ' Browser failed to load this font file.';
-          }
-        }).catch(function () {
+      fetch(fontUrl)
+        .then(function (r) { return r.arrayBuffer(); })
+        .then(function (buf) {
+          var font = new FontFace(fontFamily, buf);
+          return font.load();
+        })
+        .then(function (loadedFont) {
+          document.fonts.add(loadedFont);
+          display.style.fontFamily = 'serif';
+          display.offsetHeight;
+          display.style.fontFamily = fontFamily;
+          tester.setAttribute('data-font-loaded', 'loaded');
+        })
+        .catch(function () {
           tester.setAttribute('data-font-loaded', 'failed');
+          var hint = tester.querySelector('.tester__hint');
           if (hint) hint.textContent += ' Browser failed to load this font file.';
         });
-      }
     }
   }
 

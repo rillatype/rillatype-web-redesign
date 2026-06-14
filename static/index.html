@@ -5,9 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rillatype Studio — Handcrafted Fonts</title>
   <meta name="description" content="Handcrafted display fonts for branding, packaging, posters, and creative projects. By Rillatype Studio.">
+  <meta property="og:title" content="Rillatype Studio — Handcrafted Fonts">
+  <meta property="og:description" content="Handcrafted display fonts for branding, packaging, posters, and creative projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rillatype.com/">
+  <meta property="og:image" content="https://rillatype.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rillatype Studio — Handcrafted Fonts">
+  <meta name="twitter:description" content="Handcrafted display fonts for branding, packaging, posters, and creative projects.">
+  <meta name="twitter:image" content="https://rillatype.com/logo.png">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════════════
         RILLATYPE — bright, warm, personal, typographic.
@@ -17,7 +29,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       font-size: 16px; line-height: 1.6; color: var(--text); background: var(--bg);
       -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
       text-wrap: pretty;
@@ -111,12 +123,9 @@
       padding: var(--space-md) 0;
     }
 
-    .site-logo {
-      font-size: var(--text-xl); font-weight: 600; letter-spacing: -0.03em;
-      transition: color var(--ease);
-    }
-    .site-logo:hover { color: var(--accent); }
-    .site-logo span { color: var(--accent); font-weight: 400; font-style: italic; }
+    .site-logo { display: flex; align-items: center; }
+    .site-logo__img { height: 38px; width: auto; display: block; }
+    .site-logo:hover { opacity: .8; }
 
     .nav-main ul { display: flex; gap: var(--space-xl); align-items: center; }
     .nav-main a {
@@ -126,6 +135,16 @@
     }
     .nav-main a:hover, .nav-main a.active { color: var(--text); }
     .nav-main a.active { border-bottom-color: var(--accent); }
+
+    .nav-signin {
+      font-size: var(--text-sm); font-weight: 600; color: #fff !important;
+      background: var(--accent, #C1493A);
+      padding: 8px 20px !important; border-radius: 50px;
+      transition: background var(--ease) !important;
+      margin-left: 8px; border: none !important;
+    }
+    .nav-signin:hover { background: var(--text) !important; color: #fff !important; }
+    .nav-signin.active { border-bottom-color: transparent !important; }
 
     /* ── HERO — typography only, bright, huge ─────────── */
     .hero {
@@ -342,12 +361,13 @@
   <!-- Header — glass effect, clean -->
   <header class="site-header" id="header">
     <nav class="header-inner container" aria-label="Main navigation">
-      <a href="/" class="site-logo">Rillatype <span>Studio</span></a>
+      <a href="/" class="site-logo"><img src="../logo.png" alt="Rillatype" class="site-logo__img"></a>
       <div class="nav-main">
         <ul>
           <li><a href="/shop/" class="active">Shop</a></li>
           <li><a href="/blog/">Blog</a></li>
           <li><a href="/about/">About</a></li>
+          <li><a href="sign-in.html" class="nav-signin">Sign In</a></li>
         </ul>
       </div>
     </nav>
@@ -514,6 +534,7 @@
         <a href="/contact/">Contact</a>
         <a href="/font-license/">License</a>
         <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
       </div>
       <p class="footer__copy">&copy; 2026 Rillatype Studio</p>
     </div>

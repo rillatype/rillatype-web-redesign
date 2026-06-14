@@ -115,9 +115,6 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
       font-display: swap;
     }
 
-    #tester-display {
-      font-family: '<?php echo esc_html($tester_font_family); ?>', var(--font-body) !important;
-    }
   </style>
 <?php endif; ?>
 
@@ -238,7 +235,7 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
       <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>" data-font-loaded="<?php echo $tester_font_src ? 'yes' : 'no'; ?>" data-font-source="<?php echo esc_attr($tester_font_file); ?>">
-        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0"<?php echo $tester_font_url ? ' style="font-family: ' . esc_attr($tester_font_family) . ', var(--font-body);"' : ''; ?>>The quick brown fox jumps over the lazy dog</div>
+        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
         <p class="tester__hint">Click the text and type. Adjust size & style below.<?php if (current_user_can('edit_products')) : ?> Font source: <?php echo $tester_font_file ? esc_html($tester_font_file) : esc_html__('not found', 'rillatype-v2'); ?><?php endif; ?></p>
         <div class="tester__controls">
           <div class="tester__row">

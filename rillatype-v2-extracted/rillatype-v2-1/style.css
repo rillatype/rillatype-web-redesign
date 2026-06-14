@@ -2997,6 +2997,7 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,.04);
 }
 .tester__display {
+  font-family: var(--font-body);
   font-size: clamp(28px, 6vw, 72px);
   line-height: 1.1;
   word-break: break-word; min-height: 2em;

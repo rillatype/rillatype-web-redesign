@@ -5,14 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rillatype Studio — Playful Fonts</title>
   <meta name="description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:title" content="Rillatype Studio — Playful Fonts">
+  <meta property="og:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rillatype.com/">
+  <meta property="og:image" content="https://rillatype.com/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rillatype Studio — Playful Fonts">
+  <meta name="twitter:description" content="Handcrafted fonts with personality. For brands that won't blend in.">
+  <meta name="twitter:image" content="https://rillatype.com/logo.png">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#e0553d">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🅡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       font-size: 16px; line-height: 1.5;
       color: #1a1a1a; background: #fafaf8;
       -webkit-font-smoothing: antialiased;
@@ -59,11 +71,8 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: var(--space-md) 0;
     }
-    .site-logo {
-      font-size: 22px; font-weight: 700; letter-spacing: -.04em;
-      display: flex; align-items: baseline; gap: 2px;
-    }
-    .site-logo__r { color: var(--coral); font-size: 28px; }
+    .site-logo { display: flex; align-items: center; }
+    .site-logo__img { height: 38px; width: auto; display: block; }
     .nav-main ul { display: flex; gap: var(--space-sm); align-items: center; }
     .nav-main a {
       font-size: 13px; font-weight: 500; color: #4a4a4a;
@@ -76,6 +85,16 @@
       background: var(--coral); transform: scaleX(0); transition: transform .3s cubic-bezier(.16,1,.3,1);
     }
     .nav-main a:hover::after { transform: scaleX(1); }
+
+    .nav-signin {
+      font-size: 13px; font-weight: 700; color: #fff !important;
+      background: var(--charcoal, #1A1814);
+      padding: 7px 18px !important; border-radius: 50px;
+      transition: background .2s !important;
+      margin-left: 4px;
+    }
+    .nav-signin:hover { background: var(--coral) !important; }
+    .nav-signin::after { display: none !important; }
 
     .nav-actions { display: flex; gap: var(--space-xs); align-items: center; }
     .nav-icon {
@@ -174,10 +193,6 @@
     }
     .hero__cta:hover { background: var(--coral); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(224,85,61,.25); }
     .hero__cta:active { transform: scale(.96); }
-    .hero__cta--ghost {
-      background: transparent; color: var(--charcoal); border: 1.5px solid #d0ccc8;
-    }
-    .hero__cta--ghost:hover { background: transparent; border-color: var(--charcoal); box-shadow: none; }
 
     /* ── SECTION LABEL (playful) ────────────────────── */
     .section-label {
@@ -210,7 +225,10 @@
 
     .font-card {
       display: block; position: relative;
+      background: #fff;
+      border: 1px solid #f0ece8;
       border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
       transition: transform .35s cubic-bezier(.16,1,.3,1),
                   box-shadow .35s;
     }
@@ -260,12 +278,14 @@
     }
 
     .font-card__body {
-      padding: var(--space-sm) var(--space-2xs);
-      display: flex; align-items: baseline; justify-content: space-between;
+      padding: var(--space-md) var(--space-md) var(--space-lg);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
     }
-    .font-card__name { font-size: 17px; font-weight: 650; letter-spacing: -.02em; }
-    .font-card__style { font-size: 13px; color: var(--text-muted); }
-    .font-card__price { font-size: 14px; font-weight: 600; color: #4a4a4a; font-variant-numeric: tabular-nums; }
+    .font-card__info { display: flex; flex-direction: column; gap: 2px; }
+    .font-card__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .font-card__style { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+    .font-card__price { font-size: 16px; font-weight: 700; color: var(--coral); font-variant-numeric: tabular-nums; }
 
     /* ── BEHIND THE SCENES — the process ────────────── */
     .process {
@@ -341,12 +361,10 @@
     .freebie {
       display: block; position: relative;
       border-radius: 12px; overflow: hidden;
-      border: 1.5px solid #f0ece8;
-      transition: transform .3s, box-shadow .3s;
     }
-    .freebie:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,.06);
+    .freebie:hover .freebie__preview {
+      transform: scale(1.02);
+      box-shadow: 0 8px 32px rgba(0,0,0,.08);
     }
 
     .freebie__preview {
@@ -355,6 +373,7 @@
       font-size: clamp(1.5rem, 3vw, 2.5rem);
       font-weight: 700; letter-spacing: -.03em;
       text-align: center;
+      transition: transform .35s cubic-bezier(.16,1,.3,1);
     }
     .freebie__preview--swashes { background: linear-gradient(135deg, #f0e8f8 0%, #e0d0f0 100%); color: #2a1a3a; }
     .freebie__preview--ornaments { background: linear-gradient(135deg, #fef2ef 0%, #fad8c8 100%); color: #4a2818; }
@@ -364,11 +383,12 @@
       position: absolute; top: var(--space-sm); right: var(--space-sm);
       background: var(--coral); color: #fff;
       font-size: 11px; font-weight: 700; letter-spacing: .04em;
-      padding: 3px 10px; border-radius: 4px;
+      padding: 4px 12px; border-radius: 4px;
+      z-index: 1;
     }
-    .freebie__body { padding: var(--space-sm) var(--space-md) var(--space-md); }
-    .freebie__name { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
-    .freebie__desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .freebie__body { margin-top: var(--space-sm); }
+    .freebie__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .freebie__desc { font-size: 13px; line-height: 1.5; color: var(--text-muted); margin-top: 2px; }
 
     /* ── OTHER PRODUCTS ─────────────────────────────── */
     .other-products {
@@ -473,17 +493,23 @@
       .latest__grid { grid-template-columns: repeat(2, 1fr); }
     }
 
+    .latest__item {
+      display: block;
+      background: #fff;
+      border: 1px solid #f0ece8;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.04);
+      transition: transform .35s cubic-bezier(.16,1,.3,1),
+                  box-shadow .35s;
+    }
+    .latest__item:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.08); }
+    .latest__item:active { transform: scale(.97); }
+
     .latest__preview {
       aspect-ratio: 3/2;
       display: flex; align-items: center; justify-content: center;
       font-size: clamp(1.5rem, 3vw, 2.75rem);
       font-weight: 700; letter-spacing: -.03em; text-align: center;
-      transition: transform .35s cubic-bezier(.16,1,.3,1),
-                  box-shadow .35s;
-    }
-    .latest__item:hover .latest__preview {
-      transform: scale(1.02);
-      box-shadow: 0 8px 32px rgba(0,0,0,.08);
     }
 
     .latest__preview--neon { background: linear-gradient(135deg, #eef0f4 0%, #d8dce6 100%); color: #1a1e26; }
@@ -491,8 +517,13 @@
     .latest__preview--luna { background: linear-gradient(135deg, #eef2f6 0%, #d6dee8 100%); color: #16202a; }
     .latest__preview--koda { background: linear-gradient(135deg, #f2eee8 0%, #e4ded6 100%); color: #1e1a16; }
 
-    .latest__name { margin-top: var(--space-sm); font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
-    .latest__price { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; margin-top: 2px; }
+    .latest__body {
+      padding: var(--space-md) var(--space-md) var(--space-lg);
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .latest__name { font-size: 18px; font-weight: 700; letter-spacing: -.02em; }
+    .latest__price { font-size: 16px; font-weight: 700; color: var(--coral); font-variant-numeric: tabular-nums; }
 
     /* ── CATEGORIES — pill cloud ─────────────────────── */
     .categories { padding: var(--space-2xl) 0; }
@@ -508,7 +539,8 @@
     }
     .categories__pill:hover {
       border-color: var(--coral); color: var(--coral);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(224,85,61,.15);
     }
     .categories__pill small {
       font-size: 12px; font-weight: 400; color: #b0aeaa;
@@ -517,31 +549,109 @@
 
     /* ── BLOG ────────────────────────────────────────── */
     .blog-section {
-      padding: var(--space-3xl) 0;
-      border-top: 1px solid #e8e4e0;
-      border-bottom: 1px solid #e8e4e0;
+      padding: var(--space-3xl) 0 var(--space-lg);
     }
-    .blog-list { display: flex; flex-direction: column; gap: var(--space-sm); }
+    .blog-box {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: var(--space-xl) var(--space-xl) var(--space-lg);
+    }
+    .blog-box .section-label { margin-bottom: var(--space-lg); }
+    .blog-list { display: flex; flex-direction: column; gap: 2px; }
     .blog-link {
-      display: flex; align-items: baseline; gap: var(--space-md);
-      padding: var(--space-md) 0;
-      border-bottom: 1px solid #f0ece8;
-      transition: opacity .2s;
+      display: flex; align-items: center; gap: var(--space-md);
+      padding: var(--space-md) var(--space-sm);
+      border-radius: 8px;
+      transition: background .2s;
     }
-    .blog-link:last-child { border-bottom: none; }
-    .blog-link:hover { opacity: .7; }
+    .blog-link:hover { background: rgba(255,255,255,.6); }
     .blog-link__date {
-      font-size: 13px; color: #b0aeaa; font-feature-settings: "tnum";
-      min-width: 5.5rem; font-weight: 400;
+      font-size: 12px; color: #b0aca8;
+      font-feature-settings: "tnum";
+      min-width: 4.5rem;
     }
     .blog-link__title {
-      font-size: 18px; font-weight: 480; letter-spacing: -.01em;
+      font-size: 16px; font-weight: 480; letter-spacing: -.01em;
+      color: var(--charcoal);
     }
     .blog-link__arrow {
-      margin-left: auto; color: var(--text-muted);
-      transition: transform .2s;
+      margin-left: auto; font-size: 12px; color: #c8c4c0;
     }
-    .blog-link:hover .blog-link__arrow { transform: translateX(4px); }
+
+    /* ── CUSTOM LICENSE ──────────────────────────────── */
+    .license-cta {
+      padding: 0 0 var(--space-3xl);
+    }
+    .license-cta__box {
+      background: var(--sand);
+      border-radius: 16px;
+      padding: var(--space-2xl) var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xl);
+    }
+    .license-cta__text h3 {
+      font-size: 18px; font-weight: 700; letter-spacing: -.02em;
+      margin-bottom: 4px;
+    }
+    .license-cta__text p {
+      font-size: 14px; color: #6a6a66; line-height: 1.5;
+    }
+    .license-cta__btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: #fff;
+      background: var(--charcoal);
+      padding: 12px 24px; border-radius: 50px;
+      transition: all .25s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .license-cta__btn:hover {
+      background: var(--coral);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(224,85,61,.2);
+    }
+    .license-cta__btn .arrow {
+      display: inline-block;
+      transition: transform .25s;
+    }
+    .license-cta__btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ── MICRO-ANIMATIONS ──────────────────────────── */
+
+    .anim-card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s cubic-bezier(.16,1,.3,1),
+                  transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .anim-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-label::before {
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .section-label.is-visible::before {
+      transform: scaleX(1);
+    }
+
+    @keyframes badge-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .freebie__badge {
+      animation: badge-pulse 3s ease-in-out infinite;
+    }
+
+    .site-header {
+      transition: background .3s, backdrop-filter .3s;
+    }
 
     /* ── FOOTER ──────────────────────────────────────── */
     .site-footer { padding: var(--space-2xl) 0; font-size: 14px; color: var(--text-muted); }
@@ -566,7 +676,7 @@
   <!-- Header -->
   <header class="site-header">
     <nav class="header-inner container" aria-label="Main">
-      <a href="/" class="site-logo"><span class="site-logo__r">R</span>illatype</a>
+      <a href="/" class="site-logo"><img src="logo.png" alt="Rillatype" class="site-logo__img"></a>
       <div class="nav-main">
         <ul>
           <li><a href="/" class="active">Home</a></li>
@@ -575,7 +685,7 @@
           <li><a href="/product-category/freebies/">Freebies</a></li>
           <li><a href="/license/">License</a></li>
           <li><a href="/contact-us/">Contact</a></li>
-          <li><a href="/my-account/">Account</a></li>
+          <li><a href="sign-in.html" class="nav-signin">Sign In</a></li>
         </ul>
       </div>
       <div class="nav-actions">
@@ -593,18 +703,18 @@
     <section class="hero" aria-label="Welcome">
       <div class="hero__bg"></div>
       <div class="hero__inner container">
-        <p class="hero__tag">Playful typefaces</p>
+        <p class="hero__tag">The un-curated type foundry</p>
         <div class="type-morph" id="type-morph">
-          <span class="type-morph__line">Fonts that</span>
-          <span class="type-morph__line"><span class="type-morph__accent">refuse</span> to behave.</span>
-          <span class="type-morph__line type-morph__italic">— handcrafted with mischief.</span>
+          <span class="type-morph__line">Fonts for</span>
+          <span class="type-morph__line">the messy,</span>
+          <span class="type-morph__line type-morph__italic">the bold, the real.</span>
         </div>
         <button class="hero__shuffle" id="shuffle-btn" aria-label="Shuffle headline">
           <span>↻</span> Shuffle
         </button>
         <div class="hero__cta-row">
           <a href="/shop/" class="hero__cta">Browse fonts →</a>
-          <a href="/about/" class="hero__cta hero__cta--ghost">Meet the maker</a>
+          <!-- Meet the maker removed -->
         </div>
       </div>
     </section>
@@ -615,32 +725,38 @@
         <p class="section-label">Featured specimens</p>
         <div class="font-showcase">
 
-          <a href="/product/mango-letter/" class="font-card font-card--mango">
-            <div class="font-card__preview" style="background-image:url('/static/previews/mango-1.jpg');background-size:cover;background-position:center;">
+          <a href="/product/mango-letter/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/mango-1.jpg');background-size:cover;background-position:center;">
             </div>
             <div class="font-card__body">
-              <span class="font-card__name">Mango Letter</span>
-              <span class="font-card__style">playful display</span>
+              <div class="font-card__info">
+                <span class="font-card__name">Mango Letter</span>
+                <span class="font-card__style">playful display</span>
+              </div>
               <span class="font-card__price">$18</span>
             </div>
           </a>
 
-          <a href="/product/crimson-queen/" class="font-card font-card--mango">
-            <div class="font-card__preview" style="background-image:url('/static/previews/crimson-queen-1.jpg');background-size:cover;background-position:center;">
+          <a href="/product/crimson-queen/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/crimson-queen-1.jpg');background-size:cover;background-position:center;">
             </div>
             <div class="font-card__body">
-              <span class="font-card__name">Crimson Queen</span>
-              <span class="font-card__style">bold display</span>
+              <div class="font-card__info">
+                <span class="font-card__name">Crimson Queen</span>
+                <span class="font-card__style">bold display</span>
+              </div>
               <span class="font-card__price">$22</span>
             </div>
           </a>
 
-          <a href="/product/baldock/" class="font-card font-card--mango">
-            <div class="font-card__preview" style="background-image:url('/static/previews/baldock-1.jpg');background-size:cover;background-position:center;">
+          <a href="/product/baldock/" class="font-card font-card--mango anim-card">
+            <div class="font-card__preview" style="background-image:url('previews/baldock-1.jpg');background-size:cover;background-position:center;">
             </div>
             <div class="font-card__body">
-              <span class="font-card__name">Baldock</span>
-              <span class="font-card__style">vintage serif</span>
+              <div class="font-card__info">
+                <span class="font-card__name">Baldock</span>
+                <span class="font-card__style">vintage serif</span>
+              </div>
               <span class="font-card__price">$20</span>
             </div>
           </a>
@@ -649,25 +765,25 @@
       </div>
     </section>
 
-    <!-- Behind the Scenes — the process -->
-    <section class="process" aria-label="How fonts are made">
+    <!-- License & perks -->
+    <section class="process" aria-label="License and perks">
       <div class="container">
-        <p class="section-label">Behind the type</p>
+        <p class="section-label">License &amp; perks</p>
         <div class="process__grid">
           <div class="process__step">
-            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-sketch/600/400');"></div>
-            <h3>Sketch</h3>
-            <p>Every font starts on paper. Rough curves, happy accidents, and ideas that refuse to fit in a grid.</p>
+            <div class="process__icon">📜</div>
+            <h3>Commercial License</h3>
+            <p>Use it anywhere. Personal, client, commercial. No extra fees, no expiry.</p>
           </div>
           <div class="process__step">
-            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-vector/600/400');"></div>
-            <h3>Vector</h3>
-            <p>Into FontLab for cleanup. Spacing, kerning, alternates — the invisible work that makes type breathe.</p>
+            <div class="process__icon">🔤</div>
+            <h3>OTF &amp; TTF</h3>
+            <p>Print and screen ready. Tested, subset, delivered.</p>
           </div>
           <div class="process__step">
-            <div class="process__img" style="background-image:url('https://picsum.photos/seed/rillatype-ship/600/400');"></div>
-            <h3>Ship</h3>
-            <p>Packaged as OTF, TTF &amp; WOFF2. Tested, subset for web, and delivered — ready for your next project.</p>
+            <div class="process__icon">🎁</div>
+            <h3>Bonus Extras</h3>
+            <p>Illustrations, logo templates, alternates — varies per font.</p>
           </div>
         </div>
       </div>
@@ -678,25 +794,25 @@
       <div class="container">
         <p class="section-label">Free stuff</p>
         <div class="freebies__grid">
-          <a href="/freebies/radiant-summertime/" class="freebie">
+          <a href="/freebies/radiant-summertime/" class="freebie anim-card">
             <span class="freebie__badge">Free</span>
-            <div class="freebie__preview freebie__preview--swashes" style="background-image:url('/static/previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__preview freebie__preview--swashes" style="background-image:url('previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
             <div class="freebie__body">
               <p class="freebie__name">Radiant Summertime</p>
               <p class="freebie__desc">Warm display font. Full lowercase + numerals. Free for personal use.</p>
             </div>
           </a>
-          <a href="/freebies/daisy-hotline/" class="freebie">
+          <a href="/freebies/daisy-hotline/" class="freebie anim-card">
             <span class="freebie__badge">Free</span>
-            <div class="freebie__preview freebie__preview--ornaments" style="background-image:url('/static/previews/daisy-hotline-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__preview freebie__preview--ornaments" style="background-image:url('previews/daisy-hotline-1.jpg');background-size:cover;background-position:center;"></div>
             <div class="freebie__body">
               <p class="freebie__name">Daisy Hotline</p>
               <p class="freebie__desc">Playful script font. Includes alternates and swashes. Free download.</p>
             </div>
           </a>
-          <a href="/freebies/bromrose-sands/" class="freebie">
+          <a href="/freebies/bromrose-sands/" class="freebie anim-card">
             <span class="freebie__badge">Free</span>
-            <div class="freebie__preview freebie__preview--sample" style="background-image:url('/static/previews/mango-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="freebie__preview freebie__preview--sample" style="background-image:url('previews/mango-1.jpg');background-size:cover;background-position:center;"></div>
             <div class="freebie__body">
               <p class="freebie__name">Mango Letter Sample</p>
               <p class="freebie__desc">Try before you buy. Full specimen set for Mango Letter.</p>
@@ -735,25 +851,33 @@
       <div class="container">
         <p class="section-label">Fresh drops</p>
         <div class="latest__grid">
-          <a href="/product/bawden/" class="latest__item">
-            <div class="latest__preview latest__preview--neon" style="background-image:url('/static/previews/bawden-1.jpg');background-size:cover;background-position:center;"></div>
-            <p class="latest__name">Bawden</p>
-            <p class="latest__price">$18</p>
+          <a href="/product/bawden/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--neon" style="background-image:url('previews/bawden-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Bawden</p>
+              <p class="latest__price">$18</p>
+            </div>
           </a>
-          <a href="/product/moyshire/" class="latest__item">
-            <div class="latest__preview latest__preview--wilder" style="background-image:url('/static/previews/moyshire-1.jpg');background-size:cover;background-position:center;"></div>
-            <p class="latest__name">Moyshire</p>
-            <p class="latest__price">$16</p>
+          <a href="/product/moyshire/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--wilder" style="background-image:url('previews/moyshire-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Moyshire</p>
+              <p class="latest__price">$16</p>
+            </div>
           </a>
-          <a href="/product/mordial/" class="latest__item">
-            <div class="latest__preview latest__preview--luna" style="background-image:url('/static/previews/mordial-1.jpg');background-size:cover;background-position:center;"></div>
-            <p class="latest__name">Mordial</p>
-            <p class="latest__price">$24</p>
+          <a href="/product/mordial/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--luna" style="background-image:url('previews/mordial-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Mordial</p>
+              <p class="latest__price">$24</p>
+            </div>
           </a>
-          <a href="/product/radiant-summertime/" class="latest__item">
-            <div class="latest__preview latest__preview--koda" style="background-image:url('/static/previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
-            <p class="latest__name">Radiant Summertime</p>
-            <p class="latest__price">$15</p>
+          <a href="/product/radiant-summertime/" class="latest__item anim-card">
+            <div class="latest__preview latest__preview--koda" style="background-image:url('previews/radiant-summertime-1.jpg');background-size:cover;background-position:center;"></div>
+            <div class="latest__body">
+              <p class="latest__name">Radiant Summertime</p>
+              <p class="latest__price">$15</p>
+            </div>
           </a>
         </div>
       </div>
@@ -764,12 +888,12 @@
       <div class="container">
         <p class="section-label">Browse by style</p>
         <div class="categories__cloud">
-          <a href="/product-category/display/" class="categories__pill">Display <small>12</small></a>
-          <a href="/product-category/script/" class="categories__pill">Script <small>8</small></a>
-          <a href="/product-category/handwritten/" class="categories__pill">Handwritten <small>6</small></a>
-          <a href="/product-category/sans-serif/" class="categories__pill">Sans <small>10</small></a>
-          <a href="/product-category/serif/" class="categories__pill">Serif <small>5</small></a>
-          <a href="/product-category/freebies/" class="categories__pill">Freebies <small>4</small></a>
+          <a href="/product-category/display/" class="categories__pill anim-card">Display <small>12</small></a>
+          <a href="/product-category/script/" class="categories__pill anim-card">Script <small>8</small></a>
+          <a href="/product-category/handwritten/" class="categories__pill anim-card">Handwritten <small>6</small></a>
+          <a href="/product-category/sans-serif/" class="categories__pill anim-card">Sans <small>10</small></a>
+          <a href="/product-category/serif/" class="categories__pill anim-card">Serif <small>5</small></a>
+          <a href="/product-category/freebies/" class="categories__pill anim-card">Freebies <small>4</small></a>
         </div>
       </div>
     </section>
@@ -777,23 +901,38 @@
     <!-- Blog -->
     <section class="blog-section" aria-label="Blog">
       <div class="container">
-        <p class="section-label">From the studio</p>
-        <div class="blog-list">
-          <a href="/blog/choosing-fonts/" class="blog-link">
-            <span class="blog-link__date">Jun 3</span>
-            <span class="blog-link__title">How to Choose the Right Display Font</span>
-            <span class="blog-link__arrow">→</span>
-          </a>
-          <a href="/blog/font-pairing/" class="blog-link">
-            <span class="blog-link__date">May 18</span>
-            <span class="blog-link__title">Font Pairing 101: Combinations That Work</span>
-            <span class="blog-link__arrow">→</span>
-          </a>
-          <a href="/blog/behind-mango/" class="blog-link">
-            <span class="blog-link__date">Apr 22</span>
-            <span class="blog-link__title">Behind the Design: Making of Mango Letters</span>
-            <span class="blog-link__arrow">→</span>
-          </a>
+        <div class="blog-box">
+          <p class="section-label">From the studio</p>
+          <div class="blog-list">
+            <a href="/blog/choosing-fonts/" class="blog-link">
+              <span class="blog-link__date">Jun 3</span>
+              <span class="blog-link__title">How to Choose the Right Display Font</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+            <a href="/blog/font-pairing/" class="blog-link">
+              <span class="blog-link__date">May 18</span>
+              <span class="blog-link__title">Font Pairing 101: Combinations That Work</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+            <a href="/blog/behind-mango/" class="blog-link">
+              <span class="blog-link__date">Apr 22</span>
+              <span class="blog-link__title">Behind the Design: Making of Mango Letters</span>
+              <span class="blog-link__arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Custom License -->
+    <section class="license-cta" aria-label="Custom license">
+      <div class="container">
+        <div class="license-cta__box">
+          <div class="license-cta__text">
+            <h3>Need something custom?</h3>
+            <p>We do custom type commissions, exclusive licenses, and brand font packages. One-off or full family.</p>
+          </div>
+          <a href="/contact/" class="license-cta__btn">Talk to us <span class="arrow">→</span></a>
         </div>
       </div>
     </section>
@@ -828,6 +967,7 @@
         <a href="/contact/">Contact</a>
         <a href="/font-license/">License</a>
         <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
       </div>
       <p class="footer-copy">&copy; 2026 Rillatype Studio</p>
     </div>
@@ -836,11 +976,11 @@
   <script>
     // Shuffle headlines
     const headlines = [
-      ['Fonts that', '<span class="type-morph__accent">refuse</span> to behave.', '<span class="type-morph__italic">— handcrafted with mischief.</span>'],
-      ['Type with', '<span class="type-morph__accent">attitude</span>.', '<span class="type-morph__italic">— no bland allowed.</span>'],
-      ['Make your words', '<span class="type-morph__accent">dance</span>.', '<span class="type-morph__italic">— one glyph at a time.</span>'],
-      ['Your brand', '<span class="type-morph__accent">deserves</span> better.', '<span class="type-morph__italic">— start with the letters.</span>'],
-      ['Fonts that', '<span class="type-morph__accent">break</span> the grid.', '<span class="type-morph__italic">— in a good way.</span>']
+      ['Fonts for', 'the messy,', '<span class="type-morph__italic">the bold, the real.</span>'],
+      ['Not another', 'sans serif.', '<span class="type-morph__italic">— probably.</span>'],
+      ['Good letters', 'do not need', '<span class="type-morph__italic">an intro.</span>'],
+      ['Un-curated,', 'un-filtered.', '<span class="type-morph__italic">— just drawn.</span>'],
+      ['From our', 'desk to', '<span class="type-morph__italic">your project.</span>']
     ];
     let hIdx = 0;
     document.getElementById('shuffle-btn').addEventListener('click', function() {
@@ -873,11 +1013,38 @@
       }
     });
 
-    // Sticky header border
+    // Sticky header border + blur
     const header = document.querySelector('.site-header');
+    let ticking = false;
     window.addEventListener('scroll', () => {
-      header.style.borderBottomColor = scrollY > 10 ? '#e8e4e0' : 'transparent';
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          header.style.borderBottomColor = y > 10 ? '#e8e4e0' : 'transparent';
+          header.style.backdropFilter = y > 10 ? 'blur(20px)' : 'blur(12px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
     }, {passive: true});
+
+    // ── Intersection Observer: staggered cards + label line ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          if (entry.target.classList.contains('anim-card')) {
+            entry.target.style.transitionDelay = (i % 12 * 60) + 'ms';
+          }
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    // Observe all anim-card elements
+    document.querySelectorAll('.anim-card').forEach(el => observer.observe(el));
+    // Observe section labels for line animation
+    document.querySelectorAll('.section-label').forEach(el => observer.observe(el));
   </script>
 
 </body>

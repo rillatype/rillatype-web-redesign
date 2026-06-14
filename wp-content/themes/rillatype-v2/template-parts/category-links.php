@@ -47,35 +47,3 @@ if (empty($categories)) {
     <?php endif; ?>
   <?php endforeach; ?>
 </nav>
-
-<style>
-.category-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-  padding: var(--spacing-sm, 1rem) 0;
-  border-top: 1px solid var(--color-gray-200, #E2DFD7);
-  border-bottom: 1px solid var(--color-gray-200, #E2DFD7);
-}
-
-.category-links__item {
-  font-family: var(--font-ui, sans-serif);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--color-gray-400, #8C887D);
-  text-decoration: none;
-  padding: 0.4rem 0.9rem;
-  border-radius: 3px;
-  transition: color var(--transition, 0.2s ease), background var(--transition, 0.2s ease);
-}
-
-.category-links__item:hover {
-  color: var(--color-accent, #C1493A);
-  background: var(--color-gray-100, #F0EFEA);
-}
-
-.category-links__item:focus-visible {
-  outline: 2px solid var(--color-accent, #C1493A);
-  outline-offset: 2px;
-}
-</style>

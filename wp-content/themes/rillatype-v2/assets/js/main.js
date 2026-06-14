@@ -57,6 +57,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* === Sticky Header Scroll Effect === */
+  const header = document.querySelector('.site-header');
+  if (header) {
+    const headerObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        header.classList.toggle('scrolled', !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '-1px 0px 0px 0px' });
+    headerObs.observe(document.body);
+  }
+  
+  /* === Staggered Card Entrance (Shop) === */
+  const animCards = document.querySelectorAll('.anim-card');
+  if (animCards.length > 0 && 'IntersectionObserver' in window) {
+    const cardObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry, i) {
+        if (entry.isIntersecting) {
+          var idx = Array.from(entry.target.parentNode.children).indexOf(entry.target);
+          entry.target.style.transitionDelay = (idx * 60) + 'ms';
+          entry.target.classList.add('is-visible');
+          cardObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    
+    animCards.forEach(function (el) { cardObs.observe(el); });
+  } else if (animCards.length > 0) {
+    animCards.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
   /* === Image Lazy Loading === */
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
 
