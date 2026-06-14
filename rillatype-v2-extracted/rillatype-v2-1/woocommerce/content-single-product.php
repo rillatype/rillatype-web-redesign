@@ -191,7 +191,18 @@ $has_fonts = !empty($fonts);
                   <div class="license-tier__row">
                     <div class="license-tier__info">
                       <div class="license-tier__name"><?php echo esc_html($v_name); ?></div>
-                      <div class="license-tier__desc">Single user, personal & commercial projects</div>
+                      <div class="license-tier__desc"><?php
+                        $desc_map = array(
+                          'standard'  => 'Single user, up to 5 commercial projects.',
+                          'extended'  => 'Unlimited projects, @font-face, up to 10 users.',
+                          'webfont'   => 'Website embedding & e-books, up to 100K views.',
+                          'app'       => 'Use in 1 app or game with unlimited in-app views.',
+                          'broadcast' => 'Unlimited video, TV, film & motion graphics.',
+                          'corporate' => 'Unlimited everything for your organization.',
+                        );
+                        $slug = $term ? $term->slug : '';
+                        echo isset($desc_map[$slug]) ? esc_html($desc_map[$slug]) : esc_html__('Personal & commercial use.', 'rillatype-v2');
+                      ?></div>
                     </div>
                     <span class="license-tier__price"><?php echo wc_price($v_price); ?></span>
                   </div>
@@ -217,7 +228,7 @@ $has_fonts = !empty($fonts);
         <?php endif; ?>
 
         <p class="product-guarantee">
-          <strong>Lifetime updates</strong> included. <a href="<?php echo esc_url(home_url('/font-license/')); ?>" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
+          <strong>Lifetime updates</strong> included. <a href="<?php echo esc_url(home_url('/license/')); ?>" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
         </p>
 
       </div>

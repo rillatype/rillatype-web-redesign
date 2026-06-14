@@ -14,7 +14,7 @@
         <?php else : ?>
           <a href="https://instagram.com/rillatype" rel="me" target="_blank" rel="noopener">Instagram</a>
           <a href="<?php echo esc_url(home_url('/contact/')); ?>"><?php esc_html_e('Contact', 'rillatype-v2'); ?></a>
-          <a href="<?php echo esc_url(home_url('/font-license/')); ?>"><?php esc_html_e('License', 'rillatype-v2'); ?></a>
+          <a href="<?php echo esc_url(home_url('/license/')); ?>"><?php esc_html_e('License', 'rillatype-v2'); ?></a>
           <a href="<?php echo esc_url(home_url('/privacy/')); ?>"><?php esc_html_e('Privacy', 'rillatype-v2'); ?></a>
           <a href="<?php echo esc_url(home_url('/terms/')); ?>"><?php esc_html_e('Terms', 'rillatype-v2'); ?></a>
         <?php endif; ?>
