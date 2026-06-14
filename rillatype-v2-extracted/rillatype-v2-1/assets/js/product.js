@@ -351,40 +351,19 @@
     var radio = selected.querySelector('input[type="radio"]');
     if (!radio) return;
 
-    var formData = new FormData();
-    formData.append('add-to-cart', form.querySelector('[name="add-to-cart"]').value);
-    formData.append('product_id', form.querySelector('[name="product_id"]').value);
-    formData.append('variation_id', radio.value);
-    formData.append('quantity', 1);
-
-    try {
-      var attrs = JSON.parse(radio.getAttribute('data-attributes') || '{}');
-      for (var key in attrs) {
-        if (attrs.hasOwnProperty(key)) {
-          formData.append(key, attrs[key]);
-        }
-      }
-    } catch (e) {}
-
+    var formData = new FormData(form);
     var origText = btn.textContent;
     btn.textContent = 'Adding…';
     btn.disabled = true;
 
-    var ajaxUrl = window.location.origin + '/?wc-ajax=add_to_cart';
-
-    fetch(ajaxUrl, {
+    fetch(window.location.href, {
       method: 'POST',
       credentials: 'same-origin',
       body: formData
     })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
+    .then(function () {
       btn.textContent = origText;
       btn.disabled = false;
-      if (data && data.error) {
-        showToast(data.error);
-        return;
-      }
       showToast('Added to cart!');
       document.body.dispatchEvent(new CustomEvent('wc_fragment_refresh'));
     })
