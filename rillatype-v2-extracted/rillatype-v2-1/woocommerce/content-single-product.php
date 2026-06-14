@@ -200,8 +200,14 @@ $has_fonts = !empty($fonts);
                           'broadcast' => 'Unlimited video, TV, film & motion graphics.',
                           'corporate' => 'Unlimited everything for your organization.',
                         );
-                        $slug = $term ? $term->slug : '';
-                        echo isset($desc_map[$slug]) ? esc_html($desc_map[$slug]) : esc_html__('Personal & commercial use.', 'rillatype-v2');
+                        $matched_desc = '';
+                        foreach ($v['attributes'] as $attr_slug) {
+                          if (!empty($attr_slug) && isset($desc_map[$attr_slug])) {
+                            $matched_desc = $desc_map[$attr_slug];
+                            break;
+                          }
+                        }
+                        echo $matched_desc ? esc_html($matched_desc) : esc_html__('Personal & commercial use.', 'rillatype-v2');
                       ?></div>
                     </div>
                     <span class="license-tier__price"><?php echo wc_price($v_price); ?></span>
