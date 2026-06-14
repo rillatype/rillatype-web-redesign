@@ -132,6 +132,11 @@
       if (addToCartBtn && price) {
         addToCartBtn.textContent = 'Add to Cart — $' + parseFloat(price).toFixed(2);
       }
+      // Update sticky bar price
+      var stickyPrice = document.querySelector('.sticky-bar__price');
+      if (stickyPrice && price) {
+        stickyPrice.textContent = '$' + parseFloat(price).toFixed(2);
+      }
     });
   });
 
@@ -315,6 +320,35 @@
       });
     }, { threshold: 0 });
     observer.observe(addBtn);
+
+    var stickyBtn = stickyBar.querySelector('.sticky-bar__btn');
+    if (stickyBtn) {
+      stickyBtn.addEventListener('click', function () {
+        var selected = document.querySelector('.license-tier.selected');
+        var form = document.querySelector('.variations-form');
+
+        if (form && !selected) {
+          showToast('Please select a license first.');
+          return;
+        }
+
+        if (form) {
+          form.submit();
+        } else {
+          addBtn.click();
+        }
+      });
+    }
+  }
+
+  function showToast(msg) {
+    var existing = document.querySelector('.sticky-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.className = 'sticky-toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(function () { toast.remove(); }, 3000);
   }
 
   /* ── Glyph Section ── */

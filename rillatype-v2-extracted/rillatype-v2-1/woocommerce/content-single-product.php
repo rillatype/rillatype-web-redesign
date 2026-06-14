@@ -468,8 +468,8 @@ $has_fonts = !empty($fonts);
         <img src="<?php echo esc_url($thumb_url); ?>" alt="" class="sticky-bar__thumb" loading="lazy">
       <?php endif; ?>
       <span class="sticky-bar__name"><?php echo esc_html($title); ?></span>
-      <span class="sticky-bar__price"><?php echo $product->get_price_html(); ?></span>
+      <span class="sticky-bar__price"><?php echo rillatype_min_price($product); ?></span>
     </div>
-    <a href="#add-to-cart-btn" class="sticky-bar__btn">Add to Cart</a>
+    <button type="button" class="sticky-bar__btn">Add to Cart</button>
   </div>
 </div>
