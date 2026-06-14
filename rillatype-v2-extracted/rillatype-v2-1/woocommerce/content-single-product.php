@@ -286,6 +286,64 @@ $has_fonts = !empty($fonts);
     </div>
   </section>
 
+  <!-- Character Set -->
+  <section class="glyph-section" aria-label="Character set">
+    <div class="container">
+      <button class="section-label product-section-label glyph-toggle" id="glyph-toggle" aria-expanded="false">
+        <span>Character set</span>
+        <span class="glyph-toggle__icon">+</span>
+      </button>
+      <div class="glyph-panel" id="glyph-panel" style="display:none;">
+        <div class="glyph-controls">
+          <?php if ($has_fonts && count($fonts) > 0) : ?>
+          <select class="tester__font-select glyph-font-select" id="glyph-font" aria-label="Font">
+            <?php foreach ($fonts as $i => $f) : ?>
+            <option value="<?php echo esc_attr($f['family']); ?>"<?php echo $i === 0 ? ' selected' : ''; ?>><?php echo esc_html($f['name']); ?></option>
+            <?php endforeach; ?>
+          </select>
+          <?php endif; ?>
+          <div class="tester__slider" style="max-width:220px;">
+            <label for="glyph-size">Size</label>
+            <input type="range" id="glyph-size" min="12" max="72" value="20" step="1" aria-label="Glyph size">
+            <output id="glyph-size-value">20px</output>
+          </div>
+        </div>
+        <div class="glyph-grid" id="glyph-grid">
+          <span class="glyph-cell">A</span><span class="glyph-cell">B</span><span class="glyph-cell">C</span>
+          <span class="glyph-cell">D</span><span class="glyph-cell">E</span><span class="glyph-cell">F</span>
+          <span class="glyph-cell">G</span><span class="glyph-cell">H</span><span class="glyph-cell">I</span>
+          <span class="glyph-cell">J</span><span class="glyph-cell">K</span><span class="glyph-cell">L</span>
+          <span class="glyph-cell">M</span><span class="glyph-cell">N</span><span class="glyph-cell">O</span>
+          <span class="glyph-cell">P</span><span class="glyph-cell">Q</span><span class="glyph-cell">R</span>
+          <span class="glyph-cell">S</span><span class="glyph-cell">T</span><span class="glyph-cell">U</span>
+          <span class="glyph-cell">V</span><span class="glyph-cell">W</span><span class="glyph-cell">X</span>
+          <span class="glyph-cell">Y</span><span class="glyph-cell">Z</span>
+          <span class="glyph-cell">a</span><span class="glyph-cell">b</span><span class="glyph-cell">c</span>
+          <span class="glyph-cell">d</span><span class="glyph-cell">e</span><span class="glyph-cell">f</span>
+          <span class="glyph-cell">g</span><span class="glyph-cell">h</span><span class="glyph-cell">i</span>
+          <span class="glyph-cell">j</span><span class="glyph-cell">k</span><span class="glyph-cell">l</span>
+          <span class="glyph-cell">m</span><span class="glyph-cell">n</span><span class="glyph-cell">o</span>
+          <span class="glyph-cell">p</span><span class="glyph-cell">q</span><span class="glyph-cell">r</span>
+          <span class="glyph-cell">s</span><span class="glyph-cell">t</span><span class="glyph-cell">u</span>
+          <span class="glyph-cell">v</span><span class="glyph-cell">w</span><span class="glyph-cell">x</span>
+          <span class="glyph-cell">y</span><span class="glyph-cell">z</span>
+          <span class="glyph-cell">0</span><span class="glyph-cell">1</span><span class="glyph-cell">2</span>
+          <span class="glyph-cell">3</span><span class="glyph-cell">4</span><span class="glyph-cell">5</span>
+          <span class="glyph-cell">6</span><span class="glyph-cell">7</span><span class="glyph-cell">8</span>
+          <span class="glyph-cell">9</span>
+          <span class="glyph-cell">!</span><span class="glyph-cell">?</span><span class="glyph-cell">.</span>
+          <span class="glyph-cell">,</span><span class="glyph-cell">:</span><span class="glyph-cell">;</span>
+          <span class="glyph-cell">-</span><span class="glyph-cell">_</span><span class="glyph-cell">@</span>
+          <span class="glyph-cell">#</span><span class="glyph-cell">$</span><span class="glyph-cell">%</span>
+          <span class="glyph-cell">&amp;</span><span class="glyph-cell">*</span><span class="glyph-cell">(</span>
+          <span class="glyph-cell">)</span><span class="glyph-cell">[</span><span class="glyph-cell">]</span>
+          <span class="glyph-cell">{</span><span class="glyph-cell">}</span><span class="glyph-cell">/</span>
+          <span class="glyph-cell">\</span><span class="glyph-cell">|</span><span class="glyph-cell">~</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Description -->
   <section class="product-desc" aria-label="About this product">
     <div class="container">

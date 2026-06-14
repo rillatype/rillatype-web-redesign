@@ -3157,6 +3157,32 @@ body {
 .related-item__name { margin-top: var(--space-sm); font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
 .related-item__price { font-size: 14px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
+/* ── Glyph Section ── */
+.glyph-section { padding: var(--space-3xl) 0; border-top: 1px solid #e8e4e0; }
+.glyph-toggle { cursor: pointer; }
+.glyph-toggle:hover { opacity: .8; }
+.glyph-toggle__icon { font-size: 20px; font-weight: 300; color: var(--text-muted); transition: transform .2s; line-height: 1; }
+.glyph-toggle[aria-expanded="true"] .glyph-toggle__icon { transform: rotate(45deg); }
+.glyph-panel { padding-top: var(--space-md); }
+.glyph-controls { display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; margin-bottom: var(--space-lg); }
+.glyph-font-select { flex: 0 1 200px; }
+.glyph-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 4px; max-width: 680px;
+}
+.glyph-cell {
+  aspect-ratio: 1;
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--glyph-size, 20px);
+  font-weight: 500;
+  font-family: var(--glyph-font, var(--font-body));
+  background: #f7f3ee; color: var(--charcoal);
+  border-radius: 4px; user-select: none;
+  transition: background .15s;
+}
+.glyph-cell:hover { background: #e8e4e0; }
+
 /* ── Lightbox ── */
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 99999;

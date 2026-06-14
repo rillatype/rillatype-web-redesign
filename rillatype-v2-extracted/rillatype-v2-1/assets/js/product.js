@@ -317,6 +317,38 @@
     observer.observe(addBtn);
   }
 
+  /* ── Glyph Section ── */
+  var glyphToggle = document.getElementById('glyph-toggle');
+  var glyphPanel = document.getElementById('glyph-panel');
+  if (glyphToggle && glyphPanel) {
+    glyphToggle.addEventListener('click', function () {
+      var expanded = glyphToggle.getAttribute('aria-expanded') === 'true';
+      glyphToggle.setAttribute('aria-expanded', String(!expanded));
+      glyphPanel.style.display = expanded ? 'none' : 'block';
+    });
+  }
+
+  var glyphGrid = document.getElementById('glyph-grid');
+  var glyphSizeSlider = document.getElementById('glyph-size');
+  var glyphSizeOutput = document.getElementById('glyph-size-value');
+  if (glyphGrid && glyphSizeSlider) {
+    glyphGrid.style.setProperty('--glyph-size', glyphSizeSlider.value + 'px');
+    glyphSizeSlider.addEventListener('input', function () {
+      var v = this.value + 'px';
+      glyphGrid.style.setProperty('--glyph-size', v);
+      if (glyphSizeOutput) glyphSizeOutput.textContent = v;
+    });
+  }
+
+  var glyphFontSelect = document.getElementById('glyph-font');
+  if (glyphFontSelect && glyphGrid) {
+    glyphFontSelect.addEventListener('change', function () {
+      glyphGrid.style.setProperty('--glyph-font', '"' + this.value + '"');
+    });
+    var initialFont = glyphFontSelect.value;
+    if (initialFont) glyphGrid.style.setProperty('--glyph-font', '"' + initialFont + '"');
+  }
+
   /* ── Init ── */
   goToSlide(0);
   initSlider();
