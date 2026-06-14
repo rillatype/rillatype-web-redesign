@@ -39,11 +39,6 @@ $tester_font_from_attachment = function ($attachment_id) {
     'woff2' => 'font/woff2',
   );
 
-  if ($font_path && file_exists($font_path)) {
-    $mime = isset($mime_map[$ext]) ? $mime_map[$ext] : 'application/octet-stream';
-    return array($font_url, 'url("data:' . $mime . ';base64,' . base64_encode(file_get_contents($font_path)) . '")', $format);
-  }
-
   return array($font_url, $font_url ? 'url("' . esc_url_raw($font_url) . '")' : '', $format);
 };
 
