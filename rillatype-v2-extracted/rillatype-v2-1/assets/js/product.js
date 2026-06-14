@@ -213,7 +213,7 @@
 
   if (trackingSlider && display) {
     trackingSlider.addEventListener('input', function () {
-      var v = parseFloat(this.value) / 100;
+      var v = parseFloat(this.value) / 500;
       display.style.letterSpacing = v + 'em';
       if (trackingOutput) trackingOutput.textContent = v.toFixed(2);
     });
