@@ -3181,9 +3181,10 @@ body {
   content: "•";
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: var(--coral);
   font-size: 1.3em;
-  line-height: inherit;
 }
 
 /* ── Specs ── */
