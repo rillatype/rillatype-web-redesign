@@ -3084,6 +3084,10 @@ body {
 }
 .tester__bgs button:hover { transform: scale(1.2); }
 .tester__bgs button.active { border-color: var(--charcoal); }
+.tester__bgs .bg--white { background: #f7f3ee; }
+.tester__bgs .bg--dark { background: #1a1a1a; border-color: #555; }
+.tester__bgs .bg--coral { background: #e0553d; border-color: #c94a33; }
+.tester__bgs .bg--sand { background: #6b4c3a; border-color: #4a3326; }
 
 .tester__presets {
   display: flex; flex-wrap: wrap; gap: 8px; width: 100%;

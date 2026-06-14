@@ -279,7 +279,7 @@ $has_fonts = !empty($fonts);
               <button class="bg--white active" data-bg="#f7f3ee" data-text="#1a1a1a" role="radio" aria-checked="true" title="Light"></button>
               <button class="bg--dark" data-bg="#1a1a1a" data-text="#fff" role="radio" aria-checked="false" title="Dark"></button>
               <button class="bg--coral" data-bg="#e0553d" data-text="#fff" role="radio" aria-checked="false" title="Coral"></button>
-              <button class="bg--sand" data-bg="#ede8e0" data-text="#1a1a1a" role="radio" aria-checked="false" title="Sand"></button>
+              <button class="bg--sand" data-bg="#6b4c3a" data-text="#fff" role="radio" aria-checked="false" title="Brown"></button>
             </div>
           </div>
           <div class="tester__presets" aria-label="Quick text">
