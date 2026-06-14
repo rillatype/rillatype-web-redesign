@@ -168,7 +168,7 @@ $has_fonts = !empty($fonts);
         <?php endif; ?>
 
         <?php if ($is_variable && !empty($variations)) : ?>
-          <form class="variations-form" method="post" enctype="multipart/form-data" data-ajax-url="<?php echo esc_url(add_query_arg('wc-ajax', 'add_to_cart', trailingslashit(site_url()))); ?>">
+          <form class="variations-form" method="post" enctype="multipart/form-data" data-ajax-url="<?php echo esc_url_raw(add_query_arg('wc-ajax', 'add_to_cart', trailingslashit(site_url()))); ?>">
             <div class="license-select">
               <span class="license-select__label">Choose your license</span>
               <?php foreach ($variations as $v) :
@@ -224,7 +224,7 @@ $has_fonts = !empty($fonts);
               <?php
               $first_price = !empty($variations) ? $variations[0]['display_price'] : 0;
               ?>
-              <button type="submit" class="btn btn-primary single_add_to_cart_button" id="add-to-cart-btn">
+              <button type="submit" class="btn btn-primary add-to-cart-btn" id="add-to-cart-btn">
                 Add to Cart — <?php echo wc_price($first_price); ?>
               </button>
             </div>
