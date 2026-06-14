@@ -170,12 +170,36 @@
   - MIME mapping for `.otf`, `.ttf`, `.woff`, `.woff2`
   - browser load detection via `document.fonts.load()`
 
-## Currently In Progress
-- Font tester still detects the uploaded product font file, but the visible tester text is still rendering like the fallback font.
-- Current diagnostic state: front-end shows `Font source: Mango-Letter.otf`, so product meta/source detection is working.
-- Latest pushed test adds browser font-load detection. Next check is whether the tester hint shows `Browser failed to load this font file`.
-- If browser reports failure, next likely fix is to use/upload WOFF/WOFF2 for tester instead of OTF, because browser support and server headers are more reliable.
-- If browser reports loaded but shape still does not change, next likely fix is CSS/render override around `.tester__display` or a mismatch between the font file and expected Mango display style.
+## Session 2 — June 14, 2026
+### Font Tester Fix (finally working)
+- Root cause: CSS `!important` on `#tester-display` blocked JS inline style, and `document.fonts.load()` unreliable for OTF (false negative). Browser also rejects OTF via CSS `@font-face` due to MIME.
+- Fix: `fetch()` → ArrayBuffer → `FontFace` API. Removed `!important` + inline style.
+
+### Multi-font Support
+- PHP reads ALL `_font_data` metabox rows (not just first). Each font gets unique `@font-face` family.
+- Dropdown populated with all font names. JS loads all fonts in parallel.
+
+### Tracking Slider Sensitivity
+- Range `-50..200 step 1`, divided by 500 → step 0.002em (-0.1em to 0.4em).
+
+### BG Swatch Colors
+- Added `background` CSS to each `.tester__bgs` button. Fourth swatch: `#6b4c3a` warm brown (was `#ede8e0`).
+
+### Tester Box Padding
+- Removed `min-height: 2em` — was causing uneven vertical padding.
+
+### Tester Layout Restructure
+- Controls + presets above display. Reset button (↺) next to bg swatches.
+
+### Short Description Removed
+- Removed `product-short-desc` from hero section (redundant).
+
+### Character Set Section
+- Collapsible section below Playground. Font selector, size slider (12-72px), glyph grid (A-Z, a-z, 0-9, punctuation).
+
+### License Descriptions
+- One-liner per license matched via `strpos` on variation name.
+- Link `/font-license/` → `/license/` (product page + footer).
 
 ## Cart/Checkout/My Account
 - Basic wrapper (header + container + footer) — functional, not yet styled
@@ -185,8 +209,6 @@
 
 ## Known Issues (not yet fixed)
 - Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices. Parent href overridden to `javascript:void(0)` + `e.preventDefault()` — still no closure. Root cause likely mobile browser fast-click optimization bypassing click handler.
-- Product font tester: uploaded/source font is detected, but visual font shape has not changed yet on the tested product. Active investigation continues from the latest browser font-load diagnostic.
-- Native `Product Preview` metabox exists and upload buttons were fixed, but final confirmation on admin upload UX is still pending after latest push.
 
 ## Files
 - `front-page.php` — all homepage markup
