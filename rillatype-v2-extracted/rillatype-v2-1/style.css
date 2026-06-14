@@ -3166,17 +3166,24 @@ body {
 .product-desc__inner a:hover {
   opacity: .7;
 }
-.product-desc__inner ul,
-.product-desc__inner ol {
-  margin: 1em 0 1em 1.5em;
+.product-desc__inner ul {
+  list-style: none;
+  margin: 1.2em 0;
   padding: 0;
 }
-.product-desc__inner li {
-  margin: 0.35em 0;
+.product-desc__inner ul li {
+  position: relative;
+  padding-left: 1.2em;
+  margin: 0.4em 0;
   line-height: inherit;
 }
-.product-desc__inner li::marker {
+.product-desc__inner ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
   color: var(--coral);
+  font-size: 1.3em;
+  line-height: inherit;
 }
 
 /* ── Specs ── */
