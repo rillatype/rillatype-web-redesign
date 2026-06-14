@@ -434,8 +434,10 @@ $has_fonts = !empty($fonts);
         ?>
           <a href="<?php echo esc_url(get_permalink($rel_id)); ?>" class="related-item">
             <div class="related-item__img" style="background-image:url('<?php echo esc_url($rel_img); ?>');"></div>
-            <p class="related-item__name"><?php echo esc_html($rel_product->get_name()); ?></p>
-            <p class="related-item__price"><?php echo $rel_product->get_price_html(); ?></p>
+            <div class="related-item__body">
+              <p class="related-item__name"><?php echo esc_html($rel_product->get_name()); ?></p>
+              <p class="related-item__price"><?php echo rillatype_min_price($rel_product); ?></p>
+            </div>
           </a>
         <?php endforeach; ?>
       </div>
