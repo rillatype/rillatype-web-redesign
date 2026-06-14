@@ -3000,7 +3000,7 @@ body {
   font-family: var(--font-body);
   font-size: clamp(28px, 6vw, 72px);
   line-height: 1.1;
-  word-break: break-word; min-height: 2em;
+  word-break: break-word;
   padding: var(--space-lg);
   background: #f7f3ee; cursor: text;
   transition: font-size .08s ease, color .2s;
