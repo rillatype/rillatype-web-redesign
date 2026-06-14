@@ -289,7 +289,7 @@ $has_fonts = !empty($fonts);
           </div>
         </div>
         <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
-        <p class="tester__hint">Click the text and type. Adjust size & style above.<?php if (current_user_can('edit_products') && $has_fonts) : ?> Fonts: <?php echo esc_html(implode(', ', array_column($fonts, 'name'))); ?><?php endif; ?></p>
+        <p class="tester__hint">Click the text and type. Adjust size & style above.</p>
       </div>
     </div>
   </section>
