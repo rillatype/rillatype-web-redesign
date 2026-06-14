@@ -320,58 +320,59 @@
       });
     }, { threshold: 0 });
     observer.observe(addBtn);
-
-    var stickyBtn = stickyBar.querySelector('.sticky-bar__btn');
-    if (stickyBtn) {
-      stickyBtn.addEventListener('click', function () {
-        ajaxAddToCart(this);
-      });
-    }
   }
 
-  /* ── AJAX Add to Cart ── */
+  /* ── Add to Cart (hidden iframe) ── */
   var variationsForm = document.querySelector('.variations-form');
-  if (variationsForm) {
-    variationsForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      ajaxAddToCart(this.querySelector('button[type="submit"]'));
-    });
-  }
+  var cartFrame = document.createElement('iframe');
+  cartFrame.name = 'rillatype-cart-frame';
+  cartFrame.style.display = 'none';
+  document.body.appendChild(cartFrame);
 
-  function ajaxAddToCart(btn) {
+  function addToCart(btn) {
+    if (!variationsForm) return;
     var selected = document.querySelector('.license-tier.selected');
-    var form = document.querySelector('.variations-form');
-    if (!form) return;
-
     if (!selected) {
       showToast('Please select a license first.');
       return;
     }
-
-    var radio = selected.querySelector('input[type="radio"]');
-    if (!radio) return;
-
-    var formData = new FormData(form);
     var origText = btn.textContent;
     btn.textContent = 'Adding…';
     btn.disabled = true;
 
-    fetch(window.location.href, {
-      method: 'POST',
-      credentials: 'same-origin',
-      body: formData
-    })
-    .then(function () {
+    var origTarget = variationsForm.target;
+    variationsForm.target = cartFrame.name;
+    variationsForm.submit();
+    variationsForm.target = origTarget;
+
+    cartFrame.onload = function () {
+      cartFrame.onload = null;
       btn.textContent = origText;
       btn.disabled = false;
       showToast('Added to cart!');
       document.body.dispatchEvent(new CustomEvent('wc_fragment_refresh'));
-    })
-    .catch(function () {
+    };
+
+    setTimeout(function () {
       btn.textContent = origText;
       btn.disabled = false;
-      showToast('Failed to add to cart.');
+    }, 6000);
+  }
+
+  if (variationsForm) {
+    variationsForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      addToCart(this.querySelector('button[type="submit"]'));
     });
+  }
+
+  if (stickyBar) {
+    var stickyBtn = stickyBar.querySelector('.sticky-bar__btn');
+    if (stickyBtn) {
+      stickyBtn.addEventListener('click', function () {
+        addToCart(this);
+      });
+    }
   }
 
   function showToast(msg) {
