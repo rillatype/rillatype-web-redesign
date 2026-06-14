@@ -3166,6 +3166,18 @@ body {
 .product-desc__inner a:hover {
   opacity: .7;
 }
+.product-desc__inner ul,
+.product-desc__inner ol {
+  margin: 1em 0 1em 1.5em;
+  padding: 0;
+}
+.product-desc__inner li {
+  margin: 0.35em 0;
+  line-height: inherit;
+}
+.product-desc__inner li::marker {
+  color: var(--coral);
+}
 
 /* ── Specs ── */
 .product-specs { padding: var(--space-2xl) 0; background: #f0ece8; }
