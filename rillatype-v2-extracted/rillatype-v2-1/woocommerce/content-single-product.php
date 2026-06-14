@@ -21,100 +21,102 @@ $is_variable = $product->is_type('variable');
 $variations  = $is_variable ? $product->get_available_variations() : [];
 $variation_ids = $is_variable ? $product->get_children() : [];
 
-$tester_font_url = '';
-$tester_font_src = '';
-$tester_font_format = '';
 $tester_font_from_attachment = function ($attachment_id) {
   $attachment_id = absint($attachment_id);
-  if (!$attachment_id) return array('', '', '');
+  if (!$attachment_id) return null;
 
   $font_url = wp_get_attachment_url($attachment_id);
+  if (!$font_url) return null;
+
   $font_path = get_attached_file($attachment_id);
   $ext = strtolower(pathinfo($font_path ?: $font_url, PATHINFO_EXTENSION));
   $format = $ext === 'otf' ? 'opentype' : ($ext === 'ttf' ? 'truetype' : $ext);
-  $mime_map = array(
-    'otf' => 'font/otf',
-    'ttf' => 'font/ttf',
-    'woff' => 'font/woff',
-    'woff2' => 'font/woff2',
-  );
 
-  return array($font_url, $font_url ? 'url("' . esc_url_raw($font_url) . '")' : '', $format);
+  return array(
+    'url'    => $font_url,
+    'format' => $format,
+  );
 };
 
-// Legacy LarisDigital font preview fields: _font_data repeater with font_web/font attachment IDs.
-$legacy_font_rows = absint(get_post_meta($product->get_id(), '_font_data', true));
-if ($legacy_font_rows) {
-  for ($i = 0; $i < $legacy_font_rows; $i++) {
-    $legacy_font_id = get_post_meta($product->get_id(), '_font_data_' . $i . '_font_web', true);
-    if (!$legacy_font_id) {
-      $legacy_font_id = get_post_meta($product->get_id(), '_font_data_' . $i . '_font', true);
-    }
+// Collect all fonts from _font_data metabox rows (native Product Preview).
+$fonts = array();
+$font_rows = absint(get_post_meta($product->get_id(), '_font_data', true));
+if ($font_rows) {
+  for ($i = 0; $i < $font_rows; $i++) {
+    $font_name = get_post_meta($product->get_id(), '_font_data_' . $i . '_name', true);
+    if (!$font_name) continue;
 
-    list($legacy_font_url, $legacy_font_src, $legacy_font_format) = $tester_font_from_attachment($legacy_font_id);
-    if ($legacy_font_src) {
-      $tester_font_url = $legacy_font_url;
-      $tester_font_src = $legacy_font_src;
-      $tester_font_format = $legacy_font_format;
-      break;
+    $font_id = get_post_meta($product->get_id(), '_font_data_' . $i . '_font_web', true);
+    if (!$font_id) {
+      $font_id = get_post_meta($product->get_id(), '_font_data_' . $i . '_font', true);
     }
+    if (!$font_id) continue;
+
+    $fd = $tester_font_from_attachment($font_id);
+    if (!$fd) continue;
+
+    $fonts[] = array(
+      'name'   => $font_name,
+      'url'    => $fd['url'],
+      'format' => $fd['format'],
+      'family' => 'RillatypeFont_' . $product->get_id() . '_' . $i,
+    );
   }
 }
 
-if (!$tester_font_src && !empty($variation_ids)) {
-  foreach ($variation_ids as $variation_id) {
-    $variation_font_url = get_post_meta($variation_id, '_rillatype_tester_font_url', true);
-    if ($variation_font_url) {
-      $tester_font_url = $variation_font_url;
-      break;
+// Fallback chain if _font_data is empty.
+if (empty($fonts)) {
+  $fallback_url = '';
+
+  if (!empty($variation_ids)) {
+    foreach ($variation_ids as $variation_id) {
+      $variation_font_url = get_post_meta($variation_id, '_rillatype_tester_font_url', true);
+      if ($variation_font_url) { $fallback_url = $variation_font_url; break; }
     }
   }
-}
-if (!$tester_font_src && !$tester_font_url) {
-  $tester_font_url = get_post_meta($product->get_id(), '_rillatype_tester_font_url', true);
-}
-if (!$tester_font_src && !$tester_font_url && function_exists('get_field')) {
-  $tester_font_url = get_field('specimen_regular_url', $product->get_id());
-}
-if (!$tester_font_src && !$tester_font_url && $product->is_downloadable()) {
-  foreach ($product->get_downloads() as $download) {
-    $file_url = $download->get_file();
-    if (preg_match('/\.(otf|ttf|woff2?|eot)(\?.*)?$/i', $file_url)) {
-      $tester_font_url = $file_url;
-      break;
+  if (!$fallback_url) { $fallback_url = get_post_meta($product->get_id(), '_rillatype_tester_font_url', true); }
+  if (!$fallback_url && function_exists('get_field')) { $fallback_url = get_field('specimen_regular_url', $product->get_id()); }
+  if (!$fallback_url && $product->is_downloadable()) {
+    foreach ($product->get_downloads() as $d) {
+      if (preg_match('/\.(otf|ttf|woff2?)(\?.*)?$/i', $d->get_file())) { $fallback_url = $d->get_file(); break; }
     }
   }
-}
-if (!$tester_font_src && !$tester_font_url && !empty($variation_ids)) {
-  foreach ($variation_ids as $variation_id) {
-    $variation_product = wc_get_product($variation_id);
-    if (!$variation_product || !$variation_product->is_downloadable()) continue;
-    foreach ($variation_product->get_downloads() as $download) {
-      $file_url = $download->get_file();
-      if (preg_match('/\.(otf|ttf|woff2?|eot)(\?.*)?$/i', $file_url)) {
-        $tester_font_url = $file_url;
-        break 2;
+  if (!$fallback_url && !empty($variation_ids)) {
+    foreach ($variation_ids as $variation_id) {
+      $vp = wc_get_product($variation_id);
+      if (!$vp || !$vp->is_downloadable()) continue;
+      foreach ($vp->get_downloads() as $d) {
+        if (preg_match('/\.(otf|ttf|woff2?)(\?.*)?$/i', $d->get_file())) { $fallback_url = $d->get_file(); break 2; }
       }
     }
   }
+
+  if ($fallback_url) {
+    $ext = strtolower(pathinfo(parse_url($fallback_url, PHP_URL_PATH) ?: '', PATHINFO_EXTENSION));
+    $format = $ext === 'otf' ? 'opentype' : ($ext === 'ttf' ? 'truetype' : $ext);
+    $fonts[] = array(
+      'name'   => $sub ? $title . ' — ' . $sub : $title,
+      'url'    => $fallback_url,
+      'format' => $format,
+      'family' => 'RillatypeFont_' . $product->get_id() . '_0',
+    );
+  }
 }
-$tester_font_src = $tester_font_src ?: ($tester_font_url ? 'url("' . esc_url_raw($tester_font_url) . '")' : '');
-$tester_font_ext = strtolower(pathinfo(parse_url($tester_font_url, PHP_URL_PATH) ?: '', PATHINFO_EXTENSION));
-$tester_font_format = $tester_font_format ?: ($tester_font_ext === 'otf' ? 'opentype' : ($tester_font_ext === 'ttf' ? 'truetype' : $tester_font_ext));
-$tester_font_family = 'RillatypeProductFont' . $product->get_id();
-$tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_URL_PATH)) : '';
+
+$has_fonts = !empty($fonts);
 ?>
 
-<?php if ($tester_font_src) : ?>
+<?php if ($has_fonts) : ?>
   <style>
+    <?php foreach ($fonts as $f) : ?>
     @font-face {
-      font-family: '<?php echo esc_html($tester_font_family); ?>';
-      src: <?php echo $tester_font_src; ?><?php echo $tester_font_format ? " format('" . esc_html($tester_font_format) . "')" : ''; ?>;
+      font-family: '<?php echo esc_html($f['family']); ?>';
+      src: url("<?php echo esc_url_raw($f['url']); ?>") format('<?php echo esc_attr($f['format']); ?>');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
-
+    <?php endforeach; ?>
   </style>
 <?php endif; ?>
 
@@ -234,9 +236,9 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
   <section class="font-playground" aria-label="Try this font">
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
-      <div class="tester" role="region" aria-label="Interactive font tester" data-font-family="<?php echo esc_attr($tester_font_family); ?>" data-font-url="<?php echo esc_url($tester_font_url); ?>" data-font-loaded="<?php echo $tester_font_src ? 'yes' : 'no'; ?>" data-font-source="<?php echo esc_attr($tester_font_file); ?>">
+      <div class="tester" role="region" aria-label="Interactive font tester" data-fonts='<?php echo $has_fonts ? htmlspecialchars(json_encode($fonts), ENT_QUOTES, 'UTF-8') : '[]'; ?>' data-font-loaded="<?php echo $has_fonts ? 'yes' : 'no'; ?>">
         <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
-        <p class="tester__hint">Click the text and type. Adjust size & style below.<?php if (current_user_can('edit_products')) : ?> Font source: <?php echo $tester_font_file ? esc_html($tester_font_file) : esc_html__('not found', 'rillatype-v2'); ?><?php endif; ?></p>
+        <p class="tester__hint">Click the text and type. Adjust size & style below.<?php if (current_user_can('edit_products') && $has_fonts) : ?> Fonts: <?php echo esc_html(implode(', ', array_column($fonts, 'name'))); ?><?php endif; ?></p>
         <div class="tester__controls">
           <div class="tester__row">
             <div class="tester__slider">
@@ -257,7 +259,9 @@ $tester_font_file = $tester_font_url ? basename(parse_url($tester_font_url, PHP_
           </div>
           <div class="tester__row">
             <select class="tester__font-select" id="tester-font" aria-label="Font style">
-              <option value="<?php echo esc_attr($tester_font_family); ?>"><?php echo esc_html($title); ?></option>
+              <?php foreach ($fonts as $i => $f) : ?>
+              <option value="<?php echo esc_attr($f['family']); ?>"<?php echo $i === 0 ? ' selected' : ''; ?>><?php echo esc_html($f['name']); ?></option>
+              <?php endforeach; ?>
             </select>
             <div class="tester__align" role="radiogroup" aria-label="Alignment">
               <button data-align="left" role="radio" aria-checked="false" aria-label="Align left" title="Left">
