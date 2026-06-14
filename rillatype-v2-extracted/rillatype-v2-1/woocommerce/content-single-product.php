@@ -237,8 +237,6 @@ $has_fonts = !empty($fonts);
     <div class="container">
       <p class="section-label product-section-label">Playground</p>
       <div class="tester" role="region" aria-label="Interactive font tester" data-fonts='<?php echo $has_fonts ? htmlspecialchars(json_encode($fonts), ENT_QUOTES, 'UTF-8') : '[]'; ?>' data-font-loaded="<?php echo $has_fonts ? 'yes' : 'no'; ?>">
-        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
-        <p class="tester__hint">Click the text and type. Adjust size & style below.<?php if (current_user_can('edit_products') && $has_fonts) : ?> Fonts: <?php echo esc_html(implode(', ', array_column($fonts, 'name'))); ?><?php endif; ?></p>
         <div class="tester__controls">
           <div class="tester__row">
             <div class="tester__slider">
@@ -254,7 +252,7 @@ $has_fonts = !empty($fonts);
             <div class="tester__slider">
               <label for="tester-tracking">Track</label>
               <input type="range" id="tester-tracking" min="-50" max="200" value="0" step="1" aria-label="Tracking">
-              <output id="tester-tracking-value">0</output>
+              <output id="tester-tracking-value">0.00</output>
             </div>
           </div>
           <div class="tester__row">
@@ -281,6 +279,7 @@ $has_fonts = !empty($fonts);
               <button class="bg--coral" data-bg="#e0553d" data-text="#fff" role="radio" aria-checked="false" title="Coral"></button>
               <button class="bg--sand" data-bg="#6b4c3a" data-text="#fff" role="radio" aria-checked="false" title="Brown"></button>
             </div>
+            <button class="tester__reset" id="tester-reset" title="Reset defaults">↺</button>
           </div>
           <div class="tester__presets" aria-label="Quick text">
             <button data-presets='["The Quick Brown Fox Jumps Over The Lazy Dog","Amazingly Few Discotheques Provide Jukeboxes","Sphinx Of Black Quartz, Judge My Vow","Waltz, Bad Nymph, For Quick Jigs Vex","Pack My Box With Five Dozen Liquor Jugs"]'>Aa Bb Cc</button>
@@ -289,6 +288,8 @@ $has_fonts = !empty($fonts);
             <button data-presets='["Pack my box with five dozen liquor jugs","How vexingly quick daft zebras jump","The five boxing wizards jump quickly","Crazy Fredrick bought many very exquisite opal jewels","Grumpy wizards make toxic brew for the evil queen and jack"]'>Pangram</button>
           </div>
         </div>
+        <div class="tester__display" id="tester-display" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Type to preview" tabindex="0">The quick brown fox jumps over the lazy dog</div>
+        <p class="tester__hint">Click the text and type. Adjust size & style above.<?php if (current_user_can('edit_products') && $has_fonts) : ?> Fonts: <?php echo esc_html(implode(', ', array_column($fonts, 'name'))); ?><?php endif; ?></p>
       </div>
     </div>
   </section>

@@ -257,6 +257,54 @@
     });
   });
 
+  /* ── Reset ── */
+  var resetBtn = document.getElementById('tester-reset');
+  if (resetBtn && display) {
+    resetBtn.addEventListener('click', function () {
+      sizeSlider.value = '64';
+      sizeOutput.textContent = '64px';
+      display.style.fontSize = '64px';
+
+      leadingSlider.value = '110';
+      leadingOutput.textContent = '1.1';
+      display.style.lineHeight = '1.1';
+
+      trackingSlider.value = '0';
+      trackingOutput.textContent = '0.00';
+      display.style.letterSpacing = '0em';
+
+      if (fontSelect && fontSelect.options.length > 0) {
+        fontSelect.selectedIndex = 0;
+        display.style.fontFamily = fontSelect.value;
+      }
+
+      alignBtns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      var centerBtn = document.querySelector('.tester__align button[data-align="center"]');
+      if (centerBtn) {
+        centerBtn.classList.add('active');
+        centerBtn.setAttribute('aria-checked', 'true');
+      }
+      display.style.textAlign = 'center';
+
+      bgBtns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
+      });
+      var whiteBg = document.querySelector('.tester__bgs .bg--white');
+      if (whiteBg) {
+        whiteBg.classList.add('active');
+        whiteBg.setAttribute('aria-checked', 'true');
+      }
+      display.style.background = '#f7f3ee';
+      display.style.color = '#1a1a1a';
+
+      display.textContent = 'The quick brown fox jumps over the lazy dog';
+    });
+  }
+
   /* ── Sticky Bar ── */
   var stickyBar = document.getElementById('sticky-bar');
   var addBtn = document.getElementById('add-to-cart-btn');
