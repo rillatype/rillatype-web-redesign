@@ -201,7 +201,17 @@
 - One-liner per license matched via `strpos` on variation name.
 - Link `/font-license/` → `/license/` (product page + footer).
 
-## Cart/Checkout/My Account
+## Session 3 — June 14, 2026
+### About Section (Product Description)
+- Editorial typography: first paragraph 20px darker, body 18px/1.8, max-width 680px
+- Subheadings styled (Instrument Serif italic h3, coral uppercase h4)
+- Subtle cream gradient background
+- Fixed bullet list: custom coral `::before` (bypassed global `list-style:none`), flex alignment
+
+### FAQ Section
+- Visual redesign: coral left-accent bar on questions, soft shadow, Instrument Serif italic questions
+- Removed WOFF2 references (only TTF/OTF offered)
+- Q3 rewritten: "Can I use these fonts on my website?"
 - Basic wrapper (header + container + footer) — functional, not yet styled
 
 ## Footer

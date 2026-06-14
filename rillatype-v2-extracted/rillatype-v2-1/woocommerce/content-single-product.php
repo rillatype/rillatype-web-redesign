@@ -405,15 +405,15 @@ $has_fonts = !empty($fonts);
       <div class="faq-list">
         <div class="faq-item">
           <h3>What file formats are included?</h3>
-          <p>OTF, TTF, and WOFF2. All fully functional with complete glyph set.</p>
+          <p>OTF and TTF — fully functional with complete glyph set.</p>
         </div>
         <div class="faq-item">
           <h3>Can I use this for commercial projects?</h3>
           <p>Yes. License covers logos, branding, packaging, merchandise, and client work — no extra fees.</p>
         </div>
         <div class="faq-item">
-          <h3>Do I need a separate web license?</h3>
-          <p>No. The WOFF2 file is included. Self-host on your website with no pageview limits.</p>
+          <h3>Can I use these fonts on my website?</h3>
+          <p>Yes. OTF and TTF both work with @font-face for self-hosted web use with no pageview limits.</p>
         </div>
       </div>
     </div>
