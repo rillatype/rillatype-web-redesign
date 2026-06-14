@@ -220,14 +220,6 @@ $has_fonts = !empty($fonts);
           <strong>Lifetime updates</strong> included. <a href="<?php echo esc_url(home_url('/font-license/')); ?>" style="color:var(--coral);text-decoration:underline;text-underline-offset:2px;">Full license details →</a>
         </p>
 
-        <?php
-        $short_desc = $product->get_short_description();
-        if ($short_desc) : ?>
-          <div class="product-short-desc">
-            <?php echo wp_kses_post($short_desc); ?>
-          </div>
-        <?php endif; ?>
-
       </div>
     </div>
   </section>
