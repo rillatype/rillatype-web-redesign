@@ -209,10 +209,14 @@
 - Fixed bullet list: custom coral `::before` (bypassed global `list-style:none`), flex alignment
 
 ### FAQ Section
-- Visual redesign: coral left-accent bar on questions, soft shadow, Instrument Serif italic questions
 - Removed WOFF2 references (only TTF/OTF offered)
 - Q3 rewritten: "Can I use these fonts on my website?"
-- Basic wrapper (header + container + footer) — functional, not yet styled
+- Visual reverted back to original (coral-soft gradient, white cards)
+
+### Related Products
+- Card styling: border `#f0ece8`, radius 12px, hover lift 6px + shadow
+- Price: minimum only via `rillatype_min_price()` instead of range
+- Price color: coral + weight 600 agar terlihat (was `--text-muted`)
 
 ## Footer
 - Mobile: stack vertikal, link center wrap, copyright di bawah
