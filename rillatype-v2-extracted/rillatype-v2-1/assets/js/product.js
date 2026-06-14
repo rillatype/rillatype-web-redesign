@@ -322,7 +322,7 @@
     observer.observe(addBtn);
   }
 
-  /* ── Add to Cart (hidden iframe) ── */
+  /* ── Add to Cart ── */
   var variationsForm = document.querySelector('.variations-form');
   var cartFrame = document.createElement('iframe');
   cartFrame.name = 'rillatype-cart-frame';
@@ -336,6 +336,7 @@
       showToast('Please select a license first.');
       return;
     }
+
     var origText = btn.textContent;
     btn.textContent = 'Adding…';
     btn.disabled = true;
@@ -345,18 +346,12 @@
     variationsForm.submit();
     variationsForm.target = origTarget;
 
-    cartFrame.onload = function () {
-      cartFrame.onload = null;
+    setTimeout(function () {
       btn.textContent = origText;
       btn.disabled = false;
       showToast('Added to cart!');
       document.body.dispatchEvent(new CustomEvent('wc_fragment_refresh'));
-    };
-
-    setTimeout(function () {
-      btn.textContent = origText;
-      btn.disabled = false;
-    }, 6000);
+    }, 1500);
   }
 
   if (variationsForm) {
