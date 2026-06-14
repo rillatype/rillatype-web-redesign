@@ -3198,46 +3198,15 @@ body {
 /* ── FAQ ── */
 .product-faq {
   padding: var(--space-3xl) 0;
-  background: linear-gradient(180deg, #fafaf8 0%, #f3efea 100%);
+  background: linear-gradient(180deg, var(--coral-soft) 0%, transparent 100%);
 }
-.faq-list {
-  max-width: 680px;
-  display: grid;
-  gap: var(--space-lg);
-}
+.faq-list { max-width: 680px; display: grid; gap: var(--space-lg); }
 .faq-item {
-  background: #fff;
-  padding: var(--space-lg) var(--space-lg) var(--space-lg) calc(var(--space-lg) + 4px);
-  border-radius: 12px;
+  background: #fff; padding: var(--space-lg); border-radius: 12px;
   border: 1px solid #e8e4e0;
-  box-shadow: 0 1px 4px rgba(0,0,0,.04);
-  position: relative;
 }
-.faq-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: var(--space-lg);
-  bottom: var(--space-lg);
-  width: 3px;
-  border-radius: 2px;
-  background: var(--coral);
-}
-.faq-item h3 {
-  font-family: var(--font-heading);
-  font-size: 18px;
-  font-weight: 400;
-  font-style: italic;
-  color: #1a1a1a;
-  margin: 0 0 0.4em;
-  line-height: 1.4;
-}
-.faq-item p {
-  color: #4a4a4a;
-  font-size: 15px;
-  line-height: 1.7;
-  margin: 0;
-}
+.faq-item h3 { font-size: 16px; font-weight: 700; margin-bottom: var(--space-xs); letter-spacing: -.01em; margin-top: 0; }
+.faq-item p { color: #4a4a4a; font-size: 15px; line-height: 1.7; margin: 0; }
 
 /* ── Related ── */
 .product-related { padding: var(--space-3xl) 0; border-top: 1px solid #e8e4e0; }
