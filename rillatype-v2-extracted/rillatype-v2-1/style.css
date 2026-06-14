@@ -3247,7 +3247,8 @@ body {
 .related-item__price {
   margin: 0;
   font-size: 14px;
-  color: var(--text-muted);
+  font-weight: 600;
+  color: var(--coral);
   font-variant-numeric: tabular-nums;
 }
 
