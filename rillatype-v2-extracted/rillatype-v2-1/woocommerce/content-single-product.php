@@ -253,7 +253,7 @@ $has_fonts = !empty($fonts);
             </div>
             <div class="tester__slider">
               <label for="tester-tracking">Track</label>
-              <input type="range" id="tester-tracking" min="-50" max="200" value="0" step="5" aria-label="Tracking">
+              <input type="range" id="tester-tracking" min="-10" max="50" value="0" step="1" aria-label="Tracking">
               <output id="tester-tracking-value">0</output>
             </div>
           </div>
