@@ -104,11 +104,78 @@
 - CSS: white bg, 1.5px border, 8px radius, hover charcoal, active coral
 
 ## Single Product Page
-- 2-column layout: gallery left, summary right
-- Title + subtitle split from product name
-- Add to cart button (charcoal → coral hover)
-- Variable product support (dropdown weight/size)
-- Tabs + related products
+- Rebuilt toward `static/product-playful-v2.html` reference while keeping existing site navbar/footer.
+- Product hero: larger preview/gallery area on the left, product summary on the right.
+- Product title styling adjusted back to Plus Jakarta Sans 800 (not serif), matching the reference feel.
+- Product title/sub-title split from product name.
+- Product badge changed from `Best Seller` to `New`.
+- `New` badge only displays when product publish date is within the last 30 days.
+- License labels normalized so WooCommerce slugs become readable names:
+  - `standard-license` → `Standard License`
+  - `extended-license` → `Extended License`
+  - `webfont-license` → `Webfont License`
+- Fixed duplicated license text such as `standard-license License`.
+- License selector supports variable products.
+- Add to cart button keeps charcoal → coral hover treatment.
+- `Full license details →` link now points to `/font-license/`.
+- Added playground/font tester section based on `product-playful-v2.html`:
+  - editable tester text
+  - size slider
+  - leading slider
+  - tracking slider
+  - font dropdown
+  - text alignment controls
+  - background swatches
+  - preset text buttons
+- Added product gallery slider/lightbox/sticky cart JS structure from the new single product page build.
+- Added source indicator for admins in the tester hint: `Font source: filename.otf` or `not found`.
+
+## Product Font Tester / Preview Font Source
+- Goal: make the new playground use the actual uploaded product font.
+- First approach: read a custom `Tester Font URL` field from the product.
+- Changed to upload field instead of manual URL because user wants upload, not paste link.
+- Tried adding tester font upload under WooCommerce variable product variations.
+- Variation-row upload was removed because it was confusing and could affect variable product workflow.
+- Moved upload UI back toward the old-theme style: `Product Preview` metabox on edit product.
+- Implemented a native WordPress `Product Preview` metabox so it does not depend on paid plugins/ACF.
+- Native metabox fields:
+  - Enable Font Preview
+  - Font Preview Mode
+  - Font Name
+  - OTF/TTF Font File
+  - WOFF/WOFF2 Font File
+  - Add/Select Font row
+- Fixed admin upload button issues:
+  - ensured product admin JS loads on `post.php` / `post-new.php`
+  - added WordPress media dependencies
+  - changed generated field IDs so selectors do not break from `[]` characters
+  - fixed cloned rows so new upload rows do not reuse duplicate IDs
+- Added support for legacy theme font data so existing products do not need full re-upload:
+  - reads `_font_data`
+  - prioritizes `_font_data_0_font_web` (WOFF/WOFF2)
+  - falls back to `_font_data_0_font` (OTF/TTF)
+- Added fallback sources in this order:
+  - legacy `_font_data` attachment fields
+  - variation tester font meta
+  - parent product tester font meta
+  - ACF `specimen_regular_url` if available
+  - WooCommerce downloadable font file if direct `.otf/.ttf/.woff/.woff2`
+- Font source now shows on the front-end, confirming the product font file is being detected.
+- Several loading strategies were tested:
+  - PHP inline `@font-face`
+  - base64 embedded font source
+  - direct uploaded file URL source
+  - `FontFace` API in JS
+  - forced `font-family` with `!important`
+  - MIME mapping for `.otf`, `.ttf`, `.woff`, `.woff2`
+  - browser load detection via `document.fonts.load()`
+
+## Currently In Progress
+- Font tester still detects the uploaded product font file, but the visible tester text is still rendering like the fallback font.
+- Current diagnostic state: front-end shows `Font source: Mango-Letter.otf`, so product meta/source detection is working.
+- Latest pushed test adds browser font-load detection. Next check is whether the tester hint shows `Browser failed to load this font file`.
+- If browser reports failure, next likely fix is to use/upload WOFF/WOFF2 for tester instead of OTF, because browser support and server headers are more reliable.
+- If browser reports loaded but shape still does not change, next likely fix is CSS/render override around `.tester__display` or a mismatch between the font file and expected Mango display style.
 
 ## Cart/Checkout/My Account
 - Basic wrapper (header + container + footer) — functional, not yet styled
@@ -118,6 +185,8 @@
 
 ## Known Issues (not yet fixed)
 - Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices. Parent href overridden to `javascript:void(0)` + `e.preventDefault()` — still no closure. Root cause likely mobile browser fast-click optimization bypassing click handler.
+- Product font tester: uploaded/source font is detected, but visual font shape has not changed yet on the tested product. Active investigation continues from the latest browser font-load diagnostic.
+- Native `Product Preview` metabox exists and upload buttons were fixed, but final confirmation on admin upload UX is still pending after latest push.
 
 ## Files
 - `front-page.php` — all homepage markup
@@ -130,6 +199,8 @@
 - `woocommerce/archive-product.php` — shop archive template
 - `woocommerce/content-product.php` — product card in grid
 - `woocommerce/content-single-product.php` — single product page
+- `assets/js/product.js` — single product gallery, lightbox, font tester controls, sticky bar, font-load diagnostics
+- `assets/js/admin-product.js` — native product preview upload controls in WP admin
 - `woocommerce/loop/orderby.php` — sort dropdown
 - `woocommerce/loop/pagination.php` — clean pagination
 - `woocommerce/cart/` — cart templates
