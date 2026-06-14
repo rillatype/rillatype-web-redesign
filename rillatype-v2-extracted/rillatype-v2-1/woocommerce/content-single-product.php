@@ -200,10 +200,11 @@ $has_fonts = !empty($fonts);
                           'broadcast' => 'Unlimited video, TV, film & motion graphics.',
                           'corporate' => 'Unlimited everything for your organization.',
                         );
+                        $v_lower = strtolower($v_name);
                         $matched_desc = '';
-                        foreach ($v['attributes'] as $attr_slug) {
-                          if (!empty($attr_slug) && isset($desc_map[$attr_slug])) {
-                            $matched_desc = $desc_map[$attr_slug];
+                        foreach ($desc_map as $key => $desc) {
+                          if (strpos($v_lower, $key) !== false) {
+                            $matched_desc = $desc;
                             break;
                           }
                         }
