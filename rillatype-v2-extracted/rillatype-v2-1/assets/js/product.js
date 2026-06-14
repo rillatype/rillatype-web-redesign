@@ -324,21 +324,75 @@
     var stickyBtn = stickyBar.querySelector('.sticky-bar__btn');
     if (stickyBtn) {
       stickyBtn.addEventListener('click', function () {
-        var selected = document.querySelector('.license-tier.selected');
-        var form = document.querySelector('.variations-form');
-
-        if (form && !selected) {
-          showToast('Please select a license first.');
-          return;
-        }
-
-        if (form) {
-          form.submit();
-        } else {
-          addBtn.click();
-        }
+        ajaxAddToCart(this);
       });
     }
+  }
+
+  /* ── AJAX Add to Cart ── */
+  var variationsForm = document.querySelector('.variations-form');
+  if (variationsForm) {
+    variationsForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      ajaxAddToCart(this.querySelector('.single_add_to_cart_button'));
+    });
+  }
+
+  function ajaxAddToCart(btn) {
+    var selected = document.querySelector('.license-tier.selected');
+    var form = document.querySelector('.variations-form');
+    if (!form) return;
+
+    if (!selected) {
+      showToast('Please select a license first.');
+      return;
+    }
+
+    var radio = selected.querySelector('input[type="radio"]');
+    if (!radio) return;
+
+    var formData = new FormData();
+    formData.append('add-to-cart', form.querySelector('[name="add-to-cart"]').value);
+    formData.append('product_id', form.querySelector('[name="product_id"]').value);
+    formData.append('variation_id', radio.value);
+    formData.append('quantity', 1);
+
+    try {
+      var attrs = JSON.parse(radio.getAttribute('data-attributes') || '{}');
+      for (var key in attrs) {
+        if (attrs.hasOwnProperty(key)) {
+          formData.append(key, attrs[key]);
+        }
+      }
+    } catch (e) {}
+
+    var ajaxUrl = form.getAttribute('data-ajax-url') || '/?wc-ajax=add_to_cart';
+    var origText = btn.textContent;
+    btn.textContent = 'Adding…';
+    btn.disabled = true;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', ajaxUrl);
+    xhr.onload = function () {
+      btn.textContent = origText;
+      btn.disabled = false;
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var resp = JSON.parse(xhr.responseText);
+          if (resp.error) { showToast(resp.error); return; }
+        } catch (e) {}
+        showToast('Added to cart!');
+        document.body.dispatchEvent(new CustomEvent('wc_fragment_refresh'));
+      } else {
+        showToast('Failed to add to cart.');
+      }
+    };
+    xhr.onerror = function () {
+      btn.textContent = origText;
+      btn.disabled = false;
+      showToast('Connection error.');
+    };
+    xhr.send(formData);
   }
 
   function showToast(msg) {

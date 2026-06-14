@@ -168,7 +168,7 @@ $has_fonts = !empty($fonts);
         <?php endif; ?>
 
         <?php if ($is_variable && !empty($variations)) : ?>
-          <form class="variations-form" method="post" enctype="multipart/form-data">
+          <form class="variations-form" method="post" enctype="multipart/form-data" data-ajax-url="<?php echo esc_url(add_query_arg('wc-ajax', 'add_to_cart', trailingslashit(site_url()))); ?>">
             <div class="license-select">
               <span class="license-select__label">Choose your license</span>
               <?php foreach ($variations as $v) :
