@@ -2563,20 +2563,22 @@ body {
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot tr {
-  display: flex;
-  justify-content: space-between;
-  padding: var(--space-xs) 0;
-  font-size: 14px;
+  border-top: 1px solid var(--border-light);
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot th {
   font-weight: 600;
   color: var(--text-muted);
+  padding: var(--space-xs) 0;
+  font-size: 14px;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot td {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+  padding: var(--space-xs) 0;
+  font-size: 14px;
+  text-align: right;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot .order-total {
