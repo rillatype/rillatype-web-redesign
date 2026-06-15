@@ -11,24 +11,6 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 }
 ?>
 
-<style>
-/* debug */
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot th,
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot td {
-  padding: 24px 16px !important;
-}
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot .order-total th,
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot .order-total td {
-  padding: 32px 16px 16px !important;
-  border-top: 2px solid #e0553d !important;
-  color: #1a1a1a !important;
-  font-size: 18px !important;
-}
-#order_review {
-  padding: 40px !important;
-}
-</style>
-
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
 
   <div class="checkout-fields">

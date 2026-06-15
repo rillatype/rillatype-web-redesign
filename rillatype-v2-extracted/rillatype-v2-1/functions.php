@@ -57,8 +57,8 @@ function rillatype_woocommerce_support() {
   }
 }
 
-// Remove WooCommerce Styles — disabled until custom WooCommerce CSS is complete
-// add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
+// Remove WooCommerce Styles — use theme's own WooCommerce styling
+add_filter('woocommerce_enqueue_styles', 'rillatype_remove_woocommerce_styles');
 function rillatype_remove_woocommerce_styles($enqueue_styles) {
   if (class_exists('WooCommerce')) {
     unset($enqueue_styles['woocommerce-general']);
