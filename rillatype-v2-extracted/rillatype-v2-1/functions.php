@@ -326,3 +326,28 @@ function rillatype_cart_item_name($name, $cart_item, $cart_item_key) {
   }
   return $name;
 }
+
+// Disable shipping for digital products
+add_filter('woocommerce_cart_needs_shipping', '__return_false');
+
+// Simplify checkout fields — only name + email for digital downloads
+add_filter('woocommerce_checkout_fields', 'rillatype_simplify_checkout_fields');
+function rillatype_simplify_checkout_fields($fields) {
+  if (isset($fields['billing'])) {
+    $keep = array('billing_first_name', 'billing_last_name', 'billing_email');
+    foreach ($fields['billing'] as $key => $val) {
+      if (!in_array($key, $keep)) {
+        unset($fields['billing'][$key]);
+      }
+    }
+  }
+  // Remove order comments
+  if (isset($fields['order'])) {
+    unset($fields['order']);
+  }
+  // Hide shipping entirely
+  if (isset($fields['shipping'])) {
+    unset($fields['shipping']);
+  }
+  return $fields;
+}
