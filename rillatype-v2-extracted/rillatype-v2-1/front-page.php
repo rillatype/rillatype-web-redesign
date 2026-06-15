@@ -70,6 +70,7 @@ if ($has_woo) {
     'post_type'      => 'product',
     'posts_per_page' => 3,
     'post_status'    => 'publish',
+    'orderby'        => 'rand',
     'meta_query'     => array(array(
       'key'   => '_price',
       'value' => '0',
