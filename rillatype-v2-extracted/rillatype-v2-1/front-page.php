@@ -83,6 +83,7 @@ if ($has_woo) {
   ));
   if ($free_q->have_posts()) {
     $freebies = $free_q->posts;
+    shuffle($freebies);
   }
 }
 
