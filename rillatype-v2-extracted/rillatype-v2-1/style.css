@@ -2550,16 +2550,37 @@ body {
   white-space: nowrap;
 }
 
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table .cart_item td {
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid var(--border-light);
-  font-size: 14px;
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name .variation {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table .product-name {
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name .variation dt {
+  display: inline;
+  font-weight: 600;
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name .variation dd {
+  display: inline;
+  margin: 0;
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name {
   font-weight: 600;
   overflow-wrap: break-word;
   word-break: break-word;
+  overflow: hidden;
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name a,
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name strong,
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table td.product-name .variation {
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot tr {
