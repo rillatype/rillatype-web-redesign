@@ -2516,6 +2516,7 @@ body {
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table thead th {
@@ -2526,6 +2527,14 @@ body {
   color: var(--text-muted);
   padding-bottom: var(--space-sm);
   border-bottom: 1px solid var(--border-light);
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table thead th.product-name {
+  width: 70%;
+}
+
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table thead th.product-total {
+  width: 30%;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table .cart_item td {

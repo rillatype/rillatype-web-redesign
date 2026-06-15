@@ -341,11 +341,7 @@ function rillatype_simplify_checkout_fields($fields) {
       }
     }
   }
-  // Remove order comments
-  if (isset($fields['order'])) {
-    unset($fields['order']);
-  }
-  // Hide shipping entirely
+  // Shipping hidden
   if (isset($fields['shipping'])) {
     unset($fields['shipping']);
   }
