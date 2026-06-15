@@ -116,7 +116,7 @@ function rillatype_enqueue_assets() {
   wp_enqueue_style('rillatype-fonts', 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap', array(), null);
 
   // Main stylesheet (contains all CSS)
-  wp_enqueue_style('rillatype', get_stylesheet_uri(), array('rillatype-fonts'), filemtime(get_stylesheet_directory() . '/style.css'));
+  wp_enqueue_style('rillatype', get_stylesheet_uri(), array('rillatype-fonts'), $version);
 
   // Single Product JS
   $product_js = get_template_directory() . '/assets/js/product.js';
