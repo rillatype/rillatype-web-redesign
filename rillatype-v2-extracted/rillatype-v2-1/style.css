@@ -2347,6 +2347,7 @@ body {
 .woocommerce-checkout .page-content {
   max-width: 960px;
   margin: 0 auto;
+  padding: 0 24px;
 }
 
 .woocommerce-checkout .col2-set::after {
@@ -2366,6 +2367,10 @@ body {
   grid-template-columns: 1fr 340px;
   gap: 32px;
   align-items: start;
+}
+
+.woocommerce-checkout .checkout-fields {
+  padding: 0 16px;
 }
 
 .woocommerce-checkout .col2-set::after {
@@ -2395,7 +2400,7 @@ body {
   background: #fff;
   border: 1px solid var(--border-light);
   border-radius: 12px;
-  padding: var(--space-lg);
+  padding: var(--space-xl);
 }
   background: #fff;
   border: 1px solid var(--border-light);
