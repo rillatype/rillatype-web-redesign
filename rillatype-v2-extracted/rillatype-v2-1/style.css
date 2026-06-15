@@ -2395,7 +2395,14 @@ body {
   grid-column: 1;
 }
 
-.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review_heading {
+  grid-column: 2;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
 .woocommerce-checkout #order_review {
   grid-column: 2;
 }
@@ -2421,6 +2428,39 @@ body {
 .woocommerce-checkout .woocommerce-shipping-fields .form-row,
 .woocommerce-checkout .woocommerce-additional-fields .form-row {
   margin-bottom: var(--space-md);
+}
+
+.woocommerce-checkout .form-row-first,
+.woocommerce-checkout .form-row-last {
+  width: 48%;
+  float: left;
+}
+
+.woocommerce-checkout .form-row-first {
+  margin-right: 4%;
+}
+
+.woocommerce-checkout .form-row-last {
+  float: right;
+  margin-right: 0;
+}
+
+.woocommerce-checkout .form-row-wide {
+  clear: both;
+}
+
+.woocommerce-checkout .woocommerce-additional-fields {
+  clear: both;
+  padding-top: var(--space-md);
+}
+
+.woocommerce-checkout .woocommerce-additional-fields h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .woocommerce-checkout .form-row label {
