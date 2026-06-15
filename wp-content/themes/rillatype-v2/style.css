@@ -2302,7 +2302,7 @@ body {
   padding: 4px 12px;
   border-radius: 4px;
   z-index: 1;
-  animation: badge-pulse 3s ease-in-out infinite;m
+  animation: badge-pulse 3s ease-in-out infinite;
 }
 
 .freebie__body {
@@ -2549,7 +2549,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .process__grid { grid-template-columns: 1fr; gap: var(--space-xl); }
   .freebies__grid { grid-template-columns: 1fr; }
   .other-products__grid { grid-template-columns: 1fr; }
   .latest__grid { grid-template-columns: 1fr; }

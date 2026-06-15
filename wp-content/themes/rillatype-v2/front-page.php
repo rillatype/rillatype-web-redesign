@@ -1,16 +1,36 @@
 <?php
 /**
- * Rillatype V2 — Homepage (Works Without Plugins)
- * Fallback content when ACF/WooCommerce not installed
+ * Rillatype V2 — Homepage
+ * Design based on index-playful-v2.html
  */
 get_header();
-
-// Debug marker — remove after testing
-echo '<!-- RILLATYPE FRONT PAGE LOADED -->';
 
 // Check if plugins are active
 $has_acf    = function_exists('get_field');
 $has_woo    = class_exists('WooCommerce');
+
+// Get freebies (free products, show random 3)
+$freebies = array();
+if ($has_woo) {
+  $free_q = new WP_Query(array(
+    'post_type'      => 'product',
+    'posts_per_page' => 3,
+    'post_status'    => 'publish',
+    'orderby'        => 'rand',
+    'meta_query'     => array(array(
+      'key'   => '_price',
+      'value' => '0',
+    )),
+    'tax_query'      => array(array(
+      'taxonomy' => 'product_type',
+      'field'    => 'slug',
+      'terms'    => 'simple',
+    )),
+  ));
+  if ($free_q->have_posts()) {
+    $freebies = $free_q->posts;
+  }
+}
 ?>
 
 <main id="main" class="site-main front-page">
@@ -198,6 +218,88 @@ $has_woo    = class_exists('WooCommerce');
           <?php endif; ?>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══════ LICENSE & PERKS ═══════ -->
+  <section class="process" aria-label="License and perks">
+    <div class="container">
+      <h2 class="section-label">License &amp; perks</h2>
+      <div class="process__grid">
+        <div class="process__step">
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <h3>Commercial License</h3>
+          <p>Use it anywhere. Personal, client, commercial. No extra fees, no expiry.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
+          </div>
+          <h3>OTF &amp; TTF</h3>
+          <p>Print and screen ready. Tested, subset, delivered.</p>
+        </div>
+        <div class="process__step">
+          <div class="process__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+          </div>
+          <h3>Bonus Extras</h3>
+          <p>Illustrations, logo templates, alternates — varies per font.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ FREE STUFF ═══════ -->
+  <section class="freebies" aria-label="Free fonts">
+    <div class="container">
+      <h2 class="section-label">Free stuff</h2>
+      <div class="freebies__grid">
+
+        <?php if (!empty($freebies)) : ?>
+          <?php foreach ($freebies as $i => $p) : if ($i >= 3) break; ?>
+            <?php
+            $pid    = $p->ID;
+            $prod   = wc_get_product($pid);
+            $name   = $prod ? $prod->get_name() : get_the_title($pid);
+            $img_id = $prod ? $prod->get_image_id() : 0;
+            $img_url = $img_id ? wp_get_attachment_image_url($img_id, 'medium') : '';
+            $free_preview_class = $img_url ? '' : array('freebie__preview--swashes', 'freebie__preview--ornaments', 'freebie__preview--sample')[$i];
+            ?>
+            <a href="<?php echo esc_url(get_permalink($pid)); ?>" class="freebie anim-card">
+              <span class="freebie__badge">Free</span>
+              <?php if ($img_url) : ?>
+                <div class="freebie__preview"><img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($name); ?>" loading="lazy"></div>
+              <?php else : ?>
+                <div class="freebie__preview <?php echo esc_attr($free_preview_class); ?>">Aa</div>
+              <?php endif; ?>
+              <div class="freebie__body">
+                <p class="freebie__name"><?php echo esc_html($name); ?></p>
+                <p class="freebie__desc">100% free. Commercial too.</p>
+              </div>
+            </a>
+          <?php endforeach; ?>
+        <?php else : ?>
+          <?php $fallback_freebies = array(
+            array('name' => 'Radiant Summertime', 'color' => '#f0e8f8', 'desc' => 'Warm display font. Full lowercase + numerals.', 'preview' => 'freebie__preview--swashes'),
+            array('name' => 'Daisy Hotline', 'color' => '#fef2ef', 'desc' => 'Playful script font. Includes alternates.', 'preview' => 'freebie__preview--ornaments'),
+            array('name' => 'Mango Sample', 'color' => '#e8f0ec', 'desc' => 'Try before you buy. Full specimen set.', 'preview' => 'freebie__preview--sample'),
+          ); ?>
+          <?php foreach ($fallback_freebies as $f) : ?>
+            <a href="#" class="freebie anim-card">
+              <span class="freebie__badge">Free</span>
+              <div class="freebie__preview <?php echo $f['preview']; ?>" style="display:flex;align-items:center;justify-content:center;font-size:2rem;font-weight:700;font-family:var(--font-serif);">Aa</div>
+              <div class="freebie__body">
+                <p class="freebie__name"><?php echo esc_html($f['name']); ?></p>
+                <p class="freebie__desc"><?php echo esc_html($f['desc']); ?></p>
+              </div>
+            </a>
+          <?php endforeach; ?>
+        <?php endif; ?>
+
+      </div>
+      <a href="<?php echo esc_url(home_url('/product-category/freebies/')); ?>" class="section-more">No catch <span class="section-more__icon">→</span></a>
     </div>
   </section>
 
