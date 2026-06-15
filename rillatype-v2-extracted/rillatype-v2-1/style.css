@@ -2183,6 +2183,20 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 12px 16px 12px 20px;
+}
+
+.woocommerce-cart .woocommerce-message::before {
+  position: static !important;
+  float: none !important;
+  margin: 0 !important;
+  font-family: WooCommerce;
+  content: "\e015";
+  color: #4caf50;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
 .woocommerce-cart .blockUI.blockOverlay {
