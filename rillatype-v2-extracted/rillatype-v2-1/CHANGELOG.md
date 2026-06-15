@@ -227,10 +227,6 @@
 - Fix: hidden iframe + native `form.submit()` + optimistic 1.5s timeout → button resets and shows toast even without callback.
 - Button text no longer stuck on "Adding…".
 
-### Cart/Checkout Template Recursion
-- Root cause: `woocommerce/cart/cart.php` and `woocommerce/checkout/form-checkout.php` called `the_content()` inside `[woocommerce_cart]` shortcode → infinite recursion.
-- Fix: deleted both template overrides. `page.php` handles cart/checkout via `the_content()` → shortcode without loop.
-
 ### Sticky Bar (Single Product)
 - Enlarged: padding 14px → 22px, thumbnail 52×35 → 64×44, name 15px → 17px, price 16px → 18px, button 12px28 → 14px36, font 14px → 15px.
 
@@ -245,9 +241,37 @@
 ### Style
 - Fixed typo `;m` → `;` on `.freebie__badge` animation rule.
 
-## Known Issues (not yet fixed)
-- Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices. Parent href overridden to `javascript:void(0)` + `e.preventDefault()` — still no closure. Root cause likely mobile browser fast-click optimization bypassing click handler.
-- Cart/checkout pages need styling — currently render via page.php with basic `.page-content` styling only.
+## Checkout & Cart (June 15, 2026)
+### Template Recursion Fix (Final)
+- Root cause: `woocommerce/cart/cart.php`, `woocommerce/checkout/form-checkout.php`, dan `woocommerce/checkout/thankyou.php` override panggil `the_content()` di dalem shortcode → infinite loop PHP fatal error.
+- Fix: hapus semua override cart/checkout/thankyou template dari theme. Biar fallback ke WooCommerce default via `page.php`.
+- Cart & Checkout harus di page terpisah (`[woocommerce_cart]` aja, `[woocommerce_checkout]` aja).
+
+### Checkout Processing Hang
+- Gejala: klik Place Order spinner terus, response AJAX kosong, order tetap tercipta tapi ga redirect.
+- Debug: cari via error log, tes payment method (Cheque), tes non-AJAX submit.
+- Fix: `wp_dequeue_script('wc-checkout')` + `wp_deregister_script('wc-checkout')` → pake form submit biasa (POST ke halaman checkout).
+- Order-received endpoint harus diisi `order-received` di WooCommerce → Settings → Advanced → Endpoints. Kalo kosong → 404.
+
+### Billing Fields Simplified
+- Hanya `billing_first_name`, `billing_last_name`, `billing_email` — shipping address dihapus, default address fields diremove.
+- Shipping dimatiin via `woocommerce_cart_needs_shipping` → false.
+
+### Checkout Styling
+- 2-column grid layout (kiri: billing, kanan: order review)
+- Order review card: border-light, radius 12px, cream bg, padding
+- Coupon form, payment methods, place order button styled
+- Subtotal hidden (karena gaada shipping/tax, sama kayak total)
+- Product name overflow: `table-layout: fixed` + `word-break: break-word`
+
+### Order Received (Thankyou)
+- Root cause critical error: theme override `thankyou.php` panggil `get_header()`/`the_content()`/`get_footer()` — loop rekursif di dalem `[woocommerce_checkout]`.
+- Fix: hapus override, bikin thankyou.php partial (hanya HTML order details, tanpa header/footer).
+- Styling: success notice centered serif-italic, order overview flex card cream, order details table border-light.
+
+### Known Issues (updated)
+- Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices.
+- Checkout AJAX disabled (pake form submit biasa) karna PayPal/process hang.
 
 ## Files
 - `front-page.php` — all homepage markup
