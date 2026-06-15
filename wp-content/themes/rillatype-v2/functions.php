@@ -124,6 +124,12 @@ function rillatype_enqueue_assets() {
     wp_enqueue_script('rillatype-product', get_template_directory_uri() . '/assets/js/product.js', array(), filemtime($product_js), true);
   }
 
+  // Dequeue checkout JS on checkout page — use standard form submit instead of AJAX
+  if (class_exists('WooCommerce') && is_checkout()) {
+    wp_dequeue_script('wc-checkout');
+    wp_dequeue_script('wc-gateway-ppec-smart-payment-buttons');
+  }
+
   // Main JS
   $main_js = get_template_directory() . '/assets/js/main.js';
   if (file_exists($main_js)) {
