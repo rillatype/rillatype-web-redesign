@@ -1873,7 +1873,7 @@ body {
 }
 
 .woocommerce-cart .product-thumbnail {
-  width: 76px;
+  width: 120px;
 }
 
 .woocommerce-cart .product-thumbnail a {
@@ -1881,7 +1881,7 @@ body {
 }
 
 .woocommerce-cart .product-thumbnail img {
-  width: 64px;
+  width: 100px;
   height: auto;
   border-radius: 8px;
   display: block;
@@ -1941,11 +1941,6 @@ body {
 }
 
 .woocommerce-cart .actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
   padding: 16px;
   background: var(--coral-soft);
   border-top: 1px solid var(--border-light);
@@ -1954,15 +1949,16 @@ body {
 .woocommerce-cart .coupon {
   display: flex;
   gap: 8px;
+  width: 100%;
 }
 
 .woocommerce-cart .coupon input[type="text"] {
+  flex: 1;
   padding: 10px 14px;
   border: 1.5px solid var(--border);
   border-radius: 50px;
   font-family: inherit;
   font-size: 14px;
-  min-width: 180px;
   background: #fff;
   transition: border-color .2s;
 }
@@ -1982,6 +1978,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all .2s;
+  white-space: nowrap;
 }
 
 .woocommerce-cart .coupon button[type="submit"]:hover {
@@ -1989,7 +1986,10 @@ body {
 }
 
 .woocommerce-cart button[name="update_cart"] {
-  padding: 10px 24px;
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 24px;
   background: var(--charcoal);
   color: #fff;
   border: none;
@@ -2269,17 +2269,8 @@ body {
     padding-top: 10px;
   }
 
-  .woocommerce-cart .actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
   .woocommerce-cart .coupon {
     flex-direction: column;
-  }
-
-  .woocommerce-cart .coupon input[type="text"] {
-    min-width: 0;
   }
 
   .woocommerce-cart .cart_totals {
