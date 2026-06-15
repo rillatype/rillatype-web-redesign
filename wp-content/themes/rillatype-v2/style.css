@@ -1948,12 +1948,18 @@ body {
   padding: 16px;
   background: var(--coral-soft);
   border-top: 1px solid var(--border-light);
+  overflow: hidden;
 }
 
-.woocommerce-cart .coupon {
+.woocommerce-cart .actions .coupon {
+  float: none !important;
   display: flex;
   gap: 8px;
   width: 100%;
+}
+
+.woocommerce-cart .actions button[name="update_cart"] {
+  float: none !important;
 }
 
 .woocommerce-cart .coupon input[type="text"] {
