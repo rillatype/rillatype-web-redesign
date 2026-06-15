@@ -1850,21 +1850,24 @@ body {
 }
 
 .woocommerce-cart .product-remove {
-  width: 44px;
+  width: 56px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .woocommerce-cart .product-remove a.remove {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: #f5f0ec;
   color: #8c8c88;
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
   transition: all .2s;
+  line-height: 1;
 }
 
 .woocommerce-cart .product-remove a.remove:hover {
@@ -1873,7 +1876,7 @@ body {
 }
 
 .woocommerce-cart .product-thumbnail {
-  width: 120px;
+  width: 160px;
 }
 
 .woocommerce-cart .product-thumbnail a {
@@ -1881,7 +1884,7 @@ body {
 }
 
 .woocommerce-cart .product-thumbnail img {
-  width: 100px;
+  width: 140px;
   height: auto;
   border-radius: 8px;
   display: block;
@@ -1988,7 +1991,7 @@ body {
 .woocommerce-cart button[name="update_cart"] {
   display: block;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 16px;
   padding: 12px 24px;
   background: var(--charcoal);
   color: #fff;
