@@ -127,7 +127,25 @@ function rillatype_enqueue_assets() {
   // Dequeue checkout JS on checkout page — use standard form submit instead of AJAX
   if (class_exists('WooCommerce') && is_checkout()) {
     wp_dequeue_script('wc-checkout');
+    wp_deregister_script('wc-checkout');
     wp_dequeue_script('wc-gateway-ppec-smart-payment-buttons');
+    wp_deregister_script('wc-gateway-ppec-smart-payment-buttons');
+    wp_dequeue_script('ppcp-smart-button');
+    wp_dequeue_script('hosted-fields');
+    // Also remove PayPal's hosted fields
+    add_action('wp_footer', function() { ?>
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var form = document.querySelector('form.checkout');
+        if (form) {
+          form.classList.remove('checkout');
+          form.querySelector('#place_order').addEventListener('click', function() {
+            form.submit();
+          });
+        }
+      });
+      </script>
+    <?php }, 999);
   }
 
   // Main JS
