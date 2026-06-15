@@ -2362,8 +2362,10 @@ body {
 }
 
 .woocommerce-checkout form.checkout {
-  max-width: 580px;
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
 }
 
 .woocommerce-checkout .col2-set::after {
@@ -2378,12 +2380,8 @@ body {
   width: 100%;
 }
 
-.woocommerce-checkout .col-1 {
-  margin-bottom: var(--space-lg);
-}
-
 .woocommerce-checkout .checkout-summary {
-  margin-top: var(--space-lg);
+  grid-column: 2;
 }
 
 .woocommerce-checkout .checkout-summary h3 {
