@@ -2576,6 +2576,10 @@ body {
   overflow-wrap: break-word;
 }
 
+.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot .cart-subtotal {
+  display: none;
+}
+
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot th {
   font-weight: 600;
   color: var(--text-muted);
