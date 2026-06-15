@@ -331,7 +331,7 @@ function rillatype_cart_item_name($name, $cart_item, $cart_item_key) {
 add_filter('woocommerce_cart_needs_shipping', '__return_false');
 
 // Simplify checkout fields — only name + email for digital downloads
-add_filter('woocommerce_checkout_fields', 'rillatype_simplify_checkout_fields');
+add_filter('woocommerce_checkout_fields', 'rillatype_simplify_checkout_fields', 50);
 function rillatype_simplify_checkout_fields($fields) {
   if (isset($fields['billing'])) {
     $keep = array('billing_first_name', 'billing_last_name', 'billing_email');
@@ -348,6 +348,30 @@ function rillatype_simplify_checkout_fields($fields) {
   // Hide shipping entirely
   if (isset($fields['shipping'])) {
     unset($fields['shipping']);
+  }
+  return $fields;
+}
+
+// Also strip address sub-fields (used by WooCommerce internally)
+add_filter('woocommerce_default_address_fields', 'rillatype_simplify_address_fields');
+function rillatype_simplify_address_fields($fields) {
+  $keep = array('first_name', 'last_name');
+  foreach ($fields as $key => $val) {
+    if (!in_array($key, $keep)) {
+      unset($fields[$key]);
+    }
+  }
+  return $fields;
+}
+
+// Billing fields priority
+add_filter('woocommerce_billing_fields', 'rillatype_billing_fields', 50);
+function rillatype_billing_fields($fields) {
+  $keep = array('billing_first_name', 'billing_last_name', 'billing_email');
+  foreach ($fields as $key => $val) {
+    if (!in_array($key, $keep)) {
+      unset($fields[$key]);
+    }
   }
   return $fields;
 }
