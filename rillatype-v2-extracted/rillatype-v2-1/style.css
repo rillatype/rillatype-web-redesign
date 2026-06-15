@@ -2340,30 +2340,67 @@ body {
 /* ============================================
    WooCommerce Checkout Page (native classes)
    ============================================ */
+.woocommerce-checkout .page-title {
+  display: none;
+}
+
 .woocommerce-checkout .page-content {
   max-width: 960px;
   margin: 0 auto;
 }
 
-.woocommerce-checkout .woocommerce {
+.woocommerce-checkout .col2-set::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.woocommerce-checkout .col-1,
+.woocommerce-checkout .col-2 {
+  width: 48%;
+}
+
+.woocommerce-checkout .col-1 {
+  float: left;
+}
+
+.woocommerce-checkout .col-2 {
+  float: right;
+}
+
+.woocommerce-checkout form.checkout {
   display: grid;
   grid-template-columns: 1fr 380px;
-  gap: var(--space-xl);
+  gap: 32px;
   align-items: start;
 }
 
-@media (max-width: 767px) {
-  .woocommerce-checkout .woocommerce {
+@media (max-width: 899px) {
+  .woocommerce-checkout form.checkout {
     grid-template-columns: 1fr;
+  }
+
+  .woocommerce-checkout .col-1,
+  .woocommerce-checkout .col-2 {
+    float: none;
+    width: 100%;
+  }
+
+  .woocommerce-checkout .col-1 {
+    margin-bottom: var(--space-lg);
   }
 }
 
 .woocommerce-checkout #customer_details {
-  order: 1;
+  grid-column: 1;
+}
+
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+  grid-column: 2;
 }
 
 .woocommerce-checkout #order_review {
-  order: 2;
   background: #fff;
   border: 1px solid var(--border-light);
   border-radius: 12px;
@@ -2458,6 +2495,8 @@ body {
   font-weight: 700;
   letter-spacing: -.01em;
   margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border-light);
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table {
@@ -2489,10 +2528,6 @@ body {
   text-align: right;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-}
-
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot {
-  margin-top: var(--space-sm);
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot tr {
