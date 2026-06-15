@@ -221,12 +221,37 @@
 ## Footer
 - Mobile: stack vertikal, link center wrap, copyright di bawah
 
+## Session 4 — June 15, 2026
+### Add-to-Cart Fix (iframe + optimistic timeout)
+- Root cause: fetch/AJAX add-to-cart didn't reliably trigger WooCommerce cart refresh.
+- Fix: hidden iframe + native `form.submit()` + optimistic 1.5s timeout → button resets and shows toast even without callback.
+- Button text no longer stuck on "Adding…".
+
+### Cart/Checkout Template Recursion
+- Root cause: `woocommerce/cart/cart.php` and `woocommerce/checkout/form-checkout.php` called `the_content()` inside `[woocommerce_cart]` shortcode → infinite recursion.
+- Fix: deleted both template overrides. `page.php` handles cart/checkout via `the_content()` → shortcode without loop.
+
+### Sticky Bar (Single Product)
+- Enlarged: padding 14px → 22px, thumbnail 52×35 → 64×44, name 15px → 17px, price 16px → 18px, button 12px28 → 14px36, font 14px → 15px.
+
+### License & Perks (Homepage)
+- Added section between Journal and Custom License CTA: 3 cards (Commercial License, OTF & TTF, Bonus Extras).
+- Grid stays 3 columns on tablet (removed `1fr` collapse at 768px).
+
+### Free Stuff (Homepage)
+- Added section below License & Perks: random 3 free products from WooCommerce.
+- `orderby => rand` + `shuffle()` after query → beneran random tiap reload.
+
+### Style
+- Fixed typo `;m` → `;` on `.freebie__badge` animation rule.
+
 ## Known Issues (not yet fixed)
 - Mobile dropdown toggle: clicking parent link to close sub-menu doesn't work on touch devices. Parent href overridden to `javascript:void(0)` + `e.preventDefault()` — still no closure. Root cause likely mobile browser fast-click optimization bypassing click handler.
+- Cart/checkout pages need styling — currently render via page.php with basic `.page-content` styling only.
 
 ## Files
 - `front-page.php` — all homepage markup
-- `style.css` — all theme CSS (~2,800 lines)
+- `style.css` — all theme CSS (~2,900 lines)
 - `inc/customizer.php` — Featured Products & Fresh Drops settings
 - `assets/js/main.js` — search overlay, mobile menu toggle, sub-menu accordion
 - `header.php` — logo, nav, search overlay, mobile nav-actions
