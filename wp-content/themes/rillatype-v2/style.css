@@ -1884,7 +1884,8 @@ body {
 }
 
 .woocommerce-cart .product-thumbnail img {
-  width: 140px;
+  width: 140px !important;
+  max-width: 140px !important;
   height: auto;
   border-radius: 8px;
   display: block;

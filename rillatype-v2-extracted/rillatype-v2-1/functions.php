@@ -313,3 +313,16 @@ function rillatype_product_admin_assets($hook) {
 }
 
 // Cart is rendered directly in nav-actions--mobile
+
+// Shorten cart product name: "Name - Subtitle - License" → "Name - License"
+add_filter('woocommerce_cart_item_name', 'rillatype_cart_item_name', 10, 3);
+function rillatype_cart_item_name($name, $cart_item, $cart_item_key) {
+  $product = $cart_item['data'];
+  $full = $product->get_name();
+  $parts = explode(' - ', $full);
+  if (count($parts) >= 3) {
+    $short = $parts[0] . ' - ' . end($parts);
+    $name = str_replace($full, esc_html($short), $name);
+  }
+  return $name;
+}
