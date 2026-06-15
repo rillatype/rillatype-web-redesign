@@ -2457,7 +2457,7 @@ body {
 
 .woocommerce-checkout .woocommerce-additional-fields {
   clear: both;
-  padding-top: var(--space-md);
+  margin-top: 4px;
 }
 
 .woocommerce-checkout .woocommerce-additional-fields h3 {
@@ -2568,6 +2568,8 @@ body {
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table .product-name {
   font-weight: 600;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table .product-total {
@@ -2752,6 +2754,23 @@ body {
   border-radius: 8px;
   font-size: 14px;
   margin-bottom: var(--space-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.woocommerce-checkout .woocommerce-info::before {
+  position: static !important;
+  float: none !important;
+  margin: 0 !important;
+  font-family: WooCommerce;
+  content: "\e016";
+  color: var(--coral);
+  font-size: 14px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
 }
 
 .woocommerce-checkout .woocommerce-info a {
