@@ -2579,21 +2579,17 @@ body {
   margin-top: var(--space-sm);
 }
 
-.woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot tr {
-  border-top: 1px solid var(--border-light);
-}
-
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot th {
   font-weight: 600;
   color: var(--text-muted);
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) 0;
   font-size: 14px;
 }
 
 .woocommerce-checkout .shop_table.woocommerce-checkout-review-order-table tfoot td {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  padding: var(--space-sm) 0;
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-sm);
   font-size: 14px;
   text-align: right;
 }
@@ -2603,7 +2599,9 @@ body {
   font-size: 16px;
   font-weight: 800;
   color: var(--charcoal);
-  padding-top: var(--space-md);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-xs);
+  border-top: 1px solid var(--border);
 }
 
 .woocommerce-checkout #payment {
