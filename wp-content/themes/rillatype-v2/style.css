@@ -2180,6 +2180,14 @@ body {
   background: #f0f7f0;
   color: #2a6b3a;
   border-left: 3px solid #4caf50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.woocommerce-cart .blockUI.blockOverlay {
+  background: rgba(255,255,255,.5) !important;
+  z-index: 2 !important;
 }
 
 .woocommerce-cart .woocommerce-info {

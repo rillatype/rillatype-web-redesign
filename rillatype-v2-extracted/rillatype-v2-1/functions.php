@@ -322,7 +322,7 @@ function rillatype_cart_item_name($name, $cart_item, $cart_item_key) {
   $parts = explode(' - ', $full);
   if (count($parts) >= 3) {
     $short = $parts[0] . ' - ' . end($parts);
-    $name = str_replace($full, esc_html($short), $name);
+    $name = preg_replace('/>([^<]+)</u', '>' . esc_html($short) . '<', $name);
   }
   return $name;
 }
