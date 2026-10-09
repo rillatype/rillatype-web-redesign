@@ -163,15 +163,23 @@ typography:
     lineHeight: 1.1
     letterSpacing: "-.04em"
   tester:
-    fontFamily: '"Mango Product", sans-serif'
+    fontFamily: 'product specimen family, sans-serif'
     fontSize: "64px"
     fontWeight: 400
-    lineHeight: 1.3
-  tester-mobile-css:
-    fontFamily: '"Mango Product", sans-serif'
-    fontSize: "44px"
+    lineHeight: 1.2
+  tester-mobile:
+    fontFamily: 'product specimen family, sans-serif'
+    fontSize: "40px"
     fontWeight: 400
-    lineHeight: 1.3
+    lineHeight: 1.2
+  tester-label:
+    fontSize: "12px"
+    fontWeight: 650
+    letterSpacing: ".04em"
+  tester-value:
+    fontSize: "12px"
+    fontWeight: 600
+    letterSpacing: "0"
   base-body:
     fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
     fontSize: "16px"
@@ -292,14 +300,26 @@ components:
   license-option-selected:
     backgroundColor: "{colors.wash}"
   tester-input:
-    backgroundColor: "{colors.paper}"
+    backgroundColor: "{colors.wash}"
     textColor: "{colors.ink}"
     rounded: "{rounded.control}"
     padding: "12px 14px"
+  tester-stage:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
+    padding: "64px 44px"
+  tester-stage-dark:
+    backgroundColor: "#101318"
+    textColor: "#f5f7fa"
+  tester-panel:
+    padding: "26px 30px"
+  tester-options:
+    backgroundColor: "{colors.wash}"
+    padding: "18px 30px"
   tester-output:
     textColor: "{colors.ink}"
     typography: "{typography.tester}"
-    padding: "36px 0"
+    padding: "0"
   base-button-primary:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
@@ -353,6 +373,8 @@ Manrope adalah font body dan seluruh informasi toko. Role editorial tanpa `fontF
 
 File lokal `static/redesign/manrope.ttf` berasal dari repo resmi Google Fonts, `https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf`. Lisensi asli tersimpan di `static/redesign/OFL-Manrope.txt`, dari `https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt`. Runtime tidak memuat stylesheet font pihak ketiga.
 
+R06A menambahkan family Chronoa dengan sembilan berkas OTF di `static/redesign/fonts/`. Family ini hanya dipakai sebagai specimen tester, tidak sebagai font UI. Nama family di `name` table berkas tidak konsisten (`Chronoa Black`, `Chronoa ExtBd`, `Chronoa Light`), sehingga `product-preview.js` menggabungkannya menjadi satu family runtime `Rilla-Chronoa` dengan sembilan bobot 100..900. Pemetaan bobot berada di `font-catalog.js`.
+
 ### Hierarchy
 - `display` dan `display-mobile` mencatat H1 homepage. Mobile berlaku pada max-width 640px; tidak ada role tablet terpisah.
 - `headline` dan `headline-mobile` mencatat H2 koleksi dan tester. `license-headline` memakai ukuran serta line-height berbeda.
@@ -368,7 +390,7 @@ File lokal `static/redesign/manrope.ttf` berasal dari repo resmi Google Fonts, `
 
 `product-preview.js` membuat `FontFace('Mango Product', ...)` hanya untuk route Mango. Sumbernya `static/previews/mango-letter.otf`. Tidak ada preload Mango di homepage atau pemakaian Mango pada headline, lisensi, maupun footer. Kontrol dan output baru terlihat setelah `face.load()` berhasil.
 
-Tester mulai pada 64px dengan line-height 1.3. CSS mobile menyediakan 44px, tetapi `updateSample()` menetapkan ukuran inline dari slider. Setelah font berhasil dimuat, nilai slider awal 64px mengalahkan CSS mobile. Range aktual adalah 24..120px. Token `tester-mobile-css` mencatat deklarasi CSS, bukan ukuran runtime awal mobile.
+R06A mengganti tester satu-kontrol dengan tester dua zona. Bidang specimen berada di atas panel kontrol, dipisahkan border Line, dan dibingkai card radius 8px. Bidang specimen memakai padding 64px/44px dan min-height 320px, turun menjadi 34px/20px serta min-height 200px pada mobile. Ukuran specimen mulai 64px dengan line-height 1.2, dan seluruh nilai dikendalikan inline oleh slider sehingga CSS mobile tidak menimpanya. Range ukuran 16..200px, leading 0.8..2.6, tracking -0.10..0.30 em. Output memakai `overflow-wrap: anywhere` agar teks panjang tidak meluber.
 
 **The Product Font Rule.** Tampilkan font produk hanya setelah specimen berhasil dimuat; jangan tampilkan font UI sebagai specimen pengganti.
 
@@ -396,7 +418,9 @@ Tujuh kartu koleksi memakai tiga kolom dengan gap 40px/26px. Grid tetap tiga kol
 
 Lisensi homepage memakai dua kolom, gap 60px, margin atas 74px, dan padding vertikal 38px. Mobile memakai satu kolom, gap 22px, margin atas 46px, dan padding vertikal 28px. Blok Room to experiment dihapus atas permintaan user pada R05F. Footer memakai padding vertikal 40px dan menumpuk pada mobile.
 
-Detail produk memakai gallery dan summary dalam grid 1.4fr:1fr, gap 52px. Gap turun menjadi 30px pada max-width 1000px. Mobile memakai satu kolom dengan gap 28px. Thumbnail memakai empat kolom, gap 10px, dan margin atas 12px. Tester memakai margin atas 52px, padding atas 36px, serta border Line. Kontrol tester memakai `1fr 240px`, gap 36px, lalu satu kolom dengan gap 20px mobile. Output memakai min-height 170px, padding vertikal 36px, pre-wrap, dan overflow-wrap anywhere.
+Detail produk memakai gallery dan summary dalam grid 1.4fr:1fr, gap 52px. Gap turun menjadi 30px pada max-width 1000px. Mobile memakai satu kolom dengan gap 28px. Thumbnail memakai empat kolom, gap 10px, dan margin atas 12px.
+
+Urutan halaman produk R06A adalah breadcrumb, gallery dan summary, tester, pemilih lisensi, lalu Font information. Tester sengaja ditempatkan sebelum pemilih lisensi agar pengunjung menilai font lebih dahulu, sesuai keputusan user. Pemilih lisensi dipindahkan keluar dari kolom summary menjadi section sendiri dengan max-width 640px dan border-top Line. Tester memakai margin atas 64px. Panel kontrol memakai grid empat kolom dengan gap 20px/24px, menjadi dua kolom pada max-width 900px dan satu kolom pada max-width 640px. Baris opsi memuat segmented align, segmented tema, dan sakelar OpenType.
 
 Component lab tetap memakai layout base, termasuk header minimum 80px/68px mobile dan grid gap 30px/24px. Detail legacy `.product-detail` bukan grid R06 `.detail-grid`.
 
@@ -412,7 +436,7 @@ Fokus card memakai `:focus-within` pada parent dengan outline biru 2px dan offse
 
 Tombol sekunder memakai border Ink 1px; tombol utama memakai border biru 1px. Search header memakai border transparan 1px. Tidak ada perubahan border search khusus saat fokus; fokus keyboard memakai outline biru 2px dengan offset 4px. Thumbnail memakai border 2px transparan yang menjadi biru saat aktif. Opsi lisensi memakai border Line 1px, berubah biru saat radio terpilih.
 
-Tombol, filter, search header, dan link navigasi header memiliki min-height 44px. Thumbnail memakai ukuran grid gambar; stylesheet tidak menetapkan min-height sentuh terpisah.
+Tombol, filter, search header, dan link navigasi header memiliki min-height 44px. Thumbnail memakai ukuran grid gambar; stylesheet tidak menetapkan min-height sentuh terpisah. Seluruh kontrol tester R06A memakai min-height 44px: slider, select style, segmented align, segmented tema, dan sakelar OpenType. Sakelar memakai ukuran visual 38x22px di dalam label setinggi 44px, sehingga target sentuh tetap memenuhi standar.
 
 ## Components
 
@@ -428,7 +452,13 @@ Tombol utama memakai Collection blue/Paper, padding 10px/19px, weight 650, dan h
 
 Search memakai input native type search dengan placeholder Search the collection. Label aksesibelnya Find a font. Query langsung memfilter nama, kategori `data-style`, dan deskripsi style, case-insensitive. Submit menggulir ke produk pertama yang terlihat; jika kosong, ke bar Fonts. Show all fonts menghapus query dan kategori, lalu memfokuskan search.
 
-Textarea tester berlabel Your sample text, maxlength 300, min-height 90px, dan resize vertical. Range berlabel Size, menampilkan nilai px, dan mengubah ukuran output tanpa request baru. Input kosong menghasilkan Type something to preview this font. Output memakai `textContent`, sehingga markup yang diketik tetap teks biasa.
+Tester R06A memuat masukan teks berlabel Sample text, maxlength 300, dan resize vertical. Input kosong menghasilkan teks pengganti Type something to preview this font. Output memakai `textContent`, sehingga markup yang diketik tetap teks biasa.
+
+Tiga slider (Size, Leading, Tracking) menampilkan nilai aktifnya berupa angka tabular. Slider, select style, segmented align, segmented tema, dan sakelar OpenType semuanya memakai kontrol yang digayakan, bukan tampilan bawaan browser. Thumb slider memakai aksen biru 18px di atas track Line 4px. Select style memakai chevron kustom. Segmented control memakai Ink/Paper untuk pilihan aktif.
+
+Sakelar Latar membalik bidang specimen antara Paper/Ink dan `#101318`/`#f5f7fa`. Perpindahan memakai transisi 160ms yang dihormati oleh `prefers-reduced-motion`.
+
+Sakelar Ligatures dan Stylistic alternates dideteksi langsung dari tabel GSUB berkas font melalui `tester-core.js`, bukan daftar tetap. Karena berkas Chronoa tidak memiliki feature pada GSUB, kedua sakelar tampil dalam kondisi `disabled` disertai keterangan `Not in Chronoa`. Pendekatan ini membuat font yang memiliki fitur tersebut otomatis mengaktifkan kontrolnya.
 
 ### Chips
 
@@ -440,7 +470,7 @@ Homepage memuat Bawden sebagai satu panel unggulan dan tujuh kartu koleksi. Bawd
 
 Setiap card memakai satu anchor native luar yang mencakup artwork, metadata, harga, dan tindakan visual. View font adalah span, bukan link kedua atau button bersarang. Klik panel informasi Bawden atau metadata Mango dan aktivasi Enter membuka detail masing-masing. Bawden memakai harga 22px/650 dekat nama serta CTA biru selebar panel di bawah; koleksi memakai nama 18px/700, harga 15px/650, kategori tenang 13px, dan tindakan outlined radius 4px yang sejajar otomatis di bawah. Label Demo tetap dipertahankan sesuai permintaan eksplisit user yang sudah memahami data contoh. Persetujuan ini berlaku pada perubahan card R05E, bukan persetujuan render keseluruhan.
 
-Logo berasal dari `logo.png`. Cover berasal dari `static/previews/`: `bawden-1.jpg`, `mango-1.jpg`, `baldock-1.jpg`, `daisy-hotline-1.jpg`, `crimson-queen-1.jpg`, `mordial-1.jpg`, `moyshire-1.jpg`, dan `radiant-summertime-1.jpg`. Gallery Mango menambah `mango-2.jpg`, `mango-3.jpg`, dan `mango-4.jpg`, semuanya file existing. `static/redesign/ASSETS.md` mencatat sumber. R05D/R06 tidak menambah raster hasil generasi atau foto baru. OFL Manrope tidak menjadi klaim hak distribusi artwork atau specimen Mango.
+Logo berasal dari `logo.png`. Cover berasal dari `static/previews/`: `bawden-1.jpg`, `mango-1.jpg`, `chronoa-1.jpg`, `baldock-1.jpg`, `daisy-hotline-1.jpg`, `crimson-queen-1.jpg`, `mordial-1.jpg`, `moyshire-1.jpg`, dan `radiant-summertime-1.jpg`. `chronoa-1.jpg` dirender dari berkas Chronoa asli dengan Pillow pada R06A, bukan artwork hasil generasi. Gallery Mango menambah `mango-2.jpg`, `mango-3.jpg`, dan `mango-4.jpg`, semuanya file existing. `static/redesign/ASSETS.md` mencatat sumber. R05D/R06 tidak menambah raster hasil generasi atau foto baru. OFL Manrope tidak menjadi klaim hak distribusi artwork atau specimen Mango.
 
 ### Navigation
 
@@ -456,7 +486,24 @@ Mango memiliki empat gambar dan tombol native Preview 1..4 dengan `aria-pressed`
 
 Standard License dan Extended License adalah nama contoh. Radio native memakai nama grup `license`; pilihan standard bersifat required. Extended menggandakan harga demo. Perubahan pilihan memperbarui harga summary dan menghapus status lama. Submit mencegah navigasi dan hanya menampilkan konfirmasi pilihan di polite live region. Tidak ada cart, pesanan, atau pembayaran dari form ini.
 
-Mango memiliki state loading, loaded, failure, dan retry. Loading menyembunyikan retry; loaded memperlihatkan kontrol serta output. Failure menyembunyikan kontrol serta output, memberi pesan, dan memperlihatkan Retry font. Tujuh produk lain menampilkan pesan specimen tidak tersedia, dengan gallery tetap dapat dilihat. UI tidak membuat style atau format font yang datanya belum tersedia.
+Mango dan Chronoa memiliki state loading, loaded, failure, dan retry. Loading menyembunyikan seluruh bidang tester; loaded memperlihatkan bidang specimen serta panel kontrol. Failure menyembunyikan bidang tester, memberi pesan, dan memperlihatkan Retry font. Font tanpa berkas specimen, yaitu Baldock, Daisy Hotline, Crimson Queen, Mordial, Moyshire, dan Radiant Summertime, hanya menampilkan pesan specimen tidak tersedia tanpa bidang tester, sehingga tidak ada kontrol yang terlihat berfungsi padahal tidak. UI tidak membuat style, format font, atau fitur OpenType yang datanya belum tersedia.
+
+Chronoa memuat sembilan berkas style. Tombol retry memuat ulang seluruh sembilan berkas sekaligus melalui `Promise.all`; kegagalan satu berkas menggagalkan seluruh pemuatan dan menampilkan pesan. Deteksi OpenType dan daftar glyph membaca berkas style pertama yang tersedia.
+
+### Font tester R06A
+
+Tester terdiri dari empat bagian yang tersusun vertikal di dalam satu card berbingkai:
+
+1. **Bidang specimen** memuat teks contoh yang dirender dengan font produk asli.
+2. **Panel kontrol** memuat masukan teks, dropdown style, slider ukuran, slider leading, dan slider tracking.
+3. **Baris opsi** memuat segmented align, segmented tema, dan dua sakelar OpenType.
+4. **Panel glyph** berupa elemen `details` yang dapat dibuka dan ditutup, memuat seluruh codepoint font beserta jumlahnya.
+
+Panel glyph memakai `max-height: 420px` dengan `overflow-y: auto`, sehingga membuka panel tidak memanjangkan halaman produk secara berlebihan. Saat tertutup, tingginya hanya header 52px.
+
+Perataan mengubah `data-align` pada output dan diterjemahkan CSS menjadi `text-align`. Latar mengubah `data-theme` pada bidang specimen. Keduanya memakai radio native di dalam segmented control, sehingga navigasi keyboard tetap standar.
+
+Deteksi OpenType berada di `tester-core.js`. Fungsi `readOtFeatures` membaca tabel GSUB berkas font dan mengumpulkan feature tag. Sakelar hanya aktif jika tag `liga`/`clig` atau `salt` benar-benar ada. Fungsi `readGlyphCodepoints` membaca subtable cmap format 4 untuk mengumpulkan codepoint yang dipetakan. Keduanya memakai fetch terhadap berkas OTF yang sama dengan yang dimuat `FontFace`, sehingga tidak ada permintaan tambahan di luar specimen.
 
 ### Font information
 

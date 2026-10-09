@@ -115,6 +115,21 @@ Dependensi: R04 dan R05D.
 - Buat state lisensi belum dipilih, font tidak tersedia, teks panjang, dan font gagal dimuat.
 - Selesai jika alur mencoba font dan memilih lisensi dapat diperiksa pada desktop serta mobile.
 
+### R06A. Rombak font tester sesuai feedback
+
+Dependensi: R06 dan berkas font dari user.
+
+Brief lengkap berada di `DESIGN-TESTER-SPEC.md`.
+
+- Sediakan masukan teks, slider ukuran, dropdown style dalam family, slider leading, slider tracking, dan perataan kiri, tengah, kanan.
+- Sediakan sakelar latar terang dan gelap dengan teks terang pada latar gelap.
+- Sediakan sakelar ligature dan stylistic alternate. Deteksi dukungan langsung dari berkas font, bukan daftar tetap. Tampilkan kondisi tidak tersedia disertai keterangan jika font tidak mendukung.
+- Sediakan panel all glyph yang dapat dibuka dan ditutup beserta jumlah karakter.
+- Tambahkan family Chronoa dengan sembilan style ke katalog preview tanpa menghapus Mango Letters.
+- Jadikan tester bagian utama halaman produk, ditempatkan sebelum pemilih lisensi.
+- Ganti seluruh kontrol bawaan browser dengan gaya yang konsisten terhadap sistem editorial R05E.
+- Selesai jika seluruh fitur tersebut benar-benar mengubah tampilan specimen, keterangan font tanpa dukungan terbaca, panel glyph tidak memanjangkan halaman saat tertutup, dan pemeriksaan browser lulus pada desktop serta mobile tanpa kesalahan JavaScript.
+
 ### R05A. Perkuat karakter homepage setelah feedback
 
 Dependensi: R05.
