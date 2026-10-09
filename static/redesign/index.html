@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
   <script src="preview.js" defer></script>
 </head>
-<body>
+<body class="homepage">
   <a class="skip" href="#main">Skip to content</a>
   <header class="header">
     <div class="wrap header-inner">
@@ -21,12 +21,15 @@
   </header>
   <main id="main" class="wrap">
     <section class="intro">
-      <div><h1>A little character.<br>A lot of possibilities.</h1><p>Find the right font for your next project.</p></div>
-      <form class="search" id="font-search" action="#fonts">
-        <label for="query">Find a font</label>
-        <div class="search-row"><input id="query" name="q" type="search" placeholder="Search by name or style" autocomplete="off"><button class="button primary" type="submit">Search</button></div>
-        <p class="small muted">Browse the preview collection below.</p>
-      </form>
+      <div class="intro-copy">
+        <h1>A little<br>character.</h1>
+        <p>Fonts for your next project.<br>A lot of possibilities.</p>
+        <form class="search" id="font-search" action="#fonts">
+          <label for="query">Find a font</label>
+          <div class="search-row"><input id="query" name="q" type="search" placeholder="Search by name or style" autocomplete="off"><button class="button primary" type="submit">Search</button></div>
+        </form>
+      </div>
+      <article class="product intro-feature" data-name="Mango Letters" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters, a rounded handwritten font on an orange cover" fetchpriority="high"></div><div class="product-info"><div><h2>Mango Letters</h2><p>Handwritten display</p></div><span class="price">Demo $18</span></div></a></article>
     </section>
     <div class="browse" id="fonts">
       <div class="filters" aria-label="Filter fonts by style">
@@ -39,8 +42,7 @@
     </div>
     <section class="section" data-collection>
       <div class="section-heading"><h2>Selected fonts</h2><a href="#latest">See the latest</a></div>
-      <div class="products">
-        <article class="product" data-name="Mango Letters" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters, a rounded handwritten font on an orange cover" fetchpriority="high"></div><div class="product-info"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class="price">Demo $18</span></div></a></article>
+      <div class="products selected-products">
         <article class="product" data-name="Baldock" data-style="serif"><a href="#preview-note"><div class="product-image"><img src="../previews/baldock-1.jpg" width="1200" height="800" alt="Baldock font cover"></div><div class="product-info"><div><h3>Baldock</h3><p>Serif</p></div><span class="price">Demo $24</span></div></a></article>
         <article class="product" data-name="Daisy Hotline" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/daisy-hotline-1.jpg" width="1200" height="800" alt="Daisy Hotline font cover"></div><div class="product-info"><div><h3>Daisy Hotline</h3><p>Display</p></div><span class="price">Demo $20</span></div></a></article>
       </div>

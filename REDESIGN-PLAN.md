@@ -14,6 +14,7 @@ Rencana ini menggantikan arah visual dalam `PLAN.md` untuk pekerjaan baru.
 - Layani desainer dan pemilik brand yang ingin menemukan, mencoba, dan membeli font.
 - Tetap gunakan WordPress dan WooCommerce.
 - Gunakan tampilan minimal, bersih, monokrom terang, dan navigasi yang mudah dipahami.
+- Revisi 9 Oktober 2026: user menilai preview awal terlalu sederhana. Pertahankan minimalisme, tetapi perkuat komposisi, skala tipografi, dan dominasi preview unggulan.
 - Gunakan latar putih, teks hitam, dan abu-abu untuk elemen pendukung. Preview font tetap berwarna.
 - Homepage berisi pembukaan singkat, font pilihan, rilisan terbaru, penjelasan lisensi singkat, dan footer.
 - Buat pencarian serta akses katalog mudah ditemukan. Sediakan akses freebies melalui navigasi.
@@ -106,13 +107,24 @@ Dependensi: R04.
 
 ### R06. Buat preview halaman produk baru
 
-Dependensi: R04.
+Dependensi: R04 dan R05A.
 
 - Susun gallery, nama font, ringkasan, harga, pilihan lisensi, dan tombol tambah ke cart.
 - Sediakan tester teks, ukuran, dan style yang memang dimiliki produk.
 - Jelaskan format file, informasi font, cakupan lisensi, serta cara mendapatkan bantuan.
 - Buat state lisensi belum dipilih, font tidak tersedia, teks panjang, dan font gagal dimuat.
 - Selesai jika alur mencoba font dan memilih lisensi dapat diperiksa pada desktop serta mobile.
+
+### R05A. Perkuat karakter homepage setelah feedback
+
+Dependensi: R05.
+
+- Jadikan satu preview font unggulan sebagai fokus visual sejak area awal halaman.
+- Beri pembukaan kontras skala dan ritme yang lebih tegas tanpa menambah section pemasaran.
+- Bedakan susunan font pilihan dari daftar rilisan terbaru.
+- Pertahankan pencarian, filter, konten terlihat langsung, monokrom, dan motion ringan.
+- Periksa desktop, tablet, mobile, filter yang menyembunyikan font unggulan, serta reduced motion.
+- Selesai jika preview revisi tersedia, pemeriksaan lulus, dan hasil tercatat untuk tinjauan user pada R07.
 
 ### R07. Minta persetujuan acuan desain
 

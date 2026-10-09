@@ -4,7 +4,7 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` dari `REDESIGN-PLAN.md`.
 
 ## Redesign aktif: monokrom terang
 
@@ -19,6 +19,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R03 | Produk dan alur pengunjung | SELESAI | PRODUCT.md berisi audiens, alur, batasan, bukti, serta keputusan terbuka. |
 | R04 | Sistem visual | SELESAI | DESIGN.md mencatat fondasi CSS dan komponen. Browser desktop serta mobile diperiksa. |
 | R05 | Preview homepage | SELESAI | Browser check lulus. Review preview berstatus ship. Persetujuan user tetap pada R07. |
+| R05A | Revisi karakter homepage | SELESAI | Preview unggulan besar, tipografi tegas, serta koleksi pilihan dua kolom. Browser check dan review perbaikan lulus. Tinjauan user masih diperlukan. |
 | R06 | Preview produk | BELUM | Buat tester serta pilihan lisensi. |
 | R07 | Persetujuan acuan desain | BELUM | Menunggu hasil R05 dan R06 untuk ditinjau user. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
@@ -56,12 +57,18 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05 | Buat static/redesign/index.html dan preview.js. Homepage memakai aset asli, pencarian lokal, filter kategori, hasil kosong, serta menu mobile. | Data harga, kategori, dan urutan ditandai sebagai contoh. Tidak menambah dependency frontend. | Pemeriksaan perilaku dan screenshot homepage belum dilakukan. Produk belum terhubung. | Jalankan pemeriksaan browser dan simpan hasil. |
 | 2026-10-09 | R05 | Tambahkan scripts/check-redesign-preview.py dan perbaiki specificity tombol menu desktop. | Pemeriksaan browser pertama lulus untuk pencarian, filter, reset, gambar, overflow, reduced motion, dan error JS. Screenshot menemukan tombol Menu masih tampil di desktop; selector diperbaiki. Detector impeccable tidak melaporkan temuan. | Periksa ulang perbaikan menu desktop. | Jalankan satu konfirmasi browser, lalu review hasil. |
 | 2026-10-09 | R05 | Selesaikan homepage dan dokumentasi sistem di DESIGN.md serta .impeccable/design.json. Perbaiki pencarian agar mencakup deskripsi style yang terlihat. | Browser check konfirmasi lulus termasuk menu desktop tersembunyi dan pencarian handwritten. Review agent terpisah memberi ship untuk R05; satu temuan pencarian dinilai resolved. Screenshot desktop dan mobile diperiksa. JSON serta token dokumen diperiksa oleh documenter. | Validasi schema resmi tidak tersedia pada CLI terpasang. Data contoh belum terhubung WooCommerce. R06 belum dibuat, R07 belum disetujui user. | Simpan hasil ke GitHub dan lanjut preview produk R06. |
+| 2026-10-09 | R05A | Catat feedback user: minimal tetapi tetap wah. Tambahkan unit revisi sebelum R06. | Tinjau homepage, CSS, status Git, dan playbook bolder. Preview awal memakai grid seragam tanpa fokus visual produk pada pembukaan. | Revisi visual belum dibuat. | Letakkan font unggulan pada pembukaan dan bedakan skala koleksi pilihan. |
+| 2026-10-09 | R05A | Ubah index.html dan CSS homepage. Mango menjadi preview besar di pembukaan; judul diperbesar; koleksi pilihan menjadi dua kolom besar. | Search tetap memakai DOM dan script yang sama. Data produk tidak diduplikasi. Tambahkan layout khusus saat filter menyembunyikan Mango. Tidak menambah library, font UI, atau aset. | Pemeriksaan browser revisi belum dijalankan. | Uji perilaku, viewport, dan screenshot. |
+| 2026-10-09 | R05A | Periksa revisi serta perbaiki heading produk unggulan menjadi h2. | Browser check lulus termasuk state filter tanpa Mango pada 320px, 768px, 1024px, dan 1440px. Screenshot desktop/mobile diperiksa. Detector menemukan heading skip yang diperbaiki dan dokumentasi ukuran yang perlu diperbarui. | Konfirmasi setelah heading fix, review baru, dan sinkronisasi dokumen desain belum selesai. | Konfirmasi browser lalu catat sistem desain hasil revisi. |
+| 2026-10-09 | R05A | Sinkronkan DESIGN.md dan sidecar dengan komposisi serta ukuran baru. Perbaiki submit pencarian agar menuju hasil pertama yang terlihat. | Review baru menilai komposisi lebih kuat dan menemukan scroll yang melewati Mango. Perbaikan berada pada handler submit bersama. Documenter memeriksa JSON, token, dan ukuran CSS. | Regression check submit dan verdict perbaikan belum selesai. | Periksa posisi hasil pencarian setelah submit, lalu simpan revisi. |
+| 2026-10-09 | R05A | Selesaikan revisi homepage dan regression check submit. | Browser check lulus termasuk posisi Mango setelah Search. git diff --check lulus. Reviewer menilai temuan scroll resolved dan preview siap ditinjau user. | Penilaian apakah sudah cukup wah tetap keputusan user. Integrasi WordPress dan R06 belum selesai. | Commit dan push revisi, kemudian tampilkan link preview yang sama. |
 
 ### Handoff aktif
 
-- Hasil terbaru: R05 selesai, preview homepage tersedia di http://localhost:9402/static/redesign/index.html.
+- Hasil terbaru: R05A selesai secara implementasi dan pemeriksaan. Menunggu feedback visual user.
+- Preview tersedia di http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
-- Tugas berikutnya setelah R05: R06, preview produk.
+- Tugas berikutnya setelah R05A: R06, preview produk.
 - Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
 - Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
 - Server preview dijalankan kembali untuk memeriksa fondasi dan homepage redesign. Port 9402 aktif selama sesi ini.

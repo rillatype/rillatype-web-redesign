@@ -11,7 +11,7 @@ OWN-WORLD: Monokrom terang, teks sans yang mudah dibaca, spacing konsisten, gamb
 
 STORY: Temukan font melalui pencarian atau kategori, lihat preview, coba teks di halaman produk, kemudian pilih lisensi.
 
-FIRST VIEWPORT: Header ringkas di atas. Judul rata kiri dan pencarian pada pembukaan pendek. Bar kategori mendahului preview besar, nama, dan harga contoh.
+FIRST VIEWPORT: Revisi R05A memakai judul rata kiri dan pencarian di sisi kiri. Preview Mango yang besar di sisi kanan memperlihatkan produk sejak pembukaan. Bar kategori mengantar ke koleksi pilihan dengan skala berbeda dari rilisan terbaru.
 
 FORM: Katalog studio, kandidat ketiga dalam daftar grounded internal, seed 91ac29f5. User mengunci pilihan ini melalui question tool.
 Daftar grounded mencakup rak specimen, indeks koleksi, katalog studio, contact sheet, label pameran, direktori studio, dan proof sheet.
@@ -24,6 +24,8 @@ Kategori memfilter preview yang sudah tersedia tanpa memuat halaman ulang. Hasil
 Tester produk memakai teks milik pengunjung sebagai demo utama. Animasi hanya memberi feedback tindakan.
 
 ## Batas penerapan
+
+User menilai implementasi pertama terlalu sederhana. Revisi memperbesar fokus produk dan mengubah komposisi, tanpa menambah library, palette, atau animasi dekoratif.
 
 Model lisensi dalam preview adalah contoh desain, bukan kebijakan penjualan yang telah diverifikasi.
 Semua tombol yang mensimulasikan pembelian harus menyatakan bahwa preview tidak melakukan transaksi.

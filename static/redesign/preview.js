@@ -47,7 +47,8 @@ if (searchForm) {
   searchForm.addEventListener('submit', event => {
     event.preventDefault();
     updateResults();
-    document.querySelector('#fonts').scrollIntoView({ block: 'start' });
+    const firstResult = products.find(product => !product.hidden);
+    (firstResult || document.querySelector('#fonts')).scrollIntoView({ block: 'start' });
   });
   query.addEventListener('input', updateResults);
   filters.forEach(filter => filter.addEventListener('click', () => {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T11:24:27+07:00",
+  "generatedAt": "2026-10-09T11:40:30+07:00",
   "title": "Design System: Rillatype",
   "extensions": {
     "colorMeta": {
@@ -8,15 +8,33 @@
       "ink": { "role": "primary", "displayName": "Ink", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
       "muted": { "role": "neutral", "displayName": "Muted", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
       "line": { "role": "neutral", "displayName": "Line", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
-      "wash": { "role": "neutral", "displayName": "Wash", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] }
+      "wash": { "role": "neutral", "displayName": "Wash", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "ink-hover": { "role": "primary", "displayName": "Ink hover", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Pembukaan homepage R05; mencatat system sans existing, bukan aturan display global." },
+      "display": { "displayName": "Display", "purpose": "H1 dasar bersama dan component lab; homepage R05A memakai override terpisah." },
       "headline": { "displayName": "Headline", "purpose": "Judul koleksi dan informasi lisensi." },
-      "title": { "displayName": "Title", "purpose": "Nama produk." },
+      "title": { "displayName": "Title", "purpose": "Nama kartu Latest fonts dan kartu dasar bersama." },
       "body": { "displayName": "Body", "purpose": "Teks utama dan kontrol yang mewarisi stack system sans." },
       "label": { "displayName": "Label", "purpose": "Label pencarian, navigasi, filter, tombol, dan harga." },
-      "small": { "displayName": "Small", "purpose": "Kategori, jumlah hasil, catatan, dan footer." }
+      "small": { "displayName": "Small", "purpose": "Kategori, jumlah hasil, catatan, dan footer." },
+      "heading-small": { "displayName": "Heading small", "purpose": "H3 dasar bersama, sebelum override nama kartu." },
+      "brand": { "displayName": "Brand", "purpose": "Wordmark teks; titik memakai weight 400." },
+      "brand-mobile": { "displayName": "Brand mobile", "purpose": "Wordmark pada lebar paling banyak 640px." },
+      "product-display": { "displayName": "Product display", "purpose": "Aturan .summary h1 dalam CSS bersama untuk halaman produk mendatang; bukan bukti R06 selesai." },
+      "legend": { "displayName": "Legend", "purpose": "Legend fieldset dalam CSS bersama untuk pilihan lisensi mendatang." },
+      "tester": { "displayName": "Tester", "purpose": "Ukuran output tester dalam CSS bersama; bukan komponen homepage." },
+      "tester-mobile": { "displayName": "Tester mobile", "purpose": "Output tester pada lebar paling banyak 640px dalam CSS bersama." },
+      "demo": { "displayName": "Demo", "purpose": "Label .demo-label dalam CSS bersama; harga homepage tetap memakai label 14px." },
+      "homepage-display": { "displayName": "Homepage display", "purpose": "H1 homepage R05A pada lebar di atas 900px; maksimum 84px." },
+      "homepage-display-tablet": { "displayName": "Homepage display tablet", "purpose": "H1 homepage pada lebar 641px sampai 900px." },
+      "homepage-display-mobile": { "displayName": "Homepage display mobile", "purpose": "H1 homepage pada lebar paling banyak 640px; menggantikan clamp tablet dengan 60px." },
+      "intro-copy": { "displayName": "Intro copy", "purpose": "Paragraf pembukaan homepage pada desktop/tablet." },
+      "intro-copy-mobile": { "displayName": "Intro copy mobile", "purpose": "Paragraf pembukaan pada lebar paling banyak 640px." },
+      "feature-title": { "displayName": "Feature title", "purpose": "H2 Mango dalam hero homepage; tracking menggantikan H2 dasar." },
+      "feature-title-mobile": { "displayName": "Feature title mobile", "purpose": "H2 Mango pada lebar paling banyak 640px." },
+      "selected-title": { "displayName": "Selected title", "purpose": "H3 kartu Selected fonts pada desktop/tablet." },
+      "selected-title-mobile": { "displayName": "Selected title mobile", "purpose": "H3 kartu Selected fonts pada lebar paling banyak 640px." }
     },
     "shadows": [],
     "motion": [
@@ -66,9 +84,25 @@
       "name": "Product card",
       "kind": "card",
       "refersTo": "product-card",
-      "description": "Gambar existing static/previews/mango-1.jpg. Tidak ada raster baru; hak dan sumber asli belum diaudit.",
-      "html": "<article class=\"ds-product\"><a href=\"#preview-note\"><div class=\"ds-product-image\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters, a rounded handwritten font on an orange cover\"></div><div class=\"ds-product-info\"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class=\"ds-price\">Demo $18</span></div></a></article>",
+      "description": "Kartu Latest fonts dengan H3 dasar 17px. Gambar existing static/previews/bawden-1.jpg; hak dan sumber asli belum diaudit.",
+      "html": "<article class=\"ds-product\"><a href=\"#preview-note\"><div class=\"ds-product-image\"><img src=\"/static/previews/bawden-1.jpg\" width=\"1200\" height=\"800\" alt=\"Bawden font cover\" loading=\"lazy\"></div><div class=\"ds-product-info\"><div><h3>Bawden</h3><p>Serif</p></div><span class=\"ds-price\">Demo $24</span></div></a></article>",
       "css": ".ds-product { min-width:0; color:var(--ink); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-product>a { color:inherit; text-decoration:none; } .ds-product-image { aspect-ratio:3/2; overflow:hidden; background:var(--wash); } .ds-product-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-product-info { display:flex; justify-content:space-between; gap:16px; padding-top:14px; } .ds-product-info h3 { margin:0; font-size:17px; font-weight:600; line-height:1.15; text-wrap:balance; } .ds-product-info p { margin:3px 0 0; font-size:13px; color:var(--muted); } .ds-price { font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-product a:hover h3 { text-decoration:underline; text-underline-offset:4px; } .ds-product a:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(prefers-reduced-motion:no-preference) { .ds-product-image img { transition:transform 180ms var(--ease); } .ds-product a:hover img { transform:scale(1.025); } }"
+    },
+    {
+      "name": "Featured Mango card",
+      "kind": "card",
+      "refersTo": "feature-card",
+      "description": "Hero R05A dengan H2 24px/20px dan informasi 18px di bawah cover. Aset existing static/previews/mango-1.jpg; sumber asli dan hak belum diaudit.",
+      "html": "<article class=\"ds-feature\"><a href=\"#preview-note\"><div class=\"ds-feature-image\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters, a rounded handwritten font on an orange cover\" fetchpriority=\"high\"></div><div class=\"ds-feature-info\"><div><h2>Mango Letters</h2><p>Handwritten display</p></div><span class=\"ds-feature-price\">Demo $18</span></div></a></article>",
+      "css": ".ds-feature { min-width:0; color:var(--ink); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-feature>a { color:inherit; text-decoration:none; } .ds-feature-image { aspect-ratio:3/2; overflow:hidden; background:var(--wash); } .ds-feature-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-feature-info { display:flex; justify-content:space-between; gap:16px; padding-top:18px; } .ds-feature-info h2 { margin:0; font-size:24px; font-weight:600; line-height:1.15; letter-spacing:-.02em; text-wrap:balance; } .ds-feature-info p { margin:3px 0 0; font-size:13px; color:var(--muted); } .ds-feature-price { padding-top:5px; font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-feature a:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(max-width:640px) { .ds-feature-info h2 { font-size:20px; } } @media(prefers-reduced-motion:no-preference) { .ds-feature-image img { transition:transform 180ms var(--ease); } .ds-feature a:hover img { transform:scale(1.025); } }"
+    },
+    {
+      "name": "Selected font card",
+      "kind": "card",
+      "refersTo": "selected-card",
+      "description": "Kartu Selected fonts R05A dengan H3 23px/20px. Koleksi memakai dua kolom desktop/tablet, satu kolom mobile. Aset existing static/previews/baldock-1.jpg; sumber asli dan hak belum diaudit.",
+      "html": "<article class=\"ds-selected\"><a href=\"#preview-note\"><div class=\"ds-selected-image\"><img src=\"/static/previews/baldock-1.jpg\" width=\"1200\" height=\"800\" alt=\"Baldock font cover\"></div><div class=\"ds-selected-info\"><div><h3>Baldock</h3><p>Serif</p></div><span class=\"ds-selected-price\">Demo $24</span></div></a></article>",
+      "css": ".ds-selected { min-width:0; color:var(--ink); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-selected>a { color:inherit; text-decoration:none; } .ds-selected-image { aspect-ratio:3/2; overflow:hidden; background:var(--wash); } .ds-selected-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-selected-info { display:flex; justify-content:space-between; gap:16px; padding-top:14px; } .ds-selected-info h3 { margin:0; font-size:23px; font-weight:600; line-height:1.15; letter-spacing:-.02em; text-wrap:balance; } .ds-selected-info p { margin:3px 0 0; font-size:13px; color:var(--muted); } .ds-selected-price { font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-selected a:hover h3 { text-decoration:underline; text-underline-offset:4px; } .ds-selected a:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(max-width:640px) { .ds-selected-info h3 { font-size:20px; } } @media(prefers-reduced-motion:no-preference) { .ds-selected-image img { transition:transform 180ms var(--ease); } .ds-selected a:hover img { transform:scale(1.025); } }"
     },
     {
       "name": "Navigation links",
@@ -81,11 +115,12 @@
   ],
   "narrative": {
     "northStar": "Katalog studio",
-    "overview": "Katalog studio adalah arah yang dipilih user pada 9 Oktober 2026. UI monokrom terang memberi ruang bagi preview font berwarna asli. System sans menjaga kontrol mudah dibaca tanpa unduhan font UI tambahan. Gambar produk membawa karakter, sementara kontrol memakai batas yang jelas dan feedback ringan.\n\nDokumen ini memperbarui fondasi R04 berdasarkan homepage R05 yang selesai dibangun di `static/redesign/index.html`, `style.css`, dan `preview.js`. Disposisi review **ship** berlaku hanya untuk preview homepage R05, sesuai hasil review yang disampaikan user. Ini bukan persetujuan R07, integrasi WordPress, atau rilis production. Preview produk R06 dan alur WooCommerce belum tercakup. Tabel progress masih mencatat R05 berjalan; dokumen ini tidak mengubah status tracker.\n\nPencarian, filter, serta menu memakai elemen HTML native dan JavaScript lokal. Konten utama langsung terlihat. Motion ringan memakai CSS dan hanya aktif ketika pengguna tidak meminta reduced motion.",
+    "overview": "Katalog studio adalah arah yang dipilih user pada 9 Oktober 2026. UI monokrom terang memberi ruang bagi preview font berwarna asli. System sans menjaga kontrol mudah dibaca tanpa unduhan font UI tambahan. Gambar produk membawa karakter, sementara kontrol memakai batas yang jelas dan feedback ringan.\n\nDokumen ini mencatat revisi homepage R05A berdasarkan `static/redesign/index.html` dan `static/redesign/style.css`. Feedback user meminta tampilan sederhana tetapi lebih berkarakter. Revisi menempatkan preview Mango di pembukaan, memperbesar judul hingga 84px pada desktop, dan membedakan grid Selected fonts dari Latest fonts. Dokumentasi ini tidak menetapkan verdict review, persetujuan user pada R07, atau status production.\n\nUkuran dasar bersama tetap tercatat untuk component lab. Ukuran produk, legend, tester, dan label demo berasal dari CSS bersama yang sudah tersedia untuk halaman produk mendatang. Keberadaan aturan tersebut bukan bukti bahwa preview R06 atau alur WooCommerce sudah selesai. Stylesheet tema di root bukan sumber token preview ini.\n\nPencarian, filter, serta menu memakai elemen HTML native dan JavaScript lokal. Konten utama langsung terlihat. Motion ringan memakai CSS dan hanya aktif ketika pengguna tidak meminta reduced motion.",
     "keyCharacteristics": [
       "UI monokrom terang; preview produk mempertahankan warna asli.",
       "System sans untuk teks dan kontrol homepage.",
       "Grid produk datar dengan preview berasio 3:2.",
+      "Preview Mango di hero, dua kolom Selected fonts, dan tiga kolom Latest fonts pada desktop/tablet.",
       "Pencarian lokal, filter kategori, dan menu mobile dengan state eksplisit.",
       "Motion CSS singkat tanpa menyembunyikan konten."
     ],
@@ -102,7 +137,7 @@
       "Don't tambahkan bayangan besar atau frame berat pada preview produk.",
       "Don't jadikan font UI pengganti font produk pada specimen.",
       "Don't klaim harga, lisensi, urutan rilis, metrik, atau hak aset sebagai fakta terverifikasi.",
-      "Don't artikan disposisi ship R05 sebagai persetujuan R07 atau bukti checkout, akun, email, dan unduhan berfungsi."
+      "Don't artikan dokumentasi R05A sebagai verdict review, persetujuan R07, status production, atau bukti checkout, akun, email, dan unduhan berfungsi."
     ]
   }
 }

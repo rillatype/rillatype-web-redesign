@@ -27,8 +27,15 @@ def main():
         page.goto(args.url, wait_until="networkidle")
         assert not page.get_by_role("button", name="Menu", exact=True).is_visible()
         assert page.locator(".product:visible").count() == 8
+        assert page.get_by_label("Find a font").bounding_box()["y"] < 900
+        assert page.locator(".intro-feature .product-image").bounding_box()["y"] < 900
         page.get_by_role("button", name="Serif", exact=True).click()
         assert page.locator(".product:visible").count() == 3
+        assert not page.locator(".intro-feature").is_visible()
+        for width in (320, 768, 1024, 1440):
+            page.set_viewport_size({"width": width, "height": 900})
+            assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), f"filtered {width}px"
+        page.set_viewport_size({"width": 1440, "height": 900})
         page.get_by_role("button", name="All fonts", exact=True).click()
         page.get_by_label("Find a font").fill("Mango")
         assert page.locator(".product:visible").count() == 1
@@ -36,6 +43,8 @@ def main():
         page.get_by_label("Find a font").fill("handwritten")
         assert page.locator(".product:visible").count() == 1
         assert page.get_by_role("heading", name="Mango Letters", exact=True).is_visible()
+        page.get_by_role("button", name="Search", exact=True).click()
+        assert 0 <= page.locator(".intro-feature").bounding_box()["y"] < 900
         page.get_by_label("Find a font").fill("no-such-font")
         assert page.get_by_role("heading", name="No fonts found").is_visible()
         page.get_by_role("button", name="Show all fonts").click()
