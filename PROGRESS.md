@@ -13,12 +13,12 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 
 | ID | Tugas | Status | Bukti atau pekerjaan tersisa |
 | --- | --- | --- | --- |
-| R00 | Dokumen persiapan dan GitHub | BERJALAN | Dokumen dan 26 ID tugas diperiksa. Commit dan push menjadi pemeriksaan terakhir. |
-| R01 | Audit sumber tema | BELUM | Tentukan sumber resmi dan alur packaging. |
-| R02 | Lingkungan dan baseline | BELUM | Periksa preview, staging, versi runtime, dan baseline. |
-| R03 | Produk dan alur pengunjung | BELUM | Tulis PRODUCT.md dari fakta terkonfirmasi. |
-| R04 | Sistem visual | BELUM | Tetapkan DESIGN.md dan komponen dasar. |
-| R05 | Preview homepage | BELUM | Buat desain sesuai brief baru. |
+| R00 | Dokumen persiapan dan GitHub | SELESAI | Pemeriksaan dokumen lulus. Commit 619afe5 berhasil dipush ke origin/master. |
+| R01 | Audit sumber tema | SELESAI | docs/redesign-audit.md menetapkan sumber hasil ekstraksi berdasarkan riwayat perbaikan terbaru. |
+| R02 | Lingkungan dan baseline | TERBLOKIR | Node tersedia. PHP tidak ada pada PATH. Akses staging dan baseline belum tersedia. |
+| R03 | Produk dan alur pengunjung | SELESAI | PRODUCT.md berisi audiens, alur, batasan, bukti, serta keputusan terbuka. |
+| R04 | Sistem visual | SELESAI | DESIGN.md mencatat fondasi CSS dan komponen. Browser desktop serta mobile diperiksa. |
+| R05 | Preview homepage | SELESAI | Browser check lulus. Review preview berstatus ship. Persetujuan user tetap pada R07. |
 | R06 | Preview produk | BELUM | Buat tester serta pilihan lisensi. |
 | R07 | Persetujuan acuan desain | BELUM | Menunggu hasil R05 dan R06 untuk ditinjau user. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
@@ -46,13 +46,25 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-09 | R00 | Tulis REDESIGN-PLAN.md dan docs/agents/redesign-rules.md. Hubungkan AGENTS.md, PLAN.md, STATUS.md, serta tracker ini. | Periksa remote, branch master, status Git, rencana historis, dan lokasi tema. Temukan beberapa salinan tema yang perlu diaudit. | Belum memeriksa dokumen akhir atau push. UI belum diubah. | Periksa konsistensi tugas dan simpan dokumen ke GitHub. |
 | 2026-10-09 | R00 | Periksa dokumen persiapan. User meminta langsung mulai setelah persiapan selesai. | git diff --check lulus. Rencana memiliki 26 ID R00 sampai R25 yang cocok dengan tabel status. Periksa aturan progress dan dependensi. | Commit dan push belum dijalankan. | Simpan persiapan, lalu mulai R01 tanpa meminta persetujuan ulang. |
+| 2026-10-09 | R00 | Commit 619afe5 menyimpan dokumen persiapan dan konfigurasi skill. | Push awal gagal karena Git tidak mendapat credential. gh auth status menunjukkan akun rillatype aktif. Push dengan credential helper gh per-command berhasil ke origin/master tanpa mengubah git config. | Audit tema belum selesai. | Mulai R01. |
+| 2026-10-09 | R01 | Tulis docs/redesign-audit.md. Pilih rillatype-v2-extracted/rillatype-v2-1 sebagai sumber kerja repo. | Bandingkan functions.php tiga lokasi, changelog, template, aset, script packaging, dan commit terbaru. Versi ekstraksi memiliki perbaikan checkout terakhir. | Packaging lama memakai path tidak berlaku dan operasi teks pada aset biner. Perbaikannya dijadwalkan R25. | Lanjut R02 untuk lingkungan dan R03 untuk fakta produk. |
+| 2026-10-09 | R02 | Periksa runtime dan konfigurasi WordPress lokal. | node --version menghasilkan v24.19.0. php --version gagal. Tidak menemukan wp-config.php, compose, atau .wp-env.json pada pencarian repo. | URL staging, plugin aktif, baseline visual, dan transaksi sandbox belum tersedia. | Minta akses staging. R03 dapat berjalan tanpa staging. |
+| 2026-10-09 | R03 | Tulis PRODUCT.md dari keputusan user dan audit repo. Petakan pencarian sampai unduhan. | Cocokkan audiens, WordPress, lisensi sebelum cart, akun opsional, warna preview, dan alur utama dengan jawaban user. Tandai fakta staging yang belum terverifikasi. | Harga dan ketentuan lisensi asli belum tersedia. | Lanjut R04 sesuai workflow desain. |
+| 2026-10-09 | R04 | Catat docs/redesign-direction.md. User memilih katalog studio. | Jalankan concept-seed, baca craft-floor, dan konfirmasi komposisi melalui question tool. | User belum mengenal staging. Jelaskan sebagai website percobaan dan lanjut preview lokal dahulu. Fondasi UI belum dibuat. | Buat fondasi CSS serta preview homepage. |
+| 2026-10-09 | R04 | Buat static/redesign/style.css dan components.html untuk memeriksa fondasi monokrom. | CSS native, system font untuk kontrol toko, focus ring, layout mobile, dan reduced motion tersedia. | Pemeriksaan browser belum dijalankan. | Periksa komponen pada desktop serta mobile sebelum R05. |
+| 2026-10-09 | R04 | Catat fondasi yang dibangun dalam DESIGN.md. | Buka komponen di browser, periksa accessibility snapshot, overflow dan gambar pada 1262px serta 390px. Screenshot 1440px dan 390px dibaca. Tidak menemukan overflow atau gambar gagal. | Halaman penuh belum dibuat. Evaluasi pertama gagal karena quoting shell, kemudian pemeriksaan tanpa selector string berhasil. | Mulai R05. |
+| 2026-10-09 | R05 | Buat static/redesign/index.html dan preview.js. Homepage memakai aset asli, pencarian lokal, filter kategori, hasil kosong, serta menu mobile. | Data harga, kategori, dan urutan ditandai sebagai contoh. Tidak menambah dependency frontend. | Pemeriksaan perilaku dan screenshot homepage belum dilakukan. Produk belum terhubung. | Jalankan pemeriksaan browser dan simpan hasil. |
+| 2026-10-09 | R05 | Tambahkan scripts/check-redesign-preview.py dan perbaiki specificity tombol menu desktop. | Pemeriksaan browser pertama lulus untuk pencarian, filter, reset, gambar, overflow, reduced motion, dan error JS. Screenshot menemukan tombol Menu masih tampil di desktop; selector diperbaiki. Detector impeccable tidak melaporkan temuan. | Periksa ulang perbaikan menu desktop. | Jalankan satu konfirmasi browser, lalu review hasil. |
+| 2026-10-09 | R05 | Selesaikan homepage dan dokumentasi sistem di DESIGN.md serta .impeccable/design.json. Perbaiki pencarian agar mencakup deskripsi style yang terlihat. | Browser check konfirmasi lulus termasuk menu desktop tersembunyi dan pencarian handwritten. Review agent terpisah memberi ship untuk R05; satu temuan pencarian dinilai resolved. Screenshot desktop dan mobile diperiksa. JSON serta token dokumen diperiksa oleh documenter. | Validasi schema resmi tidak tersedia pada CLI terpasang. Data contoh belum terhubung WooCommerce. R06 belum dibuat, R07 belum disetujui user. | Simpan hasil ke GitHub dan lanjut preview produk R06. |
 
 ### Handoff aktif
 
-- Tugas sekarang: R00, pemeriksaan dan penyimpanan dokumen.
-- Tugas implementasi berikutnya: R01, audit lokasi tema resmi.
+- Hasil terbaru: R05 selesai, preview homepage tersedia di http://localhost:9402/static/redesign/index.html.
+- Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
+- Tugas berikutnya setelah R05: R06, preview produk.
 - Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
 - Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
+- Server preview dijalankan kembali untuk memeriksa fondasi dan homepage redesign. Port 9402 aktif selama sesi ini.
 - Konfigurasi skill sebelumnya di AGENTS.md dan docs/agents/ ikut disimpan bersama dokumen persiapan.
 
 Bagian berikut menyimpan riwayat pekerjaan sebelum brief redesign ini.

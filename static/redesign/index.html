@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Rillatype fonts. A preview of the new monochrome storefront.">
+  <title>Fonts for your next project | Rillatype</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="preview.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Rillatype home">rillatype<span>.</span></a>
+      <button class="button menu-button" aria-expanded="false" aria-controls="navigation">Menu</button>
+      <nav class="nav" id="navigation" aria-label="Main navigation">
+        <a href="#fonts" aria-current="page">Fonts</a><a href="#freebies">Freebies</a><a href="#licenses">Licenses</a><a href="mailto:gustian@rillatype.com">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <section class="intro">
+      <div><h1>A little character.<br>A lot of possibilities.</h1><p>Find the right font for your next project.</p></div>
+      <form class="search" id="font-search" action="#fonts">
+        <label for="query">Find a font</label>
+        <div class="search-row"><input id="query" name="q" type="search" placeholder="Search by name or style" autocomplete="off"><button class="button primary" type="submit">Search</button></div>
+        <p class="small muted">Browse the preview collection below.</p>
+      </form>
+    </section>
+    <div class="browse" id="fonts">
+      <div class="filters" aria-label="Filter fonts by style">
+        <button class="filter" data-category="all" aria-pressed="true">All fonts</button>
+        <button class="filter" data-category="display" aria-pressed="false">Display</button>
+        <button class="filter" data-category="serif" aria-pressed="false">Serif</button>
+        <button class="filter" data-category="script" aria-pressed="false">Script</button>
+      </div>
+      <p class="small muted" id="result-count" role="status" aria-live="polite">8 fonts in this preview</p>
+    </div>
+    <section class="section" data-collection>
+      <div class="section-heading"><h2>Selected fonts</h2><a href="#latest">See the latest</a></div>
+      <div class="products">
+        <article class="product" data-name="Mango Letters" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters, a rounded handwritten font on an orange cover" fetchpriority="high"></div><div class="product-info"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class="price">Demo $18</span></div></a></article>
+        <article class="product" data-name="Baldock" data-style="serif"><a href="#preview-note"><div class="product-image"><img src="../previews/baldock-1.jpg" width="1200" height="800" alt="Baldock font cover"></div><div class="product-info"><div><h3>Baldock</h3><p>Serif</p></div><span class="price">Demo $24</span></div></a></article>
+        <article class="product" data-name="Daisy Hotline" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/daisy-hotline-1.jpg" width="1200" height="800" alt="Daisy Hotline font cover"></div><div class="product-info"><div><h3>Daisy Hotline</h3><p>Display</p></div><span class="price">Demo $20</span></div></a></article>
+      </div>
+    </section>
+    <section class="section" id="latest" data-collection>
+      <div class="section-heading"><h2>Latest fonts</h2><span class="small muted">Release order is sample data</span></div>
+      <div class="products">
+        <article class="product" data-name="Bawden" data-style="serif"><a href="#preview-note"><div class="product-image"><img src="../previews/bawden-1.jpg" width="1200" height="800" alt="Bawden font cover" loading="lazy"></div><div class="product-info"><div><h3>Bawden</h3><p>Serif</p></div><span class="price">Demo $24</span></div></a></article>
+        <article class="product" data-name="Crimson Queen" data-style="display"><a href="#preview-note"><div class="product-image"><img src="../previews/crimson-queen-1.jpg" width="1200" height="800" alt="Crimson Queen font cover" loading="lazy"></div><div class="product-info"><div><h3>Crimson Queen</h3><p>Display</p></div><span class="price">Demo $22</span></div></a></article>
+        <article class="product" data-name="Mordial" data-style="serif"><a href="#preview-note"><div class="product-image"><img src="../previews/mordial-1.jpg" width="1200" height="800" alt="Mordial font cover" loading="lazy"></div><div class="product-info"><div><h3>Mordial</h3><p>Serif</p></div><span class="price">Demo $24</span></div></a></article>
+        <article class="product" data-name="Moyshire" data-style="script"><a href="#preview-note"><div class="product-image"><img src="../previews/moyshire-1.jpg" width="1200" height="800" alt="Moyshire font cover" loading="lazy"></div><div class="product-info"><div><h3>Moyshire</h3><p>Script</p></div><span class="price">Demo $20</span></div></a></article>
+        <article class="product" data-name="Radiant Summertime" data-style="script"><a href="#preview-note"><div class="product-image"><img src="../previews/radiant-summertime-1.jpg" width="1200" height="800" alt="Radiant Summertime font cover" loading="lazy"></div><div class="product-info"><div><h3>Radiant Summertime</h3><p>Script</p></div><span class="price">Demo $20</span></div></a></article>
+      </div>
+    </section>
+    <section class="empty" id="empty-results" hidden><h2>No fonts found</h2><p>Try a different name or clear the filters.</p><button class="button" id="reset-search">Show all fonts</button></section>
+    <section class="license-note" id="licenses"><h2>A font. The right license.</h2><div><p>Choose the license for your project before adding a font to your cart. Full terms will come from the store.</p><a href="#preview-note">About this preview</a></div></section>
+    <section class="section" id="freebies"><h2>Looking for freebies?</h2><p class="muted" style="margin-top:12px">The final store will link here to the existing freebies collection.</p></section>
+    <p class="preview-note" id="preview-note">Design preview only. Prices, categories, selection, and release order are sample data. Product pages and buying are not connected yet.</p>
+  </main>
+  <footer class="wrap footer"><p>Rillatype Studio</p><nav aria-label="Footer navigation"><a href="#fonts">Fonts</a><a href="#licenses">Licenses</a><a href="mailto:gustian@rillatype.com">Contact</a></nav></footer>
+</body>
+</html>

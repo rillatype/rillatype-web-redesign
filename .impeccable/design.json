@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-09T11:24:27+07:00",
+  "title": "Design System: Rillatype",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "ink": { "role": "primary", "displayName": "Ink", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "muted": { "role": "neutral", "displayName": "Muted", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "line": { "role": "neutral", "displayName": "Line", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "wash": { "role": "neutral", "displayName": "Wash", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Pembukaan homepage R05; mencatat system sans existing, bukan aturan display global." },
+      "headline": { "displayName": "Headline", "purpose": "Judul koleksi dan informasi lisensi." },
+      "title": { "displayName": "Title", "purpose": "Nama produk." },
+      "body": { "displayName": "Body", "purpose": "Teks utama dan kontrol yang mewarisi stack system sans." },
+      "label": { "displayName": "Label", "purpose": "Label pencarian, navigasi, filter, tombol, dan harga." },
+      "small": { "displayName": "Small", "purpose": "Kategori, jumlah hasil, catatan, dan footer." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(.2, .8, .2, 1)", "purpose": "Easing feedback kontrol dan hover gambar; hanya no-preference." },
+      { "name": "control-feedback", "value": "140ms", "purpose": "Transisi background-color, color, dan transform tombol/filter." },
+      { "name": "image-hover", "value": "180ms", "purpose": "Transisi transform gambar ke scale(1.025)." }
+    ],
+    "breakpoints": [
+      { "name": "tablet-max", "value": "900px" },
+      { "name": "mobile-max", "value": "640px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Tombol Search native dengan feedback CSS ringan.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Search</button>",
+      "css": ".ds-primary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink); border-radius:var(--radius); color:var(--paper); background:var(--ink); font:600 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; white-space:nowrap; } .ds-primary:hover { background:#333; } .ds-primary:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } .ds-primary:disabled { opacity:.55; cursor:not-allowed; } @media(prefers-reduced-motion:no-preference) { .ds-primary { transition:background-color 140ms var(--ease),color 140ms var(--ease),transform 140ms var(--ease); } .ds-primary:active { transform:translateY(1px); } }"
+    },
+    {
+      "name": "Secondary button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Tindakan reset hasil kosong; juga bentuk tombol Menu mobile.",
+      "html": "<button class=\"ds-secondary\" type=\"button\">Show all fonts</button>",
+      "css": ".ds-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink); border-radius:var(--radius); color:var(--ink); background:var(--paper); font:600 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; white-space:nowrap; } .ds-secondary:hover { background:var(--wash); } .ds-secondary:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } .ds-secondary:disabled { opacity:.55; cursor:not-allowed; } @media(prefers-reduced-motion:no-preference) { .ds-secondary { transition:background-color 140ms var(--ease),color 140ms var(--ease),transform 140ms var(--ease); } .ds-secondary:active { transform:translateY(1px); } }"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "Field native berlabel; pencocokan hasil di homepage memakai JavaScript lokal.",
+      "html": "<div class=\"ds-search\"><label for=\"ds-query\">Find a font</label><input id=\"ds-query\" type=\"search\" placeholder=\"Search by name or style\" autocomplete=\"off\"></div>",
+      "css": ".ds-search { color:var(--ink); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-search label { display:block; font-size:14px; margin-bottom:9px; } .ds-search input { width:100%; min-width:0; padding:12px 14px; border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); color:var(--ink); font:inherit; } .ds-search input::placeholder { color:var(--muted); opacity:1; } .ds-search input:focus-visible { outline:2px solid var(--ink); outline-offset:4px; }"
+    },
+    {
+      "name": "Category filters",
+      "kind": "chip",
+      "refersTo": "filter",
+      "description": "Bentuk terpilih dan belum terpilih; snippet menunjukkan state, bukan mesin filter.",
+      "html": "<div class=\"ds-filters\" aria-label=\"Filter fonts by style\"><button class=\"ds-filter\" aria-pressed=\"true\" type=\"button\">All fonts</button><button class=\"ds-filter\" aria-pressed=\"false\" type=\"button\">Display</button></div>",
+      "css": ".ds-filters { display:flex; flex-wrap:wrap; gap:8px; } .ds-filter { border:1px solid transparent; border-radius:var(--radius); padding:9px 15px; min-height:44px; background:var(--paper); color:var(--ink); font:14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; } .ds-filter:hover { background:var(--wash); } .ds-filter[aria-pressed='true'] { background:var(--ink); color:var(--paper); } .ds-filter:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(max-width:640px) { .ds-filter { padding-inline:12px; } } @media(prefers-reduced-motion:no-preference) { .ds-filter { transition:background-color 140ms var(--ease),color 140ms var(--ease),transform 140ms var(--ease); } .ds-filter:active { transform:translateY(1px); } }"
+    },
+    {
+      "name": "Product card",
+      "kind": "card",
+      "refersTo": "product-card",
+      "description": "Gambar existing static/previews/mango-1.jpg. Tidak ada raster baru; hak dan sumber asli belum diaudit.",
+      "html": "<article class=\"ds-product\"><a href=\"#preview-note\"><div class=\"ds-product-image\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters, a rounded handwritten font on an orange cover\"></div><div class=\"ds-product-info\"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class=\"ds-price\">Demo $18</span></div></a></article>",
+      "css": ".ds-product { min-width:0; color:var(--ink); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-product>a { color:inherit; text-decoration:none; } .ds-product-image { aspect-ratio:3/2; overflow:hidden; background:var(--wash); } .ds-product-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-product-info { display:flex; justify-content:space-between; gap:16px; padding-top:14px; } .ds-product-info h3 { margin:0; font-size:17px; font-weight:600; line-height:1.15; text-wrap:balance; } .ds-product-info p { margin:3px 0 0; font-size:13px; color:var(--muted); } .ds-price { font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-product a:hover h3 { text-decoration:underline; text-underline-offset:4px; } .ds-product a:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(prefers-reduced-motion:no-preference) { .ds-product-image img { transition:transform 180ms var(--ease); } .ds-product a:hover img { transform:scale(1.025); } }"
+    },
+    {
+      "name": "Navigation links",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Link aktif dan hover berunderline. Toggle mobile, Escape, serta focus return berada di preview.js.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#fonts\" aria-current=\"page\">Fonts</a><a href=\"#freebies\">Freebies</a><a href=\"#licenses\">Licenses</a><a href=\"mailto:gustian@rillatype.com\">Contact</a></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:28px; color:var(--ink); font:14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-nav a { color:inherit; text-decoration:none; text-underline-offset:4px; } .ds-nav a:hover,.ds-nav a[aria-current='page'] { text-decoration:underline; } .ds-nav a:hover { text-decoration-thickness:2px; } .ds-nav a:focus-visible { outline:2px solid var(--ink); outline-offset:4px; } @media(max-width:900px) { .ds-nav { gap:20px; } } @media(max-width:640px) { .ds-nav { width:100%; flex-direction:column; align-items:stretch; gap:0; padding-bottom:8px; } .ds-nav a { min-height:44px; padding:12px 0; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Katalog studio",
+    "overview": "Katalog studio adalah arah yang dipilih user pada 9 Oktober 2026. UI monokrom terang memberi ruang bagi preview font berwarna asli. System sans menjaga kontrol mudah dibaca tanpa unduhan font UI tambahan. Gambar produk membawa karakter, sementara kontrol memakai batas yang jelas dan feedback ringan.\n\nDokumen ini memperbarui fondasi R04 berdasarkan homepage R05 yang selesai dibangun di `static/redesign/index.html`, `style.css`, dan `preview.js`. Disposisi review **ship** berlaku hanya untuk preview homepage R05, sesuai hasil review yang disampaikan user. Ini bukan persetujuan R07, integrasi WordPress, atau rilis production. Preview produk R06 dan alur WooCommerce belum tercakup. Tabel progress masih mencatat R05 berjalan; dokumen ini tidak mengubah status tracker.\n\nPencarian, filter, serta menu memakai elemen HTML native dan JavaScript lokal. Konten utama langsung terlihat. Motion ringan memakai CSS dan hanya aktif ketika pengguna tidak meminta reduced motion.",
+    "keyCharacteristics": [
+      "UI monokrom terang; preview produk mempertahankan warna asli.",
+      "System sans untuk teks dan kontrol homepage.",
+      "Grid produk datar dengan preview berasio 3:2.",
+      "Pencarian lokal, filter kategori, dan menu mobile dengan state eksplisit.",
+      "Motion CSS singkat tanpa menyembunyikan konten."
+    ],
+    "rules": [
+      { "name": "The Original Preview Rule", "body": "Pertahankan warna asli preview produk; jangan menerapkan filter monokrom pada gambar.", "section": "colors" }
+    ],
+    "dos": [
+      "Do pertahankan monokrom terang pada UI dan warna asli preview produk.",
+      "Do gunakan kontrol native, label terlihat, fokus keyboard, dan state filter eksplisit.",
+      "Do tampilkan konten utama tanpa menunggu motion dan hormati reduced motion.",
+      "Do tandai data contoh dan jelaskan batas preview pada tindakan terkait."
+    ],
+    "donts": [
+      "Don't tambahkan bayangan besar atau frame berat pada preview produk.",
+      "Don't jadikan font UI pengganti font produk pada specimen.",
+      "Don't klaim harga, lisensi, urutan rilis, metrik, atau hak aset sebagai fakta terverifikasi.",
+      "Don't artikan disposisi ship R05 sebagai persetujuan R07 atau bukti checkout, akun, email, dan unduhan berfungsi."
+    ]
+  }
+}
