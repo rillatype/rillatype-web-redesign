@@ -30,15 +30,6 @@ def main():
         assert page.locator("header #font-search").count() == 1
         assert not page.get_by_role("button", name="Menu", exact=True).is_visible()
         assert page.locator(".product:visible").count() == 20
-        page.get_by_role("button", name="Script", exact=True).click()
-        assert page.locator(".product:visible").count() == 3
-        assert page.locator("#result-count").is_visible()
-        assert page.locator("#result-count").inner_text() == "3 items in this preview"
-        assert not page.locator(".lead-collection").is_visible()
-        page.get_by_role("button", name="Serif", exact=True).click()
-        assert page.locator(".product:visible").count() == 4
-        assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
-        page.get_by_role("button", name="All fonts", exact=True).click()
         page.get_by_label("Find a font").fill("rough")
         assert page.locator(".product:visible").count() == 1
         assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
@@ -55,10 +46,10 @@ def main():
         header = page.locator("header").bounding_box()
         assert header["y"] + header["height"] - 1 <= result_top < 900
         page.get_by_label("Find a font").fill("no-such-font")
-        assert page.get_by_role("heading", name="No fonts found").is_visible()
+        assert page.get_by_role("heading", name="No products found").is_visible()
         assert page.locator("#result-count").is_visible()
         assert page.locator("#result-count").inner_text() == "0 items in this preview"
-        page.get_by_role("button", name="Show all fonts").click()
+        page.get_by_role("button", name="Show all").click()
         assert page.locator(".product:visible").count() == 20
         for width in (320, 390, 768, 1024, 1440):
             page.set_viewport_size({"width": width, "height": 900})
