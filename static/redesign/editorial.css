@@ -53,7 +53,12 @@
 .editorial .product:focus-within { outline: 2px solid var(--accent); outline-offset: 4px; }
 .editorial .product > a:focus-visible { outline: none; }
 .editorial .section { padding-top: 60px; }
-.editorial .section-heading { margin-bottom: 26px; }
+.editorial .section-heading { margin-bottom: 26px; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; }
+.editorial .section-link { font-size: 14px; font-weight: 650; color: var(--accent); text-decoration: none; white-space: nowrap; }
+.editorial .section-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.catalog-intro { padding: 44px 0 20px; }
+.catalog-intro h1 { font-size: clamp(40px, 5vw, 64px); font-weight: 750; letter-spacing: -.04em; }
+.catalog-intro p { margin-top: 10px; font-size: 16px; color: var(--muted); }
 .editorial h2 { font-size: 32px; font-weight: 650; letter-spacing: -.03em; }
 .editorial .products { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 26px; }
 .editorial .product-info { padding-top: 14px; }

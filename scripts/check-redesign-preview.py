@@ -248,11 +248,66 @@ def main():
         detail.get_by_role("button", name="Retry font", exact=True).click()
         detail.wait_for_function("document.querySelector('#font-status').textContent.includes('9 styles available')")
         assert detail.locator("#tester-frame").is_visible()
+
+        # Katalog: halaman semua produk dengan filter dan tag.
+        catalog = browser.new_page(viewport={"width": 1440, "height": 900})
+        catalog.on("pageerror", lambda error: errors.append(str(error)))
+        catalog.goto(urljoin(args.url, "catalog.html"), wait_until="networkidle")
+        assert catalog.get_by_role("heading", name="All products", exact=True).is_visible()
+        assert catalog.locator(".product:visible").count() == 16
+        # Filter kategori.
+        catalog.get_by_role("button", name="Fonts", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 9
+        catalog.get_by_role("button", name="Brushes", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 3
+        catalog.get_by_role("button", name="Graphics", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 2
+        catalog.get_by_role("button", name="Bundles", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 2
+        catalog.get_by_role("button", name="All", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 16
+        # Filter tag.
+        catalog.get_by_role("button", name="Sale", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 3
+        catalog.get_by_role("button", name="Free", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 2
+        catalog.get_by_role("button", name="New", exact=True).click()
+        assert catalog.locator(".product:visible").count() == 7
+        catalog.get_by_role("button", name="All", exact=True).click()
+        # Query param ?tag=sale.
+        catalog.goto(urljoin(args.url, "catalog.html?tag=sale"), wait_until="networkidle")
+        assert catalog.locator(".product:visible").count() == 3
+        # Pencarian (halaman segar agar tag reset).
+        catalog.goto(urljoin(args.url, "catalog.html"), wait_until="networkidle")
+        catalog.get_by_label("Find a product").fill("brush")
+        assert catalog.locator(".product:visible").count() == 3
+        catalog.get_by_label("Find a product").fill("no-such-item")
+        assert catalog.get_by_role("heading", name="No products found").is_visible()
+        catalog.get_by_role("button", name="Show all products").click()
+        assert catalog.locator(".product:visible").count() == 16
+        # Link dari homepage.
+        page.goto(args.url, wait_until="networkidle")
+        assert page.locator(".section-link").count() == 5
+        assert page.locator(".section-link").first.get_attribute("href") == "catalog.html"
+        # Responsif.
+        for width in (320, 390, 768, 1024, 1440):
+            catalog.set_viewport_size({"width": width, "height": 900})
+            assert not catalog.evaluate("document.documentElement.scrollWidth > innerWidth"), width
+        if args.screenshots:
+            catalog.set_viewport_size({"width": 1440, "height": 900})
+            catalog.evaluate("window.scrollTo(0, 0)")
+            catalog.wait_for_function("Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)")
+            catalog.screenshot(path=str(args.screenshots / "rillatype-catalog-desktop.png"), full_page=True)
+            catalog.set_viewport_size({"width": 390, "height": 844})
+            catalog.evaluate("window.scrollTo(0, 0)")
+            catalog.screenshot(path=str(args.screenshots / "rillatype-catalog-mobile.png"), full_page=True)
+        catalog.close()
         assert not errors, errors
         browser.close()
     print("PASS: homepage search and layout, 9 product routes, gallery, demo license, Chronoa 9-style tester "
           "(size, leading, tracking, style, align, theme, OpenType detection, glyph panel), Mango tester, "
-          "missing-specimen state, unknown route, font failure/retry, and browser errors")
+          "missing-specimen state, unknown route, font failure/retry, catalog page (filters, tags, search, query params), "
+          "and browser errors")
 
 
 if __name__ == "__main__":
