@@ -102,6 +102,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | Handoff | User meminta menghentikan sesi, memperbarui progress, push, dan mematikan server. | Commit 92a9b28 sudah memuat perubahan terakhir dan berhasil dipush. Tidak ada perubahan tracked yang belum disimpan sebelum handoff. | Server perlu dihentikan. R07 dan staging tetap belum selesai. | Matikan preview, simpan handoff, dan berhenti. |
 | 2026-10-09 | Handoff | Hentikan server preview Node PID 44152. | Get-NetTCPConnection memastikan tidak ada listener pada port 9402 setelah proses dihentikan. | Handoff belum dipush. | Commit dan push PROGRESS.md. |
 | 2026-10-09 | R05E | Perbaikan pertama belum cukup: selector .product > a:hover .card-action masih menyala saat hover card. Hapus pemicu hover-card sepenuhnya; tombol hanya menyala saat .card-action:hover. | editorial.css: pemicu hover card dihapus dari aturan card-action dan fallback hover:none. Browser check PASS. | Persetujuan visual R07 tetap menunggu user. | Commit dan push (15ee58c). |
+| 2026-10-10 | R05E | User: CTA card "View font" kurang tepat karena produk tidak hanya font. Ubah semua label menjadi "View details" (lead Bawden, 8 card koleksi, link license). | index.html: 10 label di-update. DESIGN.md: 2 referensi sinkron. Browser check PASS. Verifikasi Playwright: semua CTA konsisten "View details". | Persetujuan visual dan commit menunggu user. | Tunggu review user, lalu commit dan push. |
 
 ### Handoff aktif
 
