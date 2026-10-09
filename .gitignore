@@ -1,0 +1,16 @@
+# Folder kerja font pengguna — aset sumber, bukan bagian desain preview.
+Font Test/
+
+# Konfigurasi tool lokal per-mesin (editor, MCP, cache index).
+# Tidak perlu masuk repo: tiap mesin punya setting sendiri.
+.claude/
+.codegraph/
+.gemini/
+.opencode/
+.mcp.json
+opencode.jsonc
+
+# Cache dan artefak sementara.
+__pycache__/
+*.pyc
+.preview-shots/
