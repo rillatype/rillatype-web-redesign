@@ -25,7 +25,7 @@
 .editorial .filters { gap: 8px; }
 .editorial .filter { border-radius: 4px; padding: 10px 18px; min-height: 44px; font-size: 13px; }
 .editorial .filter[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
-.editorial .product, .editorial #fonts, .editorial #licenses, .editorial #freebies, .editorial #preview-note, .editorial #license-form { scroll-margin-top: 110px; }
+.editorial .product, .editorial #fonts, .editorial #licenses, .editorial #preview-note, .editorial #license-form { scroll-margin-top: 110px; }
 .lead-collection { padding-top: 32px; }
 .lead-product { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--paper); }
 .lead-card-link { display: grid; grid-template-columns: 1.6fr 1fr; align-items: stretch; height: 100%; }
@@ -37,7 +37,6 @@
 .lead-information .product-info p { margin-top: 10px; font-size: 13px; }
 .lead-price { font-size: 22px; font-weight: 650; margin-top: 18px; }
 .lead-description { margin-top: 22px; font-size: 18px; line-height: 1.55; }
-.lead-note { margin-top: 16px; }
 .lead-bottom { margin-top: auto; padding-top: 26px; }
 .lead-bottom .button { width: 100%; min-height: 46px; }
 .editorial .collection .product { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--paper); }
@@ -60,8 +59,6 @@
 .editorial .product-info h3 { font-size: 17px; font-weight: 650; letter-spacing: -.015em; }
 .editorial .license-note { margin-top: 74px; padding: 38px 0; align-items: start; gap: 60px; }
 .editorial .license-note h2 { font-size: 36px; line-height: 1.2; }
-.freebie-note { margin-top: 30px; background: var(--wash); padding: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-.freebie-note p { font-size: 14px; color: var(--muted); margin-bottom: 14px; }
 .editorial .footer { align-items: end; padding-block: 40px; }
 .footer-wordmark { font-size: clamp(46px, 6vw, 80px); font-weight: 750; letter-spacing: -.04em; text-decoration: none; color: var(--ink); line-height: 1.1; }
 .editorial .footer > div { display: flex; flex-direction: column; gap: 18px; }
@@ -93,7 +90,7 @@
   .editorial .header-inner { grid-template-columns: auto 1fr; gap: 12px 28px; padding-block: 14px; }
   .editorial .header-search { grid-row: 1; grid-column: 2; }
   .editorial .nav { grid-column: 1 / -1; justify-content: center; }
-  .editorial .product, .editorial #fonts, .editorial #licenses, .editorial #freebies, .editorial #preview-note, .editorial #license-form { scroll-margin-top: 160px; }
+  .editorial .product, .editorial #fonts, .editorial #licenses, .editorial #preview-note, .editorial #license-form { scroll-margin-top: 160px; }
   .editorial-intro { gap: 30px; }
   .lead-card-link { grid-template-columns: 1.35fr 1fr; }
   .lead-information { padding: 26px; }
@@ -128,7 +125,6 @@
   .editorial .products { grid-template-columns: 1fr; gap: 30px; }
   .editorial .license-note { grid-template-columns: 1fr; gap: 22px; margin-top: 46px; padding-block: 28px; }
   .editorial .license-note h2 { font-size: 28px; }
-  .freebie-note { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
   .editorial .footer { align-items: start; }
   .footer-wordmark { font-size: 48px; }
   .detail-header { align-items: start; flex-direction: column; gap: 8px; }

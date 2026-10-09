@@ -4,7 +4,7 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05E` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05F` dari `REDESIGN-PLAN.md`.
 
 ## Redesign aktif: foundry editorial
 
@@ -24,6 +24,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R05C | Hierarki toko dan pencarian header | SELESAI | Search di header sticky, hasil selalu terlihat, dan navigasi Mango diperbaiki. Browser check dan review handoff lulus. Persetujuan visual user belum ada. |
 | R05D | Desain baru foundry editorial | SELESAI | Homepage baru dan browser check tersedia. Review visual terpadu dilakukan setelah route detail R06 tersedia. User belum menyetujui tampilan. |
 | R05E | Perbaikan seluruh product card | SELESAI | Semua card dibingkai dan seluruh bidang clickable. Harga serta tombol Bawden dipisahkan. Browser check, screenshot, review scoped, dan dokumen lulus. |
+| R05F | Copy anti-AI-slop dan hapus blok bawah | SELESAI | Blok dan CSS dihapus. Copy diringkas, aturan unslop dicatat, navigasi Freebies menuju koleksi asli yang diperiksa. |
 | R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
 | R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05D dan detail produk R06 siap ditinjau. Belum ada persetujuan visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
@@ -87,10 +88,13 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05E | Tambahkan pemeriksaan klik area informasi dan aktivasi Enter pada card. | Pemeriksaan awal klik panel Bawden berhasil. Assertion navigasi keyboard membaca URL sebelum transisi selesai. Ubah penantian test menjadi wait_for_url untuk tujuan yang diharapkan. | Konfirmasi browser check belum selesai. | Jalankan ulang pemeriksaan dan baca screenshot card. |
 | 2026-10-09 | R05E | Konfirmasi card hasil revisi. | Browser check lulus termasuk klik panel Bawden, Enter, klik metadata Mango, semua route, pencarian, dan tester. Screenshot desktop/mobile dibaca. Detector hanya menandai radius 8px serta harga 22px yang perlu didokumentasikan. | Sinkronisasi dokumen dan handoff belum selesai. | Perbarui sistem desain dan simpan perubahan. |
 | 2026-10-09 | R05E | Sinkronkan DESIGN.md dan sidecar card dengan hasil implementasi. | Review scoped memberi PASS untuk card homepage. JSON/YAML, 61 referensi token, metadata, snippet card, serta git diff --check diperiksa. Tidak menambah dependency atau JavaScript card. | Persetujuan visual hasil render tetap menunggu user. | Commit dan push revisi, kemudian tinjau hasil card bersama user. |
+| 2026-10-09 | R05F | Catat permintaan menghapus Room to experiment dan menjaga copy anti-AI-slop. | Periksa HTML, CSS, serta anchor terkait. HEAD koleksi asli https://rillatype.com/product-category/freebies/ mengembalikan HTTP 200. | Perubahan belum diterapkan. | Hapus blok/CSS dan hubungkan navigasi Freebies ke koleksi asli. |
+| 2026-10-09 | R05F | Hapus blok Room to experiment dan CSS-nya. Navigasi Freebies menuju koleksi asli pada tab baru. Ringkas subcopy pembukaan, Bawden, dan lisensi berdasarkan unslop. | Deskripsi Bawden mengikuti tulisan regular/stamp/rough pada artwork. Hapus tagline serta catatan yang berulang. Search juga mencakup deskripsi style yang terlihat. | Browser check dan dokumen desain belum diperiksa. | Periksa query rough, layout, dan tautan setelah penghapusan. |
+| 2026-10-09 | R05F | Sinkronkan DESIGN.md serta sidecar dengan copy dan navigasi terbaru. | Browser check PASS termasuk query rough yang menemukan Bawden dan seluruh regresi sebelumnya. Screenshot desktop/mobile dibaca. JSON valid dan git diff --check lulus. Tidak ada anchor #freebies atau CSS freebie-note pada source preview aktif. | Persetujuan acuan desain masih menunggu user. | Commit dan push hasil, lalu lanjut tinjauan R07. |
 
 ### Handoff aktif
 
-- Hasil terbaru: R05E selesai dan siap ditinjau. Berikutnya R07, persetujuan acuan desain.
+- Hasil terbaru: R05F selesai. Blok Room to experiment dihapus, copy lebih langsung, dan aturan unslop berlaku untuk copy berikutnya. Menunggu tinjauan R07.
 - Preview tersedia di http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
 - Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu memiliki route detail.

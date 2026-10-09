@@ -32,8 +32,9 @@ if (searchForm) {
     const text = query.value.trim().toLowerCase();
     let count = 0;
     products.forEach(product => {
+      const description = product.querySelector('.lead-description')?.textContent || '';
       const matches = (category === 'all' || product.dataset.style === category)
-        && `${product.dataset.name} ${product.dataset.style} ${product.querySelector('.product-info p').textContent}`.toLowerCase().includes(text);
+        && `${product.dataset.name} ${product.dataset.style} ${product.querySelector('.product-info p').textContent} ${description}`.toLowerCase().includes(text);
       product.hidden = !matches;
       if (matches) count++;
     });

@@ -176,9 +176,20 @@ Dependensi: R05D dan R06.
 - Tulisan Demo tetap menandai data contoh. User mengonfirmasi penempatan tombol melalui grilling.
 - Selesai jika tampilan desktop/mobile, klik area informasi, dan aktivasi keyboard diperiksa serta progress diperbarui.
 
+### R05F. Bersihkan copy dan hapus blok freebies bawah
+
+Dependensi: R05E.
+
+- User meminta copy mengikuti anti-AI-slop dan menghapus bagian Room to experiment.
+- Gunakan unslop untuk menulis copy yang jelas, spesifik, dan sesuai bukti produk.
+- Hapus blok tersebut beserta CSS yang tidak lagi digunakan.
+- Pertahankan akses Freebies melalui navigasi yang menuju koleksi asli, bukan anchor kosong.
+- Ringkas filler pada pembukaan, deskripsi font, dan informasi lisensi tanpa mengubah arah visual.
+- Selesai jika preview diperiksa, tautan tidak rusak, serta aturan copy dan progress diperbarui.
+
 ### R07. Minta persetujuan acuan desain
 
-Dependensi: R05E dan R06.
+Dependensi: R05F dan R06.
 
 - Tampilkan kedua preview kepada user dengan link atau screenshot.
 - Minta feedback tentang hierarki, kepadatan, navigasi, tester, dan pilihan lisensi.

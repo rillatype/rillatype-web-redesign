@@ -46,6 +46,7 @@ Pertahankan log lama. Koreksi klaim lama melalui entri baru yang menyebut bukti 
 - Utamakan CSS native dan JavaScript yang memang diperlukan. Gunakan kode atau dependensi yang sudah tersedia.
 - Ajukan alasan sebelum menambah framework, plugin, atau library yang memperbesar beban halaman.
 - Pertahankan warna preview produk. Hindari klaim pemasaran, harga, lisensi, dan ulasan yang dibuat-buat.
+- Gunakan skill `unslop` saat menulis atau merevisi copy UI. Tulis manfaat dan tindakan yang spesifik, sesuai bukti produk. Hapus filler, metafora yang tidak membantu, dan pengulangan. Pertahankan karakter brand tanpa membuat klaim baru.
 - Pertahankan konten faktual, logo, data produk, URL penting, dan perilaku transaksi kecuali user menyetujui perubahan.
 - Muat konten utama tanpa menunggu animasi. Hormati `prefers-reduced-motion`.
 - Sediakan label form, fokus keyboard, kontras yang cukup, dan target sentuh yang mudah digunakan.

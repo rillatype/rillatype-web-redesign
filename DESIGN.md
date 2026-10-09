@@ -339,7 +339,7 @@ Dokumen ini merekam `static/redesign/index.html`, `product.html`, `style.css`, `
 - **Ink** (`ink`) adalah teks utama, border tombol sekunder, dan filter aktif dengan teks Paper.
 - **Muted** (`muted`) membedakan kategori, copy pendamping, placeholder, serta catatan demo.
 - **Line** (`line`) memisahkan header, bar filter, lisensi, tester, dan catatan preview serta membingkai card homepage dan tindakan koleksi.
-- **Wash** (`wash`) adalah field pencarian, hover tindakan koleksi, freebies, banner demo, dan opsi lisensi terpilih.
+- **Wash** (`wash`) adalah field pencarian, hover tindakan koleksi, banner demo, dan opsi lisensi terpilih.
 - **Transparent** (`transparent`) dipakai pada border pencarian, filter default, dan thumbnail tidak aktif.
 - Token `base-line`, `base-wash`, dan `base-ink-hover` mencatat base component lab saja. Override editorial tidak memakai palette base tersebut.
 
@@ -355,7 +355,7 @@ File lokal `static/redesign/manrope.ttf` berasal dari repo resmi Google Fonts, `
 
 ### Hierarchy
 - `display` dan `display-mobile` mencatat H1 homepage. Mobile berlaku pada max-width 640px; tidak ada role tablet terpisah.
-- `headline` dan `headline-mobile` mencatat H2 koleksi, freebies, dan tester. `license-headline` memakai ukuran serta line-height berbeda.
+- `headline` dan `headline-mobile` mencatat H2 koleksi dan tester. `license-headline` memakai ukuran serta line-height berbeda.
 - `feature-title` mencatat judul Bawden di panel unggulan. Mobile memakai `feature-title-mobile` yang tetap lebih besar daripada H2 biasa.
 - `product-display` mencatat H1 detail produk, termasuk weight 750 yang diwarisi dari H1 editorial. Mobile detail memakai 36px, bukan clamp H1 homepage.
 - `title` mencatat nama kartu koleksi 18px, weight 700, line-height 1.25 pada semua lebar. `card-price` memakai 15px/650, tabular numerals, dan nowrap. Kategori tetap `small` 13px dengan warna Muted; `label` tetap untuk field.
@@ -386,15 +386,15 @@ Pada max-width 1000px, header homepage memakai dua kolom `auto 1fr`, gap 12px/28
 
 Header detail produk tidak memuat search. Desktop dan tablet memakai flex. Mobile memakai grid dua kolom untuk logo/Menu dan baris kedua untuk navigasi. Menu tertutup secara default; navigasi terbuka menambah tinggi header.
 
-Target produk, Fonts, Licenses, Freebies, catatan preview, dan `#license-form` memakai scroll-margin-top 110px. Pada max-width 1000px, termasuk mobile, offset menjadi 160px. Nilai ini adalah offset CSS aktual, bukan jaminan untuk setiap tinggi menu terbuka.
+Target produk, Fonts, Licenses, catatan preview, dan `#license-form` memakai scroll-margin-top 110px. Pada max-width 1000px, termasuk mobile, offset menjadi 160px. Nilai ini adalah offset CSS aktual, bukan jaminan untuk setiap tinggi menu terbuka.
 
 Homepage membuka dengan grid 1.7fr:1fr, gap 50px, padding 60px/0/40px. Gap menjadi 30px pada max-width 1000px. Mobile memakai satu kolom, gap 22px, dan padding vertikal 30px. Filter/count langsung mengikuti intro, tetap di luar section koleksi yang dapat disembunyikan.
 
-Bawden memakai card Paper dua kolom 1.6fr:1fr tanpa gap di dalam satu anchor, artwork di kiri, informasi flex di kanan dengan padding 34px. Harga berada dekat judul dan kategori dengan margin atas 18px. Catatan preview mengikuti deskripsi. Panel tindakan memakai margin-top auto dan padding atas 26px; CTA biru memenuhi lebar panel informasi dengan min-height 46px. Pada max-width 1000px, kolom menjadi 1.35fr:1fr, padding informasi 26px, dan padding atas tindakan 20px. Mobile menumpuk artwork dan informasi dengan padding 24px serta padding atas tindakan 22px. Card mulai 32px di bawah filter atau 24px mobile.
+Bawden memakai card Paper dua kolom 1.6fr:1fr tanpa gap di dalam satu anchor, artwork di kiri, informasi flex di kanan dengan padding 34px. Harga berada dekat judul dan kategori dengan margin atas 18px. Deskripsi menyebut regular, stamp, dan rough sesuai tulisan pada artwork; catatan preview yang berulang sudah dihapus. Panel tindakan memakai margin-top auto dan padding atas 26px; CTA biru memenuhi lebar panel informasi dengan min-height 46px. Pada max-width 1000px, kolom menjadi 1.35fr:1fr, padding informasi 26px, dan padding atas tindakan 20px. Mobile menumpuk artwork dan informasi dengan padding 24px serta padding atas tindakan 22px. Card mulai 32px di bawah filter atau 24px mobile.
 
 Tujuh kartu koleksi memakai tiga kolom dengan gap 40px/26px. Grid tetap tiga kolom pada tablet; mobile memakai satu kolom dengan gap 30px. Section mulai dengan padding atas 60px atau 36px mobile, bawah 24px. Anchor memakai flex column dan height 100%. Metadata memakai padding 18px 18px 16px, gap 12px, nama dan harga satu baris, serta kategori di bawah nama dengan margin atas 5px. Harga memiliki padding atas 2px. Tindakan memakai margin auto 18px 18px agar sejajar di bawah card, padding 10px 12px, dan min-height 44px. Bar heading berjarak 26px dari grid dan menumpuk pada mobile.
 
-Lisensi homepage memakai dua kolom, gap 60px, margin atas 74px, dan padding vertikal 38px. Mobile memakai satu kolom, gap 22px, margin atas 46px, dan padding vertikal 28px. Freebies memakai Wash, dua kolom, gap 50px, padding 36px, dan margin atas 30px. Mobile memakai satu kolom, gap 20px, dan padding 24px. Footer memakai padding vertikal 40px dan menumpuk pada mobile.
+Lisensi homepage memakai dua kolom, gap 60px, margin atas 74px, dan padding vertikal 38px. Mobile memakai satu kolom, gap 22px, margin atas 46px, dan padding vertikal 28px. Blok Room to experiment dihapus atas permintaan user pada R05F. Footer memakai padding vertikal 40px dan menumpuk pada mobile.
 
 Detail produk memakai gallery dan summary dalam grid 1.4fr:1fr, gap 52px. Gap turun menjadi 30px pada max-width 1000px. Mobile memakai satu kolom dengan gap 28px. Thumbnail memakai empat kolom, gap 10px, dan margin atas 12px. Tester memakai margin atas 52px, padding atas 36px, serta border Line. Kontrol tester memakai `1fr 240px`, gap 36px, lalu satu kolom dengan gap 20px mobile. Output memakai min-height 170px, padding vertikal 36px, pre-wrap, dan overflow-wrap anywhere.
 
@@ -406,7 +406,7 @@ Tidak ada box-shadow, blur header, atau overlay dekoratif. Paper, Wash, whitespa
 
 ## Shapes
 
-Tombol, search, filter, textarea, opsi lisensi, dan tindakan koleksi memakai radius 4px. Semua card homepage termasuk Bawden memakai Paper, border Line 1px, radius `card` 8px, dan overflow hidden. Gambar tetap radius 0; bingkai card memotong sudut luar artwork. Thumbnail, gambar detail produk, dan freebies tetap bersudut siku. Gambar memakai rasio 3:2 dan object-fit cover. Base component lab tetap memakai radius kontrol 6px.
+Tombol, search, filter, textarea, opsi lisensi, dan tindakan koleksi memakai radius 4px. Semua card homepage termasuk Bawden memakai Paper, border Line 1px, radius `card` 8px, dan overflow hidden. Gambar tetap radius 0; bingkai card memotong sudut luar artwork. Thumbnail dan gambar detail produk tetap bersudut siku. Gambar memakai rasio 3:2 dan object-fit cover. Base component lab tetap memakai radius kontrol 6px.
 
 Fokus card memakai `:focus-within` pada parent dengan outline biru 2px dan offset 4px. Outline `:focus-visible` pada anchor langsung dinonaktifkan agar overflow hidden tidak memotong ring fokus internal.
 
@@ -415,6 +415,10 @@ Tombol sekunder memakai border Ink 1px; tombol utama memakai border biru 1px. Se
 Tombol, filter, search header, dan link navigasi header memiliki min-height 44px. Thumbnail memakai ukuran grid gambar; stylesheet tidak menetapkan min-height sentuh terpisah.
 
 ## Components
+
+### Copy UI
+
+Gunakan `unslop` untuk copy yang jelas, spesifik, dan sesuai bukti produk. Hapus filler dan pengulangan, lalu gunakan satu label per tindakan. Pertahankan karakter brand tanpa membuat klaim baru.
 
 ### Buttons
 
@@ -440,7 +444,7 @@ Logo berasal dari `logo.png`. Cover berasal dari `static/previews/`: `bawden-1.j
 
 ### Navigation
 
-Homepage memiliki Fonts, Freebies, dan Licenses; detail produk valid memiliki All fonts, License preview, dan Contact. Pada slug tidak dikenal, `#nav-license` berubah menjadi Licenses dan menuju `index.html#licenses`, bukan form produk yang tersembunyi. Footer memakai link koleksi dan email contact yang tersedia. Menu mengubah `aria-expanded` serta `is-open`. Klik link menutup menu. Escape menutup menu dan mengembalikan fokus ke Menu. Skip to content tampil saat fokus. Search homepage berada di luar navigasi yang dapat disembunyikan.
+Homepage memiliki Fonts, Freebies, dan Licenses. Freebies menuju https://rillatype.com/product-category/freebies/ pada tab baru dengan petunjuk aksesibel. Link tersebut diperiksa dan mengembalikan HTTP 200 pada R05F. Detail produk valid memiliki All fonts, License preview, dan Contact. Pada slug tidak dikenal, `#nav-license` berubah menjadi Licenses dan menuju `index.html#licenses`, bukan form produk yang tersembunyi. Footer memakai link koleksi dan email contact yang tersedia. Menu mengubah `aria-expanded` serta `is-open`. Klik link menutup menu. Escape menutup menu dan mengembalikan fokus ke Menu. Skip to content tampil saat fokus. Search homepage berada di luar navigasi yang dapat disembunyikan.
 
 ### Product routes and gallery
 
@@ -466,7 +470,7 @@ Agent utama menjalankan `scripts/check-redesign-preview.py` dan memperoleh PASS 
 
 Log R05E di `PROGRESS.md` mencatat PASS yang dijalankan agent utama, bukan user. Pemeriksaan meliputi klik panel Bawden, aktivasi Enter, klik metadata Mango, semua route, pencarian/filter, gallery, lisensi demo, tester, serta regresi yang dicakup skrip. Tugas dokumentasi ini mengatribusikan hasil tersebut tanpa menjalankan browser atau meminta persetujuan render.
 
-Pemeriksaan tugas dokumentasi dibatasi pada JSON, YAML, schema lokal, referensi token, metadata, narrative parity, serta konsistensi dengan kode. CLI resmi belum mendukung validasi schema ini; validasi lokal tidak boleh disebut validasi resmi. Harga, kategori, nama lisensi, dan pilihan unggulan tetap contoh. Freebies menunggu integrasi WordPress. Dokumen ini tidak menetapkan hasil review, persetujuan user, verdict ship, performa, atau kesiapan transaksi.
+Pemeriksaan tugas dokumentasi dibatasi pada JSON, YAML, schema lokal, referensi token, metadata, narrative parity, serta konsistensi dengan kode. CLI resmi belum mendukung validasi schema ini; validasi lokal tidak boleh disebut validasi resmi. Harga, kategori, nama lisensi, dan pilihan unggulan tetap contoh. Freebies membuka koleksi asli, bukan data freebies yang terintegrasi ke preview. Dokumen ini tidak menetapkan hasil review, persetujuan user, verdict ship, performa, atau kesiapan transaksi.
 
 ## Do's and Don'ts
 

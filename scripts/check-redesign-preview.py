@@ -39,6 +39,9 @@ def main():
         assert page.locator(".product:visible").count() == 3
         assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
         page.get_by_role("button", name="All fonts", exact=True).click()
+        page.get_by_label("Find a font").fill("rough")
+        assert page.locator(".product:visible").count() == 1
+        assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
         page.get_by_label("Find a font").fill("handwritten")
         assert page.locator(".product:visible").count() == 2
         page.get_by_label("Find a font").fill("Mango")
