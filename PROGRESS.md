@@ -4,7 +4,58 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task # dari priority di `STATUS.md` bagian "Priority Queue Recommendation"
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` dari `REDESIGN-PLAN.md`.
+
+## Redesign aktif: monokrom terang
+
+Brief dan urutan pekerjaan berada di `REDESIGN-PLAN.md`. Aturan pencatatan berada di `docs/agents/redesign-rules.md`.
+Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-masing tugas dalam rencana.
+
+| ID | Tugas | Status | Bukti atau pekerjaan tersisa |
+| --- | --- | --- | --- |
+| R00 | Dokumen persiapan dan GitHub | BERJALAN | Dokumen dan 26 ID tugas diperiksa. Commit dan push menjadi pemeriksaan terakhir. |
+| R01 | Audit sumber tema | BELUM | Tentukan sumber resmi dan alur packaging. |
+| R02 | Lingkungan dan baseline | BELUM | Periksa preview, staging, versi runtime, dan baseline. |
+| R03 | Produk dan alur pengunjung | BELUM | Tulis PRODUCT.md dari fakta terkonfirmasi. |
+| R04 | Sistem visual | BELUM | Tetapkan DESIGN.md dan komponen dasar. |
+| R05 | Preview homepage | BELUM | Buat desain sesuai brief baru. |
+| R06 | Preview produk | BELUM | Buat tester serta pilihan lisensi. |
+| R07 | Persetujuan acuan desain | BELUM | Menunggu hasil R05 dan R06 untuk ditinjau user. |
+| R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
+| R09 | Homepage dinamis | BELUM | Hubungkan data produk asli. |
+| R10 | Halaman produk dinamis | BELUM | Hubungkan gallery dan informasi produk. |
+| R11 | Lisensi dan cart | BELUM | Periksa harga, validasi, dan item cart. |
+| R12 | Font tester nyata | BELUM | Periksa aset, lazy loading, serta kegagalan font. |
+| R13 | Katalog dan kategori | BELUM | Periksa grid, query, dan pagination. |
+| R14 | Pencarian dan filter | BELUM | Periksa hasil, query, dan state kosong. |
+| R15 | Freebies dan lisensi | BELUM | Hubungkan route dan aturan asli. |
+| R16 | Cart | BELUM | Periksa perubahan item, coupon, dan total. |
+| R17 | Checkout dan opsi akun | BELUM | Periksa tamu, akun baru, serta pelanggan lama. |
+| R18 | Pembayaran dan konfirmasi | BELUM | Uji sandbox, status order, email, dan thank-you. |
+| R19 | Akun dan unduhan | BELUM | Periksa riwayat, reset password, dan izin unduhan. |
+| R20 | Halaman pendukung | BELUM | Periksa konten, legal links, dan 404. |
+| R21 | Mobile dan aksesibilitas | BELUM | Periksa seluruh alur di mobile serta keyboard. |
+| R22 | Performa | BELUM | Ukur dan bandingkan dengan baseline. |
+| R23 | SEO dan regresi | BELUM | Periksa metadata serta alur pembelian penuh. |
+| R24 | Persetujuan hasil | BELUM | Tinjau staging bersama user. |
+| R25 | Paket dan handoff | BELUM | Siapkan paket, panduan, dan status rilis. |
+
+### Log perubahan redesign
+
+| Tanggal | ID | Perubahan dan file | Pemeriksaan dan hasil | Tersisa atau blocker | Langkah berikutnya |
+| --- | --- | --- | --- | --- | --- |
+| 2026-10-09 | R00 | Tulis REDESIGN-PLAN.md dan docs/agents/redesign-rules.md. Hubungkan AGENTS.md, PLAN.md, STATUS.md, serta tracker ini. | Periksa remote, branch master, status Git, rencana historis, dan lokasi tema. Temukan beberapa salinan tema yang perlu diaudit. | Belum memeriksa dokumen akhir atau push. UI belum diubah. | Periksa konsistensi tugas dan simpan dokumen ke GitHub. |
+| 2026-10-09 | R00 | Periksa dokumen persiapan. User meminta langsung mulai setelah persiapan selesai. | git diff --check lulus. Rencana memiliki 26 ID R00 sampai R25 yang cocok dengan tabel status. Periksa aturan progress dan dependensi. | Commit dan push belum dijalankan. | Simpan persiapan, lalu mulai R01 tanpa meminta persetujuan ulang. |
+
+### Handoff aktif
+
+- Tugas sekarang: R00, pemeriksaan dan penyimpanan dokumen.
+- Tugas implementasi berikutnya: R01, audit lokasi tema resmi.
+- Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
+- Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
+- Konfigurasi skill sebelumnya di AGENTS.md dan docs/agents/ ikut disimpan bersama dokumen persiapan.
+
+Bagian berikut menyimpan riwayat pekerjaan sebelum brief redesign ini.
 
 ---
 

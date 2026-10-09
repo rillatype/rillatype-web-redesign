@@ -1,5 +1,8 @@
 # Rillatype.com Web Redesign — Master Plan v2
 
+> Rencana ini adalah referensi historis. Untuk redesign monokrom yang disepakati pada 9 Oktober 2026, gunakan `REDESIGN-PLAN.md`.
+> Aturan pengerjaan berada di `docs/agents/redesign-rules.md`. Status pekerjaan berada di `PROGRESS.md`.
+
 > **Tujuan**: Bikin ulang rillatype.com dengan custom WordPress theme dari nol (bukan tema beli). 
 > **SEO-friendly, bagus, simpel, cepat, dan tidak terlihat seperti template**.
 >

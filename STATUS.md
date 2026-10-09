@@ -1,5 +1,8 @@
 # Rillatype Web Redesign — Status & Handoff
 
+> Untuk pekerjaan baru, baca `REDESIGN-PLAN.md` dan `docs/agents/redesign-rules.md`.
+> Bagian di bawah adalah catatan historis, bukan hasil audit kode terbaru. Status redesign aktif berada di `PROGRESS.md`.
+
 > **Repo**: https://github.com/rillatype/rillatype-web-redesign
 > **Direktori**: `D:\Hermes Project\Web Redesign Rillatype\`
 
