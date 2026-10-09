@@ -4,9 +4,9 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` dan `R05B` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05D` dari `REDESIGN-PLAN.md`.
 
-## Redesign aktif: playful foundry
+## Redesign aktif: foundry editorial
 
 Brief dan urutan pekerjaan berada di `REDESIGN-PLAN.md`. Aturan pencatatan berada di `docs/agents/redesign-rules.md`.
 Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-masing tugas dalam rencana.
@@ -22,8 +22,9 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R05A | Revisi karakter homepage | SELESAI | Preview unggulan besar, tipografi tegas, serta koleksi pilihan dua kolom. Browser check dan review perbaikan lulus. Tinjauan user masih diperlukan. |
 | R05B | Arah baru playful foundry | SELESAI | Versi dibuat dan diuji. Dua temuan hasil filter diperbaiki. User menolak keseluruhan UI dan UX; lanjut R05C. |
 | R05C | Hierarki toko dan pencarian header | SELESAI | Search di header sticky, hasil selalu terlihat, dan navigasi Mango diperbaiki. Browser check dan review handoff lulus. Persetujuan visual user belum ada. |
-| R06 | Preview produk | BELUM | Buat tester serta pilihan lisensi. |
-| R07 | Persetujuan acuan desain | BELUM | Menunggu hasil R05 dan R06 untuk ditinjau user. |
+| R05D | Desain baru foundry editorial | SELESAI | Homepage baru dan browser check tersedia. Review visual terpadu dilakukan setelah route detail R06 tersedia. User belum menyetujui tampilan. |
+| R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
+| R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05D dan detail produk R06 siap ditinjau. Belum ada persetujuan visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
 | R09 | Homepage dinamis | BELUM | Hubungkan data produk asli. |
 | R10 | Halaman produk dinamis | BELUM | Hubungkan gallery dan informasi produk. |
@@ -72,13 +73,21 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05C | Tetapkan revisi berdasarkan feedback keseluruhan dan posisi Find a font. | Pencarian perlu menjadi bagian header, bukan blok terpisah di bawah hero. | Layout baru belum dibuat. | Rapikan header, pembukaan, dan informasi koleksi. |
 | 2026-10-09 | R05C | Pindahkan search ke header. Ganti pembukaan menjadi arahan memilih font. Pindahkan sample huruf ke produk Mango, hilangkan collage hero, dan rapikan bentuk kontrol serta metadata. | Search terlihat sebelum h1. Counter hasil berada di area filter yang selalu terlihat. Typeface Mango tetap menjadi identitas, coral digunakan untuk state dan specimen. | Pemeriksaan browser dan dokumen desain revisi belum selesai. | Periksa header desktop/mobile, filter, dan hasil pencarian. |
 | 2026-10-09 | R05C | Jadikan header sticky dan beri jarak anchor agar hasil tidak tertutup header. Sinkronkan DESIGN.md serta sidecar dengan UI terbaru. | Browser check lulus termasuk search tetap terlihat saat scroll, target hasil berada di bawah header, count Script dan nol hasil, serta anchor Mango setelah filter. Review terpisah memberi PASS untuk handoff preview, bukan persetujuan visual. JSON, token, dan git diff --check lulus. | R06 dan integrasi WordPress belum dikerjakan. User belum menyetujui tampilan. | Commit dan push perubahan R05B/R05C, kemudian tampilkan preview terbaru. |
+| 2026-10-09 | R05D | Catat penolakan user terhadap keseluruhan desain R05C. Tetapkan pengganti foundry editorial, aksen biru, dan font Manrope lokal. | Download Manrope variable dan OFL dari repo resmi Google Fonts berhasil. | Homepage pengganti belum dibuat. | Ganti visual world, lalu bangun jalur detail produk R06. |
+| 2026-10-09 | R05D | Ganti index.html, hapus foundry.css, dan tambah editorial.css. Bawden menjadi font unggulan dengan artwork serta panel informasi. Kartu diarahkan ke route detail. | Pertahankan pencarian header dan filter. Hapus interaksi sample dari homepage. Manrope, lisensi, dan sumber aset tercatat. | Browser check baru belum dijalankan. Route detail akan dibuat pada R06 setelah pemeriksaan homepage. | Periksa layout pengganti, lalu kerjakan R06. |
+| 2026-10-09 | R05D | Periksa homepage pengganti. | Browser check lulus untuk Manrope nyata dan fallback, pencarian, filter, count, menu, aset, reduced motion, dan viewport 320 sampai 1440px. Screenshot desktop/mobile dibaca. Lisensi OFL asli diperiksa. | Route detail belum tersedia. Review terpadu akan memeriksa homepage dan detail setelah R06. | Mulai R06 agar klik kartu membuka halaman produk. |
+| 2026-10-09 | R06 | Tambahkan product.html dan product-preview.js. Semua kartu menuju detail berdasarkan slug yang diizinkan. Sediakan gallery, pilihan lisensi contoh, dan font tester nyata untuk Mango. | Gunakan textContent untuk input serta konten produk. Tidak ada transaksi, cart, atau pembayaran nyata. Produk tanpa specimen menampilkan state yang jelas. | Pemeriksaan browser detail belum dijalankan. | Uji link seluruh kartu, harga pilihan contoh, gallery, tester, unknown slug, dan font gagal. |
+| 2026-10-09 | R06 | Periksa seluruh jalur detail dan rapikan harga opsi serta clearance anchor lisensi. | Browser check lulus untuk 8 route, gallery, harga contoh Mango extended $36, output teks literal, slider keyboard, unknown slug, font gagal, dan retry. Screenshot produk desktop/mobile dibaca. Detector meminta deklarasi token baru dan image src awal yang kini tersedia. | Konfirmasi setelah perapian, review, serta dokumentasi arah baru belum selesai. | Jalankan konfirmasi dan review terpadu. |
+| 2026-10-09 | R06 | Tambahkan state informasi font tanpa mengarang format pembelian, weights, atau glyph. Perbaiki link lisensi pada unknown-product agar kembali ke informasi lisensi homepage. | Review terpadu menyatakan layout siap untuk tinjauan user dan menemukan satu link menuju area tersembunyi pada unknown slug. Dokumentasi baru mencatat Manrope, biru, komposisi, serta prototype detail. | Regression unknown-product setelah perbaikan belum dijalankan. Data produk asli tetap belum terhubung. | Periksa error navigation dan simpan hasil. |
+| 2026-10-09 | R06 | Selesaikan preview detail dan dokumen desain. Koreksi atribusi bukti agar jelas bahwa agent, bukan user, menjalankan test. | Full browser check PASS, termasuk unknown slug yang kembali ke homepage Licenses. Reviewer menilai temuan resolved dan memberikan PASS untuk handoff preview. JSON dan token diperiksa; git diff --check lulus. | Spesifikasi produk serta aturan lisensi asli masih menunggu data toko. Tidak ada transaksi nyata. User belum menyetujui tampilan. | Simpan R05D/R06 ke GitHub dan minta tinjauan R07. |
+| 2026-10-09 | R05D | Rapikan satu trailing space pada salinan OFL Manrope tanpa mengubah teks lisensi. | Pemeriksaan staged diff menemukan whitespace pada file lisensi unduhan. Baris tersebut diperbaiki sebelum commit. | Push hasil menunggu commit. | Simpan homepage dan detail produk bersama progress. |
 
 ### Handoff aktif
 
-- Hasil terbaru: R05C selesai secara implementasi dan pemeriksaan. Menunggu feedback visual setelah pembenahan pencarian dan hierarki.
+- Tugas berikutnya: R07, tinjauan user atas homepage pengganti dan detail produk.
 - Preview tersedia di http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
-- Tugas berikutnya setelah R05C: R06, preview produk.
+- Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu memiliki route detail.
 - Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
 - Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
 - Server preview dijalankan kembali untuk memeriksa fondasi dan homepage redesign. Port 9402 aktif selama sesi ini.

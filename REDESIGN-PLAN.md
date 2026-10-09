@@ -13,9 +13,9 @@ Rencana ini menggantikan arah visual dalam `PLAN.md` untuk pekerjaan baru.
 - Rombak homepage, katalog, halaman produk, cart, checkout, dan akun.
 - Layani desainer dan pemilik brand yang ingin menemukan, mencoba, dan membeli font.
 - Tetap gunakan WordPress dan WooCommerce.
-- Arah visual aktif sejak revisi R05B adalah playful foundry, dengan lettering font Rillatype dan satu aksen coral. Navigasi tetap mudah dipahami.
+- Arah visual aktif sejak revisi R05D adalah foundry editorial: tipografi Manrope yang tegas, satu aksen biru, dan fokus pada koleksi serta detail font. User meminta mengganti keseluruhan versi sebelumnya.
 - Revisi 9 Oktober 2026: user menilai preview awal terlalu sederhana. Pertahankan minimalisme, tetapi perkuat komposisi, skala tipografi, dan dominasi preview unggulan.
-- Gunakan latar terang, teks gelap, serta coral khas Rillatype sebagai satu aksen UI. Preview font tetap berwarna.
+- Gunakan latar terang, teks gelap, serta biru sebagai satu aksen UI. Preview font tetap berwarna.
 - Homepage berisi pembukaan singkat, font pilihan, rilisan terbaru, penjelasan lisensi singkat, dan footer.
 - Buat pencarian serta akses katalog mudah ditemukan. Sediakan akses freebies melalui navigasi.
 - Katalog menampilkan preview, nama font, kategori, dan harga. Tester lengkap berada di halaman produk.
@@ -107,7 +107,7 @@ Dependensi: R04.
 
 ### R06. Buat preview halaman produk baru
 
-Dependensi: R04 dan R05C.
+Dependensi: R04 dan R05D.
 
 - Susun gallery, nama font, ringkasan, harga, pilihan lisensi, dan tombol tambah ke cart.
 - Sediakan tester teks, ukuran, dan style yang memang dimiliki produk.
@@ -149,6 +149,19 @@ Dependensi: R05B.
 - Pastikan tautan ke Mango menampilkan hasil tersebut meski filter sebelumnya menyembunyikannya.
 - Periksa pencarian header, menu mobile, filter, jumlah hasil, dan navigasi ke font.
 - Selesai jika preview revisi dan bukti pemeriksaan tersedia. Penilaian visual tetap memerlukan feedback user.
+
+### R05D. Ganti keseluruhan desain dengan foundry editorial
+
+Dependensi: R05C.
+
+- User kembali menolak keseluruhan tampilan dan meminta versi baru.
+- Ganti typography, palette, komposisi, serta treatment produk. Hindari mengubah versi playful secara kosmetik lagi.
+- Pakai Manrope lokal dengan lisensi OFL. Aksen UI biru menggantikan coral.
+- Pertahankan pencarian di header dan fungsi filter yang sudah diperiksa.
+- Jadikan Bawden font unggulan, dengan preview, informasi, dan tindakan menuju detail dalam satu komposisi.
+- Terapkan pola berbeda pada font unggulan dan katalog lainnya. Pertahankan logo serta gambar asli.
+- Sediakan jalur detail produk melalui R06 agar kartu tidak berakhir pada catatan preview.
+- Selesai jika homepage baru dan bukti pemeriksaan tersedia. Penilaian visual tetap milik user.
 
 ### R07. Minta persetujuan acuan desain
 

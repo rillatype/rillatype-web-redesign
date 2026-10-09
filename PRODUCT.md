@@ -40,7 +40,8 @@ Sumber pengembangan tema ditetapkan dalam `docs/redesign-audit.md`.
 ## Komitmen brand
 
 Pertahankan nama Rillatype, aset logo, serta warna asli gambar preview produk.
-Pada revisi R05B, user memilih playful foundry dan mengizinkan satu warna aksen khas. Dua preview monokrom sebelumnya ditolak karena terlalu umum.
+User mengizinkan satu warna aksen. Setelah kembali menolak keseluruhan R05C, user meminta desain baru.
+Arah implementasi R05D memakai foundry editorial, Manrope, serta satu aksen biru. Arah ini belum memperoleh persetujuan visual user.
 Animasi tetap ringan. Kemudahan penggunaan dan beban halaman tetap menjadi prioritas.
 Jangan menambahkan klaim tentang pelanggan, ulasan, penjualan, lisensi, atau manfaat yang belum terbukti.
 

@@ -1,207 +1,209 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-09T06:05:45+00:00",
+  "generatedAt": "2026-10-09T06:52:16+00:00",
   "title": "Design System: Rillatype",
   "extensions": {
     "colorMeta": {
-      "accent": { "role": "primary", "displayName": "Coral", "tonalRamp": ["oklch(15% 0.16 32)", "oklch(26% 0.16 32)", "oklch(38% 0.16 32)", "oklch(49% 0.16 32)", "oklch(61% 0.16 32)", "oklch(72% 0.16 32)", "oklch(84% 0.16 32)", "oklch(95% 0.16 32)"] },
+      "accent": { "role": "primary", "displayName": "Collection blue", "tonalRamp": ["oklch(15% 0.22 265)", "oklch(26% 0.22 265)", "oklch(38% 0.22 265)", "oklch(49% 0.22 265)", "oklch(61% 0.22 265)", "oklch(72% 0.22 265)", "oklch(84% 0.22 265)", "oklch(95% 0.22 265)"] },
+      "accent-hover": { "role": "primary", "displayName": "Collection blue hover", "tonalRamp": ["oklch(15% 0.18 265)", "oklch(26% 0.18 265)", "oklch(38% 0.18 265)", "oklch(49% 0.18 265)", "oklch(61% 0.18 265)", "oklch(72% 0.18 265)", "oklch(84% 0.18 265)", "oklch(95% 0.18 265)"] },
       "paper": { "role": "neutral", "displayName": "Paper", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
       "ink": { "role": "neutral", "displayName": "Ink", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
       "muted": { "role": "neutral", "displayName": "Muted", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
-      "line": { "role": "neutral", "displayName": "Line", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
-      "wash": { "role": "neutral", "displayName": "Wash", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
-      "ink-hover": { "role": "neutral", "displayName": "Ink hover", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
-      "transparent": { "role": "neutral", "displayName": "Transparent" }
+      "line": { "role": "neutral", "displayName": "Line", "tonalRamp": ["oklch(15% 0.01 260)", "oklch(26% 0.01 260)", "oklch(38% 0.01 260)", "oklch(49% 0.01 260)", "oklch(61% 0.01 260)", "oklch(72% 0.01 260)", "oklch(84% 0.01 260)", "oklch(95% 0.01 260)"] },
+      "wash": { "role": "neutral", "displayName": "Wash", "tonalRamp": ["oklch(15% 0.005 260)", "oklch(26% 0.005 260)", "oklch(38% 0.005 260)", "oklch(49% 0.005 260)", "oklch(61% 0.005 260)", "oklch(72% 0.005 260)", "oklch(84% 0.005 260)", "oklch(95% 0.005 260)"] },
+      "transparent": { "role": "neutral", "displayName": "Transparent" },
+      "base-line": { "role": "neutral", "displayName": "Base lab line", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "base-wash": { "role": "neutral", "displayName": "Base lab wash", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "base-ink-hover": { "role": "neutral", "displayName": "Base lab ink hover", "tonalRamp": ["oklch(15% 0 0)", "oklch(26% 0 0)", "oklch(38% 0 0)", "oklch(49% 0 0)", "oklch(61% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] }
     },
     "typographyMeta": {
-      "body": { "displayName": "Body", "purpose": "System sans bersama untuk informasi dan kontrol." },
-      "display": { "displayName": "Base display", "purpose": "H1 component lab, bukan H1 foundry." },
-      "headline": { "displayName": "Base headline", "purpose": "H2 base tanpa override foundry." },
-      "heading-small": { "displayName": "Base H3", "purpose": "H3 bersama sebelum override nama produk." },
-      "title": { "displayName": "Base card title", "purpose": "Nama kartu component lab 17px." },
-      "label": { "displayName": "Label", "purpose": "Tombol biasa, filter, dan harga 14px." },
-      "small": { "displayName": "Small", "purpose": "Kategori, jumlah hasil, catatan, dan link footer 13px." },
-      "brand": { "displayName": "Base brand", "purpose": "Wordmark teks component lab." },
-      "brand-mobile": { "displayName": "Base brand mobile", "purpose": "Wordmark component lab pada max-width 640px." },
-      "product-display": { "displayName": "Product display", "purpose": "Aturan summary H1 base; bukan bukti R06 selesai." },
-      "legend": { "displayName": "Legend", "purpose": "Legend fieldset dalam aturan produk base." },
-      "tester": { "displayName": "Base tester", "purpose": "Output tester base; bukan sample homepage." },
-      "tester-mobile": { "displayName": "Base tester mobile", "purpose": "Output tester base pada max-width 640px." },
-      "demo": { "displayName": "Demo label", "purpose": "Label demo dalam aturan produk base." },
-      "foundry-display": { "displayName": "Foundry display", "purpose": "H1 Mango di kiri hero Paper, clamp 58px sampai 88px." },
-      "foundry-display-tablet": { "displayName": "Foundry display tablet", "purpose": "H1 Mango clamp 50px sampai 70px pada max-width 1000px." },
-      "foundry-display-mobile": { "displayName": "Foundry display mobile", "purpose": "H1 Mango clamp 44px sampai 62px pada max-width 640px." },
-      "sample": { "displayName": "Mango sample", "purpose": "Pasangan huruf coral 82px di dalam kartu Mango; tablet mewarisi ukuran ini." },
-      "sample-mobile": { "displayName": "Mango sample mobile", "purpose": "Pasangan huruf Mango 70px pada max-width 640px." },
-      "sample-label": { "displayName": "Sample button label", "purpose": "Label Change sample 13px." },
-      "sample-label-mobile": { "displayName": "Sample button label mobile", "purpose": "Label Change sample 12px pada max-width 640px." },
-      "foundry-headline": { "displayName": "Foundry headline", "purpose": "H2 koleksi system sans clamp 26px sampai 34px." },
-      "foundry-title": { "displayName": "Foundry card title", "purpose": "Nama produk biasa 19px." },
-      "foundry-title-mobile": { "displayName": "Foundry card title mobile", "purpose": "Nama produk biasa 18px mobile." },
-      "feature-title": { "displayName": "Mango card title", "purpose": "H3 Mango system sans 24px." },
-      "feature-title-mobile": { "displayName": "Mango card title mobile", "purpose": "H3 Mango system sans 22px mobile." },
-      "license-headline": { "displayName": "License headline", "purpose": "Judul lisensi Mango 42px." },
-      "license-headline-mobile": { "displayName": "License headline mobile", "purpose": "Judul lisensi Mango 34px mobile." },
-      "footer-wordmark": { "displayName": "Footer wordmark", "purpose": "Wordmark rillatype. dalam Mango 48px." },
-      "footer-wordmark-mobile": { "displayName": "Footer wordmark mobile", "purpose": "Wordmark Mango 44px mobile." },
-      "foundry-brand": { "displayName": "Foundry brand text", "purpose": "Teks pendamping gambar logo asli, 17px." },
-      "foundry-brand-mobile": { "displayName": "Foundry brand text mobile", "purpose": "Teks pendamping logo 15px mobile." },
-      "foundry-navigation": { "displayName": "Foundry navigation", "purpose": "Fonts, Freebies, dan Licenses pada header, weight 500." },
-      "hero-copy": { "displayName": "Hero copy", "purpose": "Copy di kanan H1, 16px/1.6." },
-      "hero-copy-mobile": { "displayName": "Hero copy mobile", "purpose": "Copy di bawah H1, 14px/1.6." },
-      "caption": { "displayName": "Caption", "purpose": "Label search, Font studio, kredit font, dan caption sample 12px." },
-      "freebie-headline": { "displayName": "Freebies headline", "purpose": "H2 callout Wash 28px." },
-      "freebie-headline-mobile": { "displayName": "Freebies headline mobile", "purpose": "H2 freebies 26px mobile." }
+      "body": { "displayName": "Editorial body", "purpose": "Manrope lokal untuk UI, copy, dan role editorial yang mewarisi body." },
+      "display": { "displayName": "Homepage display", "purpose": "H1 homepage, weight 750, line-height .99." },
+      "display-mobile": { "displayName": "Homepage display mobile", "purpose": "Clamp H1 homepage pada max-width 640px." },
+      "headline": { "displayName": "Editorial headline", "purpose": "H2 koleksi, freebies, dan tester." },
+      "headline-mobile": { "displayName": "Editorial headline mobile", "purpose": "H2 biasa 26px mobile." },
+      "title": { "displayName": "Collection card title", "purpose": "Nama tujuh kartu koleksi, 17px pada semua lebar." },
+      "feature-title": { "displayName": "Featured Bawden title", "purpose": "Judul panel Bawden, clamp 32..46px." },
+      "feature-title-mobile": { "displayName": "Featured Bawden mobile", "purpose": "Judul Bawden 34px mobile." },
+      "product-display": { "displayName": "Product title", "purpose": "H1 detail dengan weight 750 yang diwarisi dari H1 editorial." },
+      "product-display-mobile": { "displayName": "Product title mobile", "purpose": "H1 detail 36px mobile, terpisah dari clamp homepage." },
+      "brand": { "displayName": "Header brand", "purpose": "Manrope 18px di samping logo asli." },
+      "brand-mobile": { "displayName": "Header brand mobile", "purpose": "Teks brand 16px mobile." },
+      "navigation": { "displayName": "Header navigation", "purpose": "Link header 13px weight 600." },
+      "button": { "displayName": "Editorial button", "purpose": "Tombol utama dan sekunder 13px weight 650." },
+      "search": { "displayName": "Header search", "purpose": "Input Search the collection, 13px weight 400." },
+      "filter": { "displayName": "Filter label", "purpose": "All fonts dan kategori 13px weight 400." },
+      "label": { "displayName": "Field label and card price", "purpose": "Label tester dan harga kartu 14px weight 400." },
+      "text-link": { "displayName": "Text action", "purpose": "Tautan tindakan 14px weight 600." },
+      "small": { "displayName": "Secondary information", "purpose": "Kategori, count, banner, status, dan catatan 13px." },
+      "card-action": { "displayName": "View font caption", "purpose": "Tautan visual biru pada kartu, 12px weight 600." },
+      "intro-copy": { "displayName": "Introduction copy", "purpose": "Copy pendamping headline homepage, line-height 1.65." },
+      "intro-copy-mobile": { "displayName": "Introduction copy mobile", "purpose": "Copy intro 14px mobile." },
+      "feature-copy": { "displayName": "Featured description", "purpose": "Deskripsi Bawden 18px." },
+      "feature-copy-narrow": { "displayName": "Featured description narrow", "purpose": "Deskripsi Bawden 16px pada max-width 1000px." },
+      "feature-price": { "displayName": "Featured demo price", "purpose": "Harga contoh Bawden pada panel homepage." },
+      "product-price": { "displayName": "Summary demo price", "purpose": "Harga contoh detail produk, 24px." },
+      "legend": { "displayName": "License legend", "purpose": "Choose a license (demo), 15px weight 600." },
+      "license-name": { "displayName": "Example license name", "purpose": "Standard License dan Extended License, 14px weight 600." },
+      "license-headline": { "displayName": "Homepage license headline", "purpose": "Judul lisensi Manrope 36px/1.2." },
+      "license-headline-mobile": { "displayName": "License headline mobile", "purpose": "Judul lisensi homepage 28px mobile." },
+      "footer-wordmark": { "displayName": "Footer wordmark", "purpose": "rillatype. dalam Manrope, clamp 46..80px." },
+      "footer-wordmark-mobile": { "displayName": "Footer wordmark mobile", "purpose": "Wordmark Manrope 48px mobile." },
+      "tester": { "displayName": "Loaded Mango tester", "purpose": "Mango Product hanya setelah FontFace berhasil; slider awal menetapkan 64px inline." },
+      "tester-mobile-css": { "displayName": "Tester mobile CSS declaration", "purpose": "Deklarasi 44px dikalahkan nilai inline slider setelah font dimuat." },
+      "base-body": { "displayName": "Base lab body", "purpose": "System sans component lab tanpa override editorial." },
+      "base-display": { "displayName": "Base lab display", "purpose": "H1 component lab, bukan homepage aktif." },
+      "base-headline": { "displayName": "Base lab headline", "purpose": "H2 base sebelum override editorial." },
+      "base-heading-small": { "displayName": "Base lab H3", "purpose": "H3 base 19px." },
+      "base-title": { "displayName": "Base lab card title", "purpose": "Nama kartu base 17px weight 600." },
+      "base-button": { "displayName": "Base lab button", "purpose": "Tombol base 14px weight 600, bukan kontrol editorial." }
     },
     "shadows": [],
     "motion": [
-      { "name": "ease", "value": "cubic-bezier(.2, .8, .2, 1)", "purpose": "Easing bersama; feedback hanya pada no-preference." },
-      { "name": "control-feedback", "value": "140ms", "purpose": "Background, color, dan transform tombol/filter; active translateY(1px)." },
-      { "name": "sample-feedback", "value": "150ms", "purpose": "Background dan border tombol Change sample." },
-      { "name": "image-feedback", "value": "180ms", "purpose": "Hover cover scale(1.025); tidak ada rotasi atau mockup aktif." }
+      { "name": "ease", "value": "cubic-bezier(.2, .8, .2, 1)", "purpose": "Easing base yang diwarisi editorial; hanya no-preference." },
+      { "name": "control-feedback", "value": "140ms", "purpose": "Background, color, transform tombol/filter; active translateY(1px)." },
+      { "name": "image-feedback", "value": "180ms", "purpose": "Hover gambar kartu scale(1.025)." }
     ],
     "breakpoints": [
-      { "name": "foundry-tablet-max", "value": "1000px" },
+      { "name": "editorial-narrow-max", "value": "1000px" },
       { "name": "base-tablet-max", "value": "900px" },
       { "name": "mobile-max", "value": "640px" }
     ],
     "header": {
-      "position": "sticky",
-      "top": "0",
-      "zIndex": 2,
-      "minHeight": "104px",
-      "desktopColumns": "auto minmax(260px, 440px) auto",
-      "mobileSearch": "Baris kedua penuh di bawah logo; tetap terlihat ketika navigasi biasa tertutup.",
-      "scrollTargets": ".product, #fonts, #licenses, #freebies, #preview-note",
-      "scrollMarginDesktop": "136px",
-      "scrollMarginAtOrBelow1000": "190px"
+      "position": "sticky", "top": "0", "zIndex": 2, "minHeightDesktop": "86px",
+      "desktopColumns": "auto auto minmax(260px, 350px)",
+      "mobileSearch": "Baris kedua penuh di luar menu; header sempit dapat lebih tinggi daripada minimum desktop.",
+      "productHeader": "Tanpa search; flex desktop/tablet, grid mobile dengan nav baris kedua. Pada slug tidak dikenal, nav-license menjadi Licenses menuju index.html#licenses.",
+      "scrollTargets": ".product, #fonts, #licenses, #freebies, #preview-note, #license-form",
+      "scrollMarginDesktop": "110px", "scrollMarginAtOrBelow1000": "160px"
+    },
+    "specimen": {
+      "family": "Mango Product", "source": "/static/previews/mango-letter.otf", "loading": "FontFace dinamis hanya route mango",
+      "initialInlineSize": "64px", "range": "24..120px", "textLimit": 300,
+      "mobileCssDeclaration": "44px; nilai inline slider mengalahkan deklarasi ini setelah font dimuat.",
+      "unavailable": ["bawden", "baldock", "daisy", "crimson", "mordial", "moyshire", "radiant"],
+      "states": ["loading", "loaded", "failure", "retry", "unavailable"]
+    },
+    "fontInformation": {
+      "heading": "Font information",
+      "placement": "Setelah tester, hanya pada detail produk valid; memakai H2 dan pola .details yang sudah ada tanpa token baru.",
+      "mango": "Preview memuat satu specimen OTF, bukan daftar file yang dibeli.",
+      "otherProducts": "Tujuh produk lain menyediakan gambar produk tanpa specimen.",
+      "pendingStoreData": ["final file formats", "available weights", "glyph coverage"],
+      "help": "Contact Rillatype menuju mailto:gustian@rillatype.com untuk bantuan lisensi."
     },
     "evidence": {
-      "revision": "R05C",
-      "reviewStatus": "pending",
-      "userApproval": "pending",
-      "behaviorSource": "Hasil PASS R05C diberikan dalam brief; scripts/check-redesign-preview.py tersedia sebagai pemeriksaan perilaku.",
-      "previouslyPassed": ["Mango nyata loaded", "sample cycle", "font fallback", "search dalam header", "query sticky terlihat setelah scroll", "target di bawah header", "count terlihat pada Script dan hasil kosong", "anchor Mango reset", "overflow", "keyboard"],
-      "documentationScope": "Validasi lokal JSON, YAML, referensi token, metadata, narrative, dan nilai CSS. Tidak menjalankan browser ulang atau menetapkan verdict ship.",
-      "assets": ["logo.png", "static/previews/mango-1.jpg", "static/previews/baldock-1.jpg", "static/previews/daisy-hotline-1.jpg", "static/previews/bawden-1.jpg", "static/previews/crimson-queen-1.jpg", "static/previews/mordial-1.jpg", "static/previews/moyshire-1.jpg", "static/previews/radiant-summertime-1.jpg", "static/previews/mango-letter.otf"],
-      "assetProvenance": "File existing di repo; hak penggunaan belum diaudit. R05C tidak menambah raster atau font baru. Mockup hero tidak tampil.",
-      "previewLimits": "Harga, kategori, pilihan, dan urutan rilis adalah contoh. Produk, pembelian, dan freebies belum terhubung. Tidak ada klaim performa, hak aset, atau kebijakan lisensi terverifikasi."
+      "revisions": ["R05D", "R06"],
+      "behaviorAttribution": "Agent utama menjalankan scripts/check-redesign-preview.py dan memperoleh PASS untuk R05D/R06, termasuk menu mobile unknown slug menuju Licenses homepage. Agent utama memperbarui screenshot. Tugas dokumentasi memeriksa konsistensi source dan dokumen tanpa menjalankan browser ulang.",
+      "previouslyPassed": ["homepage search/filter/count", "layout dan sticky search", "8 product routes", "gallery Mango", "demo license selection", "actual Mango tester", "unknown route", "unknown slug mobile menu to homepage Licenses", "font failure/retry", "reduced motion", "Manrope fallback", "browser errors"],
+      "screenshotAttribution": "User menyatakan screenshot produk diperbarui pada path yang sama. Tugas dokumentasi ini tidak membaca atau membuat screenshot baru.",
+      "documentationChecks": "JSON, YAML, schema lokal, token references, metadata, narrative parity, dan konsistensi kode. Bukan validasi CLI resmi.",
+      "officialCliSchema": "unsupported",
+      "routes": ["product.html?font=bawden", "product.html?font=mango", "product.html?font=baldock", "product.html?font=daisy", "product.html?font=crimson", "product.html?font=mordial", "product.html?font=moyshire", "product.html?font=radiant"],
+      "routeBoundary": "Map allowlist; default bawden; unknown termasuk __proto__ menampilkan Font not found dan menyembunyikan konten produk. nav-license menjadi Licenses menuju index.html#licenses. URL tidak membentuk path aset bebas.",
+      "assetProvenance": "Logo dan seluruh preview adalah file existing. Tidak ada raster generatif atau foto baru. Lihat static/redesign/ASSETS.md.",
+      "uiFontSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf",
+      "uiFontLicenseSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt",
+      "uiFontLicenseFile": "static/redesign/OFL-Manrope.txt",
+      "previewLimits": "Harga, kategori, nama lisensi, dan pilihan unggulan adalah contoh. Font information membedakan satu specimen OTF Mango dari produk images-only; format final, weight, dan cakupan glyph menunggu data toko. Tidak ada cart, pesanan, atau pembayaran. Freebies menunggu WordPress. Tidak menetapkan review, user approval, ship verdict, performa, atau hak distribusi Mango/artwork."
     }
   },
   "components": [
     {
-      "name": "Foundry primary button",
-      "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Search dan Browse fonts memakai kontrol Ink/Paper 8px yang sama.",
-      "html": "<button class=\"ds-primary\" type=\"button\">Search</button>",
-      "css": ".ds-primary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink,#171717); border-radius:8px; color:var(--paper,#fff); background:var(--ink,#171717); font:600 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; white-space:nowrap; } .ds-primary:hover { background:#333; } .ds-primary:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } .ds-primary:disabled { opacity:.55; cursor:not-allowed; } @media(prefers-reduced-motion:no-preference) { .ds-primary { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-primary:active { transform:translateY(1px); } }"
+      "name": "Editorial primary button", "kind": "button", "refersTo": "button-primary",
+      "description": "Search, View font, dan Preview selection memakai biru/Paper 4px; snippet statis.",
+      "html": "<button class=\"ds-primary\" type=\"button\">View font</button>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-primary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border:1px solid var(--accent,#2454e6);border-radius:4px;background:var(--accent,#2454e6);color:var(--paper,#fff);font:650 13px/1.55 'Manrope',sans-serif;white-space:nowrap;cursor:pointer}.ds-primary:hover{background:var(--accent-hover,#1c42b5);border-color:var(--accent-hover,#1c42b5)}.ds-primary:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}.ds-primary:disabled{opacity:.55;cursor:not-allowed}@media(prefers-reduced-motion:no-preference){.ds-primary{transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-primary:active{transform:translateY(1px)}}"
     },
     {
-      "name": "Foundry secondary button",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Kontrol Paper/Ink 8px untuk reset, Menu, dan freebies.",
+      "name": "Editorial secondary button", "kind": "button", "refersTo": "button-secondary",
+      "description": "Show all fonts, Menu, dan Retry font memakai Paper/Ink 4px.",
       "html": "<button class=\"ds-secondary\" type=\"button\">Show all fonts</button>",
-      "css": ".ds-secondary { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink,#171717); border-radius:8px; color:var(--ink,#171717); background:var(--paper,#fff); font:600 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; white-space:nowrap; } .ds-secondary:hover { background:var(--wash,#f4f4f4); } .ds-secondary:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } .ds-secondary:disabled { opacity:.55; cursor:not-allowed; } @media(prefers-reduced-motion:no-preference) { .ds-secondary { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-secondary:active { transform:translateY(1px); } }"
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border:1px solid var(--ink,#171717);border-radius:4px;background:var(--paper,#fff);color:var(--ink,#171717);font:650 13px/1.55 'Manrope',sans-serif;white-space:nowrap;cursor:pointer}.ds-secondary:hover{background:var(--wash,#f3f5f8)}.ds-secondary:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}.ds-secondary:disabled{opacity:.55;cursor:not-allowed}@media(prefers-reduced-motion:no-preference){.ds-secondary{transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-secondary:active{transform:translateY(1px)}}"
     },
     {
-      "name": "Header search field",
-      "kind": "input",
-      "refersTo": "search-input",
-      "description": "Field Wash 8px berlabel dalam header sticky; snippet form tidak menjalankan filter preview.js.",
-      "html": "<form class=\"ds-search\" action=\"#fonts\"><label for=\"ds-query\">Find a font</label><div class=\"ds-search-row\"><input id=\"ds-query\" name=\"q\" type=\"search\" placeholder=\"Search fonts by name or style\" autocomplete=\"off\"><button class=\"ds-search-submit\" type=\"submit\">Search</button></div></form>",
-      "css": ".ds-search { width:100%; color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-search label { display:block; font-size:12px; margin-bottom:6px; } .ds-search-row { display:flex; gap:8px; } .ds-search input { width:100%; min-width:0; padding:12px 14px; border:1px solid transparent; border-radius:8px; background:var(--wash,#f4f4f4); color:inherit; font:inherit; } .ds-search input::placeholder { color:var(--muted,#606060); opacity:1; } .ds-search input:focus { border-color:var(--ink,#171717); } .ds-search-submit { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink,#171717); border-radius:8px; background:var(--ink,#171717); color:var(--paper,#fff); font:600 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; white-space:nowrap; cursor:pointer; } .ds-search-submit:hover { background:#333; } .ds-search input:focus-visible,.ds-search-submit:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(prefers-reduced-motion:no-preference) { .ds-search-submit { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-search-submit:active { transform:translateY(1px); } }"
+      "name": "Header collection search", "kind": "input", "refersTo": "search-input",
+      "description": "Search homepage berlabel aksesibel; form snippet menuju koleksi tanpa menjalankan filter preview.js.",
+      "html": "<form class=\"ds-search\" action=\"/static/redesign/index.html#fonts\"><label class=\"ds-hidden-label\" for=\"ds-query\">Find a font</label><div class=\"ds-search-row\"><input id=\"ds-query\" type=\"search\" name=\"q\" placeholder=\"Search the collection\" autocomplete=\"off\"><button type=\"submit\">Search</button></div></form>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-search{width:100%;color:var(--ink,#171717);font-family:'Manrope',sans-serif}.ds-hidden-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.ds-search-row{display:flex;gap:8px}.ds-search input{width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid transparent;border-radius:4px;background:var(--wash,#f3f5f8);color:inherit;font:400 13px/1.55 'Manrope',sans-serif}.ds-search input::placeholder{color:var(--muted,#606060);opacity:1}.ds-search button{min-height:44px;padding:10px 19px;border:1px solid var(--accent,#2454e6);border-radius:4px;background:var(--accent,#2454e6);color:var(--paper,#fff);font:650 13px/1.55 'Manrope',sans-serif;cursor:pointer}.ds-search button:hover{background:var(--accent-hover,#1c42b5);border-color:var(--accent-hover,#1c42b5)}.ds-search input:focus-visible,.ds-search button:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-search button{transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-search button:active{transform:translateY(1px)}}"
     },
     {
-      "name": "Foundry filters and count",
-      "kind": "chip",
-      "refersTo": "filter",
-      "description": "Coral/Ink terpilih, pill 999px, count di luar koleksi tersembunyi. State snippet statis.",
-      "html": "<div class=\"ds-browse\"><div class=\"ds-filters\" aria-label=\"Filter fonts by style\"><button class=\"ds-filter\" aria-pressed=\"true\" type=\"button\">All fonts</button><button class=\"ds-filter\" aria-pressed=\"false\" type=\"button\">Display</button><button class=\"ds-filter\" aria-pressed=\"false\" type=\"button\">Serif</button><button class=\"ds-filter\" aria-pressed=\"false\" type=\"button\">Script</button></div><p class=\"ds-count\" role=\"status\" aria-live=\"polite\">8 fonts in this preview</p></div>",
-      "css": ".ds-browse { display:flex; align-items:center; justify-content:space-between; gap:24px; padding:16px 0; border-block:1px solid var(--line,#d9d9d9); color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-filters { display:flex; flex-wrap:wrap; gap:6px; } .ds-filter { border:1px solid transparent; border-radius:999px; padding:9px 15px; min-height:44px; background:var(--paper,#fff); color:inherit; font:400 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; cursor:pointer; } .ds-filter:hover { background:var(--wash,#f4f4f4); } .ds-filter[aria-pressed='true'] { background:var(--accent,#e0553d); color:var(--ink,#171717); } .ds-count { margin:0; font-size:13px; color:var(--muted,#606060); } .ds-filter:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:640px) { .ds-browse { flex-direction:column; align-items:start; gap:12px; padding-block:14px; } .ds-filter { padding-inline:12px; } } @media(prefers-reduced-motion:no-preference) { .ds-filter { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-filter:active { transform:translateY(1px); } }"
+      "name": "Editorial category filters", "kind": "chip", "refersTo": "filter",
+      "description": "Filter aktif Ink/Paper dan count di luar koleksi tersembunyi; state snippet statis.",
+      "html": "<div class=\"ds-browse\"><div class=\"ds-filters\" aria-label=\"Filter fonts by style\"><button type=\"button\" aria-pressed=\"true\">All fonts</button><button type=\"button\" aria-pressed=\"false\">Display</button><button type=\"button\" aria-pressed=\"false\">Serif</button><button type=\"button\" aria-pressed=\"false\">Script</button></div><p class=\"ds-count\" role=\"status\" aria-live=\"polite\">8 fonts in this preview</p></div>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-browse{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 0;border-block:1px solid var(--line,#d8dce3);color:var(--ink,#171717);font-family:'Manrope',sans-serif}.ds-filters{display:flex;flex-wrap:wrap;gap:8px}.ds-filters button{min-height:44px;padding:10px 18px;border:1px solid transparent;border-radius:4px;background:var(--paper,#fff);color:inherit;font:400 13px/1.55 'Manrope',sans-serif;cursor:pointer}.ds-filters button:hover{background:var(--wash,#f3f5f8)}.ds-filters button[aria-pressed='true']{background:var(--ink,#171717);color:var(--paper,#fff)}.ds-filters button:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}.ds-count{margin:0;color:var(--muted,#606060);font-size:13px;line-height:1.55}@media(max-width:640px){.ds-browse{align-items:start;flex-direction:column;gap:10px}.ds-filters button{padding-inline:12px}}@media(prefers-reduced-motion:no-preference){.ds-filters button{transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-filters button:active{transform:translateY(1px)}}"
     },
     {
-      "name": "Foundry product card",
-      "kind": "card",
-      "refersTo": "product-card",
-      "description": "Kartu flat dengan cover existing 3:2, radius gambar 10px, metadata system sans, dan harga Demo.",
-      "html": "<article class=\"ds-product\"><a href=\"#preview-note\"><div class=\"ds-product-image\"><img src=\"/static/previews/bawden-1.jpg\" width=\"1200\" height=\"800\" alt=\"Bawden font cover\" loading=\"lazy\"></div><div class=\"ds-product-info\"><div><h3>Bawden</h3><p>Serif</p></div><span class=\"ds-price\">Demo $24</span></div></a></article>",
-      "css": ".ds-product { min-width:0; color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-product>a { color:inherit; text-decoration:none; } .ds-product-image { aspect-ratio:3/2; overflow:hidden; border-radius:10px; background:var(--wash,#f4f4f4); } .ds-product-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-product-info { display:flex; justify-content:space-between; gap:16px; padding-top:16px; } .ds-product-info h3 { margin:0; font-size:19px; font-weight:600; line-height:1.15; text-wrap:balance; } .ds-product-info p { margin:3px 0 0; font-size:13px; color:var(--muted,#606060); } .ds-price { font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-product a:hover h3 { text-decoration:underline; text-underline-offset:4px; } .ds-product a:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:640px) { .ds-product-info h3 { font-size:18px; } } @media(prefers-reduced-motion:no-preference) { .ds-product-image img { transition:transform 180ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-product a:hover img { transform:scale(1.025); } }"
+      "name": "Collection product card", "kind": "card", "refersTo": "product-card",
+      "description": "Kartu Mango dalam tujuh kartu koleksi dengan artwork existing dan route detail aktual.",
+      "html": "<article class=\"ds-card\"><a href=\"/static/redesign/product.html?font=mango\"><div class=\"ds-card-image\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters handwritten display font cover\" loading=\"lazy\"></div><div class=\"ds-card-info\"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class=\"ds-card-price\">Demo $18</span></div><span class=\"ds-card-action\">View font</span></a></article>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-card{min-width:0;color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-card>a{color:inherit;text-decoration:none}.ds-card-image{aspect-ratio:3/2;overflow:hidden;border-radius:0;background:var(--wash,#f3f5f8)}.ds-card-image img{display:block;width:100%;height:100%;object-fit:cover}.ds-card-info{display:flex;justify-content:space-between;gap:16px;padding-top:14px}.ds-card h3{margin:0;font-size:17px;font-weight:650;line-height:1.15;letter-spacing:-.015em;text-wrap:balance}.ds-card-info p{margin:3px 0 0;font-size:13px;color:var(--muted,#606060)}.ds-card-price{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}.ds-card-action{display:inline-block;margin-top:12px;font-size:12px;font-weight:600;color:var(--accent,#2454e6);text-decoration:underline;text-underline-offset:4px}.ds-card a:hover h3{text-decoration:underline;text-underline-offset:4px}.ds-card a:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}@media(prefers-reduced-motion:no-preference){.ds-card-image img{transition:transform 180ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-card a:hover img{transform:scale(1.025)}}"
     },
     {
-      "name": "Foundry navigation",
-      "kind": "nav",
-      "refersTo": "navigation",
-      "description": "Fonts, Freebies, Licenses. Mobile tertutup default; preview.js mengubah is-open. Search terpisah dari nav.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#fonts\" aria-current=\"page\">Fonts</a><a href=\"#freebies\">Freebies</a><a href=\"#licenses\">Licenses</a></nav>",
-      "css": ".ds-nav { display:flex; align-items:center; gap:24px; color:var(--ink,#171717); font:500 14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-nav a { display:flex; align-items:center; min-height:44px; color:inherit; text-decoration:none; text-underline-offset:4px; } .ds-nav a:hover,.ds-nav a[aria-current='page'] { text-decoration:underline; } .ds-nav a:hover { text-decoration-thickness:2px; } .ds-nav a:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:1000px) { .ds-nav { justify-content:center; } } @media(max-width:640px) { .ds-nav { width:100%; display:none; flex-direction:column; align-items:stretch; gap:24px; padding-bottom:0; } .ds-nav.ds-is-open { display:flex; } .ds-nav a { padding:12px 0; } }"
+      "name": "Featured Bawden panel", "kind": "card", "refersTo": "feature-panel",
+      "description": "Artwork dan informasi pada Wash, bersudut siku, terpisah dari tujuh kartu koleksi.",
+      "html": "<article class=\"ds-feature\"><a class=\"ds-feature-art\" href=\"/static/redesign/product.html?font=bawden\" aria-label=\"View Bawden font\"><img src=\"/static/previews/bawden-1.jpg\" width=\"1200\" height=\"800\" alt=\"Bawden slab serif display font cover\" fetchpriority=\"high\"></a><div class=\"ds-feature-info\"><h2>Bawden</h2><p class=\"ds-feature-style\">Slab serif display</p><p class=\"ds-feature-copy\">Strong letterforms.<br>A different kind of presence.</p><div class=\"ds-feature-bottom\"><span>Demo $24</span><a class=\"ds-feature-button\" href=\"/static/redesign/product.html?font=bawden\">View font</a></div><p class=\"ds-feature-note\">Featured selection in this design preview.</p></div></article>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-feature{display:grid;grid-template-columns:1.6fr 1fr;align-items:stretch;background:var(--wash,#f3f5f8);color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-feature-art{display:block;aspect-ratio:3/2;overflow:hidden}.ds-feature-art img{display:block;width:100%;height:100%;object-fit:cover;border-radius:0}.ds-feature-info{padding:38px;display:flex;flex-direction:column;justify-content:center}.ds-feature h2{margin:0;font-size:clamp(32px,3.3vw,46px);font-weight:650;line-height:1.1;letter-spacing:-.035em;text-wrap:balance}.ds-feature-style{margin:10px 0 0;font-size:13px;color:var(--muted,#606060)}.ds-feature-copy{margin:26px 0 0;font-size:18px}.ds-feature-bottom{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:34px 0 16px}.ds-feature-bottom>span{font-size:18px;white-space:nowrap;font-variant-numeric:tabular-nums}.ds-feature-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border:1px solid var(--accent,#2454e6);border-radius:4px;background:var(--accent,#2454e6);color:var(--paper,#fff);font-size:13px;font-weight:650;text-decoration:none;white-space:nowrap}.ds-feature-button:hover{background:var(--accent-hover,#1c42b5);border-color:var(--accent-hover,#1c42b5)}.ds-feature-note{margin:0;font-size:13px;color:var(--muted,#606060)}.ds-feature a:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}@media(max-width:1000px){.ds-feature{grid-template-columns:1.35fr 1fr}.ds-feature-info{padding:26px}.ds-feature-copy{font-size:16px;margin-top:18px}.ds-feature-bottom{flex-wrap:wrap;margin-top:20px}}@media(max-width:640px){.ds-feature{grid-template-columns:1fr}.ds-feature-info{padding:24px}.ds-feature h2{font-size:34px}.ds-feature-copy{margin-top:16px}.ds-feature-bottom{margin:22px 0 12px}}@media(prefers-reduced-motion:no-preference){.ds-feature-art img{transition:transform 180ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-feature-art:hover img{transform:scale(1.025)}.ds-feature-button{transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1))}.ds-feature-button:active{transform:translateY(1px)}}"
     },
     {
-      "name": "Mango card and letter sample",
-      "kind": "card",
-      "refersTo": "feature-card",
-      "description": "Sample Aa berada di dalam produk Mango, bukan hero. Siklus Aa/Bb/Gg/Rr berjalan melalui preview.js, bukan snippet.",
-      "html": "<article class=\"ds-mango\"><a href=\"#preview-note\"><div class=\"ds-mango-image\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters handwritten display font cover\" fetchpriority=\"high\"></div><div class=\"ds-mango-info\"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class=\"ds-mango-price\">Demo $18</span></div></a><div class=\"ds-letter-sample\"><div><span class=\"ds-sample-caption\">Letter preview · Mango Letters</span><span id=\"ds-letter-pair\" class=\"ds-sample-pair\" role=\"status\" aria-live=\"polite\">Aa</span></div><button class=\"ds-sample-button\" type=\"button\" aria-controls=\"ds-letter-pair\">Change sample</button></div></article>",
-      "css": "@font-face { font-family:'Mango Specimen'; src:url('/static/previews/mango-letter.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; } .ds-mango { min-width:0; color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-mango>a { color:inherit; text-decoration:none; } .ds-mango-image { aspect-ratio:3/2; overflow:hidden; border-radius:10px; background:var(--wash,#f4f4f4); } .ds-mango-image img { display:block; width:100%; height:100%; object-fit:cover; } .ds-mango-info { display:flex; justify-content:space-between; gap:16px; padding-top:16px; } .ds-mango-info h3 { margin:0; font-size:24px; font-weight:600; line-height:1.15; letter-spacing:-.025em; text-wrap:balance; } .ds-mango-info p { margin:3px 0 0; font-size:13px; color:var(--muted,#606060); } .ds-mango-price { font-size:14px; font-variant-numeric:tabular-nums; white-space:nowrap; } .ds-letter-sample { display:flex; align-items:center; justify-content:space-between; gap:24px; border-block:1px solid var(--line,#d9d9d9); margin-top:28px; padding:20px 0 16px; } .ds-sample-caption { font-size:12px; color:var(--muted,#606060); } .ds-sample-pair { display:block; font-family:'Mango Specimen',sans-serif; font-size:82px; font-weight:400; line-height:1.25; min-height:104px; color:var(--accent,#e0553d); } .ds-sample-button { border:1px solid var(--line,#d9d9d9); border-radius:8px; background:var(--paper,#fff); color:inherit; padding:10px 16px; font:400 13px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; min-height:44px; cursor:pointer; } .ds-sample-button:hover { border-color:var(--ink,#171717); background:var(--wash,#f4f4f4); } .ds-mango a:hover h3 { text-decoration:underline; text-underline-offset:4px; } .ds-mango a:focus-visible,.ds-sample-button:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:640px) { .ds-mango-info h3 { font-size:22px; } .ds-letter-sample { gap:16px; margin-top:22px; } .ds-sample-pair { font-size:70px; min-height:90px; } .ds-sample-button { padding-inline:12px; font-size:12px; } } @media(prefers-reduced-motion:no-preference) { .ds-sample-button { transition:background-color 150ms var(--ease,cubic-bezier(.2,.8,.2,1)),border-color 150ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-mango-image img { transition:transform 180ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-mango a:hover img { transform:scale(1.025); } }"
+      "name": "Editorial navigation", "kind": "nav", "refersTo": "navigation",
+      "description": "Logo original dan navigasi homepage; menu collapse dimiliki preview.js, snippet menampilkan link native.",
+      "html": "<div class=\"ds-navigation\"><a class=\"ds-brand\" href=\"/static/redesign/index.html\" aria-label=\"Rillatype home\"><img src=\"/logo.png\" width=\"56\" height=\"56\" alt=\"Rillatype\"><span>Rillatype</span></a><nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/static/redesign/index.html#fonts\" aria-current=\"page\">Fonts</a><a href=\"/static/redesign/index.html#freebies\">Freebies</a><a href=\"/static/redesign/index.html#licenses\">Licenses</a></nav></div>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-navigation{display:flex;align-items:center;justify-content:space-between;gap:32px;color:var(--ink,#171717);font-family:'Manrope',sans-serif}.ds-brand{display:flex;gap:14px;align-items:center;color:inherit;text-decoration:none;font-size:18px;font-weight:700;letter-spacing:-.02em;line-height:1.55}.ds-brand img{width:50px;height:50px;object-fit:contain}.ds-nav{display:flex;align-items:center;gap:26px}.ds-nav a{display:flex;align-items:center;min-height:44px;color:inherit;font-size:13px;font-weight:600;line-height:1.55;text-decoration:none;text-underline-offset:4px}.ds-nav a:hover,.ds-nav a[aria-current='page']{text-decoration:underline}.ds-nav a:hover{text-decoration-thickness:2px}.ds-navigation a:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}@media(max-width:640px){.ds-navigation{flex-wrap:wrap;gap:10px}.ds-brand{font-size:16px;gap:10px}.ds-brand img{width:44px;height:44px}.ds-nav{width:100%;flex-direction:column;align-items:stretch;gap:0}.ds-nav a{padding:12px 0}}"
     },
     {
-      "name": "Paper foundry opening",
-      "kind": "custom",
-      "refersTo": "button-primary",
-      "description": "H1 Mango pada Paper, guide memilih font, dan Browse fonts. Tidak memuat sample Aa atau mockup.",
-      "html": "<section class=\"ds-opening\"><div class=\"ds-hero-stage\"><h1>Find your<br>favourite type.</h1><div class=\"ds-opening-guide\"><p>Fonts with personality.<br> Pick a style, explore the details,<br> and find your next project partner.</p><a class=\"ds-browse-button\" href=\"#fonts\">Browse fonts</a><p class=\"ds-font-credit\">Lettering: <a href=\"#mango\">Mango Letters</a></p></div></div></section>",
-      "css": "@font-face { font-family:'Mango Specimen'; src:url('/static/previews/mango-letter.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; } .ds-opening { padding:44px 0 38px; background:var(--paper,#fff); color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-hero-stage { display:grid; grid-template-columns:1.6fr 1fr; align-items:center; gap:60px; } .ds-hero-stage h1 { margin:0; font-family:'Mango Specimen',sans-serif; font-size:clamp(58px,6.5vw,88px); font-weight:400; line-height:1.1; letter-spacing:0; text-wrap:balance; } .ds-opening-guide { justify-self:end; } .ds-opening-guide>p:first-child { margin:0; font-size:16px; line-height:1.6; color:var(--muted,#606060); } .ds-browse-button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; margin-top:22px; padding:10px 19px; border:1px solid var(--ink,#171717); border-radius:8px; background:var(--ink,#171717); color:var(--paper,#fff); font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; } .ds-browse-button:hover { background:#333; } .ds-font-credit { margin:18px 0 0; font-size:12px; color:var(--muted,#606060); } .ds-font-credit a { color:inherit; text-underline-offset:4px; } .ds-font-credit a:hover { text-decoration-thickness:2px; } .ds-opening a:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:1000px) { .ds-hero-stage { gap:36px; } .ds-hero-stage h1 { font-size:clamp(50px,7vw,70px); } } @media(max-width:640px) { .ds-opening { padding:28px 0; } .ds-hero-stage { grid-template-columns:1fr; gap:20px; } .ds-hero-stage h1 { font-size:clamp(44px,12vw,62px); } .ds-opening-guide { justify-self:start; } .ds-opening-guide>p:first-child { font-size:14px; } .ds-opening-guide>p:first-child br { display:none; } .ds-browse-button { margin-top:16px; } .ds-font-credit { margin-top:12px; } } @media(prefers-reduced-motion:no-preference) { .ds-browse-button { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-browse-button:active { transform:translateY(1px); } }"
+      "name": "Native Mango gallery", "kind": "custom", "refersTo": "product-image",
+      "description": "Empat preview Mango existing; tombol native dan aria-pressed. Snippet statis, bukan gallery JS.",
+      "html": "<div class=\"ds-gallery\"><img class=\"ds-gallery-main\" src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"Mango Letters preview 1\"><div class=\"ds-thumbnails\"><button type=\"button\" aria-label=\"Preview 1\" aria-pressed=\"true\"><img src=\"/static/previews/mango-1.jpg\" width=\"1200\" height=\"800\" alt=\"\"></button><button type=\"button\" aria-label=\"Preview 2\" aria-pressed=\"false\"><img src=\"/static/previews/mango-2.jpg\" width=\"1200\" height=\"800\" alt=\"\"></button><button type=\"button\" aria-label=\"Preview 3\" aria-pressed=\"false\"><img src=\"/static/previews/mango-3.jpg\" width=\"1200\" height=\"800\" alt=\"\"></button><button type=\"button\" aria-label=\"Preview 4\" aria-pressed=\"false\"><img src=\"/static/previews/mango-4.jpg\" width=\"1200\" height=\"800\" alt=\"\"></button></div></div>",
+      "css": ".ds-gallery-main{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:0;background:var(--wash,#f3f5f8)}.ds-thumbnails{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}.ds-thumbnails button{padding:0;border:2px solid transparent;border-radius:0;background:var(--wash,#f3f5f8);cursor:pointer}.ds-thumbnails button[aria-pressed='true']{border-color:var(--accent,#2454e6)}.ds-thumbnails img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}.ds-thumbnails button:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}"
     },
     {
-      "name": "Foundry license note",
-      "kind": "custom",
-      "refersTo": "license-note",
-      "description": "Judul Mango 42px/34px dan penjelasan preview, bukan kebijakan lisensi terverifikasi.",
-      "html": "<section class=\"ds-license\"><h2>Your font.<br>Your next big thing.</h2><div><p>Choose the license that fits your project before adding a font to your cart. The final store will show the full terms.</p><a href=\"#preview-note\">About this preview</a></div></section>",
-      "css": "@font-face { font-family:'Mango Specimen'; src:url('/static/previews/mango-letter.otf') format('opentype'); font-weight:400; font-style:normal; font-display:swap; } .ds-license { margin-top:60px; padding:36px 0; border-block:1px solid var(--line,#d9d9d9); display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-license h2 { margin:0; font-family:'Mango Specimen',sans-serif; font-weight:400; font-size:42px; letter-spacing:0; line-height:1.2; text-wrap:balance; } .ds-license p { margin:0 0 16px; max-width:50ch; color:var(--muted,#606060); } .ds-license a { color:inherit; text-underline-offset:4px; } .ds-license a:hover { text-decoration-thickness:2px; } .ds-license a:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:640px) { .ds-license { grid-template-columns:1fr; gap:20px; margin-top:44px; padding:28px 0; } .ds-license h2 { font-size:34px; } }"
+      "name": "Native example license radios", "kind": "custom", "refersTo": "license-option",
+      "description": "Radio group native memakai contoh harga Mango $18/$36; snippet tidak menghitung harga atau membuat pesanan.",
+      "html": "<fieldset class=\"ds-licenses\"><legend>Choose a license (demo)</legend><label class=\"ds-license\"><input type=\"radio\" name=\"ds-license\" value=\"standard\" required><span class=\"ds-license-text\"><strong>Standard License</strong><small>Example choice. Final usage terms come from the store.</small></span><span class=\"ds-license-price\">Demo $18</span></label><label class=\"ds-license\"><input type=\"radio\" name=\"ds-license\" value=\"extended\"><span class=\"ds-license-text\"><strong>Extended License</strong><small>Example choice. Final usage terms come from the store.</small></span><span class=\"ds-license-price\">Demo $36</span></label></fieldset>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-licenses{margin:26px 0 20px;padding:0;border:0;color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-licenses legend{font-size:15px;font-weight:600;margin-bottom:12px}.ds-license{display:flex;align-items:start;gap:12px;padding:14px;margin-bottom:10px;border:1px solid var(--line,#d8dce3);border-radius:4px;cursor:pointer}.ds-license:has(input:checked){border-color:var(--accent,#2454e6);background:var(--wash,#f3f5f8)}.ds-license input{margin:5px 0 0;accent-color:var(--accent,#2454e6)}.ds-license input:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}.ds-license-text{flex:1}.ds-license strong{font-size:14px;font-weight:600}.ds-license small{display:block;font-size:13px;color:var(--muted,#606060);margin-top:4px}.ds-license-price{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}"
     },
     {
-      "name": "Foundry freebies callout",
-      "kind": "custom",
-      "refersTo": "freebie-note",
-      "description": "Callout Wash 10px dengan placeholder freebies dan tombol sekunder 8px.",
-      "html": "<section class=\"ds-freebie\"><div><h2>A little something<br>to start with.</h2><p>Freebies will connect to the existing store collection.</p></div><a class=\"ds-freebie-button\" href=\"#preview-note\">Freebies preview</a></section>",
-      "css": ".ds-freebie { background:var(--wash,#f4f4f4); margin-top:28px; padding:32px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; gap:32px; color:var(--ink,#171717); font:16px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; } .ds-freebie h2 { margin:0; font-size:28px; font-weight:600; line-height:1.15; letter-spacing:-.03em; text-wrap:balance; } .ds-freebie p { margin:12px 0 0; color:var(--muted,#606060); font-size:14px; } .ds-freebie-button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:10px 19px; border:1px solid var(--ink,#171717); border-radius:8px; background:var(--paper,#fff); color:var(--ink,#171717); font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; } .ds-freebie-button:hover { background:var(--wash,#f4f4f4); } .ds-freebie-button:focus-visible { outline:2px solid var(--ink,#171717); outline-offset:4px; } @media(max-width:640px) { .ds-freebie { padding:24px; flex-direction:column; align-items:start; gap:20px; } .ds-freebie h2 { font-size:26px; } } @media(prefers-reduced-motion:no-preference) { .ds-freebie-button { transition:background-color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),color 140ms var(--ease,cubic-bezier(.2,.8,.2,1)),transform 140ms var(--ease,cubic-bezier(.2,.8,.2,1)); } .ds-freebie-button:active { transform:translateY(1px); } }"
+      "name": "Product tester controls", "kind": "custom", "refersTo": "tester-input",
+      "description": "Textarea/range native dari tester Mango. Snippet hanya memuat kontrol; panel tidak memuat specimen atau mengunduh Mango.",
+      "html": "<div class=\"ds-tester-controls\"><div><label for=\"ds-sample-text\">Your sample text</label><textarea id=\"ds-sample-text\" maxlength=\"300\">A little character.</textarea></div><div><label for=\"ds-sample-size\">Size <span>64 px</span></label><input id=\"ds-sample-size\" type=\"range\" min=\"24\" max=\"120\" value=\"64\"></div></div>",
+      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-tester-controls{display:grid;grid-template-columns:1fr 240px;gap:36px;align-items:start;margin-top:22px;color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-tester-controls label{display:block;font-size:14px;margin-bottom:8px}.ds-tester-controls textarea{width:100%;min-width:0;min-height:90px;padding:12px 14px;border:1px solid var(--line,#d8dce3);border-radius:4px;background:var(--paper,#fff);color:inherit;font:inherit;resize:vertical}.ds-tester-controls input[type='range']{width:100%;accent-color:var(--accent,#2454e6)}.ds-tester-controls textarea:focus-visible,.ds-tester-controls input:focus-visible{outline:2px solid var(--accent,#2454e6);outline-offset:4px}@media(max-width:640px){.ds-tester-controls{grid-template-columns:1fr;gap:20px}}"
     }
   ],
   "narrative": {
-    "northStar": "Playful foundry",
-    "overview": "User memilih playful foundry dan satu aksen coral pada R05B, lalu menolak keseluruhan UI dan UX versi tersebut. Feedback posisi Find a font mendasari R05C. R05C mengganti pembukaan seperti poster dengan hero Paper dan pencarian header sticky. Lettering Mango lokal tetap hadir pada judul hero, sample di produk Mango, judul lisensi, dan footer. Logo asli serta warna preview produk tetap dipertahankan.\n\nDokumen ini merekam `static/redesign/index.html`, `style.css`, `foundry.css`, dan `preview.js`. Override foundry adalah sistem aktif homepage; base 6px hanya menjadi acuan component lab, bukan radius homepage. Aturan CSS produk yang tersedia tidak membuktikan R06 atau transaksi selesai. Review R05C masih pending. Arah playful foundry dipilih user, tetapi revisi R05C belum memiliki verdict ship atau persetujuan user.",
+    "northStar": "Foundry editorial",
+    "overview": "User menolak keseluruhan UI sebelumnya dan meminta pengganti. R05D memakai Manrope lokal, satu aksen biru, judul tegas, dan artwork produk asli. Panel Bawden memisahkan pilihan unggulan dari tujuh kartu koleksi. R06 menerapkan bahasa visual yang sama pada detail produk, gallery, pilihan lisensi contoh, tester Mango, dan bagian Font information.\n\nDokumen ini merekam `static/redesign/index.html`, `product.html`, `style.css`, `editorial.css`, `preview.js`, dan `product-preview.js`. Halaman aktif memuat base stylesheet sebelum override editorial. Sistem component lab berbasis system sans tetap terpisah. Dokumentasi merekam implementasi, bukan persetujuan user, hasil review, verdict ship, atau hasil pengukuran performa.",
     "keyCharacteristics": [
-      "Mango lokal untuk lettering; system sans untuk informasi dan kontrol.",
-      "Hero Paper, satu aksen coral pada filter terpilih dan sample Mango.",
-      "Pencarian header sticky tetap terlihat ketika navigasi mobile tertutup.",
-      "Kontrol 8px, filter pill, gambar dan callout 10px, kartu tanpa bayangan.",
-      "Sample berada di produk Mango; jumlah hasil tetap tersedia untuk setiap filter.",
-      "Konten langsung terlihat dengan feedback CSS yang menghormati reduced motion."
+      "Manrope untuk UI, headline, metadata, dan footer.",
+      "Biru untuk tindakan utama, fokus, bagian headline, dan tanda pilihan produk.",
+      "Artwork bersudut siku dengan warna asli; kontrol bersudut kecil.",
+      "Pencarian header sticky tetap tersedia saat menu mobile tertutup.",
+      "Gallery dan lisensi memakai tombol serta radio native.",
+      "Mango Product hanya dimuat dinamis untuk tester produk Mango; tujuh produk lain menyatakan specimen tidak tersedia."
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "Gunakan coral pada pilihan aktif dan sample; pertahankan warna asli gambar produk.", "section": "colors" },
-      { "name": "The Real Lettering Rule", "body": "Gunakan Mango lokal pada judul hero, sample Mango, judul lisensi, dan footer; gunakan system sans untuk informasi dan kontrol.", "section": "typography" }
+      { "name": "The One Accent Rule", "body": "Gunakan biru sebagai satu aksen UI; pertahankan warna asli artwork dan filter aktif Ink/Paper.", "section": "colors" },
+      { "name": "The Product Font Rule", "body": "Tampilkan font produk hanya setelah specimen berhasil dimuat; jangan tampilkan font UI sebagai specimen pengganti.", "section": "typography" }
     ],
     "dos": [
-      "Do gunakan Mango lokal pada judul hero, sample Mango, judul lisensi, dan footer.",
-      "Do pertahankan satu aksen coral, logo asli, dan warna asli preview produk.",
-      "Do letakkan pencarian di header sticky dan tetap terlihat ketika menu mobile tertutup.",
-      "Do gunakan radius kontrol 8px, filter 999px, dan gambar serta callout 10px pada homepage.",
-      "Do pertahankan count di luar koleksi tersembunyi dan reset query serta kategori pada anchor Mango.",
-      "Do gunakan label terlihat, fokus keyboard, state native, dan reduced motion.",
-      "Do tandai data contoh dan pisahkan base component lab dari override foundry."
+      "Do gunakan Manrope lokal untuk UI dan headline, dengan biru sebagai satu aksen UI.",
+      "Do pertahankan logo serta warna asli artwork produk dan sudut gambar 0.",
+      "Do gunakan radius kontrol 4px dan pisahkan token component lab dari override editorial.",
+      "Do pertahankan search homepage di header sticky, di luar menu mobile, dengan label aksesibel.",
+      "Do pertahankan count di luar koleksi tersembunyi dan offset anchor untuk license-form.",
+      "Do gunakan tombol gallery, radio lisensi, textarea, range, fokus keyboard, dan reduced motion native.",
+      "Do tampilkan Mango Product hanya pada tester Mango yang berhasil dimuat dan jelaskan specimen lain tidak tersedia.",
+      "Do tandai harga serta lisensi sebagai contoh dan atribusikan hasil pemeriksaan sebelumnya."
     ],
     "donts": [
-      "Don't kembali ke komposisi poster R05B dengan bidang coral, mockup berotasi, atau Aa di hero.",
-      "Don't pindahkan search ke bawah hero atau ke dalam navigasi mobile yang dapat disembunyikan.",
-      "Don't gunakan radius base 6px sebagai radius homepage atau pill untuk semua kontrol.",
-      "Don't jadikan sample homepage sebagai tester teks lengkap atau bukti R06 selesai.",
-      "Don't tambahkan raster, font, bayangan besar, atau frame berat tanpa kebutuhan yang disepakati.",
-      "Don't klaim hak aset, performa, harga, lisensi, customer proof, atau transaksi tanpa bukti.",
-      "Don't artikan dokumentasi R05C sebagai verdict ship, persetujuan user, atau status siap rilis."
+      "Don't kembali ke UI yang ditolak atau memakai Mango untuk headline, kontrol, lisensi, dan footer.",
+      "Don't ubah artwork menjadi palette UI atau gunakan filter aktif biru ketika kode memakai Ink/Paper.",
+      "Don't samakan CSS tester mobile 44px dengan ukuran runtime awal setelah slider menetapkan 64px.",
+      "Don't bentuk route atau path aset dari slug di luar Map produk.",
+      "Don't tampilkan fallback Manrope sebagai font produk ketika specimen gagal dimuat.",
+      "Don't menyebut Preview selection sebagai add-to-cart, pesanan, atau pembayaran.",
+      "Don't tambahkan raster generatif, foto baru, atau klaim hak aset dari lisensi Manrope.",
+      "Don't artikan dokumentasi atau PASS perilaku sebagai persetujuan user, hasil review, verdict ship, atau bukti performa."
     ]
   }
 }
