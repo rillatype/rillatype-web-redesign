@@ -45,7 +45,7 @@
 .editorial .collection .product-info { padding: 18px 18px 16px; align-items: start; gap: 12px; }
 .editorial .collection .product-info h3 { font-size: 18px; font-weight: 700; line-height: 1.25; }
 .editorial .collection .product-info p { margin-top: 5px; }
-.editorial .collection .price { font-size: 15px; font-weight: 650; padding-top: 2px; display: inline-flex; align-items: baseline; gap: 8px; }
+.editorial .price { font-size: 15px; font-weight: 650; padding-top: 2px; display: inline-flex; align-items: baseline; gap: 8px; }
 .editorial .old-price { color: var(--muted); font-weight: 500; font-size: 13px; text-decoration: line-through; text-decoration-color: var(--muted); opacity: .8; }
 .editorial .price:has(.old-price) { color: var(--accent); font-size: 16px; }
 .editorial .collection .card-action { margin: auto 18px 18px; display: flex; align-items: center; justify-content: center; min-height: 44px; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; font-size: 13px; font-weight: 650; color: var(--ink); text-decoration: none; }
