@@ -22,6 +22,9 @@ if (menuButton && navigation) {
   });
 }
 
+// Stagger index for card-in animation
+document.querySelectorAll('.product[data-name]').forEach((el, i) => el.style.setProperty('--i', i % 8));
+
 const searchForm = document.querySelector('#font-search');
 if (searchForm) {
   const query = document.querySelector('#query');

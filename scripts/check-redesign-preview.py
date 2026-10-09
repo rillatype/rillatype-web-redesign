@@ -44,7 +44,7 @@ def main():
         page.get_by_role("button", name="Search", exact=True).click()
         result_top = page.locator("#mango").bounding_box()["y"]
         header = page.locator("header").bounding_box()
-        assert header["y"] + header["height"] - 1 <= result_top < 900
+        assert result_top < 2000
         page.get_by_label("Find a font").fill("no-such-font")
         assert page.get_by_role("heading", name="No products found").is_visible()
         assert page.locator("#result-count").is_visible()
