@@ -91,17 +91,22 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05F | Catat permintaan menghapus Room to experiment dan menjaga copy anti-AI-slop. | Periksa HTML, CSS, serta anchor terkait. HEAD koleksi asli https://rillatype.com/product-category/freebies/ mengembalikan HTTP 200. | Perubahan belum diterapkan. | Hapus blok/CSS dan hubungkan navigasi Freebies ke koleksi asli. |
 | 2026-10-09 | R05F | Hapus blok Room to experiment dan CSS-nya. Navigasi Freebies menuju koleksi asli pada tab baru. Ringkas subcopy pembukaan, Bawden, dan lisensi berdasarkan unslop. | Deskripsi Bawden mengikuti tulisan regular/stamp/rough pada artwork. Hapus tagline serta catatan yang berulang. Search juga mencakup deskripsi style yang terlihat. | Browser check dan dokumen desain belum diperiksa. | Periksa query rough, layout, dan tautan setelah penghapusan. |
 | 2026-10-09 | R05F | Sinkronkan DESIGN.md serta sidecar dengan copy dan navigasi terbaru. | Browser check PASS termasuk query rough yang menemukan Bawden dan seluruh regresi sebelumnya. Screenshot desktop/mobile dibaca. JSON valid dan git diff --check lulus. Tidak ada anchor #freebies atau CSS freebie-note pada source preview aktif. | Persetujuan acuan desain masih menunggu user. | Commit dan push hasil, lalu lanjut tinjauan R07. |
+| 2026-10-09 | Handoff | User meminta menghentikan sesi, memperbarui progress, push, dan mematikan server. | Commit 92a9b28 sudah memuat perubahan terakhir dan berhasil dipush. Tidak ada perubahan tracked yang belum disimpan sebelum handoff. | Server perlu dihentikan. R07 dan staging tetap belum selesai. | Matikan preview, simpan handoff, dan berhenti. |
+| 2026-10-09 | Handoff | Hentikan server preview Node PID 44152. | Get-NetTCPConnection memastikan tidak ada listener pada port 9402 setelah proses dihentikan. | Handoff belum dipush. | Commit dan push PROGRESS.md. |
 
 ### Handoff aktif
 
 - Hasil terbaru: R05F selesai. Blok Room to experiment dihapus, copy lebih langsung, dan aturan unslop berlaku untuk copy berikutnya. Menunggu tinjauan R07.
-- Preview tersedia di http://localhost:9402/static/redesign/index.html.
+- Sesi dijeda atas permintaan user. Lanjutkan dari tinjauan R07 atau perbaikan spesifik yang diminta user, bukan langsung integrasi production.
+- Homepage preview: http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
 - Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu memiliki route detail.
 - Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
-- Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
-- Server preview dijalankan kembali untuk memeriksa fondasi dan homepage redesign. Port 9402 aktif selama sesi ini.
+- Server preview sudah dihentikan atas permintaan user. Port 9402 terverifikasi tertutup.
+- Untuk membuka preview pada sesi berikutnya, jalankan `node server.js` dari root repo, lalu buka URL homepage atau detail di atas.
 - Konfigurasi skill sebelumnya di AGENTS.md dan docs/agents/ ikut disimpan bersama dokumen persiapan.
+- Commit fitur terakhir: 92a9b28, sudah dipush ke origin/master.
+- Pemeriksaan terbaru: scripts/check-redesign-preview.py PASS. Harga serta lisensi tetap contoh dan tidak ada pembayaran nyata.
 
 Bagian berikut menyimpan riwayat pekerjaan sebelum brief redesign ini.
 
