@@ -27,6 +27,7 @@ if (searchForm) {
   const query = document.querySelector('#query');
   const filters = [...document.querySelectorAll('[data-category]')];
   const products = [...document.querySelectorAll('.product[data-name]')];
+  const resultCount = document.querySelector('#result-count');
   let category = 'all';
   function updateResults() {
     const text = query.value.trim().toLowerCase();
@@ -41,7 +42,7 @@ if (searchForm) {
     document.querySelectorAll('[data-collection]').forEach(section => {
       section.hidden = ![...section.querySelectorAll('.product')].some(product => !product.hidden);
     });
-    document.querySelector('#result-count').textContent = `${count} ${count === 1 ? 'font' : 'fonts'} in this preview`;
+    resultCount.textContent = `${count} ${count === 1 ? 'item' : 'items'} in this preview`;
     document.querySelector('#empty-results').hidden = count > 0;
     filters.forEach(filter => filter.setAttribute('aria-pressed', String(filter.dataset.category === category)));
   }

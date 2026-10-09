@@ -29,27 +29,27 @@ def main():
         assert page.evaluate("Array.from(document.fonts).some(f => f.family === 'Manrope' && f.status === 'loaded')")
         assert page.locator("header #font-search").count() == 1
         assert not page.get_by_role("button", name="Menu", exact=True).is_visible()
-        assert page.locator(".product:visible").count() == 9
+        assert page.locator(".product:visible").count() == 20
         page.get_by_role("button", name="Script", exact=True).click()
-        assert page.locator(".product:visible").count() == 2
+        assert page.locator(".product:visible").count() == 3
         assert page.locator("#result-count").is_visible()
-        assert page.locator("#result-count").inner_text() == "2 fonts in this preview"
+        assert page.locator("#result-count").inner_text() == "3 items in this preview"
         assert not page.locator(".lead-collection").is_visible()
         page.get_by_role("button", name="Serif", exact=True).click()
-        assert page.locator(".product:visible").count() == 3
+        assert page.locator(".product:visible").count() == 4
         assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
         page.get_by_role("button", name="All fonts", exact=True).click()
         page.get_by_label("Find a font").fill("rough")
         assert page.locator(".product:visible").count() == 1
         assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
         page.get_by_label("Find a font").fill("handwritten")
-        assert page.locator(".product:visible").count() == 2
+        assert page.locator(".product:visible").count() == 3
         page.get_by_label("Find a font").fill("geometric")
         assert page.locator(".product:visible").count() == 1
         assert page.get_by_role("heading", name="Chronoa", exact=True).is_visible()
         page.get_by_label("Find a font").fill("Mango")
-        assert page.locator(".product:visible").count() == 1
-        assert page.get_by_role("heading", name="Mango Letters", exact=True).is_visible()
+        assert page.locator(".product:visible").count() == 2
+        assert page.locator("#mango").is_visible()
         page.get_by_role("button", name="Search", exact=True).click()
         result_top = page.locator("#mango").bounding_box()["y"]
         header = page.locator("header").bounding_box()
@@ -57,9 +57,9 @@ def main():
         page.get_by_label("Find a font").fill("no-such-font")
         assert page.get_by_role("heading", name="No fonts found").is_visible()
         assert page.locator("#result-count").is_visible()
-        assert page.locator("#result-count").inner_text() == "0 fonts in this preview"
+        assert page.locator("#result-count").inner_text() == "0 items in this preview"
         page.get_by_role("button", name="Show all fonts").click()
-        assert page.locator(".product:visible").count() == 9
+        assert page.locator(".product:visible").count() == 20
         for width in (320, 390, 768, 1024, 1440):
             page.set_viewport_size({"width": width, "height": 900})
             assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), width
@@ -86,7 +86,7 @@ def main():
         assert fallback.get_by_role("heading", name="Type, with perspective.").is_visible()
         assert not fallback.evaluate("document.documentElement.scrollWidth > innerWidth")
         fallback.close()
-        assert page.locator(".product > a").count() == 9
+        assert page.locator(".product > a").count() == 20
         assert page.locator(".product a a, .product a button").count() == 0
         page.locator(".lead-information").click()
         page.wait_for_url(urljoin(args.url, "product.html?font=bawden"), wait_until="networkidle")
@@ -111,7 +111,7 @@ def main():
             "mordial": "Mordial", "moyshire": "Moyshire", "radiant": "Radiant Summertime",
         }
         hrefs = set(page.locator('.product a[href^="product.html"]').evaluate_all("links => links.map(a => a.getAttribute('href'))"))
-        assert len(hrefs) == 9
+        assert len(hrefs) == 16
         for slug, name in expected_products.items():
             href = f"product.html?font={slug}"
             assert href in hrefs
