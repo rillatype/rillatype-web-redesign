@@ -1,41 +1,33 @@
-# Arah desain katalog studio
+# Arah desain playful foundry
 
-User memilih katalog studio pada 9 Oktober 2026. Preview dibuat langsung dengan HTML, CSS, dan JavaScript seperlunya.
-Tidak ada alat image generation tersedia dalam tool sesi ini. Gunakan preview produk yang sudah ada.
+User memilih arah ini pada 9 Oktober 2026 setelah menolak dua preview katalog yang terlalu umum.
+User mengizinkan satu warna khas pada UI. Coral berasal dari identitas Rillatype yang sudah ada di repo.
+
+## Premis yang diganti
+
+Dua versi awal mengandalkan grid netral, font UI system, dan pembesaran preview.
+Keduanya membatasi identitas font Rillatype di dalam gambar kartu. Memperbesar kartu tidak mengganti premis tersebut.
+Versi baru menjadikan font Rillatype bagian nyata dari lettering dan interaksi halaman.
 
 ## Direction contract
 
-THESIS: Pengunjung melihat font sebagai produk desain, bukan dekorasi toko. Pembukaan singkat segera diikuti preview yang dapat dipilih.
+THESIS: Pengunjung masuk ke ruang specimen foundry, bukan katalog netral yang bisa memakai nama brand apa pun.
 
-OWN-WORLD: Monokrom terang, teks sans yang mudah dibaca, spacing konsisten, gambar tanpa bayangan besar, serta kontrol dengan batas yang jelas.
+OWN-WORLD: Latar terang, tinta gelap, coral untuk pilihan aktif dan specimen, lettering Mango asli, sample huruf, logo asli, dan gambar font.
 
-STORY: Temukan font melalui pencarian atau kategori, lihat preview, coba teks di halaman produk, kemudian pilih lisensi.
+STORY: Lihat karakter font langsung pada headline dan specimen. Bandingkan font pilihan, cari berdasarkan nama atau style, dan lanjut ke produk.
 
-FIRST VIEWPORT: Revisi R05A memakai judul rata kiri dan pencarian di sisi kiri. Preview Mango yang besar di sisi kanan memperlihatkan produk sejak pembukaan. Bar kategori mengantar ke koleksi pilihan dengan skala berbeda dari rilisan terbaru.
+FIRST VIEWPORT: Pada R05C, logo, pencarian, dan navigasi menjadi satu header. Lettering Mango memperkenalkan koleksi pada bidang terang. Filter dan jumlah hasil mendahului preview, sementara sample huruf berada bersama produk Mango. Header tetap terlihat saat scroll.
 
-FORM: Katalog studio, kandidat ketiga dalam daftar grounded internal, seed 91ac29f5. User mengunci pilihan ini melalui question tool.
-Daftar grounded mencakup rak specimen, indeks koleksi, katalog studio, contact sheet, label pameran, direktori studio, dan proof sheet.
+FORM: Playful foundry dikunci user melalui question tool. Pilihan user menggantikan arah katalog studio dari seed sebelumnya.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
-## Interaksi khas
+## Batas visual dan teknis
 
-Kategori memfilter preview yang sudah tersedia tanpa memuat halaman ulang. Hasil dan state kosong tetap jelas.
-Tester produk memakai teks milik pengunjung sebagai demo utama. Animasi hanya memberi feedback tindakan.
-
-## Batas penerapan
-
-User menilai implementasi pertama terlalu sederhana. Revisi memperbesar fokus produk dan mengubah komposisi, tanpa menambah library, palette, atau animasi dekoratif.
-
-Model lisensi dalam preview adalah contoh desain, bukan kebijakan penjualan yang telah diverifikasi.
-Semua tombol yang mensimulasikan pembelian harus menyatakan bahwa preview tidak melakukan transaksi.
-Gambar berasal dari static/previews yang sudah tersedia di repo. Hak dan sumber aslinya belum diaudit.
-
-## Pertimbangan challenger
-
-- Variable-font specimen kompetitif untuk tester, tetapi aset yang tersedia bukan variable font. Pertahankan skala demonstrasi teks tanpa mengarang axis.
-- Metro tiles ditolak untuk identifikasi audiens dan kejelasan produk. Ambil disiplin elemen datar, tanpa panorama atau tile animasi.
-- Labanotation ditolak pada kedua aspek. Ambil konsistensi jarak, tanpa simbol baru atau alur membaca terbalik.
-- Boarding pass ditolak pada kedua aspek. Ambil disiplin pengelompokan informasi pesanan, tanpa metafora tiket.
-- Airport wayfinding ditolak pada kedua aspek. Ambil tindakan berikutnya yang selalu jelas, tanpa palette kuning.
-- Factory sleeve ditolak pada kedua aspek. Pertahankan preview sebagai identitas, tanpa menyembunyikan nama dalam kode.
+- Gunakan font lokal `static/previews/mango-letter.otf`. System sans hanya untuk informasi dan kontrol.
+- Interaksi specimen mengganti pasangan huruf, bukan tester teks lengkap. Tester tetap berada pada tugas halaman produk.
+- Tidak memakai animasi loop, WebGL, atau library tambahan.
+- Harga, kategori, urutan rilis, dan pilihan homepage tetap data contoh yang diberi label.
+- Logo berasal dari `logo.png`. Gambar dan font demo berasal dari `static/previews/`.
+- R05C memakai gambar cover produk tanpa collage mockup pada pembukaan. R05B sebelumnya memakai mockup, bukan testimoni pelanggan.

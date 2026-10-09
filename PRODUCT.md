@@ -40,7 +40,8 @@ Sumber pengembangan tema ditetapkan dalam `docs/redesign-audit.md`.
 ## Komitmen brand
 
 Pertahankan nama Rillatype, aset logo, serta warna asli gambar preview produk.
-User menetapkan tampilan minimal, monokrom terang, dan animasi ringan sebagai batas redesign.
+Pada revisi R05B, user memilih playful foundry dan mengizinkan satu warna aksen khas. Dua preview monokrom sebelumnya ditolak karena terlalu umum.
+Animasi tetap ringan. Kemudahan penggunaan dan beban halaman tetap menjadi prioritas.
 Jangan menambahkan klaim tentang pelanggan, ulasan, penjualan, lisensi, atau manfaat yang belum terbukti.
 
 ## Bukti yang tersedia

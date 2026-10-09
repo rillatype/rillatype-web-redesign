@@ -16,6 +16,7 @@ const MIME = {
   ".woff2": "font/woff2",
   ".woff": "font/woff",
   ".ttf": "font/ttf",
+  ".otf": "font/otf",
 };
 
 const server = http.createServer((req, res) => {

@@ -28,10 +28,26 @@ def main():
         assert not page.get_by_role("button", name="Menu", exact=True).is_visible()
         assert page.locator(".product:visible").count() == 8
         assert page.get_by_label("Find a font").bounding_box()["y"] < 900
-        assert page.locator(".intro-feature .product-image").bounding_box()["y"] < 900
+        assert page.locator("header #font-search").count() == 1
+        assert page.get_by_label("Find a font").bounding_box()["y"] < 104
+        page.evaluate("document.fonts.ready")
+        assert page.evaluate("document.fonts.check('96px \"Mango Specimen\"')")
+        assert page.evaluate("Array.from(document.fonts).some(f => f.family === 'Mango Specimen' && f.status === 'loaded')")
+        page.get_by_role("button", name="Change sample", exact=True).click()
+        assert page.locator("#letter-pair").inner_text() == "Bb"
+        for _ in range(3):
+            page.get_by_role("button", name="Change sample", exact=True).click()
+        assert page.locator("#letter-pair").inner_text() == "Aa"
         page.get_by_role("button", name="Serif", exact=True).click()
         assert page.locator(".product:visible").count() == 3
         assert not page.locator(".intro-feature").is_visible()
+        page.get_by_role("button", name="Script", exact=True).click()
+        assert page.locator("#result-count").is_visible()
+        assert page.locator("#result-count").inner_text() == "2 fonts in this preview"
+        page.get_by_role("link", name="Mango Letters", exact=True).click()
+        assert page.locator(".intro-feature").is_visible()
+        assert page.locator(".product:visible").count() == 8
+        page.get_by_role("button", name="Serif", exact=True).click()
         for width in (320, 768, 1024, 1440):
             page.set_viewport_size({"width": width, "height": 900})
             assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), f"filtered {width}px"
@@ -44,17 +60,33 @@ def main():
         assert page.locator(".product:visible").count() == 1
         assert page.get_by_role("heading", name="Mango Letters", exact=True).is_visible()
         page.get_by_role("button", name="Search", exact=True).click()
-        assert 0 <= page.locator(".intro-feature").bounding_box()["y"] < 900
+        result_top = page.locator(".intro-feature").bounding_box()["y"]
+        header_box = page.locator("header").bounding_box()
+        assert header_box["y"] + header_box["height"] - 1 <= result_top < 900, f"Result top after submit: {result_top}"
         page.get_by_label("Find a font").fill("no-such-font")
         assert page.get_by_role("heading", name="No fonts found").is_visible()
+        assert page.locator("#result-count").is_visible()
+        assert page.locator("#result-count").inner_text() == "0 fonts in this preview"
         page.get_by_role("button", name="Show all fonts").click()
         assert page.locator(".product:visible").count() == 8
+
+        for width in (320, 768, 1024, 1440):
+            page.set_viewport_size({"width": width, "height": 900})
+            assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), f"all fonts {width}px"
+
+        fallback = browser.new_page(viewport={"width": 390, "height": 844})
+        fallback.route("**/mango-letter.otf", lambda route: route.abort())
+        fallback.goto(args.url, wait_until="networkidle")
+        assert fallback.get_by_role("heading", name="Find your favourite type.").is_visible()
+        assert not fallback.evaluate("document.documentElement.scrollWidth > innerWidth")
+        fallback.close()
 
         page.get_by_label("Find a font").blur()
         page.mouse.move(0, 0)
         for width, height, label in [(1440, 900, "desktop"), (390, 844, "mobile")]:
             page.set_viewport_size({"width": width, "height": height})
             page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+            assert 0 <= page.get_by_label("Find a font").bounding_box()["y"] < height
             page.wait_for_function("Array.from(document.images).every(i => i.complete && i.naturalWidth > 0)")
             page.evaluate("window.scrollTo(0, 0)")
             assert not page.evaluate("document.documentElement.scrollWidth > innerWidth"), label
@@ -70,7 +102,7 @@ def main():
         assert page.locator(".product-image img").first.evaluate("e => getComputedStyle(e).transitionDuration") == "0s"
         assert not errors, errors
         browser.close()
-    print("PASS: search, filters, empty state, mobile menu, images, overflow, reduced motion, and browser errors")
+    print("PASS: real specimen font, sample cycle, font fallback, search, filters, empty state, mobile menu, images, overflow, reduced motion, and browser errors")
 
 
 if __name__ == "__main__":

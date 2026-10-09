@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "Mango Specimen";
+  src: url("../previews/mango-letter.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.foundry { --accent: #e0553d; --radius: 8px; }
+.foundry .header { position: sticky; top: 0; z-index: 2; border-bottom: 1px solid var(--line); background: var(--paper); }
+.foundry .product, .foundry #fonts, .foundry #licenses, .foundry #freebies, .foundry #preview-note { scroll-margin-top: 136px; }
+.foundry .header-inner { display: grid; grid-template-columns: auto minmax(260px, 440px) auto; justify-content: space-between; gap: 32px; min-height: 104px; }
+.foundry .brand { display: flex; align-items: center; gap: 12px; font-size: 17px; letter-spacing: -.02em; }
+.foundry .brand img { width: 58px; height: 58px; object-fit: contain; }
+.foundry .brand span { font-weight: 600; line-height: 1.25; }
+.foundry .brand small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.foundry .nav { gap: 24px; }
+.foundry .nav a { font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+.foundry .header-search { width: 100%; }
+.foundry .header-search label { font-size: 12px; margin-bottom: 6px; }
+.foundry .header-search input { background: var(--wash); border-color: transparent; }
+.foundry .header-search input:focus { border-color: var(--ink); }
+.foundry .search-row { gap: 8px; }
+.foundry-opening { padding: 44px 0 38px; }
+.hero-stage { display: grid; grid-template-columns: 1.6fr 1fr; align-items: center; gap: 60px; }
+.foundry h1 { font-family: "Mango Specimen", sans-serif; font-size: clamp(58px, 6.5vw, 88px); font-weight: 400; line-height: 1.1; letter-spacing: 0; }
+.opening-guide { justify-self: end; }
+.opening-guide > p:first-child { font-size: 16px; line-height: 1.6; color: var(--muted); }
+.opening-guide .button { margin-top: 22px; }
+.opening-guide .font-credit { margin-top: 18px; font-size: 12px; color: var(--muted); }
+.foundry .button { border-radius: 8px; }
+.foundry .filter { border-radius: 999px; }
+.foundry .browse { border-block: 1px solid var(--line); gap: 24px; padding: 16px 0; align-items: center; }
+.foundry .filters { gap: 6px; }
+.foundry .filter[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
+.foundry .section { padding-top: 42px; }
+.foundry .section-heading { align-items: center; margin-bottom: 24px; }
+.foundry h2 { font-size: clamp(26px, 2.6vw, 34px); line-height: 1.15; letter-spacing: -.03em; }
+.featured-grid { grid-template-columns: 1.22fr 1fr; gap: 32px; align-items: start; }
+.featured-grid .intro-feature { grid-row: span 2; }
+.foundry .product-image { border-radius: 10px; }
+.foundry .product-info { padding-top: 16px; }
+.foundry .product-info h3 { font-size: 19px; }
+.foundry .intro-feature h3 { font-size: 24px; letter-spacing: -.025em; }
+.letter-sample { display: flex; align-items: center; justify-content: space-between; gap: 24px; border-block: 1px solid var(--line); margin-top: 28px; padding: 20px 0 16px; }
+.sample-pair { display: block; font-family: "Mango Specimen", sans-serif; font-size: 82px; line-height: 1.25; min-height: 104px; color: var(--accent); }
+.specimen-caption { font-size: 12px; color: var(--muted); }
+.sample-button { border: 1px solid var(--line); border-radius: 8px; background: var(--paper); padding: 10px 16px; font-size: 13px; min-height: 44px; }
+.sample-button:hover { border-color: var(--ink); background: var(--wash); }
+.foundry .latest { margin-top: 14px; }
+.foundry .latest .products { gap: 36px 24px; }
+.foundry .license-note { margin-top: 60px; padding: 36px 0; gap: 50px; align-items: center; }
+.foundry .license-note h2 { font-family: "Mango Specimen", sans-serif; font-weight: 400; font-size: 42px; letter-spacing: 0; line-height: 1.2; }
+.freebie-note { background: var(--wash); margin-top: 28px; padding: 32px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; gap: 32px; }
+.freebie-note h2 { font-size: 28px; }
+.freebie-note p { color: var(--muted); margin-top: 12px; font-size: 14px; }
+.foundry .footer { align-items: center; padding-block: 36px; }
+.footer-wordmark { color: var(--ink); font-family: "Mango Specimen", sans-serif; font-size: 48px; text-decoration: none; line-height: 1.2; }
+@media (prefers-reduced-motion: no-preference) {
+  .sample-button { transition: background-color 150ms var(--ease), border-color 150ms var(--ease); }
+}
+@media (max-width: 1000px) {
+  .foundry .product, .foundry #fonts, .foundry #licenses, .foundry #freebies, .foundry #preview-note { scroll-margin-top: 190px; }
+  .foundry .header-inner { grid-template-columns: auto 1fr; gap: 12px 32px; padding-block: 14px; }
+  .foundry .header-search { grid-column: 2; grid-row: 1; }
+  .foundry .nav { grid-column: 1 / -1; justify-content: center; }
+  .hero-stage { gap: 36px; }
+  .foundry h1 { font-size: clamp(50px, 7vw, 70px); }
+  .featured-grid { gap: 26px; }
+}
+@media (max-width: 640px) {
+  .foundry .header-inner { gap: 12px; padding-block: 10px 16px; }
+  .foundry .brand { font-size: 15px; gap: 8px; }
+  .foundry .brand img { width: 46px; height: 46px; }
+  .foundry .menu-button { justify-self: end; grid-column: 2; grid-row: 1; }
+  .foundry .header-search { grid-column: 1 / -1; grid-row: 2; }
+  .foundry .nav { grid-row: 3; grid-column: 1 / -1; padding-bottom: 0; }
+  .foundry-opening { padding: 28px 0; }
+  .hero-stage { grid-template-columns: 1fr; gap: 20px; }
+  .foundry h1 { font-size: clamp(44px, 12vw, 62px); }
+  .opening-guide { justify-self: start; }
+  .opening-guide > p:first-child { font-size: 14px; }
+  .opening-guide > p:first-child br { display: none; }
+  .opening-guide .button { margin-top: 16px; }
+  .opening-guide .font-credit { margin-top: 12px; }
+  .foundry .browse { align-items: start; gap: 12px; padding-block: 14px; }
+  .foundry .filter { padding-inline: 12px; }
+  .foundry .section { padding-top: 30px; }
+  .featured-grid { grid-template-columns: 1fr; gap: 30px; }
+  .featured-grid .intro-feature { grid-row: auto; }
+  .foundry .product-info h3 { font-size: 18px; }
+  .foundry .intro-feature h3 { font-size: 22px; }
+  .letter-sample { gap: 16px; margin-top: 22px; }
+  .sample-pair { font-size: 70px; min-height: 90px; }
+  .sample-button { padding-inline: 12px; font-size: 12px; }
+  .foundry .latest { margin-top: 10px; }
+  .foundry .license-note { grid-template-columns: 1fr; gap: 20px; margin-top: 44px; padding: 28px 0; }
+  .foundry .license-note h2 { font-size: 34px; }
+  .freebie-note { padding: 24px; flex-direction: column; align-items: start; gap: 20px; }
+  .freebie-note h2 { font-size: 26px; }
+  .foundry .footer { align-items: start; }
+  .footer-wordmark { font-size: 44px; }
+}

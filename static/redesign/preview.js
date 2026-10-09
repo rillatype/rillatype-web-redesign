@@ -23,6 +23,15 @@ if (menuButton && navigation) {
 }
 
 const searchForm = document.querySelector('#font-search');
+const sampleButton = document.querySelector('#change-sample');
+if (sampleButton) {
+  const samples = ['Aa', 'Bb', 'Gg', 'Rr'];
+  let sampleIndex = 0;
+  sampleButton.addEventListener('click', () => {
+    sampleIndex = (sampleIndex + 1) % samples.length;
+    document.querySelector('#letter-pair').textContent = samples[sampleIndex];
+  });
+}
 if (searchForm) {
   const query = document.querySelector('#query');
   const filters = [...document.querySelectorAll('[data-category]')];
@@ -55,10 +64,16 @@ if (searchForm) {
     category = filter.dataset.category;
     updateResults();
   }));
-  document.querySelector('#reset-search').addEventListener('click', () => {
+  function resetResults() {
     category = 'all';
     query.value = '';
     updateResults();
+  }
+  document.querySelectorAll('a[href="#mango"]').forEach(link => {
+    link.addEventListener('click', resetResults);
+  });
+  document.querySelector('#reset-search').addEventListener('click', () => {
+    resetResults();
     query.focus();
   });
 }

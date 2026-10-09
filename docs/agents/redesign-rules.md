@@ -42,7 +42,7 @@ Pertahankan log lama. Koreksi klaim lama melalui entri baru yang menyebut bukti 
 ## Ikuti brief, bukan default skill
 
 - Gunakan `impeccable` untuk desain dan UX, serta `design-taste-frontend` untuk menghindari pola desain generik.
-- Brief user mengalahkan default skill. Tetap gunakan WordPress, WooCommerce, monokrom terang, dan animasi ringan.
+- Brief user mengalahkan default skill. Tetap gunakan WordPress, WooCommerce, arah visual terbaru yang disepakati dalam REDESIGN-PLAN.md, dan animasi ringan.
 - Utamakan CSS native dan JavaScript yang memang diperlukan. Gunakan kode atau dependensi yang sudah tersedia.
 - Ajukan alasan sebelum menambah framework, plugin, atau library yang memperbesar beban halaman.
 - Pertahankan warna preview produk. Hindari klaim pemasaran, harga, lisensi, dan ulasan yang dibuat-buat.

@@ -1,4 +1,4 @@
-# Rencana redesign monokrom Rillatype
+# Rencana redesign Rillatype
 
 Tanggal kesepakatan: 9 Oktober 2026.
 
@@ -13,9 +13,9 @@ Rencana ini menggantikan arah visual dalam `PLAN.md` untuk pekerjaan baru.
 - Rombak homepage, katalog, halaman produk, cart, checkout, dan akun.
 - Layani desainer dan pemilik brand yang ingin menemukan, mencoba, dan membeli font.
 - Tetap gunakan WordPress dan WooCommerce.
-- Gunakan tampilan minimal, bersih, monokrom terang, dan navigasi yang mudah dipahami.
+- Arah visual aktif sejak revisi R05B adalah playful foundry, dengan lettering font Rillatype dan satu aksen coral. Navigasi tetap mudah dipahami.
 - Revisi 9 Oktober 2026: user menilai preview awal terlalu sederhana. Pertahankan minimalisme, tetapi perkuat komposisi, skala tipografi, dan dominasi preview unggulan.
-- Gunakan latar putih, teks hitam, dan abu-abu untuk elemen pendukung. Preview font tetap berwarna.
+- Gunakan latar terang, teks gelap, serta coral khas Rillatype sebagai satu aksen UI. Preview font tetap berwarna.
 - Homepage berisi pembukaan singkat, font pilihan, rilisan terbaru, penjelasan lisensi singkat, dan footer.
 - Buat pencarian serta akses katalog mudah ditemukan. Sediakan akses freebies melalui navigasi.
 - Katalog menampilkan preview, nama font, kategori, dan harga. Tester lengkap berada di halaman produk.
@@ -107,7 +107,7 @@ Dependensi: R04.
 
 ### R06. Buat preview halaman produk baru
 
-Dependensi: R04 dan R05A.
+Dependensi: R04 dan R05C.
 
 - Susun gallery, nama font, ringkasan, harga, pilihan lisensi, dan tombol tambah ke cart.
 - Sediakan tester teks, ukuran, dan style yang memang dimiliki produk.
@@ -125,6 +125,30 @@ Dependensi: R05.
 - Pertahankan pencarian, filter, konten terlihat langsung, monokrom, dan motion ringan.
 - Periksa desktop, tablet, mobile, filter yang menyembunyikan font unggulan, serta reduced motion.
 - Selesai jika preview revisi tersedia, pemeriksaan lulus, dan hasil tercatat untuk tinjauan user pada R07.
+
+### R05B. Ganti arah ke playful foundry
+
+Dependensi: R05A.
+
+- User menolak dua versi katalog karena terlalu umum. Ganti komposisi, bukan memperbesar grid lama lagi.
+- Gunakan font Mango asli sebagai specimen lettering, logo asli, serta satu aksen coral dari brand yang sudah ada.
+- Tampilkan halaman seperti ruang specimen studio dengan sample huruf, karya penggunaan font, dan koleksi yang berbeda skala.
+- Pertahankan fungsi pencarian dan filter. Jangan mengarang harga, kebijakan lisensi, atau customer proof.
+- Periksa font nyata, pergantian sample, keyboard, layout sempit, serta fallback tanpa font.
+- Selesai jika preview arah baru tersedia dan hasil pemeriksaan dicatat. Persetujuan visual tetap milik user.
+
+### R05C. Rapikan hierarki toko dan pencarian setelah feedback keseluruhan
+
+Dependensi: R05B.
+
+- User menilai keseluruhan UI dan UX belum bagus, terutama posisi Find a font.
+- Jadikan pencarian bagian header yang terlihat sebelum hero pada desktop dan mobile.
+- Susun pembukaan agar membantu memilih font, bukan terasa seperti poster dekoratif.
+- Pertahankan lettering Mango dan aksen coral yang disepakati, dengan informasi produk lebih mudah dipindai.
+- Letakkan jumlah hasil di area yang tetap terlihat untuk semua filter, termasuk hasil kosong.
+- Pastikan tautan ke Mango menampilkan hasil tersebut meski filter sebelumnya menyembunyikannya.
+- Periksa pencarian header, menu mobile, filter, jumlah hasil, dan navigasi ke font.
+- Selesai jika preview revisi dan bukti pemeriksaan tersedia. Penilaian visual tetap memerlukan feedback user.
 
 ### R07. Minta persetujuan acuan desain
 

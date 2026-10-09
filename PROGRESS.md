@@ -4,9 +4,9 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` dan `R05B` dari `REDESIGN-PLAN.md`.
 
-## Redesign aktif: monokrom terang
+## Redesign aktif: playful foundry
 
 Brief dan urutan pekerjaan berada di `REDESIGN-PLAN.md`. Aturan pencatatan berada di `docs/agents/redesign-rules.md`.
 Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-masing tugas dalam rencana.
@@ -20,6 +20,8 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R04 | Sistem visual | SELESAI | DESIGN.md mencatat fondasi CSS dan komponen. Browser desktop serta mobile diperiksa. |
 | R05 | Preview homepage | SELESAI | Browser check lulus. Review preview berstatus ship. Persetujuan user tetap pada R07. |
 | R05A | Revisi karakter homepage | SELESAI | Preview unggulan besar, tipografi tegas, serta koleksi pilihan dua kolom. Browser check dan review perbaikan lulus. Tinjauan user masih diperlukan. |
+| R05B | Arah baru playful foundry | SELESAI | Versi dibuat dan diuji. Dua temuan hasil filter diperbaiki. User menolak keseluruhan UI dan UX; lanjut R05C. |
+| R05C | Hierarki toko dan pencarian header | SELESAI | Search di header sticky, hasil selalu terlihat, dan navigasi Mango diperbaiki. Browser check dan review handoff lulus. Persetujuan visual user belum ada. |
 | R06 | Preview produk | BELUM | Buat tester serta pilihan lisensi. |
 | R07 | Persetujuan acuan desain | BELUM | Menunggu hasil R05 dan R06 untuk ditinjau user. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
@@ -62,13 +64,21 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05A | Periksa revisi serta perbaiki heading produk unggulan menjadi h2. | Browser check lulus termasuk state filter tanpa Mango pada 320px, 768px, 1024px, dan 1440px. Screenshot desktop/mobile diperiksa. Detector menemukan heading skip yang diperbaiki dan dokumentasi ukuran yang perlu diperbarui. | Konfirmasi setelah heading fix, review baru, dan sinkronisasi dokumen desain belum selesai. | Konfirmasi browser lalu catat sistem desain hasil revisi. |
 | 2026-10-09 | R05A | Sinkronkan DESIGN.md dan sidecar dengan komposisi serta ukuran baru. Perbaiki submit pencarian agar menuju hasil pertama yang terlihat. | Review baru menilai komposisi lebih kuat dan menemukan scroll yang melewati Mango. Perbaikan berada pada handler submit bersama. Documenter memeriksa JSON, token, dan ukuran CSS. | Regression check submit dan verdict perbaikan belum selesai. | Periksa posisi hasil pencarian setelah submit, lalu simpan revisi. |
 | 2026-10-09 | R05A | Selesaikan revisi homepage dan regression check submit. | Browser check lulus termasuk posisi Mango setelah Search. git diff --check lulus. Reviewer menilai temuan scroll resolved dan preview siap ditinjau user. | Penilaian apakah sudah cukup wah tetap keputusan user. Integrasi WordPress dan R06 belum selesai. | Commit dan push revisi, kemudian tampilkan link preview yang sama. |
+| 2026-10-09 | R05B | Catat premis yang gagal: grid katalog netral dianggap cukup mewakili identitas brand. User memilih playful foundry dan satu aksen warna. | Audit struktur menunjukkan font Rillatype hanya hadir dalam gambar katalog, sementara headline dan brand tampil dengan font UI umum. Baca aset logo asli dan mockup Mango. | Implementasi baru belum dibuat. | Gunakan font asli, specimen yang dapat diganti, dan komposisi studio. |
+| 2026-10-09 | R05B | Bangun ulang index.html dan tambah foundry.css. Pakai logo asli, lettering Mango lokal, bidang coral, specimen berganti, mockup, dan komposisi koleksi berbeda skala. Tambahkan MIME OTF pada server.js. | Reuse pencarian dan filter yang sudah ada. Harga serta mockup tetap diberi penjelasan. Tidak menambah dependency frontend. | Browser check dan pemeriksaan font nyata belum dijalankan. | Periksa preview arah baru dan fallback. |
+| 2026-10-09 | R05B | Hapus aturan homepage lama yang sudah tidak digunakan. Perluas browser check untuk font dan pergantian sample. | Pemeriksaan awal menemukan perbandingan posisi scroll terlalu ketat pada nilai subpixel. Gunakan toleransi 1px. Pemeriksaan berikutnya lulus termasuk fallback font, siklus sample, viewport 320 sampai 1440px, pencarian, dan menu. Screenshot desktop/mobile diperiksa. | Detector menandai inset bidang full-width meski wrapper memberi jarak; perlu penilaian reviewer. Advisory token akan disinkronkan dengan arah baru. | Review hasil dan perbarui dokumentasi desain. |
+| 2026-10-09 | R05B | Review arah playful foundry dan sinkronkan dokumen desain. User menjelaskan pertanyaan soal latar bukan permintaan tekstur. | Reviewer menyatakan inset hero cukup. Temukan jumlah hasil ikut tersembunyi pada filter tertentu dan anchor Mango menuju item tersembunyi. | Dua temuan fungsi perlu diperbaiki. User tetap tidak menyukai keseluruhan UI dan UX. | Perbaiki dua temuan tersebut, lalu jalankan revisi R05C dengan pencarian di header. |
+| 2026-10-09 | R05B | Pindahkan jumlah hasil ke area tetap terlihat. Anchor Mango mereset filter melalui fungsi reset yang sama. | Regression check lulus termasuk count Script dan nol hasil, serta Mango kembali terlihat setelah diklik dari filter Script. Dua patch awal gagal karena konteks test tidak cocok; tidak mengubah file sampai patch benar. | User menolak versi secara visual. | Mulai R05C. |
+| 2026-10-09 | R05C | Tetapkan revisi berdasarkan feedback keseluruhan dan posisi Find a font. | Pencarian perlu menjadi bagian header, bukan blok terpisah di bawah hero. | Layout baru belum dibuat. | Rapikan header, pembukaan, dan informasi koleksi. |
+| 2026-10-09 | R05C | Pindahkan search ke header. Ganti pembukaan menjadi arahan memilih font. Pindahkan sample huruf ke produk Mango, hilangkan collage hero, dan rapikan bentuk kontrol serta metadata. | Search terlihat sebelum h1. Counter hasil berada di area filter yang selalu terlihat. Typeface Mango tetap menjadi identitas, coral digunakan untuk state dan specimen. | Pemeriksaan browser dan dokumen desain revisi belum selesai. | Periksa header desktop/mobile, filter, dan hasil pencarian. |
+| 2026-10-09 | R05C | Jadikan header sticky dan beri jarak anchor agar hasil tidak tertutup header. Sinkronkan DESIGN.md serta sidecar dengan UI terbaru. | Browser check lulus termasuk search tetap terlihat saat scroll, target hasil berada di bawah header, count Script dan nol hasil, serta anchor Mango setelah filter. Review terpisah memberi PASS untuk handoff preview, bukan persetujuan visual. JSON, token, dan git diff --check lulus. | R06 dan integrasi WordPress belum dikerjakan. User belum menyetujui tampilan. | Commit dan push perubahan R05B/R05C, kemudian tampilkan preview terbaru. |
 
 ### Handoff aktif
 
-- Hasil terbaru: R05A selesai secara implementasi dan pemeriksaan. Menunggu feedback visual user.
+- Hasil terbaru: R05C selesai secara implementasi dan pemeriksaan. Menunggu feedback visual setelah pembenahan pencarian dan hierarki.
 - Preview tersedia di http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
-- Tugas berikutnya setelah R05A: R06, preview produk.
+- Tugas berikutnya setelah R05C: R06, preview produk.
 - Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
 - Server preview lokal sebelumnya sudah dihentikan atas permintaan user.
 - Server preview dijalankan kembali untuk memeriksa fondasi dan homepage redesign. Port 9402 aktif selama sesi ini.
