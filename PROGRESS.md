@@ -4,7 +4,7 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05D` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05E` dari `REDESIGN-PLAN.md`.
 
 ## Redesign aktif: foundry editorial
 
@@ -23,6 +23,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R05B | Arah baru playful foundry | SELESAI | Versi dibuat dan diuji. Dua temuan hasil filter diperbaiki. User menolak keseluruhan UI dan UX; lanjut R05C. |
 | R05C | Hierarki toko dan pencarian header | SELESAI | Search di header sticky, hasil selalu terlihat, dan navigasi Mango diperbaiki. Browser check dan review handoff lulus. Persetujuan visual user belum ada. |
 | R05D | Desain baru foundry editorial | SELESAI | Homepage baru dan browser check tersedia. Review visual terpadu dilakukan setelah route detail R06 tersedia. User belum menyetujui tampilan. |
+| R05E | Perbaikan seluruh product card | SELESAI | Semua card dibingkai dan seluruh bidang clickable. Harga serta tombol Bawden dipisahkan. Browser check, screenshot, review scoped, dan dokumen lulus. |
 | R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
 | R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05D dan detail produk R06 siap ditinjau. Belum ada persetujuan visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
@@ -81,10 +82,15 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R06 | Tambahkan state informasi font tanpa mengarang format pembelian, weights, atau glyph. Perbaiki link lisensi pada unknown-product agar kembali ke informasi lisensi homepage. | Review terpadu menyatakan layout siap untuk tinjauan user dan menemukan satu link menuju area tersembunyi pada unknown slug. Dokumentasi baru mencatat Manrope, biru, komposisi, serta prototype detail. | Regression unknown-product setelah perbaikan belum dijalankan. Data produk asli tetap belum terhubung. | Periksa error navigation dan simpan hasil. |
 | 2026-10-09 | R06 | Selesaikan preview detail dan dokumen desain. Koreksi atribusi bukti agar jelas bahwa agent, bukan user, menjalankan test. | Full browser check PASS, termasuk unknown slug yang kembali ke homepage Licenses. Reviewer menilai temuan resolved dan memberikan PASS untuk handoff preview. JSON dan token diperiksa; git diff --check lulus. | Spesifikasi produk serta aturan lisensi asli masih menunggu data toko. Tidak ada transaksi nyata. User belum menyetujui tampilan. | Simpan R05D/R06 ke GitHub dan minta tinjauan R07. |
 | 2026-10-09 | R05D | Rapikan satu trailing space pada salinan OFL Manrope tanpa mengubah teks lisensi. | Pemeriksaan staged diff menemukan whitespace pada file lisensi unduhan. Baris tersebut diperbaiki sebelum commit. | Push hasil menunggu commit. | Simpan homepage dan detail produk bersama progress. |
+| 2026-10-09 | R05E | Catat hasil grilling card. User menyetujui bidang putih, garis tipis, sudut membulat, nama/harga jelas, kategori tenang, dan tombol di bawah. | Periksa HTML serta CSS card aktif. Bawden masih memiliki dua link dan harga/tombol satu baris. Card koleksi belum memiliki bingkai menyatu. | Implementasi belum diubah. | Satukan Bawden sebagai satu link, rapikan caption serta posisi tindakan. |
+| 2026-10-09 | R05E | Ubah index.html dan editorial.css. Bawden menjadi satu link dengan harga dekat nama serta tombol selebar panel di bawah. Semua card memakai bidang putih, border tipis, radius 8px, caption terpadu, dan tindakan di bawah. | Struktur tidak memakai link atau button bersarang. Fokus keyboard memakai outline pada card agar tidak terpotong overflow. Hover tetap ringan dan reduced motion tersedia. | Browser check serta screenshot belum diperiksa. | Uji seluruh area card dan posisi tombol pada viewport berbeda. |
+| 2026-10-09 | R05E | Tambahkan pemeriksaan klik area informasi dan aktivasi Enter pada card. | Pemeriksaan awal klik panel Bawden berhasil. Assertion navigasi keyboard membaca URL sebelum transisi selesai. Ubah penantian test menjadi wait_for_url untuk tujuan yang diharapkan. | Konfirmasi browser check belum selesai. | Jalankan ulang pemeriksaan dan baca screenshot card. |
+| 2026-10-09 | R05E | Konfirmasi card hasil revisi. | Browser check lulus termasuk klik panel Bawden, Enter, klik metadata Mango, semua route, pencarian, dan tester. Screenshot desktop/mobile dibaca. Detector hanya menandai radius 8px serta harga 22px yang perlu didokumentasikan. | Sinkronisasi dokumen dan handoff belum selesai. | Perbarui sistem desain dan simpan perubahan. |
+| 2026-10-09 | R05E | Sinkronkan DESIGN.md dan sidecar card dengan hasil implementasi. | Review scoped memberi PASS untuk card homepage. JSON/YAML, 61 referensi token, metadata, snippet card, serta git diff --check diperiksa. Tidak menambah dependency atau JavaScript card. | Persetujuan visual hasil render tetap menunggu user. | Commit dan push revisi, kemudian tinjau hasil card bersama user. |
 
 ### Handoff aktif
 
-- Tugas berikutnya: R07, tinjauan user atas homepage pengganti dan detail produk.
+- Hasil terbaru: R05E selesai dan siap ditinjau. Berikutnya R07, persetujuan acuan desain.
 - Preview tersedia di http://localhost:9402/static/redesign/index.html.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
 - Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu memiliki route detail.

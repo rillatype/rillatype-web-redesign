@@ -163,9 +163,22 @@ Dependensi: R05C.
 - Sediakan jalur detail produk melalui R06 agar kartu tidak berakhir pada catatan preview.
 - Selesai jika homepage baru dan bukti pemeriksaan tersedia. Penilaian visual tetap milik user.
 
+### R05E. Rapikan semua product card
+
+Dependensi: R05D dan R06.
+
+- User menilai arah editorial lebih baik dan memilih perbaikan card satu per satu.
+- Terapkan satu bidang putih, border tipis, dan radius 8px pada Bawden serta tujuh card koleksi.
+- Letakkan harga Bawden dekat nama dan kategori. Letakkan View font di bawah informasi, selebar panel.
+- Pada card koleksi, tempatkan nama dan harga satu baris, kategori di bawah nama, dan View font di bagian bawah.
+- Seluruh card menjadi satu link native. Hindari link atau tombol interaktif yang bersarang.
+- Pertahankan rasio gambar 3:2, hover ringan, fokus keyboard, dan reduced motion.
+- Tulisan Demo tetap menandai data contoh. User mengonfirmasi penempatan tombol melalui grilling.
+- Selesai jika tampilan desktop/mobile, klik area informasi, dan aktivasi keyboard diperiksa serta progress diperbarui.
+
 ### R07. Minta persetujuan acuan desain
 
-Dependensi: R05 dan R06.
+Dependensi: R05E dan R06.
 
 - Tampilkan kedua preview kepada user dengan link atau screenshot.
 - Minta feedback tentang hierarki, kepadatan, navigasi, tester, dan pilihan lisensi.

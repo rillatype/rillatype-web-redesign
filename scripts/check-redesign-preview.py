@@ -80,6 +80,22 @@ def main():
         assert fallback.get_by_role("heading", name="Type, with perspective.").is_visible()
         assert not fallback.evaluate("document.documentElement.scrollWidth > innerWidth")
         fallback.close()
+        assert page.locator(".product > a").count() == 8
+        assert page.locator(".product a a, .product a button").count() == 0
+        page.locator(".lead-information").click()
+        page.wait_for_url(urljoin(args.url, "product.html?font=bawden"), wait_until="networkidle")
+        assert page.url.endswith("product.html?font=bawden")
+        assert page.get_by_role("heading", name="Bawden", exact=True).is_visible()
+        page.go_back(wait_until="networkidle")
+        page.locator(".lead-card-link").focus()
+        page.keyboard.press("Enter")
+        page.wait_for_url(urljoin(args.url, "product.html?font=bawden"), wait_until="networkidle")
+        assert page.url.endswith("product.html?font=bawden")
+        page.go_back(wait_until="networkidle")
+        page.locator(".collection .product-info").first.click()
+        page.wait_for_url(urljoin(args.url, "product.html?font=mango"), wait_until="networkidle")
+        assert page.url.endswith("product.html?font=mango")
+        page.go_back(wait_until="networkidle")
         detail = browser.new_page(viewport={"width": 1440, "height": 900})
         detail.on("pageerror", lambda error: errors.append(str(error)))
         expected_products = {

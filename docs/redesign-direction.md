@@ -19,6 +19,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 ## Aset dan batas
 
+Revisi R05E disetujui melalui grilling. Semua product card memakai bidang putih, border tipis, dan radius 8px.
+Bawden menempatkan harga dekat nama serta tombol selebar panel di bawah informasi. Card koleksi menempatkan nama dan harga satu baris, kategori di bawah, serta tindakan di bagian bawah.
+Setiap card memakai satu link native untuk seluruh bidang. Tindakan visual tidak menjadi link atau button bersarang.
+
 - Font UI Manrope berasal dari repo Google Fonts, berlisensi OFL. File serta lisensinya disimpan bersama preview.
 - Artwork berasal dari static/previews. Logo berasal dari logo.png.
 - Homepage tidak memakai Mango sebagai font UI atau headline. Mango hanya digunakan untuk mencoba produk Mango pada halaman detail.

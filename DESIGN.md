@@ -1,6 +1,6 @@
 ---
 name: Rillatype
-description: Foundry editorial R05D dan prototype produk R06 dengan Manrope lokal, aksen biru, dan artwork produk asli.
+description: Foundry editorial R05E dan prototype produk R06 dengan Manrope lokal, aksen biru, dan artwork produk asli.
 colors:
   accent: "#2454e6"
   accent-hover: "#1c42b5"
@@ -40,10 +40,14 @@ typography:
     lineHeight: 1.15
     letterSpacing: "-.03em"
   title:
-    fontSize: "17px"
-    fontWeight: 650
-    lineHeight: 1.15
+    fontSize: "18px"
+    fontWeight: 700
+    lineHeight: 1.25
     letterSpacing: "-.015em"
+  card-price:
+    fontSize: "15px"
+    fontWeight: 650
+    lineHeight: 1.55
   feature-title:
     fontSize: "clamp(32px, 3.3vw, 46px)"
     fontWeight: 650
@@ -103,8 +107,8 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
   card-action:
-    fontSize: "12px"
-    fontWeight: 600
+    fontSize: "13px"
+    fontWeight: 650
     lineHeight: 1.55
   intro-copy:
     fontSize: "16px"
@@ -123,8 +127,8 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
   feature-price:
-    fontSize: "18px"
-    fontWeight: 400
+    fontSize: "22px"
+    fontWeight: 650
     lineHeight: 1.55
   product-price:
     fontSize: "24px"
@@ -197,6 +201,7 @@ typography:
     lineHeight: 1.55
 rounded:
   control: "4px"
+  card: "8px"
   imagery: "0"
   base-control: "6px"
 spacing:
@@ -204,6 +209,8 @@ spacing:
   thumbnail-gap: "10px"
   tight: "12px"
   metadata: "14px"
+  card-padding: "18px"
+  feature-padding: "34px"
   row-gap: "16px"
   mobile-gutter: "20px"
   stacked-gap: "22px"
@@ -251,16 +258,30 @@ components:
     backgroundColor: "{colors.ink}"
     textColor: "{colors.paper}"
   product-card:
+    backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.title}"
+    rounded: "{rounded.card}"
+  card-metadata:
+    padding: "18px 18px 16px"
+  card-price:
+    typography: "{typography.card-price}"
+  card-action:
+    textColor: "{colors.ink}"
+    typography: "{typography.card-action}"
+    rounded: "{rounded.control}"
+    padding: "10px 12px"
   product-image:
     backgroundColor: "{colors.wash}"
     rounded: "{rounded.imagery}"
   feature-panel:
-    backgroundColor: "{colors.wash}"
+    backgroundColor: "{colors.paper}"
     textColor: "{colors.ink}"
     typography: "{typography.feature-title}"
-    padding: "38px"
+    rounded: "{rounded.card}"
+    padding: "34px"
+  feature-price:
+    typography: "{typography.feature-price}"
   navigation:
     textColor: "{colors.ink}"
     typography: "{typography.navigation}"
@@ -295,14 +316,14 @@ components:
 
 **Creative North Star: "Foundry editorial"**
 
-User menolak keseluruhan UI sebelumnya dan meminta pengganti. R05D memakai Manrope lokal, satu aksen biru, judul tegas, dan artwork produk asli. Panel Bawden memisahkan pilihan unggulan dari tujuh kartu koleksi. R06 menerapkan bahasa visual yang sama pada detail produk, gallery, pilihan lisensi contoh, tester Mango, dan bagian Font information.
+User menolak keseluruhan UI sebelumnya dan meminta pengganti. R05D memakai Manrope lokal, satu aksen biru, judul tegas, dan artwork produk asli. R05E menerapkan keputusan card yang disetujui melalui grilling: bidang putih, border tipis, radius 8px, dan satu link untuk seluruh card. Panel Bawden memisahkan pilihan unggulan dari tujuh kartu koleksi. R06 menerapkan bahasa visual yang sama pada detail produk, gallery, pilihan lisensi contoh, tester Mango, dan bagian Font information.
 
 Dokumen ini merekam `static/redesign/index.html`, `product.html`, `style.css`, `editorial.css`, `preview.js`, dan `product-preview.js`. Halaman aktif memuat base stylesheet sebelum override editorial. Sistem component lab berbasis system sans tetap terpisah. Dokumentasi merekam implementasi, bukan persetujuan user, hasil review, verdict ship, atau hasil pengukuran performa.
 
 **Key Characteristics:**
 - Manrope untuk UI, headline, metadata, dan footer.
 - Biru untuk tindakan utama, fokus, bagian headline, dan tanda pilihan produk.
-- Artwork bersudut siku dengan warna asli; kontrol bersudut kecil.
+- Artwork mempertahankan warna asli dan radius gambar 0; card homepage memotong artwork dalam bingkai radius 8px.
 - Pencarian header sticky tetap tersedia saat menu mobile tertutup.
 - Gallery dan lisensi memakai tombol serta radio native.
 - Mango Product hanya dimuat dinamis untuk tester produk Mango; tujuh produk lain menyatakan specimen tidak tersedia.
@@ -310,15 +331,15 @@ Dokumen ini merekam `static/redesign/index.html`, `product.html`, `style.css`, `
 ## Colors
 
 ### Primary
-- **Collection blue** (`accent`) memberi warna pada tombol utama, kata perspective., card action, fokus keyboard, selection teks, radio, slider, dan border thumbnail aktif.
+- **Collection blue** (`accent`) memberi warna pada tombol utama, kata perspective., hover card action, fokus keyboard, selection teks, radio, slider, dan border thumbnail aktif.
 - **Collection blue hover** (`accent-hover`) mengganti background serta border tombol utama saat hover.
 
 ### Neutral
-- **Paper** (`paper`) adalah halaman, header, dan tombol sekunder.
+- **Paper** (`paper`) adalah halaman, header, tombol sekunder, dan semua card homepage termasuk Bawden.
 - **Ink** (`ink`) adalah teks utama, border tombol sekunder, dan filter aktif dengan teks Paper.
 - **Muted** (`muted`) membedakan kategori, copy pendamping, placeholder, serta catatan demo.
-- **Line** (`line`) memisahkan header, bar filter, lisensi, tester, dan catatan preview.
-- **Wash** (`wash`) adalah field pencarian, panel Bawden, freebies, banner demo, dan opsi lisensi terpilih.
+- **Line** (`line`) memisahkan header, bar filter, lisensi, tester, dan catatan preview serta membingkai card homepage dan tindakan koleksi.
+- **Wash** (`wash`) adalah field pencarian, hover tindakan koleksi, freebies, banner demo, dan opsi lisensi terpilih.
 - **Transparent** (`transparent`) dipakai pada border pencarian, filter default, dan thumbnail tidak aktif.
 - Token `base-line`, `base-wash`, dan `base-ink-hover` mencatat base component lab saja. Override editorial tidak memakai palette base tersebut.
 
@@ -337,8 +358,8 @@ File lokal `static/redesign/manrope.ttf` berasal dari repo resmi Google Fonts, `
 - `headline` dan `headline-mobile` mencatat H2 koleksi, freebies, dan tester. `license-headline` memakai ukuran serta line-height berbeda.
 - `feature-title` mencatat judul Bawden di panel unggulan. Mobile memakai `feature-title-mobile` yang tetap lebih besar daripada H2 biasa.
 - `product-display` mencatat H1 detail produk, termasuk weight 750 yang diwarisi dari H1 editorial. Mobile detail memakai 36px, bukan clamp H1 homepage.
-- `title` mencatat nama kartu 17px pada semua lebar. Harga kartu memakai ukuran `label`, weight 400, tabular numerals, dan nowrap.
-- `feature-price` dan `product-price` membedakan harga panel unggulan dari harga summary detail.
+- `title` mencatat nama kartu koleksi 18px, weight 700, line-height 1.25 pada semua lebar. `card-price` memakai 15px/650, tabular numerals, dan nowrap. Kategori tetap `small` 13px dengan warna Muted; `label` tetap untuk field.
+- `feature-price` memakai 22px/650 dekat judul Bawden; `product-price` tetap mencatat harga summary detail 24px/400. `card-action` memakai 13px/650.
 - `button`, `navigation`, `search`, dan `filter` memakai 13px dengan weight sesuai fungsi. Label textarea/range 14px; legend 15px; nama lisensi 14px weight 600.
 - `intro-copy` memakai line-height 1.65; copy panel memakai 1.55 dan turun menjadi 16px pada max-width 1000px.
 - `footer-wordmark` tetap Manrope, weight 750. Mobile memakai 48px.
@@ -369,9 +390,9 @@ Target produk, Fonts, Licenses, Freebies, catatan preview, dan `#license-form` m
 
 Homepage membuka dengan grid 1.7fr:1fr, gap 50px, padding 60px/0/40px. Gap menjadi 30px pada max-width 1000px. Mobile memakai satu kolom, gap 22px, dan padding vertikal 30px. Filter/count langsung mengikuti intro, tetap di luar section koleksi yang dapat disembunyikan.
 
-Bawden memakai panel Wash dua kolom 1.6fr:1fr tanpa gap, artwork di kiri, informasi di kanan dengan padding 38px. Pada max-width 1000px, kolom menjadi 1.35fr:1fr dan padding 26px. Mobile menumpuk artwork dan informasi dengan padding panel 24px. Panel mulai 32px di bawah filter atau 24px mobile.
+Bawden memakai card Paper dua kolom 1.6fr:1fr tanpa gap di dalam satu anchor, artwork di kiri, informasi flex di kanan dengan padding 34px. Harga berada dekat judul dan kategori dengan margin atas 18px. Catatan preview mengikuti deskripsi. Panel tindakan memakai margin-top auto dan padding atas 26px; CTA biru memenuhi lebar panel informasi dengan min-height 46px. Pada max-width 1000px, kolom menjadi 1.35fr:1fr, padding informasi 26px, dan padding atas tindakan 20px. Mobile menumpuk artwork dan informasi dengan padding 24px serta padding atas tindakan 22px. Card mulai 32px di bawah filter atau 24px mobile.
 
-Tujuh kartu koleksi memakai tiga kolom dengan gap 40px/26px. Grid tetap tiga kolom pada tablet; mobile memakai satu kolom dengan gap 30px. Section mulai dengan padding atas 60px atau 36px mobile, bawah 24px. Metadata berjarak 14px dari cover. Bar heading berjarak 26px dari grid dan menumpuk pada mobile.
+Tujuh kartu koleksi memakai tiga kolom dengan gap 40px/26px. Grid tetap tiga kolom pada tablet; mobile memakai satu kolom dengan gap 30px. Section mulai dengan padding atas 60px atau 36px mobile, bawah 24px. Anchor memakai flex column dan height 100%. Metadata memakai padding 18px 18px 16px, gap 12px, nama dan harga satu baris, serta kategori di bawah nama dengan margin atas 5px. Harga memiliki padding atas 2px. Tindakan memakai margin auto 18px 18px agar sejajar di bawah card, padding 10px 12px, dan min-height 44px. Bar heading berjarak 26px dari grid dan menumpuk pada mobile.
 
 Lisensi homepage memakai dua kolom, gap 60px, margin atas 74px, dan padding vertikal 38px. Mobile memakai satu kolom, gap 22px, margin atas 46px, dan padding vertikal 28px. Freebies memakai Wash, dua kolom, gap 50px, padding 36px, dan margin atas 30px. Mobile memakai satu kolom, gap 20px, dan padding 24px. Footer memakai padding vertikal 40px dan menumpuk pada mobile.
 
@@ -385,7 +406,9 @@ Tidak ada box-shadow, blur header, atau overlay dekoratif. Paper, Wash, whitespa
 
 ## Shapes
 
-Tombol, search, filter, textarea, dan opsi lisensi memakai radius 4px. Gambar, thumbnail, panel Bawden, dan freebies bersudut siku. Gambar memakai rasio 3:2 dan object-fit cover. Base component lab tetap memakai radius kontrol 6px.
+Tombol, search, filter, textarea, opsi lisensi, dan tindakan koleksi memakai radius 4px. Semua card homepage termasuk Bawden memakai Paper, border Line 1px, radius `card` 8px, dan overflow hidden. Gambar tetap radius 0; bingkai card memotong sudut luar artwork. Thumbnail, gambar detail produk, dan freebies tetap bersudut siku. Gambar memakai rasio 3:2 dan object-fit cover. Base component lab tetap memakai radius kontrol 6px.
+
+Fokus card memakai `:focus-within` pada parent dengan outline biru 2px dan offset 4px. Outline `:focus-visible` pada anchor langsung dinonaktifkan agar overflow hidden tidak memotong ring fokus internal.
 
 Tombol sekunder memakai border Ink 1px; tombol utama memakai border biru 1px. Search header memakai border transparan 1px. Tidak ada perubahan border search khusus saat fokus; fokus keyboard memakai outline biru 2px dengan offset 4px. Thumbnail memakai border 2px transparan yang menjadi biru saat aktif. Opsi lisensi memakai border Line 1px, berubah biru saat radio terpilih.
 
@@ -411,6 +434,8 @@ All fonts, Display, Serif, dan Script memakai tombol native dengan `aria-pressed
 
 Homepage memuat Bawden sebagai satu panel unggulan dan tujuh kartu koleksi. Bawden memakai fetchpriority high; tujuh cover koleksi memakai lazy loading. Cover memiliki atribut dimensi 1200x800. Kartu dan tindakan View font menuju detail produk lokal, bukan catatan preview.
 
+Setiap card memakai satu anchor native luar yang mencakup artwork, metadata, harga, dan tindakan visual. View font adalah span, bukan link kedua atau button bersarang. Klik panel informasi Bawden atau metadata Mango dan aktivasi Enter membuka detail masing-masing. Bawden memakai harga 22px/650 dekat nama serta CTA biru selebar panel di bawah; koleksi memakai nama 18px/700, harga 15px/650, kategori tenang 13px, dan tindakan outlined radius 4px yang sejajar otomatis di bawah. Label Demo tetap dipertahankan sesuai permintaan eksplisit user yang sudah memahami data contoh. Persetujuan ini berlaku pada perubahan card R05E, bukan persetujuan render keseluruhan.
+
 Logo berasal dari `logo.png`. Cover berasal dari `static/previews/`: `bawden-1.jpg`, `mango-1.jpg`, `baldock-1.jpg`, `daisy-hotline-1.jpg`, `crimson-queen-1.jpg`, `mordial-1.jpg`, `moyshire-1.jpg`, dan `radiant-summertime-1.jpg`. Gallery Mango menambah `mango-2.jpg`, `mango-3.jpg`, dan `mango-4.jpg`, semuanya file existing. `static/redesign/ASSETS.md` mencatat sumber. R05D/R06 tidak menambah raster hasil generasi atau foto baru. OFL Manrope tidak menjadi klaim hak distribusi artwork atau specimen Mango.
 
 ### Navigation
@@ -435,9 +460,11 @@ Bagian Font information mengikuti tester pada detail produk valid. Mango menyata
 
 ### Motion and evidence
 
-CSS hanya mengaktifkan feedback pada `prefers-reduced-motion: no-preference`. Tombol/filter memakai 140ms dan easing `cubic-bezier(.2, .8, .2, 1)`. Active bergeser 1px. Gambar kartu memakai 180ms dan hover scale 1.025. Tidak ada siklus sample homepage, animasi intro tertunda, atau library animasi tambahan.
+CSS hanya mengaktifkan feedback pada `prefers-reduced-motion: no-preference`. Tombol/filter memakai 140ms dan easing `cubic-bezier(.2, .8, .2, 1)`. Active bergeser 1px. Gambar kartu memakai 180ms dan hover scale 1.025; perangkat hover none menonaktifkan transform gambar. Tindakan koleksi mentransisikan border, background, dan warna selama 140ms. Tidak ada siklus sample homepage, animasi intro tertunda, atau library animasi tambahan.
 
 Agent utama menjalankan `scripts/check-redesign-preview.py` dan memperoleh PASS untuk R05D/R06, termasuk menu mobile pada slug tidak dikenal yang menuju Licenses homepage. Cakupan meliputi pencarian/filter/count, layout dan sticky search, delapan route produk, gallery Mango, pilihan lisensi demo, tester Mango nyata, unknown route, failure/retry font, reduced motion, fallback Manrope, dan error browser. Agent utama juga memperbarui screenshot. Tugas dokumentasi memeriksa konsistensi source dan dokumen, bukan menjalankan browser ulang. Cakupan skrip tidak membuktikan semua kombinasi produk, viewport, atau alur WooCommerce.
+
+Log R05E di `PROGRESS.md` mencatat PASS yang dijalankan agent utama, bukan user. Pemeriksaan meliputi klik panel Bawden, aktivasi Enter, klik metadata Mango, semua route, pencarian/filter, gallery, lisensi demo, tester, serta regresi yang dicakup skrip. Tugas dokumentasi ini mengatribusikan hasil tersebut tanpa menjalankan browser atau meminta persetujuan render.
 
 Pemeriksaan tugas dokumentasi dibatasi pada JSON, YAML, schema lokal, referensi token, metadata, narrative parity, serta konsistensi dengan kode. CLI resmi belum mendukung validasi schema ini; validasi lokal tidak boleh disebut validasi resmi. Harga, kategori, nama lisensi, dan pilihan unggulan tetap contoh. Freebies menunggu integrasi WordPress. Dokumen ini tidak menetapkan hasil review, persetujuan user, verdict ship, performa, atau kesiapan transaksi.
 
@@ -445,13 +472,13 @@ Pemeriksaan tugas dokumentasi dibatasi pada JSON, YAML, schema lokal, referensi 
 
 ### Do:
 - Do gunakan Manrope lokal untuk UI dan headline, dengan biru sebagai satu aksen UI.
-- Do pertahankan logo serta warna asli artwork produk dan sudut gambar 0.
+- Do pertahankan logo serta warna asli artwork produk dan radius gambar 0 di dalam bingkai card homepage 8px.
 - Do gunakan radius kontrol 4px dan pisahkan token component lab dari override editorial.
 - Do pertahankan search homepage di header sticky, di luar menu mobile, dengan label aksesibel.
 - Do pertahankan count di luar koleksi tersembunyi dan offset anchor untuk license-form.
 - Do gunakan tombol gallery, radio lisensi, textarea, range, fokus keyboard, dan reduced motion native.
 - Do tampilkan Mango Product hanya pada tester Mango yang berhasil dimuat dan jelaskan specimen lain tidak tersedia.
-- Do tandai harga serta lisensi sebagai contoh dan atribusikan hasil pemeriksaan sebelumnya.
+- Do pertahankan label Demo sesuai permintaan eksplisit user dan atribusikan PASS perilaku kepada agent utama.
 
 ### Don't:
 - Don't kembali ke UI yang ditolak atau memakai Mango untuk headline, kontrol, lisensi, dan footer.
