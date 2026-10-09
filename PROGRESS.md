@@ -101,6 +101,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05F | Sinkronkan DESIGN.md serta sidecar dengan copy dan navigasi terbaru. | Browser check PASS termasuk query rough yang menemukan Bawden dan seluruh regresi sebelumnya. Screenshot desktop/mobile dibaca. JSON valid dan git diff --check lulus. Tidak ada anchor #freebies atau CSS freebie-note pada source preview aktif. | Persetujuan acuan desain masih menunggu user. | Commit dan push hasil, lalu lanjut tinjauan R07. |
 | 2026-10-09 | Handoff | User meminta menghentikan sesi, memperbarui progress, push, dan mematikan server. | Commit 92a9b28 sudah memuat perubahan terakhir dan berhasil dipush. Tidak ada perubahan tracked yang belum disimpan sebelum handoff. | Server perlu dihentikan. R07 dan staging tetap belum selesai. | Matikan preview, simpan handoff, dan berhenti. |
 | 2026-10-09 | Handoff | Hentikan server preview Node PID 44152. | Get-NetTCPConnection memastikan tidak ada listener pada port 9402 setelah proses dihentikan. | Handoff belum dipush. | Commit dan push PROGRESS.md. |
+| 2026-10-09 | R05E | Hover tombol View font di collection card hanya menyala saat pointer berada di tombol, bukan saat hover seluruh card. | editorial.css: aturan hover card dipecah menjadi .card-action:hover; fallback hover:none untuk perangkat sentuh. Browser check scripts/check-redesign-preview.py PASS. | Persetujuan visual R07 tetap menunggu user. | Commit dan push perbaikan hover. |
 
 ### Handoff aktif
 

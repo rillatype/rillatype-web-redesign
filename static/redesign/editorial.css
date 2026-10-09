@@ -47,7 +47,7 @@
 .editorial .collection .product-info p { margin-top: 5px; }
 .editorial .collection .price { font-size: 15px; font-weight: 650; padding-top: 2px; }
 .editorial .collection .card-action { margin: auto 18px 18px; display: flex; align-items: center; justify-content: center; min-height: 44px; border: 1px solid var(--line); border-radius: 4px; padding: 10px 12px; font-size: 13px; font-weight: 650; color: var(--ink); text-decoration: none; }
-.editorial .collection .product > a:hover .card-action { border-color: var(--accent); color: var(--accent); background: var(--wash); }
+.editorial .collection .product > a:hover .card-action, .editorial .collection .card-action:hover { border-color: var(--accent); color: var(--accent); background: var(--wash); }
 .editorial .lead-card-link:hover .button { background: var(--accent-hover); border-color: var(--accent-hover); }
 .editorial .product:focus-within { outline: 2px solid var(--accent); outline-offset: 4px; }
 .editorial .product > a:focus-visible { outline: none; }
@@ -166,6 +166,7 @@
 }
 @media (hover: none) {
   .editorial .product a:hover img { transform: none; }
+  .editorial .collection .product > a:hover .card-action, .editorial .collection .card-action:hover { border-color: var(--line); color: var(--ink); background: none; }
 }
 @media (max-width: 1000px) {
   .editorial .header-inner { grid-template-columns: auto 1fr; gap: 12px 28px; padding-block: 14px; }
