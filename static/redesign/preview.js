@@ -94,19 +94,29 @@ async function registerFace(slug, weight) {
   if (!style) return null;
   const key = `${slug}-${weight}`;
   if (loadedFaces.has(key)) return style;
-  if (!inFlight.has(key)) {
+  let pending = inFlight.get(key);
+  if (!pending) {
     const dir = product.specimenDir || 'fonts/web/';
     const source = new URL(`${dir}${style.web}`, location.href).href;
-    inFlight.set(key, (async () => {
+    pending = (async () => {
       const face = new FontFace(product.specimenFamily, `url("${source}") format("woff2")`, { weight: String(style.weight) });
       await face.load();
       document.fonts.add(face);
       loadedFaces.add(key);
       return style;
-    })());
+    })();
+    inFlight.set(key, pending);
+    // Kegagalan tidak boleh di-cache: kalau tidak, cut yang pernah gagal tidak akan
+    // pernah bisa diambil ulang tanpa reload halaman. Hanya entry milik percobaan ini
+    // yang dilepas, jadi cleanup percobaan lama tidak menghapus promise milik
+    // percobaan baru, dan request yang benar-benar sedang berjalan tetap dideduplikasi.
+    const release = () => {
+      if (inFlight.get(key) === pending) inFlight.delete(key);
+    };
+    pending.then(release, release);
   }
   try {
-    return await inFlight.get(key);
+    return await pending;
   } catch (error) {
     return null;
   }
