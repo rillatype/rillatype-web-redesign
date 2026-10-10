@@ -39,9 +39,9 @@ Tambahan acceptance audit: style value `0` tetap memilih cut pertama yang valid.
 
 ## P06. Periksa family Sans + Script
 
-Dependensi: P05 dan berkas C03 user yang terverifikasi. File: font-catalog.js, product-preview.js, test fixture; markup/CSS hanya jika label tidak terbaca.
-Langkah: petakan pilihan seperti Sans Regular dan Script Regular dengan file masing-masing; pilih urutan default sesuai data; uji seluruh pilihan.
-Selesai: typeface yang berbeda benar-benar tampil, input tidak tertimpa, metadata tidak diwariskan dari style sebelumnya. Jika C03 belum ada, status TERBLOKIR dan tulis nama/file yang dibutuhkan; jangan menutup dengan font pengganti.
+Dependensi: P05 dan berkas C03 user yang terverifikasi. Input kini lima OTF Mondriel di `Font Test/Mondriel-Font-Duo/Fonts/`, termasuk Outline dan Outline Slant. Baca wajib [handoff aset](font-test-handoff.md). File: font-catalog.js, product-preview.js, test fixture, fonts/ untuk salinan lokal, ASSETS.md, laporan; perluasan scope lengkap pada handoff.
+Langkah: ikuti prosedur P06 pada handoff. Daftarkan lima style asli dengan stable ID dan face terpisah, default fixture Regular. Semua weight 400 dengan family internal sama; jangan memetakan pilihan hanya dari weight. Tidak memakai CSS skew/filter untuk Slant/Outline. Sesuaikan test mixed-family dari Dockhand ke Mondriel tanpa menghapus unavailable case Dockhand.
+Selesai: lima style meminta file sendiri dan bentuknya benar-benar berbeda; sample/grid/fakta memakai face aktif; Handwritten 187 codepoint dengan liga/dlig versus empat style 194 tanpa tag GSUB, dengan filtering kontrol dijelaskan. Input, retry, indeks 0, race fakta, keyboard dan desktop/mobile lulus. Berkas tersedia bukan bukti tester selesai. State terkini hanya PROGRESS.md.
 
 ## P07. Batasi kontrol weight pada produk yang relevan
 
@@ -52,10 +52,10 @@ Tambahan acceptance audit: memilih Thin harus memuat cut Thin, bukan memakai sta
 
 ## P08. Periksa glyph, OpenType, dan Dingbats
 
-Dependensi: P05/P07; bukti Dingbats nyata diperlukan untuk menutup C05. File: tester-core.js, product-preview.js, product.html; data yang relevan.
-Langkah: baca glyph/feature dari file aktif; refresh saat style berubah; tampilkan unavailable jika parser atau file tidak mendukung; untuk Dingbats gunakan karakter yang benar-benar tersedia.
-Selesai: glyph count dan switch sesuai file, glyph panel dapat dibuka/ditutup, fitur unsupported tidak bisa diaktifkan. Jangan menambah parser kompleks hanya untuk menyembunyikan unsupported state; catat batas parser dan kebutuhan nyata.
-Tambahan acceptance audit: ukur family/weight/style pada sel glyph dan face loaded, bukan hanya count. Respons parser style lama tidak boleh mengubah glyph atau switch pilihan terbaru. Prosedur A03/A05. Klaim parsial glyph/OpenType untuk Chronoa/Mango baru diperbarui setelah verifikasi; C05 tetap TERBLOKIR tanpa berkas.
+Dependensi: P05/P07; berkas C05 kini `Font Test/RT Brika-Dingbats.otf`. Baca wajib [handoff aset](font-test-handoff.md). File: tester-core.js hanya bila bug parser terbukti, product-preview.js, product.html, data fixture, fonts/ untuk salinan, test glyph/Dingbats, ASSETS.md, laporan; scope lengkap pada handoff.
+Langkah: ikuti prosedur P08 pada handoff. Pakai Brika Dingbats asli untuk C05, verifikasi cmap dan glyph berisi, pilih sample ikon berdasarkan render nyata. Brika Sans/Script atau isi paket penuh tidak boleh disimpulkan dari berkas ini.
+Selesai: raw 234 glyph/233 codepoint terbaca, jumlah sel yang difilter dijelaskan, glyph/sample merender Brika loaded tanpa font UI pengganti, kontrol OpenType unsupported disabled, panel buka/tutup dan cold-error/retry lulus pada 1440px/390px. Berkas tersedia bukan status SELESAI.
+Tambahan acceptance audit tetap berlaku: setiap fakta/grid/switch mengikuti file aktif dan respons parser lama tidak boleh menimpa pilihan terbaru. Chronoa/Mango tetap diuji regresi; blocker ketersediaan C05 lama sudah diganti kebutuhan integrasi Brika.
 
 ## P09. Buktikan state pemuatan tester
 

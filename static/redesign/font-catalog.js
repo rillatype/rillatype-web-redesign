@@ -70,9 +70,11 @@ const catalog = new Map([
     evidence: 'C04: sembilan cut OTF asli. Deskripsi toko menyebut Thin sampai Black.',
   }],
 
-  // ------------------------------------------- kasus C02, C03, C05: berkas belum ada
+  // --------------------------- kasus C02, C05, dan C03 versi Dockhand: berkas belum ada
   // Nama style berasal dari deskripsi toko. Berkas specimen belum tersedia, jadi
   // `specimen: false` dan setiap style membawa `file: null` serta `available: false`.
+  // C03 sendiri sudah terpenuhi oleh entri `mondriel` di bawah; Dockhand tetap
+  // dicatat sebagai produk duo yang berkasnya belum ada, bukan dihapus.
   ['tropivera', {
     name: 'Tropivera',
     kind: 'font',
@@ -91,6 +93,35 @@ const catalog = new Map([
     ],
     evidence: 'C02 dan C05: deskripsi toko menyebut Decorative, Regular, dan Dingbats Set. Berkas belum ada.',
     needs: 'Tiga berkas style Tropivera (decorative, regular, dingbats) dari staging atau user.',
+  }],
+  // ------------------------------------------------------------------ kasus C03
+  // Duo Sans + Handwritten dengan berkas asli dari user (10 Oktober 2026). Kelima
+  // berkas memakai weight 400 dan typographic family `RT Mondriel` yang sama, jadi
+  // descriptor FontFace tidak dapat membedakan face-nya. Identitas face karena itu
+  // dibawa per style sebagai `faceFamily`, diambil dari nama legacy berkas itu
+  // sendiri, dan loader-nya tetap generik (tidak menyebut nama produk).
+  // Sumber acuan tetap di `Font Test/`; yang disalin ke repo hanya lima specimen ini
+  // dengan hash identik (dicatat di ASSETS.md).
+  ['mondriel', {
+    name: 'Mondriel Font Duo',
+    kind: 'mixed',
+    storeStatus: 'live',
+    permalink: 'https://rillatype.com/product/mondriel-font-duo/',
+    style: 'Condensed sans with a handwritten cut',
+    price: 17,
+    images: [],
+    specimen: true,
+    styles: [
+      { id: 'mondriel-regular', label: 'Regular', file: 'Mondriel-Regular.otf', dir: 'fonts/', faceFamily: 'RT Mondriel', weight: 400, available: true },
+      { id: 'mondriel-slant', label: 'Slant', file: 'Mondriel-Slant.otf', dir: 'fonts/', faceFamily: 'RT Mondriel Slant', weight: 400, available: true },
+      { id: 'mondriel-outline', label: 'Outline', file: 'Mondriel-Outline.otf', dir: 'fonts/', faceFamily: 'RT Mondriel Outline', weight: 400, available: true },
+      { id: 'mondriel-outline-slant', label: 'Outline Slant', file: 'Mondriel-OutlineSlant.otf', dir: 'fonts/', faceFamily: 'RT Mondriel Outline Slant', weight: 400, available: true },
+      { id: 'mondriel-handwritten', label: 'Handwritten', file: 'Mondriel-Handwritten.otf', dir: 'fonts/', faceFamily: 'RT Mondriel handwritten', weight: 400, available: true }
+    ],
+    // Keputusan fixture untuk test, bukan klaim urutan admin atau metadata toko.
+    defaultStyle: 'Regular',
+    evidence: 'C03: lima OTF dari user, hash dicatat di ASSETS.md. Regular/Slant/Outline/Outline Slant masing-masing 195 glyph dan 194 codepoint cmap (termasuk 0x00 dan 0x0D) tanpa tabel GSUB; Handwritten 219 glyph/187 codepoint dengan tag liga dan dlig. Harga toko terlihat $17 pada 10 Oktober 2026 (product-type-variable); label Demo tetap dipakai di prototype.',
+    needs: 'Jumlah dan urutan opsi lisensi toko, SKU, serta gambar galeri belum diverifikasi. Hash specimen lokal harus diperiksa ulang bila berkas user berubah, dan hak distribusi web specimen menunggu W04/W19.',
   }],
   ['dockhand', {
     name: 'Dockhand',

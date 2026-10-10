@@ -1,6 +1,6 @@
 # Aset preview editorial
 
-Status: diperbarui P03, 10 Oktober 2026. Daftar ini memisahkan aset yang benar-benar ada di repo dari yang masih ditunggu. Sumber produk, URL, dan status demo: `docs/redesign/reference-inventory.md`.
+Status: inventaris P03/P12 dilengkapi 10 Oktober 2026 dengan aset user Mondriel dan Brika. Lokasi sumber tidak berarti sudah terintegrasi atau boleh dipublikasikan production. Sumber produk: `docs/redesign/reference-inventory.md`; prosedur P06/P08: `docs/redesign/font-test-handoff.md`.
 
 ## Font UI dan logo
 
@@ -35,25 +35,27 @@ Entri berikut sudah ada di `font-catalog.js` dengan nama style asli dari deskrip
 | C08 | Darkwell Family | Dua font, masing-masing Regular, Bold, Italic | https://rillatype.com/product/darkwell-family/ |
 | C10 | Redline Syndicate | Satu specimen | https://rillatype.com/product/redline-syndicate-display-font/ |
 
-C03 Sans + Script dinyatakan tersedia sebagai produk toko oleh P02. Yang belum ada adalah berkasnya, bukan produknya.
+C03 dapat memakai Mondriel yang sudah tersedia dari user, meskipun berkas Dockhand tetap belum ada. C05 dapat memakai Brika Dingbats meskipun Wildkins/Tropivera belum ada. Jangan lagi menyebut seluruh kasus C03/C05 kekurangan berkas.
 
-## Cara membuka blokir C03 (Dockhand)
+## Sumber user: C03 sudah terintegrasi, C05 menunggu
 
-Kartu P06 berstatus TERBLOKIR sampai dua berkas ini ada. Setelah keduanya tersedia, tidak ada perubahan kode yang diperlukan: entri data sudah memuat dua nama style, urutan default, dan direktori berkas.
+| Kasus | Sumber relatif root workspace | Bukti dan status integrasi |
+| --- | --- | --- |
+| C03 | `Font Test/Mondriel-Font-Duo/Fonts/RT Mondriel-{Regular,Slant,Outline,Outline Slant,Handwritten}.otf` | **Terintegrasi P06.** Lima berkas disalin byte-identik (SHA256 sama) ke `static/redesign/fonts/Mondriel-*.otf` dan dipakai fixture `mondriel` di katalog. Fakta terukur: Regular/Slant/Outline/Outline Slant 195 glyph dan 194 codepoint cmap (termasuk 0x00 dan 0x0D) tanpa tabel GSUB; Handwritten 219/187 dengan tag `liga` dan `dlig`. Kelima berkas memakai typographic family `RT Mondriel` dan weight 400, jadi identitas face dibawa per style (`faceFamily`). |
+| C05 | `Font Test/RT Brika-Dingbats.otf` | Source asli terbaca, 234 glyph/233 raw codepoint, tanpa feature tag GSUB. **Belum diintegrasikan**; jumlah ikon terlihat dan render glyph belum diverifikasi. Pekerjaan P08. |
 
-| Yang dibutuhkan | Nilai |
-| --- | --- |
-| Berkas 1 | `static/redesign/fonts/Dockhand-Script.otf` |
-| Berkas 2 | `static/redesign/fonts/Dockhand-Sans.otf` |
-| Nama style pada data | `Script Regular` dan `Sans Regular` |
-| Urutan default | `Script Regular`, diambil dari deskripsi toko yang menyebut script lebih dulu |
-| Label keluaran | `Script Regular` dan `Sans Regular`, bukan angka weight |
-| Format | OTF atau TTF. Ganti nama berkas pada entri `font-catalog.js` bila namanya berbeda. |
-| Izin | Hak distribusi berkas specimen web perlu dikonfirmasi sebelum production (W04/W19) |
+Tabel salinan dan hash C03:
 
-Setelah berkas ada, jalankan `python scripts/check-tester-mixed-family.py`. Skrip itu berhenti melaporkan BLOCKED dan mulai memverifikasi bahwa kedua pilihan memuat berkas masing-masing, bahwa keduanya merender berbeda, dan bahwa metadata tidak diwariskan dari pilihan sebelumnya.
+| Style | Berkas specimen lokal | Baca dari source | SHA256 (12 pertama) |
+| --- | --- | --- | --- |
+| Regular | `static/redesign/fonts/Mondriel-Regular.otf` | `RT Mondriel-Regular.otf` | `f6f8af320bda` |
+| Slant | `static/redesign/fonts/Mondriel-Slant.otf` | `RT Mondriel-Slant.otf` | `b8673a22fe3b` |
+| Outline | `static/redesign/fonts/Mondriel-Outline.otf` | `RT Mondriel-Outline.otf` | `3c0c75bebc75` |
+| Outline Slant | `static/redesign/fonts/Mondriel-OutlineSlant.otf` | `RT Mondriel-Outline Slant.otf` | `da969c373b8c` |
+| Handwritten | `static/redesign/fonts/Mondriel-Handwritten.otf` | `RT Mondriel-Handwritten.otf` | `3b389eed13d2` |
 
-Alternatif bila berkas Dockhand tidak tersedia: Highway Patrol, Goodneigbor, Mondriel, atau Brika juga duo Sans + Script. Yang diperlukan tetap dua berkas dengan nama style yang jelas.
+Pemeriksaan yang mengulang bukti ini: `python scripts/check-tester-mixed-family.py` (bagian A membandingkan hash salinan dengan source bila folder `Font Test/` ada). Langkah lengkap, identitas face per style, raw metadata, filtering codepoint, test FAIL/PASS, dan scope pelaksana berada di `docs/redesign/font-test-handoff.md`. Instruksi lama memasukkan dua Dockhand tanpa perubahan loader tidak berlaku bagi lima Mondriel berdescriptor sama; Dockhand tetap dicatat sebagai produk duo yang berkasnya belum ada.
+Hak/strategi web specimen production tetap W04/W19. Outline/Slant memakai berkas nyata, bukan efek CSS. Metadata GSUB adalah hasil parsing, bukan bukti fitur terlihat sudah diuji.
 
 ## Gambar preview
 

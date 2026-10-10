@@ -33,14 +33,36 @@ def facts(directory: str) -> dict:
 
 
 async def main() -> int:
-    chronoa = facts("static/redesign/fonts")
-    mango = facts("static/previews")
-    mango_file = mango["mango-letter.otf"]
-
+    # Direktori specimen kini berisi Chronoa *dan* lima Mondriel dari user (P06), jadi
+    # assertion-nya dibatasi ke berkas yang memang Chronoa. Sebelum P06 direktori itu
+    # hanya berisi Chronoa, dan "semua berkas" kebetulan sama dengan "semua cut Chronoa".
+    fonts_dir = facts("static/redesign/fonts")
+    chronoa = {name: value for name, value in fonts_dir.items() if name.startswith("Chronoa-")}
+    others = {name: value for name, value in fonts_dir.items() if not name.startswith("Chronoa-")}
+    check(len(chronoa) == 9,
+          f"the specimen directory still holds the nine Chronoa cuts ({len(chronoa)})")
     check(all(f["codepoints"] == 218 for f in chronoa.values()),
           f"every Chronoa cut maps 218 codepoints ({sorted({f['codepoints'] for f in chronoa.values()})})")
     check(all(not f["hasLiga"] and not f["hasSalt"] for f in chronoa.values()),
           "no Chronoa cut carries liga, clig, or salt")
+    # Fakta Mondriel dibaca dengan alat yang sama, supaya pembaca ground truth ini
+    # tidak berbeda dari parser browser (batas 0x2FFF pernah membuang U+E92C, U+E93D,
+    # dan U+FB00 milik Handwritten).
+    check({name: value["codepoints"] for name, value in others.items()} == {
+        "Mondriel-Regular.otf": 194, "Mondriel-Slant.otf": 194,
+        "Mondriel-Outline.otf": 194, "Mondriel-OutlineSlant.otf": 194,
+        "Mondriel-Handwritten.otf": 187},
+        f"the Mondriel specimens read their own counts "
+        f"({ {n: v['codepoints'] for n, v in others.items()} })")
+    check({name: value["features"] for name, value in others.items()} == {
+        "Mondriel-Regular.otf": [], "Mondriel-Slant.otf": [],
+        "Mondriel-Outline.otf": [], "Mondriel-OutlineSlant.otf": [],
+        "Mondriel-Handwritten.otf": ["dlig", "liga"]},
+        f"only Mondriel Handwritten carries GSUB features "
+        f"({ {n: v['features'] for n, v in others.items()} })")
+    mango = facts("static/previews")
+    mango_file = mango["mango-letter.otf"]
+
     check(mango_file["hasLiga"] is False and mango_file["hasSalt"] is False,
           f"Mango carries neither liga nor salt ({mango_file['features']})")
     check(mango_file["features"] == ["dlig"],

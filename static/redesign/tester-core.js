@@ -86,7 +86,16 @@ async function readGlyphCodepoints(url) {
         const start = view.getUint16(startBase + s * 2);
         const end = view.getUint16(endBase + s * 2);
         if (start === 0xffff) continue;
-        for (let c = start; c <= end && c <= 0x2fff; c += 1) codepoints.push(c);
+        // Seluruh rentang BMP dibaca. Batas 0x2FFF yang dulu dipakai di sini
+        // membuang codepoint yang sah di private use area dan ligature
+        // presentation forms: Mondriel Handwritten memetakan U+E92C, U+E93D, dan
+        // U+FB00, sehingga panel melaporkan 184 padahal berkasnya memetakan 187.
+        // Surrogate dilewati karena bukan codepoint; format 4 hanya memuat BMP,
+        // jadi tidak ada batas atas lain yang diperlukan.
+        for (let c = start; c <= end; c += 1) {
+          if (c >= 0xd800 && c <= 0xdfff) continue;
+          codepoints.push(c);
+        }
       }
       if (codepoints.length) return codepoints;
     }

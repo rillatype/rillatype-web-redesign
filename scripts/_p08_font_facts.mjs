@@ -54,7 +54,14 @@ function cmapCodepoints(buf, map) {
       const start = buf.readUInt16BE(startBase + s * 2);
       const end = buf.readUInt16BE(endBase + s * 2);
       if (start === 0xffff) continue;
-      for (let c = start; c <= end && c <= 0x2fff; c += 1) codes.add(c);
+      // Seluruh BMP dibaca: batas 0x2FFF yang dulu ada membuang codepoint sah di
+      // private use area dan ligature presentation forms (Mondriel Handwritten
+      // memetakan U+E92C, U+E93D, dan U+FB00, jadi pembaca ini melaporkan 184
+      // padahal berkasnya memetakan 187). Surrogate bukan codepoint, jadi dilewati.
+      for (let c = start; c <= end; c += 1) {
+        if (c >= 0xd800 && c <= 0xdfff) continue;
+        codes.add(c);
+      }
     }
   } else if (fmt === 12) {
     const groups = buf.readUInt32BE(best + 12);
@@ -62,7 +69,9 @@ function cmapCodepoints(buf, map) {
       const rec = best + 16 + g * 12;
       const start = buf.readUInt32BE(rec);
       const end = buf.readUInt32BE(rec + 4);
-      for (let c = start; c <= end && c <= 0x2fff; c += 1) codes.add(c);
+      // Format 12 covers the whole Unicode range, so the cap has to be the real
+      // upper bound; 0x10FFFF excludes nothing legitimate.
+      for (let c = start; c <= end && c <= 0x10ffff; c += 1) codes.add(c);
     }
   }
   return [...codes].sort((a, b) => a - b);

@@ -109,6 +109,15 @@ function setupTester(product) {
   const otFeatures = new Map();
   const glyphs = new Map();
   const familyName = `Rilla-${product.name.replace(/\s+/g, '')}`;
+
+  // Kelima berkas Mondriel memakai typographic family, weight, dan style descriptor
+  // yang sama, jadi descriptor FontFace saja tidak dapat membedakan face-nya.
+  // Identitas face dibawa data per style sebagai `faceFamily`; produk yang tidak
+  // membutuhkannya tetap memakai satu family produk, dan loader ini tidak menyebut
+  // nama produk mana pun.
+  function faceFamilyOf(style) {
+    return (style && style.faceFamily) || familyName;
+  }
   let activeIndex = null;
   // Setiap pemilihan style menaikkan nomor ini. Pemanggilan lama yang selesai
   // belakangan melihat nomornya sudah usang dan berhenti tanpa menulis apa pun.
@@ -143,7 +152,7 @@ function setupTester(product) {
       return;
     }
     glyphGrid.textContent = '';
-    glyphGrid.style.fontFamily = `"${familyName}", sans-serif`;
+    glyphGrid.style.fontFamily = `"${faceFamilyOf(style)}", sans-serif`;
     glyphGrid.style.fontWeight = String(style.weight);
     glyphGrid.dataset.cut = style.label || '';
     const fragment = document.createDocumentFragment();
@@ -162,7 +171,7 @@ function setupTester(product) {
     const style = styles[index];
     if (!style || !style.file) return null;
     if (loadedFaces.has(index)) return loadedFaces.get(index);
-    const face = new FontFace(familyName, `url("${styleUrl(style)}") format("opentype")`, { weight: String(style.weight) });
+    const face = new FontFace(faceFamilyOf(style), `url("${styleUrl(style)}") format("opentype")`, { weight: String(style.weight) });
     await face.load();
     document.fonts.add(face);
     loadedFaces.set(index, face);
@@ -205,7 +214,7 @@ function setupTester(product) {
       // memang dibaca ulang dari selector, tetapi status dan fakta tidak, jadi
       // pemanggilan yang sudah usang berhenti di sini.
       if (request !== styleRequest) return;
-      output.style.fontFamily = `"${familyName}", sans-serif`;
+    output.style.fontFamily = `"${faceFamilyOf(style)}", sans-serif`;
       testerFrame.hidden = false;
       applySample();
       applyFeatures();

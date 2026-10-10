@@ -13,6 +13,7 @@ Rencana memuat 73 task utama dan tujuh koreksi tambahan A01–A07, total 80 kart
 - Tugas S01–S26: tasks-store-release.md dan spesifikasi yang dirujuk task.
 - Ketentuan Graphics: graphics-license-draft.md. Draf ini belum boleh ditampilkan sebagai lisensi resmi.
 - Laporan rinci: ../reports/<ID-TUGAS>.md. Format: ../reports/TEMPLATE.md.
+- Untuk P06/P08 dan verifikasi C03/C05: baca font-test-handoff.md. Aset Mondriel/Brika sudah tersedia dari user, tetapi integrasi serta bukti runtime belum selesai.
 
 Path tanpa root di buku task bersifat relatif terhadap root repo, kecuali dinyatakan sebagai THEME.
 THEME selalu berarti rillatype-v2-extracted/rillatype-v2-1/. Jangan mengedit tema root, wp-content, atau backup.
@@ -53,8 +54,8 @@ Rencana ini tidak menambah wishlist, membership, loyalty, perubahan platform, pa
 
 | Belum tersedia | Pengaruh | Task yang berhenti sampai tersedia |
 | --- | --- | --- |
-| Sampel file Dingbats C05 | Bukti glyph/font asli | P08 dan P19 sampai berkas tersedia |
-| Sampel file Sans + Script dan named styles non-weight | Bukti perilaku berkas asli | P06 dan P19 untuk kasus wajib yang belum tersedia; fixture P03 bukan penutupan bukti berkas asli |
+| Integrasi serta verifikasi berkas Dingbats C05 | Source Brika sudah tersedia di `Font Test/RT Brika-Dingbats.otf`; rendering/sample belum diuji | P08 lalu P19 mengikuti font-test-handoff.md; bukan lagi blocker file hilang |
+| Integrasi Sans + Script dan named styles non-weight | Lima Mondriel tersedia, termasuk Outline dan Outline Slant; face berweight sama perlu dibedakan | P06 lalu P19 mengikuti font-test-handoff.md; named styles lain tetap sesuai bukti masing-masing |
 | Staging, akses, runtime, plugin, payment sandbox | Pemeriksaan toko nyata | W01, lalu task transaksi |
 | Inventory lengkap, attachment, variasi, taxonomy | Data produksi yang benar | W03 dan dependent task |
 | Harga Graphics Extended per produk | Pilihan pembelian Graphics | W22/S23 untuk Graphics |

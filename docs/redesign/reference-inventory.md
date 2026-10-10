@@ -125,7 +125,7 @@ Nama style di bawah berasal dari tab Description atau metadata produk. Daftar in
 | Dockhand | "script & sans font duo" | Kandidat C03 |
 | Highway Patrol | "bold, commanding all-caps sans serif and a dynamic script" | Kandidat C03 alternatif |
 | Goodneigbor | "script font paired with a classic sans serif, along with an elegant sans serif outline version" | Kandidat C03 ketiga |
-| Mondriel | "condensed sans-serif with ... a handwritten font" | Kandidat C03 keempat |
+| Mondriel | "condensed sans-serif with ... a handwritten font" | **Dipakai untuk C03 sejak P06**; lima berkas user terverifikasi (Regular, Slant, Outline, Outline Slant, Handwritten) |
 | Brika | "bold, chunky sans with a handwritten script"; bonus 20 ilustrasi kopi dalam AI, EPS, SVG | Kandidat C03/C07 |
 | Nocturne Black | "Regular, Slanted, Inked, and Inked Slant" | Kandidat C02 dengan slanted nyata, bukan CSS skew |
 | Chronoa Font Family | Thin, Extra Light, Light, Regular, Medium, Semibold, Bold, Extra Bold, Black | Sembilan style disebut deskripsi produk |
@@ -168,7 +168,7 @@ Kesimpulan: sumber gambar font memang 1200x800 dengan rasio 3:2, termasuk paket 
 | --- | --- | --- | --- | --- |
 | C01 | Satu style | Mango Letters; alternatif Sunday Willow | https://rillatype.com/product/mango-letters-handwritten-font/ | Produk, harga, 6 lisensi, 12 gambar terverifikasi. Isi berkas menunggu staging |
 | C02 | Named styles | Tropivera (Decorative, Regular, Dingbats); alternatif Nocturne Black (Regular, Slanted, Inked, Inked Slant) | https://rillatype.com/product/tropivera/ | Nama style terverifikasi dari deskripsi. Berkas per style menunggu staging |
-| C03 | Campuran Sans + Script | Dockhand Font Duo; alternatif Highway Patrol, Goodneigbor, Mondriel, Brika | https://rillatype.com/product/dockhand-font-duo/ | **TERSEDIA**, berbeda dari catatan rencana. Deskripsi menyebut duo script dan sans |
+| C03 | Campuran Sans + Script | **Mondriel Font Duo** (lima berkas dari user: Regular, Slant, Outline, Outline Slant, Handwritten); alternatif Dockhand, Highway Patrol, Goodneigbor, Brika | https://rillatype.com/product/mondriel-font-duo/ | Halaman toko dibaca 10 Oktober 2026 (HTTP 200, post 1972, `product-type-variable`, harga terlihat `$17`, kategori memuat sans-serif + handwritten/script). Lima source OTF dari user terukur: empat style 195 glyph/194 codepoint cmap tanpa GSUB, Handwritten 219/187 dengan `liga`/`dlig`. Sudah diintegrasikan P06 (lihat `ASSETS.md` dan `docs/redesign/font-test-handoff.md`) |
 | C04 | Family beberapa weight | Chronoa Font Family, sembilan style | https://rillatype.com/product/chronoa-font-family/ | Nama sembilan style terverifikasi dari deskripsi; halaman produk belum dibaca detail |
 | C05 | Dingbats | Wildkins Hiker's Bundle (Wildkins Dingbats, 5 style, 30+ ikon) | https://rillatype.com/product/wildkins-hikers-bundle-hand-inked-font-extras/ | Nama style dan ikon terverifikasi. Glyph nyata menunggu berkas staging |
 | C06 | Graphic murni | Distressed Overlays Vol.01 | https://rillatype.com/product/distressed-overlays-vol-01-grunge-texture-pack/ | Produk, SKU, harga gratis, tanpa variasi, PNG dalam ZIP dari deskripsi |
