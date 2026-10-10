@@ -18,6 +18,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R02 | Lingkungan dan baseline | TERBLOKIR | Node tersedia. PHP tidak ada pada PATH. Akses staging dan baseline belum tersedia. |
 | R03 | Produk dan alur pengunjung | SELESAI | PRODUCT.md berisi audiens, alur, batasan, bukti, serta keputusan terbuka. |
 | R03A | Rencana rinci, aturan agent, dan draf lisensi Graphics | MENUNGGU USER | Draft 73 task, AGENTS.md, rules.md, template laporan, draf lisensi, dan prompt pertama selesai ditulis/divalidasi. User meninjau rencana sebelum memerintahkan mulai P01. Implementasi ditahan. Laporan: docs/reports/R03A.md. |
+| R03B | Skill reusable planning-detail | SELESAI | Skill personal terpasang di C:/Users/Blueee/.codex/skills/planning-detail. Enam file, validator struktur, self-test graph, CLI, metadata, referensi, dan hash copy lulus. Belum diuji end-to-end pada proyek lain. Laporan: docs/reports/R03B.md. |
 | R04 | Sistem visual | SELESAI | DESIGN.md mencatat fondasi CSS dan komponen. Browser desktop serta mobile diperiksa. |
 | R05 | Preview homepage | SELESAI | Browser check lulus. Review preview berstatus ship. Persetujuan user tetap pada R07. |
 | R05A | Revisi karakter homepage | SELESAI | Preview unggulan besar, tipografi tegas, serta koleksi pilihan dua kolom. Browser check dan review perbaikan lulus. Tinjauan user masih diperlukan. |
@@ -53,6 +54,8 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 ### Log perubahan redesign
 | Tanggal | ID | Perubahan dan file | Pemeriksaan dan hasil | Tersisa atau blocker | Langkah berikutnya |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-10 | R03B | Pasang skill personal planning-detail beserta template dan validator. | Installed quick_validate PASS; self-test PASS; CLI menerima rencana valid dan menolak dependensi hilang; keenam hash paket sama, resource links dan UI metadata valid. Laporan 2026-10-10 08:16 WIB. | Belum menjalankan workflow penuh pada proyek lain. Source website tetap ditahan. | User dapat memanggil $planning-detail atau meminta planning detail untuk proyek berikutnya. |
+| 2026-10-10 | R03B | Buat staging skill planning-detail dengan template serta validator. | quick_validate.py PASS; self-test validator PASS (satu rencana valid dan tujuh invalid). Patch paket awal FAIL tanpa perubahan, lalu diperbaiki via Update scaffold. | Skill belum dipasang global atau diuji pada proyek lain. | Install folder personal dan verifikasi file terpasang. |
 | 2026-10-10 | R03A | Selesaikan draft perencanaan dan aturan handoff; jangan mulai implementasi. | Validator PASS untuk 73 ID, seluruh kartu/scope/langkah/acceptance, dependensi valid tanpa cycle, pointer wajib, serta planning gate. git diff --check PASS. Laporan 2026-10-10 08:05 WIB. | Review rencana user, harga Extended, field legal, sample file, dan staging masih diperlukan pada task terkait. | Simpan draft terverifikasi, lalu user meninjau dokumen dan menggunakan prompt P01 saat siap mulai. |
 | 2026-10-10 | R03A | Jalankan validator dokumen dan diff check. | Validator awal FAIL karena regex title greedy; setelah regex diperbaiki, FAIL karena label scope W04 tidak konsisten. Temukan range P01 masih W01–W26. git diff --check PASS. | Koreksi scope/range dan validasi graph belum selesai. | Perbaiki dua bagian dokumen, lalu ulang validator. |
 | 2026-10-10 | R03A | Lengkapi S01–S26, tambah W27 khusus data Graphics, dan sesuaikan jumlah 73 task serta prompt. | Belum menguji runtime; ini dokumen perencanaan. Satu patch jumlah gagal tanpa perubahan, patch koreksi berhasil. Laporan diperbarui 2026-10-10 08:02 WIB. | Validasi akhir dan review user belum selesai; harga, legal fields, dan staging tetap blocker implementasi. | Periksa 73 ID, dependency graph, pointer, dan scope dokumen. |
@@ -127,6 +130,8 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-10 | R05G | Commit `243d52b` menyimpan homepage specimen hall, subset WOFF2, dua skrip baru, DESIGN.md, PROGRESS.md, dan screenshot. | Push ke `origin/master` berhasil dengan credential helper `gh` per-command: `542a790..243d52b`. Tidak mengubah git config. | Belum ada persetujuan visual user dan integrasi WordPress belum dimulai. | Tunggu tinjauan R07. |
 
 ### Handoff aktif
+
+- Penyimpanan R03A: commit 5a17286 (15 file Markdown) berhasil dipush ke origin/master, output efa84e4..5a17286 master -> master. Source website tidak berubah. Bukti push ditulis lokal setelah push dan ikut unit berikutnya.
 
 - Mode aktif: PERENCANAAN. R03A MENUNGGU USER. Draft utama docs/redesign/execution-plan.md; taskbooks preview/WordPress/toko-rilis; aturan AGENTS.md/rules.md; laporan docs/reports/R03A.md; prompt siap salin docs/redesign/first-agent-prompt.md.
 - User menyepakati banyak agent bekerja bergantian, satu task implementasi aktif. Setiap pelaksana memperbarui laporan per task dan PROGRESS.md setelah setiap unit serta sebelum handoff.
