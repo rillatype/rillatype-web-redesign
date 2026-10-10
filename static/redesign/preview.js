@@ -28,6 +28,9 @@ if (menuButton && navigation) {
 
 // ---------------------------------------------------------------- specimen
 // Real cuts, with the glyph and codepoint counts read from the shipped files.
+// Daftar weight adalah cut Chronoa yang benar-benar punya subset web; setiap cut
+// pada data produk harus punya berkas di `fonts/web/`, kalau tidak picker akan
+// menawarkan pilihan yang gagal dimuat.
 const SPECIMENS = {
   chronoa: {
     label: 'Chronoa',
@@ -35,11 +38,13 @@ const SPECIMENS = {
     dir: 'fonts/web/',
     defaultWeight: 600,
     weights: {
+      100: { file: 'chronoa-thin.woff2', name: 'Thin' },
       200: { file: 'chronoa-extralight.woff2', name: 'ExtraLight' },
       300: { file: 'chronoa-light.woff2', name: 'Light' },
       400: { file: 'chronoa-regular.woff2', name: 'Regular' },
       500: { file: 'chronoa-medium.woff2', name: 'Medium' },
       600: { file: 'chronoa-semibold.woff2', name: 'SemiBold' },
+      700: { file: 'chronoa-bold.woff2', name: 'Bold' },
       800: { file: 'chronoa-extrabold.woff2', name: 'ExtraBold' },
       900: { file: 'chronoa-black.woff2', name: 'Black' }
     },
