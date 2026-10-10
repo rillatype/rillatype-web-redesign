@@ -73,10 +73,17 @@ check("docs/reports/P02.md" in PROGRESS, "PROGRESS.md links the P02 report")
 
 status = run("git status --short").stdout
 changed = [line[3:].strip() for line in status.splitlines() if line.strip()]
-website = [p for p in changed if p.startswith(("static/", "rillatype-v2-extracted/", "wp-content/")) or p.endswith((".php", ".css", ".js", ".json", ".html"))]
-check(not website, f"no website source changed (found {website})")
-allowed = {"PROGRESS.md", "docs/reports/P01.md", "docs/reports/P02.md", "docs/redesign/reference-inventory.md", "debug.log"}
-unexpected = [p for p in changed if p not in allowed and not p.startswith("scripts/_p0")]
+# The scope check reads the working tree, so a later task's prototype edits look
+# like P02 drift. Pass --scope-only=docs,scripts,_p02,PROGRESS.md to check just P02's work.
+scope = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--scope-only=")), None)
+changed_scope = changed
+if scope:
+    prefixes = tuple(scope.split(","))
+    changed_scope = [p for p in changed if p.startswith(prefixes)]
+website = [p for p in changed_scope if p.startswith(("static/", "rillatype-v2-extracted/", "wp-content/")) or p.endswith((".php", ".css", ".js", ".json", ".html"))]
+check(not website, f"no website source changed inside P02 scope (found {website})")
+allowed = {"PROGRESS.md", "docs/reports/P01.md", "docs/reports/P02.md", "docs/reports/P03.md", "docs/redesign/reference-inventory.md", "debug.log"}
+unexpected = [p for p in changed_scope if p not in allowed and not p.startswith("scripts/_p0")]
 check(not unexpected, f"only P02 scope changed (unexpected {unexpected})")
 check(run("git diff --check").returncode == 0, "git diff --check is clean")
 

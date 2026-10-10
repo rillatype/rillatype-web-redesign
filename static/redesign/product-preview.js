@@ -85,7 +85,9 @@ function setupTester(product) {
     try {
       const faces = await Promise.all(styles.map(async (style, index) => {
         if (!style.file) return null;
-        const source = new URL(`${window.RillaTester.FONT_DIR}${style.file}`, location.href).href;
+        // Direktori berkas berasal dari data style, bukan ditebak dari satu lokasi bersama.
+        const dir = style.dir || window.RillaTester.FONT_DIR;
+        const source = new URL(`${dir}${style.file}`, location.href).href;
         const face = new FontFace(familyName, `url("${source}") format("opentype")`, { weight: String(style.weight) });
         await face.load();
         document.fonts.add(face);
@@ -96,12 +98,13 @@ function setupTester(product) {
       testerFrame.hidden = false;
       fontStatus.textContent = `Showing the actual ${product.name} font, ${styles.length} style${styles.length > 1 ? 's' : ''} available.`;
 
-      // Deteksi OpenType dari berkas style pertama yang punya file.
+      // Deteksi OpenType dan daftar glyph membaca berkas yang sama dengan yang dimuat
+      // tester, memakai direktori dari data style.
       const probe = styles.find(s => s.file);
+      const probeUrl = probe ? new URL(`${probe.dir || window.RillaTester.FONT_DIR}${probe.file}`, location.href).href : null;
       let features = null;
-      if (probe) {
-        const url = new URL(`${window.RillaTester.FONT_DIR}${probe.file}`, location.href).href;
-        features = await window.RillaTester.readOtFeatures(url);
+      if (probeUrl) {
+        features = await window.RillaTester.readOtFeatures(probeUrl);
       }
       const hasLiga = Boolean(features && (features.has('liga') || features.has('clig')));
       const hasSalt = Boolean(features && features.has('salt'));
@@ -109,9 +112,8 @@ function setupTester(product) {
       configureFeature(saltInput, saltSwitch, hasSalt, 'Stylistic alternates');
 
       // Panel glyph.
-      if (probe) {
-        const url = new URL(`${window.RillaTester.FONT_DIR}${probe.file}`, location.href).href;
-        const codepoints = await window.RillaTester.readGlyphCodepoints(url);
+      if (probeUrl) {
+        const codepoints = await window.RillaTester.readGlyphCodepoints(probeUrl);
         if (codepoints.length) {
           const fragment = document.createDocumentFragment();
           codepoints.forEach(cp => {
@@ -192,7 +194,8 @@ if (!product) {
   const image = document.querySelector('#detail-image');
   const thumbnails = document.querySelector('#preview-thumbnails');
   function showImage(index) {
-    image.src = `../previews/${product.images[index]}`;
+    // Data already carries the full path; this function never builds one from a default.
+    image.src = product.images[index];
     image.alt = `${product.name} preview ${index + 1}`;
     image.hidden = false;
     [...thumbnails.children].forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
@@ -204,7 +207,7 @@ if (!product) {
       button.className = 'thumbnail';
       button.setAttribute('aria-label', `Preview ${index + 1}`);
       const thumbnail = document.createElement('img');
-      thumbnail.src = `../previews/${file}`;
+      thumbnail.src = file;
       thumbnail.alt = '';
       thumbnail.width = 1200;
       thumbnail.height = 800;
@@ -213,7 +216,17 @@ if (!product) {
       thumbnails.appendChild(button);
     });
   }
-  showImage(0);
+  // Produk yang gambarnya belum dipetakan tidak boleh meminta berkas kosong;
+  // biarkan elemen tersembunyi dan sebutkan keadaannya di bawah.
+  if (product.images.length) {
+    showImage(0);
+    document.querySelector('#gallery-status').hidden = true;
+  } else {
+    image.hidden = true;
+    const galleryStatus = document.querySelector('#gallery-status');
+    galleryStatus.hidden = false;
+    galleryStatus.textContent = `Product images for ${product.name} are not mapped in this preview yet.`;
+  }
 
   const form = document.querySelector('#license-form');
   const selectionButton = document.querySelector('#preview-selection');
