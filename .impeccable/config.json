@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "static/redesign/index.html"
+        ],
+        "createdAt": "2026-10-10T00:27:18.175Z",
+        "reason": "Agent verified Chromium 390px and 1440px: specimen text inset >=20px, strips bottom >=26px and actual right borders have 24px padding, index text top >=26px; section-heading/gallery have no border. Static scan misreads scoped .home overrides and child insets."
+      }
+    ]
+  }
+}

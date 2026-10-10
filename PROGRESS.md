@@ -28,7 +28,7 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
 | R06A | Tester produk profesional | SELESAI | Tester dibangun ulang dengan bidang specimen, tiga slider, segmented align serta tema, sakelar OpenType yang dideteksi dari berkas font, dan panel glyph. Chronoa 9 style masuk katalog. Browser check PASS. Persetujuan visual menunggu R07. |
 | R05G | Homepage arah specimen hall | SELESAI | Tiga comp arah diperiksa pada 1440px dan 390px; user memilih specimen hall. Homepage diganti: hero artwork asli + pelat informasi, specimen hidup dengan Berkas WOFF2 asli, indeks koleksi satu baris per typeface, rak Beyond type, galeri in use. scripts/check-specimen-home.py 30/30 PASS. Persetujuan visual menunggu R07. |
-| R05H | Redesign editorial berani | SELESAI | Homepage baru, 49/49 pemeriksaan halaman, 6/6 regresi tester, serta dokumen desain selesai. Review perbaikan ship untuk empat temuan resolved. Persetujuan hasil visual tetap R07. |
+| R05H | Redesign editorial berani | SELESAI | Homepage, 49/49 pemeriksaan halaman, 6/6 regresi, serta dokumen selesai. Review empat perbaikan ship. Hook padding false positive dibuktikan lewat computed layout dan dibatasi ke rule/file homepage. Persetujuan visual tetap R07. |
 | R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05H dan detail produk R06/R06A dapat ditinjau. Persetujuan arah editorial tidak dianggap persetujuan hasil visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
 | R09 | Homepage dinamis | BELUM | Hubungkan data produk asli. |
@@ -121,12 +121,16 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 
 ### Handoff aktif
 
+- Triage hook pasca-handoff R05H: lima temuan cramped-padding dari stop hook; scan manual juga menambahkan index/gallery. Chromium 390px/1440px membuktikan specimen inset minimal 20px, strips inset bawah 26–28px, index inset atas 26–27px, serta section-heading/gallery tanpa border. Detector statis salah menggabungkan CSS bersama dengan override .home dan mengabaikan inset anak. Tidak ada perubahan UI; command skill mencatat satu ignore-value cramped-padding=* khusus static/redesign/index.html dalam .impeccable/config.json. Scan ulang menghasilkan [], exit 0. Aturan lain tetap aktif dan tidak ada temuan yang dibiarkan terbuka.
+
+- Bukti penyimpanan R05H: commit `9da4e0b` berhasil dipush ke `origin/master`, output `a6af030..9da4e0b master -> master`. Catatan bukti push ini ditulis setelah push dan akan ikut unit berikutnya, tanpa membuat commit tambahan hanya untuk hash.
+
 - Hasil terbaru: homepage R05H mengganti R05G dengan editorial berani yang dipilih user. Masthead Manrope besar, bidang specimen biru memakai Chronoa/Mango asli, artwork tanpa overlay, indeks sembilan font, galeri asimetris, dan footer besar. Review perbaikan berstatus ship, empat temuan resolved.
 - Menunggu tinjauan hasil visual pada R07. Persetujuan arah editorial tidak dianggap persetujuan homepage/produk. Jangan lanjut ke integrasi WordPress sebelum acuan disetujui dan staging tersedia.
 - Homepage preview: http://localhost:9402/static/redesign/index.html (jalankan `node server.js` dari root repo).
 - Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu indeks memiliki route detail.
 - Pemeriksaan terbaru: `python scripts/check-specimen-home.py` 49/49 PASS pada 1440x900 dan 390x844; `python scripts/check-specimen-states.py` 6/6 PASS setelah reproduksi 6/6 FAIL sebelum perbaikan. Lebar 320/768/1280/1600 tidak overflow. Screenshot desktop/mobile/home-viewport berada di `.impeccable/review/`, tidak disimpan ke Git.
-- Clipping body diperbaiki; tidak ada ignore atau aturan pemeriksaan yang dinonaktifkan. Hook HTML final tanpa temuan deterministik.
+- Clipping body diperbaiki. Setelah stop hook, satu pengecualian cramped-padding khusus homepage dicatat berdasarkan measured layout. Tidak ada ignore-file atau ignore-rule global. Scan terakhir tanpa temuan deterministik.
 - Subset specimen web dibangun ulang dengan `python scripts/build-font-subsets.py` bila berkas OTF berubah.
 - Harga, kategori, dan nama lisensi tetap contoh. Tidak ada cart, pesanan, atau pembayaran nyata.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
