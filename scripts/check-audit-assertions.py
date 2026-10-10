@@ -18,6 +18,7 @@ directory and removed afterwards.
 Usage: python scripts/check-audit-assertions.py [base-url]
 Exit 0 only when every control behaved the way its assertion requires.
 """
+import ast
 import asyncio
 import json
 import os
@@ -103,6 +104,33 @@ def last_total(out):
     return totals[-1] if totals else None
 
 
+def unguarded_or_true():
+    """`X or True` in real code, so the lesson cannot quietly come back.
+
+    Parsed with ast, not with a text match, so prose that mentions the pattern is
+    ignored and only executable code counts.
+    """
+    offenders = []
+    bom = []
+    for path in sorted((ROOT / "scripts").glob("*.py")):
+        raw = path.read_bytes()
+        if raw.startswith(b"\xef\xbb\xbf"):
+            # Five older helper scripts carry a BOM; Python imports them fine, so parse
+            # them as utf-8-sig rather than reporting them as unparsable code.
+            bom.append(path.name)
+        try:
+            tree = ast.parse(raw.decode("utf-8-sig"))
+        except SyntaxError as error:
+            offenders.append(f"{path.name}: unparsable ({error})")
+            continue
+        for node in ast.walk(tree):
+            if isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
+                if any(isinstance(value, ast.Constant) and value.value is True
+                       for value in node.values):
+                    offenders.append(f"{path.name}:{node.lineno}")
+    return offenders, bom
+
+
 async def specimen_facts(page):
     return await page.evaluate(
         "() => (document.querySelector('#specimen-facts') || {}).textContent")
@@ -112,6 +140,12 @@ async def main() -> int:
     scratch = Path(tempfile.mkdtemp(prefix="a01-negative-"))
     print(f"A01 negative controls | HEAD {head()} | scratch {scratch}\n")
     try:
+
+        offenders, bom = unguarded_or_true()
+        check(not offenders,
+              f"[A] no script keeps a condition that cannot fail ({offenders})")
+        if bom:
+            note(f"[A] helper scripts still carrying a UTF-8 BOM (parsed as utf-8-sig): {bom}")
         # ------------------------------------------------ A. dead conditions
         catalog_html = (SRC / "catalog.html").read_text(encoding="utf-8")
         loaded = "font-catalog.js" in catalog_html
