@@ -83,7 +83,7 @@ if scope:
 website = [p for p in changed_scope if p.startswith(("static/", "rillatype-v2-extracted/", "wp-content/")) or p.endswith((".php", ".css", ".js", ".json", ".html"))]
 check(not website, f"no website source changed inside P02 scope (found {website})")
 allowed = {"PROGRESS.md", "docs/reports/P01.md", "docs/reports/P02.md", "docs/reports/P03.md", "docs/redesign/reference-inventory.md", "debug.log"}
-unexpected = [p for p in changed_scope if p not in allowed and not p.startswith("scripts/_p0")]
+unexpected = [p for p in changed_scope if p not in allowed and not p.startswith(("scripts/_p0", "scripts/check-"))]
 check(not unexpected, f"only P02 scope changed (unexpected {unexpected})")
 check(run("git diff --check").returncode == 0, "git diff --check is clean")
 

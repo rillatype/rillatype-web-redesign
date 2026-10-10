@@ -31,8 +31,13 @@ function setupTester(product) {
   const styles = product.styles || [{ label: 'Regular', file: null, weight: 400 }];
   let fontFamilies = new Map();
 
+  // Produk tanpa style bernama yang terverifikasi tidak pernah menampilkan selector kosong.
+  const hasStyles = styles.length > 1 && styles.some(style => style.label);
+  const defaultIndex = Math.max(0, styles.findIndex(style => style.label === product.defaultStyle));
+
   function currentStyle() {
-    return styles[Number(styleSelect.value) || 0];
+    if (!hasStyles) return styles[defaultIndex] || styles[0];
+    return styles[Number(styleSelect.value)] || styles[0];
   }
 
   function applySample() {
@@ -44,7 +49,10 @@ function setupTester(product) {
     document.querySelector('#leading-value').textContent = (Number(leading.value) / 100).toFixed(2);
     document.querySelector('#tracking-value').textContent = `${(Number(tracking.value) / 100).toFixed(2)} em`;
     const style = currentStyle();
-    output.style.fontWeight = style.weight;
+    // Weight hanya ditulis bila berkasnya benar-benar memilikinya, supaya tidak
+    // ada bold sintetis untuk style yang belum terverifikasi.
+    if (style && typeof style.weight === 'number') output.style.fontWeight = String(style.weight);
+    else output.style.removeProperty('font-weight');
   }
 
   // Sakelar OpenType hanya aktif jika fitur benar-benar ada pada berkas font.
@@ -138,15 +146,20 @@ function setupTester(product) {
     }
   }
 
-  // Isi dropdown style.
-  styles.forEach((style, index) => {
-    const option = document.createElement('option');
-    option.value = String(index);
-    option.textContent = style.label;
-    styleSelect.appendChild(option);
-  });
-  if (styles.length > 1) {
+  // Selector style hanya dibangun bila memang ada lebih dari satu style bernama.
+  // Satu style tidak menghasilkan dropdown berisi satu opsi yang tidak berguna.
+  if (hasStyles) {
+    styles.forEach((style, index) => {
+      const option = document.createElement('option');
+      option.value = String(index);
+      option.textContent = style.label;
+      styleSelect.appendChild(option);
+    });
+    styleSelect.value = String(defaultIndex);
     styleField.hidden = false;
+  } else {
+    styleSelect.hidden = true;
+    styleField.hidden = true;
   }
 
   text.addEventListener('input', applySample);

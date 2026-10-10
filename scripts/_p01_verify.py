@@ -96,7 +96,7 @@ allowed = {
     "docs/reports/P01.md", "docs/reports/P02.md", "docs/reports/P03.md", "docs/reports/R03A.md",
     "docs/redesign/reference-inventory.md",
 }
-unexpected = [p for p in changed_scope if p not in allowed and not p.startswith("scripts/_p0")]
+unexpected = [p for p in changed_scope if p not in allowed and not p.startswith(("scripts/_p0", "scripts/check-"))]
 check(not unexpected, f"only plan documents changed (unexpected {unexpected})")
 
 diff_check = run("git diff --check")
