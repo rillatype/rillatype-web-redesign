@@ -4,6 +4,8 @@ Tanggal kesepakatan: 9 Oktober 2026.
 
 Revisi perencanaan 10 Oktober 2026: user menyukai konsep R05H dan menyetujui rencana rinci. Baca `docs/redesign/execution-plan.md`, `docs/redesign/product-spec.md`, dan buku tugas fase yang dirujuk. Pelaksana yang ditugaskan mulai dari P01, lalu mengikuti dependensi. Ikuti `rules.md` untuk pelaporan dan AGENTS.md untuk mode aktif. Persetujuan rencana tidak menggantikan approval acuan visual, staging, atau production.
 
+Aktivasi 10 Oktober 2026: P01 selesai dan rencana berjalan. Mode kerja kini IMPLEMENTASI SESUAI TUGAS (lihat `AGENTS.md`). Tabel status 73 microtask P01–P20/W01–W27/S01–S26 berada di `PROGRESS.md` beserta tautan kartunya. Laporan aktivasi: `docs/reports/P01.md`. Bagian R di bawah tetap menjadi spesifikasi dan riwayat fase lama; jangan menutup ID R sebelum seluruh microtask terkait selesai.
+
 ## Gunakan rencana ini
 
 Kerjakan tugas di bawah satu per satu. Periksa kriteria selesai sebelum melanjutkan.

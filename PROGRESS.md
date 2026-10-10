@@ -51,9 +51,113 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R24 | Persetujuan hasil | BELUM | Tinjau staging bersama user. |
 | R25 | Paket dan handoff | BELUM | Siapkan paket, panduan, dan status rilis. |
 
+### Redesign aktif: rencana 73 microtask
+
+Tabel ini dibuat oleh P01 dan memuat 73 microtask dari ketiga buku tugas. Judul dan tautan kartu diambil dari heading buku, bukan ditulis ulang.
+`PROGRESS.md` tetap menjadi satu-satunya sumber status; tabel R00–R25 di atas menyimpan riwayat fase lama dan tidak ditutup sampai seluruh microtask terkait selesai.
+Satu task implementasi BERJALAN pada satu waktu. Status awal seluruh task adalah BELUM kecuali P01 yang sudah SELESAI pada aktivasi.
+
+#### Fase preview (P01–P20)
+
+Buku tugas: [`tasks-preview.md`](docs/redesign/tasks-preview.md)
+
+| ID | Tugas | Status | Dependensi | Catatan |
+| --- | --- | --- | --- | --- |
+| [P01](docs/redesign/tasks-preview.md#p01-aktifkan-rencana-yang-disetujui) | Aktifkan rencana yang disetujui | SELESAI | persetujuan rencana dan perintah mulai dari user. File: AGENTS.md, PROGRESS.md, REDESIGN-PLAN.md, laporan P01. | Aktivasi sedang dicatat. Laporan: [docs/reports/P01.md](docs/reports/P01.md). Ditutup SELESAI pada unit terakhir P01. |
+| [P02](docs/redesign/tasks-preview.md#p02-simpan-inventaris-referensi-yang-benar) | Simpan inventaris referensi yang benar | BELUM | P01. Baca: audit live dalam execution-plan.md, docs/redesign-audit.md, static/redesign/ASSETS.md. Edit: docs/redesign/reference-inventory.md baru dan laporan. | — |
+| [P03](docs/redesign/tasks-preview.md#p03-siapkan-data-contoh-dan-daftar-aset-uji) | Siapkan data contoh dan daftar aset uji | BELUM | P02. Baca: product-spec.md, static/redesign/font-catalog.js, tester-core.js, fonts/, ASSETS.md. Edit: font-catalog.js, ASSETS.md, dan fixture test yang relevan. | — |
+| [P04](docs/redesign/tasks-preview.md#p04-rapikan-tester-font-satu-style) | Rapikan tester font satu style | BELUM | P03. Baca/edit: static/redesign/product.html, product-preview.js, editorial.css; baca tester-core.js. | — |
+| [P05](docs/redesign/tasks-preview.md#p05-hubungkan-style-bernama) | Hubungkan style bernama | BELUM | P04. File: product-preview.js, product.html, editorial.css, data fixture P03. | — |
+| [P06](docs/redesign/tasks-preview.md#p06-periksa-family-sans--script) | Periksa family Sans + Script | BELUM | P05 dan berkas C03 user yang terverifikasi. File: font-catalog.js, product-preview.js, test fixture; markup/CSS hanya jika label tidak terbaca. | Boleh TERBLOKIR bila bukti wajib belum ada. |
+| [P07](docs/redesign/tasks-preview.md#p07-batasi-kontrol-weight-pada-produk-yang-relevan) | Batasi kontrol weight pada produk yang relevan | BELUM | P05. File: font-catalog.js, preview.js, product-preview.js, product.html dan style yang relevan. | — |
+| [P08](docs/redesign/tasks-preview.md#p08-periksa-glyph-opentype-dan-dingbats) | Periksa glyph, OpenType, dan Dingbats | BELUM | P05/P07; bukti Dingbats nyata diperlukan untuk menutup C05. File: tester-core.js, product-preview.js, product.html; data yang relevan. | — |
+| [P09](docs/redesign/tasks-preview.md#p09-buktikan-state-pemuatan-tester) | Buktikan state pemuatan tester | BELUM | P04/P05/P07. File: preview.js, product-preview.js, scripts/check-specimen-states.py dan test produk relevan. | — |
+| [P10](docs/redesign/tasks-preview.md#p10-terapkan-artwork-utuh-pada-seluruh-preview) | Terapkan artwork utuh pada seluruh preview | BELUM | P03. File: static/redesign/home.css, editorial.css, style.css, index.html, catalog.html, product.html; JS gallery hanya jika diperlukan. | — |
+| [P11](docs/redesign/tasks-preview.md#p11-generalisasi-specimen-homepage) | Generalisasi specimen homepage | BELUM | P04/P05/P07/P09/P10. File: index.html, home.css, preview.js, data fixture. | — |
+| [P12](docs/redesign/tasks-preview.md#p12-tambahkan-bagian-graphics-yang-layak) | Tambahkan bagian Graphics yang layak | BELUM | P02/P03/P10/P11. File: index.html, home.css, fixture catalog, ASSETS.md. | — |
+| [P13](docs/redesign/tasks-preview.md#p13-rapikan-detail-font-dan-gallery) | Rapikan detail font dan gallery | BELUM | P04/P05/P07/P10. File: product.html, product-preview.js, editorial.css. | — |
+| [P14](docs/redesign/tasks-preview.md#p14-buat-detail-graphic-murni) | Buat detail Graphic murni | BELUM | P03/P10/P13. File: product.html, product-preview.js, editorial.css, font-catalog.js yang kini memuat produk campuran. | — |
+| [P15](docs/redesign/tasks-preview.md#p15-tampilkan-font-dengan-bonus-graphic) | Tampilkan font dengan bonus Graphic | BELUM | P13/P14. File: data fixture, product.html, product-preview.js, editorial.css. | — |
+| [P16](docs/redesign/tasks-preview.md#p16-sesuaikan-preview-lisensi-font) | Sesuaikan preview lisensi font | BELUM | P13/P15. File: product.html, product-preview.js, font-catalog.js. | — |
+| [P17](docs/redesign/tasks-preview.md#p17-preview-pilihan-graphics-standardextended) | Preview pilihan Graphics Standard/Extended | BELUM | P14/P15 dan user menerima arah draf Graphics. File: product.html, product-preview.js, fixture; baca graphics-license-draft.md. | — |
+| [P18](docs/redesign/tasks-preview.md#p18-periksa-katalog-dan-harga-freebies) | Periksa katalog dan harga Freebies | BELUM | P12/P14/P16/P17. File: catalog.html, preview.js, style.css/editorial.css dan data fixture. | — |
+| [P19](docs/redesign/tasks-preview.md#p19-jalankan-pemeriksaan-acuan-lengkap) | Jalankan pemeriksaan acuan lengkap | BELUM | P06/P08/P09/P10/P11/P12/P13/P14/P15/P16/P17/P18. File: scripts/check-specimen-home.py, check-specimen-states.py, check-redesign-preview.py atau suite penggantinya; bukti .impeccable/review/. | Boleh TERBLOKIR bila bukti wajib belum ada. |
+| [P20](docs/redesign/tasks-preview.md#p20-dapatkan-persetujuan-acuan) | Dapatkan persetujuan acuan | BELUM | P19. File: laporan P20, PROGRESS.md, DESIGN.md dan sidecar bila ada perubahan sistem yang harus dicatat. | — |
+
+#### Fase WordPress (W01–W27)
+
+Buku tugas: [`tasks-wordpress.md`](docs/redesign/tasks-wordpress.md)
+
+| ID | Tugas | Status | Dependensi | Catatan |
+| --- | --- | --- | --- | --- |
+| [W01](docs/redesign/tasks-wordpress.md#w01-sediakan-staging-dan-akses-pemeriksaan) | Sediakan staging dan akses pemeriksaan | BELUM | P01. File: laporan W01, docs/redesign/staging-checks.md baru. Source tema belum diubah. | Boleh TERBLOKIR bila bukti wajib belum ada. |
+| [W02](docs/redesign/tasks-wordpress.md#w02-catat-runtime-dan-baseline) | Catat runtime dan baseline | BELUM | W01. File: staging-checks.md, laporan; screenshot sementara. | — |
+| [W03](docs/redesign/tasks-wordpress.md#w03-verifikasi-inventory-serta-model-pembelian) | Verifikasi inventory serta model pembelian | BELUM | W02/P02. File: reference-inventory.md, staging-checks.md, laporan. Source belum diubah. | — |
+| [W04](docs/redesign/tasks-wordpress.md#w04-tetapkan-berkas-specimen-publik-yang-aman) | Tetapkan berkas specimen publik yang aman | BELUM | W03. File: docs/redesign/staging-checks.md; baca THEME/woocommerce/content-single-product.php, functions.php, dan metadata attachment. Perubahan source pada dua file THEME tersebut hanya setelah P20 selesai; sebelum itu tulis daftar resolusi di staging-checks.md. | — |
+| [W05](docs/redesign/tasks-wordpress.md#w05-tentukan-klasifikasi-produk-dari-data-nyata) | Tentukan klasifikasi produk dari data nyata | BELUM | P20/W03. File: THEME/woocommerce/content-single-product.php, front-page.php, woocommerce/archive-product.php, functions.php untuk satu helper klasifikasi yang dipakai caller tersebut. | — |
+| [W06](docs/redesign/tasks-wordpress.md#w06-jaga-metadata-saat-admin-menyimpan-style) | Jaga metadata saat admin menyimpan style | BELUM | P20/W03/W04. File: THEME/functions.php, assets/js/admin-product.js, laporan/data fixture uji. | — |
+| [W07](docs/redesign/tasks-wordpress.md#w07-hubungkan-pilihan-unggulan-admin) | Hubungkan pilihan unggulan admin | BELUM | P20/W03/W05. File: THEME/inc/customizer.php, functions.php bila perlu, front-page.php. | — |
+| [W08](docs/redesign/tasks-wordpress.md#w08-terapkan-token-dan-komposisi-dasar) | Terapkan token dan komposisi dasar | BELUM | P20/W02. File: THEME/style.css; baca static/redesign/style.css, editorial.css, home.css, DESIGN.md. | — |
+| [W09](docs/redesign/tasks-wordpress.md#w09-muat-manrope-lokal) | Muat Manrope lokal | BELUM | W08. File: THEME/functions.php, header.php, style.css, assets/fonts/ untuk font UI dan lisensi. | — |
+| [W10](docs/redesign/tasks-wordpress.md#w10-terapkan-header-desktop) | Terapkan header desktop | BELUM | W08/W09/W05. File: THEME/header.php, functions.php untuk fallback menu, style.css; JS aktif jika perlu. | — |
+| [W11](docs/redesign/tasks-wordpress.md#w11-terapkan-header-mobile) | Terapkan header mobile | BELUM | W10. File: THEME/header.php, style.css, script menu aktif yang dibaca dari footer/enqueue. | — |
+| [W12](docs/redesign/tasks-wordpress.md#w12-terapkan-footer-dan-route-blog) | Terapkan footer dan route blog | BELUM | W10/W11. File: THEME/footer.php, style.css, functions.php bila widget diperlukan. | — |
+| [W13](docs/redesign/tasks-wordpress.md#w13-ambil-font-unggulan-dari-woo) | Ambil font unggulan dari Woo | BELUM | W07/W08/W10/W12. File: THEME/front-page.php, style.css. | — |
+| [W14](docs/redesign/tasks-wordpress.md#w14-ambil-graphics-unggulan-dari-woo) | Ambil Graphics unggulan dari Woo | BELUM | W07/W13. File: THEME/front-page.php, style.css. | — |
+| [W15](docs/redesign/tasks-wordpress.md#w15-hubungkan-rilisan-terbaru) | Hubungkan rilisan terbaru | BELUM | W13/W14. File: THEME/front-page.php, style.css. | — |
+| [W16](docs/redesign/tasks-wordpress.md#w16-hubungkan-specimen-homepage-ke-produk-pilihan) | Hubungkan specimen homepage ke produk pilihan | BELUM | W04/W06/W07/W09/W13. File: THEME/front-page.php, style.css, functions.php, assets/js/home.js baru untuk perilaku homepage. Enqueue home.js hanya pada homepage. | — |
+| [W17](docs/redesign/tasks-wordpress.md#w17-jaga-gambar-wordpress-utuh) | Jaga gambar WordPress utuh | BELUM | W13/W14/W15. File: THEME/style.css, front-page.php, gallery/card template yang aktif, functions.php hanya jika ukuran image turunan perlu disesuaikan. | — |
+| [W18](docs/redesign/tasks-wordpress.md#w18-terapkan-summary-dan-gallery-produk) | Terapkan summary dan gallery produk | BELUM | W05/W08/W17. File: THEME/woocommerce/content-single-product.php, assets/js/product.js, style.css. | — |
+| [W19](docs/redesign/tasks-wordpress.md#w19-integrasikan-tester-nyata) | Integrasikan tester nyata | BELUM | W04/W06/W16/W18. File: THEME/woocommerce/content-single-product.php, assets/js/product.js, functions.php, style.css; assets/js/tester-core.js baru boleh berasal dari core prototype yang diuji. | — |
+| [W20](docs/redesign/tasks-wordpress.md#w20-terapkan-detail-graphic) | Terapkan detail Graphic | BELUM | W05/W18. File: THEME/woocommerce/content-single-product.php, assets/js/product.js, style.css. | — |
+| [W21](docs/redesign/tasks-wordpress.md#w21-terapkan-detail-font--bonus) | Terapkan detail font + bonus | BELUM | W19/W20. File: THEME/woocommerce/content-single-product.php, style.css. | — |
+| [W22](docs/redesign/tasks-wordpress.md#w22-hubungkan-pilihan-lisensi-serta-harga) | Hubungkan pilihan lisensi serta harga | BELUM | W18/W20/W21/W03/W27; harga/terms Graphics harus dikonfirmasi untuk Graphics. File: THEME/woocommerce/content-single-product.php, assets/js/product.js, style.css. | — |
+| [W23](docs/redesign/tasks-wordpress.md#w23-perbaiki-add-to-cart-pada-batas-yang-benar) | Perbaiki add-to-cart pada batas yang benar | BELUM | W22. File: THEME/woocommerce/content-single-product.php, assets/js/product.js, functions.php/hook aktif yang memang dipanggil. | — |
+| [W24](docs/redesign/tasks-wordpress.md#w24-terapkan-katalog-dan-pagination) | Terapkan katalog dan pagination | BELUM | W13/W14/W18/W22/W23. File: THEME/woocommerce/archive-product.php, content-product.php, loop overrides aktif, style.css. | — |
+| [W25](docs/redesign/tasks-wordpress.md#w25-hubungkan-pencarian-serta-filter) | Hubungkan pencarian serta filter | BELUM | W24/W10. File: THEME/search.php, searchform.php, archive template aktif, header.php, style.css; query hooks hanya jika diperlukan. | — |
+| [W26](docs/redesign/tasks-wordpress.md#w26-hubungkan-freebies-dan-halaman-lisensi) | Hubungkan Freebies dan halaman lisensi | BELUM | W22/W24/W25. File: THEME/woocommerce/archive-product.php, woocommerce/content-product.php, header/footer/page template yang relevan; konfigurasi halaman staging dengan izin. | — |
+| [W27](docs/redesign/tasks-wordpress.md#w27-siapkan-data-pembelian-graphics-pada-staging) | Siapkan data pembelian Graphics pada staging | BELUM | W03/W20/P17 dan user mengisi harga/menyetujui opsi Graphics. File: data produk staging melalui admin Woo; laporan perubahan dan preservation. Jangan mengubah production pada task ini. | — |
+
+#### Fase toko dan rilis (S01–S26)
+
+Buku tugas: [`tasks-store-release.md`](docs/redesign/tasks-store-release.md)
+
+| ID | Tugas | Status | Dependensi | Catatan |
+| --- | --- | --- | --- | --- |
+| [S01](docs/redesign/tasks-store-release.md#s01-terapkan-tampilan-cart) | Terapkan tampilan cart | BELUM | W23/W26. File: THEME/woocommerce/cart/cart.php, style.css, hooks aktif bila markup membutuhkan data. | — |
+| [S02](docs/redesign/tasks-store-release.md#s02-periksa-update-dan-penghapusan-cart) | Periksa update dan penghapusan cart | BELUM | S01. File: cart.php, script cart aktif, style.css, handler native yang memang diperlukan. | — |
+| [S03](docs/redesign/tasks-store-release.md#s03-periksa-coupon-dan-total) | Periksa coupon dan total | BELUM | S02/W02. File: cart/checkout template aktif dan style.css; konfigurasi coupon hanya pada staging yang diizinkan. | — |
+| [S04](docs/redesign/tasks-store-release.md#s04-terapkan-struktur-checkout) | Terapkan struktur checkout | BELUM | S01/S02/S03/W02. File: THEME/woocommerce/checkout/form-checkout.php, style.css; baca functions.php dan catatan regresi audit. | — |
+| [S05](docs/redesign/tasks-store-release.md#s05-periksa-checkout-tamu-dan-akun-opsional) | Periksa checkout tamu dan akun opsional | BELUM | S04. File: checkout template/style; Woo settings pada staging dengan izin. | — |
+| [S06](docs/redesign/tasks-store-release.md#s06-periksa-pelanggan-yang-sudah-punya-akun) | Periksa pelanggan yang sudah punya akun | BELUM | S05. File: checkout login section, THEME/woocommerce/myaccount/form-login.php, style.css. | — |
+| [S07](docs/redesign/tasks-store-release.md#s07-periksa-validasi-checkout-dan-retry) | Periksa validasi checkout dan retry | BELUM | S04/S05/S06. File: checkout template, functions.php/handler aktif bila bug direproduksi, style.css. | — |
+| [S08](docs/redesign/tasks-store-release.md#s08-periksa-gateway-sandbox) | Periksa gateway sandbox | BELUM | S07/W01/W02. File: source checkout yang benar-benar relevan; baca functions.php dequeue dan form.submit lama sebelum edit. | — |
+| [S09](docs/redesign/tasks-store-release.md#s09-periksa-thank-you-dan-status-order) | Periksa thank-you dan status order | BELUM | S08. File: THEME/woocommerce/checkout/thankyou.php, style.css, caller checkout aktif bila diperlukan. | — |
+| [S10](docs/redesign/tasks-store-release.md#s10-periksa-email-konfirmasi-sandbox) | Periksa email konfirmasi sandbox | BELUM | S08/S09/W01. File: config email staging dan override email yang sudah ada bila ternyata relevan; jangan membuat template baru tanpa kebutuhan. | — |
+| [S11](docs/redesign/tasks-store-release.md#s11-terapkan-akun-dan-riwayat-order) | Terapkan akun dan riwayat order | BELUM | S06/S09. File: THEME/woocommerce/myaccount/dashboard.php, orders.php, view-order.php, style.css. | — |
+| [S12](docs/redesign/tasks-store-release.md#s12-periksa-izin-unduhan) | Periksa izin unduhan | BELUM | S09/S10/S11/W04/W27. File: THEME/woocommerce/myaccount/my-downloads.php atau endpoint override aktif; hook download bila memang dibutuhkan. | — |
+| [S13](docs/redesign/tasks-store-release.md#s13-periksa-reset-password) | Periksa reset password | BELUM | S11/S10. File: form-login.php dan template reset yang tersedia/aktif, style.css. | — |
+| [S14](docs/redesign/tasks-store-release.md#s14-terapkan-index-blog) | Terapkan index blog | BELUM | W08/W10/W12. File: THEME/index.php, archive.php, style.css; verifikasi hierarchy active sebelum edit. | — |
+| [S15](docs/redesign/tasks-store-release.md#s15-terapkan-artikel-blog) | Terapkan artikel blog | BELUM | S14. File: THEME/singular.php/single.php bila benar-benar ada, comments.php, style.css; baca hierarchy runtime. | — |
+| [S16](docs/redesign/tasks-store-release.md#s16-hubungkan-newsletter-footer) | Hubungkan newsletter footer | BELUM | W12/W02 dan provider/form existing yang terverifikasi. File: THEME/footer.php, style.css, integration existing atau form konfigurasi staging. | Boleh TERBLOKIR bila bukti wajib belum ada. |
+| [S17](docs/redesign/tasks-store-release.md#s17-terapkan-halaman-lisensi-dan-kontak) | Terapkan halaman lisensi dan kontak | BELUM | W26/W22/W27; approval terms Graphics, identitas legal, effective/version, dan authorized-user scope diperlukan untuk publikasi. File: THEME/page.php/page template aktif, style.css, halaman staging yang terkait dengan izin. | — |
+| [S18](docs/redesign/tasks-store-release.md#s18-terapkan-404-dan-route-tidak-valid) | Terapkan 404 dan route tidak valid | BELUM | W25/W12. File: THEME/404.php, style.css; route/query handling aktif bila ada bug yang direproduksi. | — |
+| [S19](docs/redesign/tasks-store-release.md#s19-periksa-responsive-seluruh-toko) | Periksa responsive seluruh toko | BELUM | W26/S01–S18 selesai atau blocker yang disetujui user tidak menyentuh halaman yang diuji. File: style.css dan template yang menunjukkan defect; bukti screenshot sementara. | — |
+| [S20](docs/redesign/tasks-store-release.md#s20-periksa-keyboard-dan-accessibility) | Periksa keyboard dan accessibility | BELUM | S19. File: template/script/style dengan temuan nyata. | — |
+| [S21](docs/redesign/tasks-store-release.md#s21-bandingkan-performance-terhadap-baseline) | Bandingkan performance terhadap baseline | BELUM | S19/S20/W02. File: enqueue/assets/templates yang terbukti menyebabkan masalah; dokumentasi pengukuran. | — |
+| [S22](docs/redesign/tasks-store-release.md#s22-periksa-seo-dan-route-preservation) | Periksa SEO dan route preservation | BELUM | W25/S14/S15/S17/S18/W02. File: THEME/header.php, template metadata aktif, plugin settings staging bila relevan. | — |
+| [S23](docs/redesign/tasks-store-release.md#s23-jalankan-regresi-transaksi-lengkap) | Jalankan regresi transaksi lengkap | BELUM | S01–S13/S17/S19/S20/S21/S22. File: test/checklist aktual, laporan, bukti staging. | — |
+| [S24](docs/redesign/tasks-store-release.md#s24-perbaiki-packaging-biner) | Perbaiki packaging biner | BELUM | S23 dan source final yang diverifikasi. File: create-zip.ps1 serta manifest exclude yang benar-benar diperlukan. | — |
+| [S25](docs/redesign/tasks-store-release.md#s25-verifikasi-zip-pada-staging-bersih) | Verifikasi ZIP pada staging bersih | BELUM | S24. File: laporan/test artifact temporary; paket yang dihasilkan. | — |
+| [S26](docs/redesign/tasks-store-release.md#s26-siapkan-approval-rilis-dan-rollback) | Siapkan approval rilis dan rollback | BELUM | P20/S23/S25 dan semua task wajib SELESAI; user menyetujui hasil staging dan production action. | — |
+
 ### Log perubahan redesign
 | Tanggal | ID | Perubahan dan file | Pemeriksaan dan hasil | Tersisa atau blocker | Langkah berikutnya |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-10 | P01 | Aktifkan rencana: catat kondisi awal, baca seluruh pointer, dan ubah mode AGENTS.md menjadi IMPLEMENTASI SESUAI TUGAS. Tambahkan bagian tabel 73 microtask P01–P20/W01–W27/S01–S26 di PROGRESS.md dengan tautan kartu. | 73 ID unik terverifikasi dari tiga buku tugas (20 P + 27 W + 26 S, 0 duplikat, 0 hilang). Mode dan approval konsisten dengan R03A dan commit ee7181f. Hanya P01 BERJALAN selama aktivasi. `git diff --check` lulus. | Tidak ada blocker untuk P01. Tujuh blocker prasyarat fase lanjut dicatat di laporan. | Tutup P01, tulis handoff, lalu P02. |
+| 2026-10-10 | P01 | Catat blocker prasyarat dari execution-plan.md dan verifikasi source website tidak berubah. | `git diff --name-only` hanya memuat AGENTS.md, PROGRESS.md, REDESIGN-PLAN.md, docs/reports/P01.md. Tidak ada file di static/redesign/, rillatype-v2-extracted/, atau wp-content/ yang berubah. | Perubahan PROGRESS.md dan docs/reports/R03A.md milik agent R03 sengaja tidak disentuh dan tidak di-commit sesi ini. | Simpan handoff P01 dan berhenti. |
+| 2026-10-10 | P01 | Periksa kelengkapan 73 ID, judul, dan anchor kartu dari heading buku tugas; verifikasi dependensi P01 dan status BERJALAN. | Ekstraksi heading `^## ([PWS]\d{2})\.` menghasilkan 73 kartu; anchor GitHub dihitung dari judul, bukan ditulis ulang. Dependensi P01 terverifikasi dari baris R03A SELESAI, commit ee7181f, dan pesan mulai user. | Belum menjalankan pemeriksaan fase lanjut; itu tugas P02 dan seterusnya. | Tulis tabel status dan laporan P01. |
+| 2026-10-10 | P01 | Mulai P01: baca AGENTS.md, rules.md, REDESIGN-PLAN.md, bagian aktif PROGRESS.md, execution-plan.md, kartu P01, dan laporan R03A/R03B. Catat kondisi awal repo. | `git status --short` menunjukkan hanya perubahan dokumen milik R03 dan satu debug.log untracked. Tidak ada task implementasi BERJALAN, sehingga P01 boleh diambil. Branch master di ee7181f, ahead 0. | Blocker P01 tidak ada; `debug.log` tidak termasuk scope. | Verifikasi 73 ID dan dependensi. |
 | 2026-10-10 | R03A | Catat persetujuan user terhadap rencana dan siapkan handoff kepada pelaksana lain. | Persetujuan berasal dari pesan user: sudah setuju plan dan ingin menugaskan agent. Tidak menafsirkan pesan ini sebagai penugasan implementasi kepada agent saat ini. Sinkronkan status plan/pointer/aturan. | P01 belum diambil; approval visual/staging/production dan data harga/legal tetap mengikuti kartu. | User menugaskan satu agent mulai P01 memakai prompt pertama. |
 | 2026-10-10 | R03B | Pasang skill personal planning-detail beserta template dan validator. | Installed quick_validate PASS; self-test PASS; CLI menerima rencana valid dan menolak dependensi hilang; keenam hash paket sama, resource links dan UI metadata valid. Laporan 2026-10-10 08:16 WIB. | Belum menjalankan workflow penuh pada proyek lain. Source website tetap ditahan. | User dapat memanggil $planning-detail atau meminta planning detail untuk proyek berikutnya. |
 | 2026-10-10 | R03B | Buat staging skill planning-detail dengan template serta validator. | quick_validate.py PASS; self-test validator PASS (satu rencana valid dan tujuh invalid). Patch paket awal FAIL tanpa perubahan, lalu diperbaiki via Update scaffold. | Skill belum dipasang global atau diuji pada proyek lain. | Install folder personal dan verifikasi file terpasang. |
@@ -131,6 +235,11 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-10 | R05G | Commit `243d52b` menyimpan homepage specimen hall, subset WOFF2, dua skrip baru, DESIGN.md, PROGRESS.md, dan screenshot. | Push ke `origin/master` berhasil dengan credential helper `gh` per-command: `542a790..243d52b`. Tidak mengubah git config. | Belum ada persetujuan visual user dan integrasi WordPress belum dimulai. | Tunggu tinjauan R07. |
 
 ### Handoff aktif
+
+- P01 SELESAI 2026-10-10 08:24 WIB. Mode proyek kini IMPLEMENTASI SESUAI TUGAS. Tabel 73 microtask P01–P20/W01–W27/S01–S26 ada di PROGRESS.md dengan tautan kartu. Laporan: docs/reports/P01.md.
+- Blocker prasyarat fase lanjut: sampel file font (P03/P06/P19), staging dan runtime (W01), inventory (W03), harga Graphics Extended (W22/S23), identitas legal (S17), hak berkas specimen (W04/W19), provider newsletter (S16). Tidak ada yang menghalangi P02.
+- Next action: kerjakan P02 memakai audit live execution-plan.md, docs/redesign-audit.md, dan static/redesign/ASSETS.md. Hanya satu task implementasi aktif; berhenti dan simpan handoff sebelum berpindah task.
+- Persetujuan rencana tersimpan pada commit ee7181f dan berhasil dipush ke origin/master. P01 belum dimulai; user dapat menugaskan agent lain memakai prompt pertama. Pemeriksaan konsistensi approval/73 task/batas lisensi/source Markdown-only lulus.
 
 - R03B SELESAI: skill personal planning-detail terpasang dan terverifikasi di C:/Users/Blueee/.codex/skills/planning-detail. Laporan commit dee4b2b berhasil dipush ke origin/master. Panggil $planning-detail untuk workflow planning rinci berikutnya; implementasi website tetap ditahan.
 

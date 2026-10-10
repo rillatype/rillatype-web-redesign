@@ -1,6 +1,6 @@
 ## Redesign aktif
 
-Mode saat ini: PERENCANAAN, menunggu pelaksana P01. User menyetujui rencana pada 10 Oktober 2026. Agent yang menerima perintah mulai menjalankan P01 untuk mencatat aktivasi dan status tugas. Jangan mengubah source website sebelum task terkait ditugaskan dan dependensinya selesai; approval production tetap terpisah.
+Mode saat ini: IMPLEMENTASI SESUAI TUGAS. User menyetujui rencana pada 10 Oktober 2026 dan menugaskan mulai dari P01. Aktivasi dicatat pada P01 (`docs/reports/P01.md`); tabel 73 microtask P01–P20/W01–W27/S01–S26 berada di `PROGRESS.md`. Kerjakan satu task pada satu waktu dan hanya task yang ditugaskan; jangan mengubah source website sebelum task terkait diambil dan dependensinya SELESAI. Approval production tetap terpisah.
 
 Sebelum bekerja, baca `rules.md`, `REDESIGN-PLAN.md`, dan bagian redesign aktif di `PROGRESS.md`.
 Untuk rencana rinci yang sudah disetujui, baca `docs/redesign/execution-plan.md`.
