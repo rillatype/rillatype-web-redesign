@@ -124,12 +124,28 @@ function setupTester(product) {
     fontStatus.textContent = message || styleStatus(index);
   }
 
-  function renderGlyphs(index, codepoints) {
+  // Panel glyph memakai konfigurasi font yang sama dengan sampel: family produk dan
+  // cut aktif dari data style, bukan nama font yang ditulis per produk. Grid
+  // mewariskan keduanya ke setiap sel, dan sel yang tidak dapat dipercaya dibuang
+  // alih-alih dibiarkan memakai font UI.
+  function clearGlyphs(message) {
     glyphGrid.textContent = '';
-    if (!codepoints.length) {
-      glyphCount.textContent = 'Character list unavailable';
+    glyphGrid.style.fontFamily = '';
+    glyphGrid.style.fontWeight = '';
+    glyphGrid.dataset.cut = '';
+    glyphCount.textContent = message;
+  }
+
+  function renderGlyphs(index, codepoints) {
+    const style = styles[index];
+    if (!style || !style.file || !codepoints.length) {
+      clearGlyphs('Character list unavailable');
       return;
     }
+    glyphGrid.textContent = '';
+    glyphGrid.style.fontFamily = `"${familyName}", sans-serif`;
+    glyphGrid.style.fontWeight = String(style.weight);
+    glyphGrid.dataset.cut = style.label || '';
     const fragment = document.createDocumentFragment();
     codepoints.forEach(cp => {
       const cell = document.createElement('span');
@@ -159,7 +175,7 @@ function setupTester(product) {
       configureFeature(ligaInput, ligaSwitch, false, 'Ligatures');
       configureFeature(dligInput, dligSwitch, false, 'Discretionary ligatures');
       configureFeature(saltInput, saltSwitch, false, 'Stylistic alternates');
-      glyphCount.textContent = 'Character list unavailable';
+      clearGlyphs('Character list unavailable');
       return;
     }
     const url = styleUrl(style);
@@ -200,9 +216,11 @@ function setupTester(product) {
     } catch {
       if (request !== styleRequest) return;
       // Satu cut yang gagal tidak boleh menyembunyikan tester atau memalsukan font.
-      // Sampel yang tidak dapat dipercaya disembunyikan; panel kontrol tetap ada.
+      // Sampel yang tidak dapat dipercaya disembunyikan; panel kontrol tetap ada, dan
+      // panel glyph dikosongkan supaya glyph cut lain tidak tampil seolah cut ini.
       testerFrame.dataset.state = 'error';
       setStatus(index, `The ${style.label} specimen for ${product.name} could not load. The other cuts still work; choose another style or retry.`);
+      clearGlyphs('Character list unavailable');
       retry.hidden = false;
     }
   }

@@ -63,6 +63,41 @@ async def main() -> int:
         cells = await page.locator(".glyph-cell").count()
         check(cells == 218, f"the panel renders one cell per mapped codepoint ({cells})")
 
+        # A03: the cells must render the product face at the active cut. Reading the
+        # sample is not enough: the panel used to inherit the UI font while the sample
+        # was already correct.
+        face_probe = """() => {
+            const cell = document.querySelector('.glyph-cell');
+            const cs = getComputedStyle(cell);
+            return {
+                family: cs.fontFamily.split(',')[0].trim().replace(/"/g, ''),
+                weight: cs.fontWeight,
+                style: cs.fontStyle,
+                sample: getComputedStyle(document.querySelector('#sample-output')).fontFamily
+                        .split(',')[0].trim().replace(/"/g, ''),
+                loaded: [...document.fonts].filter(f => f.family === 'Rilla-Chronoa')
+                                            .map(f => `${f.weight}:${f.status}`),
+            };
+        }"""
+        probe = await page.evaluate(face_probe)
+        check(probe["family"] == "Rilla-Chronoa",
+              f"glyph cells render the product family ({probe['family']})")
+        check(probe["family"] == probe["sample"],
+              f"cells and the sample share one family ({probe['family']} vs {probe['sample']})")
+        check(probe["weight"] == "600" and probe["style"] == "normal",
+              f"cells carry the active cut's weight, unsynthesised ({probe['weight']}, {probe['style']})")
+        check("600:loaded" in probe["loaded"],
+              f"the face the cells use is loaded ({probe['loaded']})")
+        for value, label, weight in (("0", "Thin", 100), ("8", "Black", 900)):
+            await page.select_option("#sample-style", value)
+            await page.wait_for_function(
+                "() => document.querySelector('#font-status').textContent.includes('(%s)')" % label,
+                timeout=15000)
+            await page.wait_for_timeout(250)
+            probe = await page.evaluate(face_probe)
+            check(probe["weight"] == str(weight) and f"{weight}:loaded" in probe["loaded"],
+                  f"the grid follows the {label} cut ({probe['weight']}, {probe['loaded']})")
+
         height = await page.eval_on_selector(".tester-glyphs", "el => Math.round(el.getBoundingClientRect().height)")
         check(height <= 60, f"the closed glyph panel stays a single header row ({height}px)")
 
@@ -74,6 +109,33 @@ async def main() -> int:
         await page.wait_for_timeout(200)
         closed_again = await page.eval_on_selector(".tester-glyphs", "el => Math.round(el.getBoundingClientRect().height)")
         check(closed_again <= 60, f"the panel closes again ({closed_again}px)")
+
+        # ------------------------------------------------- Chronoa at 390px wide
+        mobile = await (await browser.new_context(viewport={"width": 390, "height": 844})).new_page()
+        mobile_errors = []
+        mobile.on("pageerror", lambda e: mobile_errors.append(str(e)))
+        await mobile.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await mobile.wait_for_function("() => !document.querySelector('#tester-frame').hidden", timeout=15000)
+        await mobile.locator(".tester-glyphs summary").click()
+        await mobile.wait_for_timeout(300)
+        small = await mobile.evaluate("""() => {
+            const cell = document.querySelector('.glyph-cell');
+            const panel = document.querySelector('.tester-glyphs');
+            return {
+                cells: document.querySelectorAll('.glyph-cell').length,
+                family: cell ? getComputedStyle(cell).fontFamily.split(',')[0].trim().replace(/"/g, '') : null,
+                weight: cell ? getComputedStyle(cell).fontWeight : null,
+                height: Math.round(panel.getBoundingClientRect().height),
+                overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+            };
+        }""")
+        check(small["cells"] == 218, f"the panel still renders every cell at 390px ({small['cells']})")
+        check(small["family"] == "Rilla-Chronoa" and small["weight"] == "600",
+              f"narrow-viewport cells use the product face too ({small['family']}, {small['weight']})")
+        check(small["height"] <= 520, f"the open panel stays capped at 390px ({small['height']}px)")
+        check(small["overflow"] <= 1, f"the panel causes no horizontal overflow at 390px ({small['overflow']}px)")
+        check(not mobile_errors, f"no page errors at 390px ({mobile_errors[:2]})")
+        await mobile.context.close()
 
         for switch, label in [("#liga-switch", "Ligatures"), ("#dlig-switch", "Discretionary ligatures"), ("#salt-switch", "Stylistic alternates")]:
             disabled = await page.eval_on_selector(f"{switch} input", "el => el.disabled")
@@ -92,6 +154,23 @@ async def main() -> int:
         check("181" in count, f"Mango glyph count matches its file ({count!r})")
         cells = await page.locator(".glyph-cell").count()
         check(cells == 181, f"Mango renders one cell per mapped codepoint ({cells})")
+
+        # A03: Mango cells must use the Mango face at its real weight, not the UI font.
+        probe = await page.evaluate("""() => {
+            const cell = document.querySelector('.glyph-cell');
+            const cs = getComputedStyle(cell);
+            return {
+                family: cs.fontFamily.split(',')[0].trim().replace(/"/g, ''),
+                weight: cs.fontWeight,
+                style: cs.fontStyle,
+                loaded: [...document.fonts].filter(f => f.family === 'Rilla-MangoLetters')
+                                            .map(f => `${f.weight}:${f.status}`),
+            };
+        }""")
+        check(probe["family"] == "Rilla-MangoLetters" and probe["weight"] == "400",
+              f"Mango cells use the Mango face at its real weight ({probe['family']}, {probe['weight']})")
+        check(probe["style"] == "normal" and "400:loaded" in probe["loaded"],
+              f"the face Mango cells use is loaded and unsynthesised ({probe['loaded']}, {probe['style']})")
         for switch, label in [("#liga-switch", "Ligatures"), ("#salt-switch", "Stylistic alternates")]:
             disabled = await page.eval_on_selector(f"{switch} input", "el => el.disabled")
             check(disabled, f"Mango disables {label}: the file does not carry it")
@@ -114,6 +193,33 @@ async def main() -> int:
         check("Mango" in note, f"the disabled switch names the font ({note!r})")
         await page.context.close()
 
+        # ------------------------- a cut that failed must not dress up as glyphs
+        # A03: the cells used to keep the previous cut's glyphs while the status said
+        # the chosen cut had failed, and a cell with no font of its own falls back to
+        # the UI font. Either way a visitor would see glyphs that are not the cut.
+        failed = await (await browser.new_context(viewport={"width": 1440, "height": 900})).new_page()
+        await failed.route("**/Chronoa-Thin.otf", lambda route: route.abort())
+        await failed.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await failed.wait_for_function("() => !document.querySelector('#tester-frame').hidden", timeout=15000)
+        await failed.select_option("#sample-style", "0")
+        await failed.wait_for_timeout(1200)
+        failed_state = await failed.evaluate("""() => {
+            const cell = document.querySelector('.glyph-cell');
+            return {
+                state: document.querySelector('#tester-frame').dataset.state,
+                cells: document.querySelectorAll('.glyph-cell').length,
+                count: document.querySelector('#glyph-count').textContent.trim(),
+                family: cell ? getComputedStyle(cell).fontFamily.split(',')[0].trim().replace(/"/g, '') : null,
+            };
+        }""")
+        check(failed_state["state"] == "error",
+              f"the blocked cut reaches the error state ({failed_state['state']})")
+        check(failed_state["cells"] == 0 and failed_state["count"] == "Character list unavailable",
+              f"a failed cut offers no glyph cells instead of a stand-in font ({failed_state})")
+        check(failed_state["family"] in (None, "Rilla-Chronoa"),
+              f"no UI-font cell stands in for a product glyph ({failed_state['family']})")
+        await failed.context.close()
+
         # ------------------------------------------------- product without files
         page = await (await browser.new_context(viewport={"width": 1440, "height": 900})).new_page()
         await page.goto(f"{BASE}/product.html?font=dockhand", wait_until="load")
@@ -122,6 +228,9 @@ async def main() -> int:
         check(count == 0 or (await page.locator("#glyph-count").inner_text()) == "",
               "a product without files states no glyph facts")
         check(await page.locator("#tester-frame").is_hidden(), "a product without files shows no glyph panel")
+
+        cells = await page.locator(".glyph-cell").count()
+        check(cells == 0, f"a product without files renders no glyph cells at all ({cells})")
         await page.context.close()
 
         await browser.close()
