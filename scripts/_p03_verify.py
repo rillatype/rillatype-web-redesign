@@ -135,7 +135,7 @@ check(states.returncode == 0, f"specimen state suite still passes ({states.stdou
 # --- 10. scope
 status = run("git status --short").stdout
 changed = [line[3:].strip() for line in status.splitlines() if line.strip()]
-allowed_prefixes = ("static/redesign/", "docs/", "scripts/_p", "scripts/check-", "PROGRESS.md", "DESIGN.md", "debug.log")
+allowed_prefixes = ("static/redesign/", "static/previews/", "docs/", "scripts/_p", "scripts/check-", "PROGRESS.md", "DESIGN.md", "debug.log")
 unexpected = [p for p in changed if not p.startswith(allowed_prefixes)]
 check(not unexpected, f"only prototype scope changed (unexpected {unexpected})")
 theme = [p for p in changed if p.startswith(("rillatype-v2-extracted/", "wp-content/"))]

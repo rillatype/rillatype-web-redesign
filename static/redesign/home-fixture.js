@@ -32,5 +32,12 @@ window.RillaHome = {
     { style: 'Light', text: 'Aa Bb Cc', caption: '219 glyphs · latin' },
     { style: 'Medium', text: '0123456789', caption: 'numerals' },
     { style: 'SemiBold', text: 'Aa Bb Cc', caption: 'the cut used above' }
-  ]
+  ],
+
+  // Bagian Graphics di bawah koleksi font. Isinya slug katalog yang memang produk
+  // graphic, dan urutannya urutan tampil. Nama, alt, harga, artwork, serta route
+  // diturunkan dari katalog, bukan ditulis di sini: tidak ada yang boleh
+  // menjelaskan isi artwork tanpa melihatnya. Daftar kosong berarti bagiannya
+  // hilang, bukan diganti entri demo (P12).
+  graphics: ['distressed-overlays', 'palm-tree', 'cowboy-horseback', 'cowboy-bear']
 };

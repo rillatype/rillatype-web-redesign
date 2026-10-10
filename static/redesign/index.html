@@ -171,6 +171,20 @@
       <section class="empty" id="empty-results" hidden><h2>No products found</h2><p>Try another name or style.</p><button class="button" id="reset-search">Show all</button></section>
       <p class="small muted result-count" id="result-count" role="status" aria-live="polite"></p>
 
+      <!-- GRAPHICS: illustration sets and texture packs, after the type. Which
+           entries appear, and in what order, is a content choice in
+           home-fixture.js; names, kind labels, prices, artwork, and routes are
+           read from font-catalog.js, so this markup names no product. A Graphic
+           entry never gets a type tester (product-spec, kasus C06). -->
+      <section class="section graphics" id="graphics" aria-labelledby="graphics-title">
+        <div class="section-heading">
+          <h2 id="graphics-title">Graphics<br>for the work.</h2>
+          <div class="section-tools"><span class="small muted" id="graphics-count">From the shop</span><a class="section-link" href="catalog.html?category=graphic">View graphics <span aria-hidden="true">↗</span></a></div>
+          <p class="graphics-description">Illustration sets and texture packs.<br>Made for the work you put your name on.</p>
+        </div>
+        <div class="graphics-grid" id="graphics-grid"></div>
+      </section>
+
       <!-- IN USE: real application shots from the product galleries -->
       <section class="section" aria-labelledby="inuse-title">
         <div class="section-heading">

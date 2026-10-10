@@ -54,6 +54,24 @@
 .home .collection .section-tools { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
 .collection-description { margin-top: 40px; color: var(--muted); font-size: 14px; }
 .home .section-link { white-space: normal; }
+
+/* GRAPHICS: illustration sets and texture packs after the type. The artwork keeps
+   its 3:2 box and `contain`, per product-spec; there is no hover zoom (P10). */
+.home .graphics { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 48px; padding-top: 88px; }
+.home .graphics .section-heading { display: block; border: 0; padding: 16px 0 0; margin: 0; }
+.home .graphics .section-heading h2 { font-family: "Manrope", sans-serif; font-size: clamp(40px, 4.8vw, 64px); font-weight: 500; line-height: 1.03; letter-spacing: -.04em; }
+.home .graphics .section-tools { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+.graphics-description { margin-top: 40px; color: var(--muted); font-size: 14px; }
+.home .graphics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; border-top: 1px solid var(--ink); padding-top: 24px; }
+.home .graphic-card { display: block; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+.home .graphic-card:hover .graphic-name { text-decoration: underline; }
+.home .graphic-art { display: flex; align-items: center; justify-content: center; aspect-ratio: 3 / 2; background: var(--paper); }
+.home .graphic-art img { width: 100%; height: auto; object-fit: contain; }
+.home .graphic-art-note { color: var(--muted); font-size: 12px; }
+.home .graphic-label { display: block; margin-top: 16px; }
+.home .graphic-name { display: block; font-size: 17px; font-weight: 600; letter-spacing: -.01em; }
+.home .graphic-meta { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; }
+.home .graphic-price { display: block; margin-top: 10px; font-size: 12px; font-weight: 500; }
 .home .index { border-top: 1px solid var(--ink); }
 .home .row > a { grid-template-columns: minmax(0, 1fr) 100px auto; grid-template-areas: "face thumb action" "face thumb price"; column-gap: 24px; row-gap: 8px; padding: 24px 0; }
 .home .row-name { font-weight: 500; font-size: clamp(24px, 2.7vw, 38px); white-space: normal; }
@@ -125,6 +143,12 @@
   .home .row-name { font-size: 28px; }
   .home .row-name[data-face] { font-size: 40px; }
   .home .row-action { min-width: 56px; }
+  .home .graphics { grid-template-columns: 1fr; gap: 24px; padding-top: 48px; }
+  .home .graphics .section-heading h2 { font-size: 48px; }
+  .home .graphics .section-heading h2 br { display: none; }
+  .home .graphics .section-tools { margin-top: 16px; flex-direction: row; justify-content: space-between; align-items: baseline; }
+  .graphics-description { margin-top: 16px; }
+  .home .graphics-grid { grid-template-columns: 1fr; gap: 32px; }
   .home .gallery { grid-template-columns: 1fr; gap: 24px; }
   .home .gallery figure:first-child { grid-row: auto; }
   .home .license-note { gap: 24px; }

@@ -316,8 +316,14 @@ async def probe_real_element(page, selector, label, index=0):
         return None
     await page.eval_on_selector_all(
         selector,
-        "(els, a) => { const el = els[a.i]; el.dataset.p10src = el.src; "
-        "el.src = a.url; }",
+        "(els, a) => { const el = els[a.i]; el.dataset.p10src = el.src;"
+        " el.dataset.p10loading = el.loading || 'auto';"
+        # Native lazy loading defers the fetch while the element sits far below the
+        # fold, so a swapped src can stay unrequested and the wait below times out on
+        # an element that never asked for the file. The probe measures geometry, not
+        # the browser's scroll heuristic, so this one image is forced eager for the
+        # duration of the measurement and put back afterwards.
+        " el.loading = 'eager'; el.src = a.url; }",
         {"i": index, "url": PROBE_URL})
     await page.wait_for_function(
         "(a) => document.querySelectorAll(a.sel)[a.i].naturalWidth === a.w",
@@ -328,6 +334,10 @@ async def probe_real_element(page, selector, label, index=0):
     await page.wait_for_function(
         "(a) => document.querySelectorAll(a.sel)[a.i].naturalWidth > 0",
         arg={"sel": selector, "i": index}, timeout=8000)
+    await page.eval_on_selector_all(
+        selector,
+        "(els, i) => { const el = els[i]; el.loading = el.dataset.p10loading || 'auto'; }",
+        index)
     return m
 
 

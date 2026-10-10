@@ -318,8 +318,77 @@ function renderRowFaces() {
   });
 }
 
+// ---------------------------------------------------------------- graphics
+// Illustration sets and texture packs come from the same catalog, but they are
+// not typefaces: a Graphic entry must never render a type tester, a glyph
+// panel, or an OpenType switch (product-spec, kasus C06). Which entries appear,
+// and in what order, is a content choice in home-fixture.js; every fact on the
+// card -- name, kind label, price, artwork, route -- is read back from the
+// catalog, so this file still names no product.
+function graphicsEntries() {
+  return (homeData.graphics || [])
+    .map(slug => ({ slug, product: fontData.get(slug) }))
+    .filter(entry => entry.product && entry.product.kind === 'graphic');
+}
+
+function renderGraphics() {
+  const grid = document.querySelector('#graphics-grid');
+  if (!grid) return;
+  const section = grid.closest('section');
+  const entries = graphicsEntries();
+  grid.textContent = '';
+  // No real Graphic in the data means no section. An empty rack, a drawn
+  // placeholder, or a font entry standing in for artwork would all be worse
+  // than saying nothing.
+  if (section) section.hidden = entries.length === 0;
+  const count = document.querySelector('#graphics-count');
+  if (count) count.textContent = entries.length ? `${entries.length} graphics` : '';
+  entries.forEach(({ slug, product }) => {
+    const card = document.createElement('a');
+    card.className = 'graphic-card';
+    // The prototype detail route product.html already serves; the entry lands
+    // there as kind 'graphic', so no tester is built for it. product-spec C06.
+    card.href = `product.html?font=${slug}`;
+    card.dataset.kind = product.kind;
+    card.dataset.slug = slug;
+    const art = document.createElement('span');
+    art.className = 'graphic-art';
+    const source = (product.images || [])[0];
+    if (source) {
+      const image = document.createElement('img');
+      image.src = source;
+      // The alt describes the entry, not the picture: the artwork has not been
+      // inspected, so it is derived from the verified name and style instead.
+      image.alt = product.style ? `${product.name} - ${product.style}` : product.name;
+      image.loading = 'lazy';
+      art.append(image);
+    } else {
+      card.dataset.art = 'missing';
+      const note = document.createElement('span');
+      note.className = 'graphic-art-note';
+      note.textContent = 'Artwork not mapped yet';
+      art.append(note);
+    }
+    const label = document.createElement('span');
+    label.className = 'graphic-label';
+    const name = document.createElement('b');
+    name.className = 'graphic-name';
+    name.textContent = product.name;
+    const meta = document.createElement('span');
+    meta.className = 'graphic-meta';
+    meta.textContent = product.style || product.kind;
+    const price = document.createElement('span');
+    price.className = 'graphic-price';
+    price.textContent = typeof product.price === 'number' ? `Demo $${product.price}` : 'Demo';
+    label.append(name, meta, price);
+    card.append(art, label);
+    grid.append(card);
+  });
+}
+
 renderFeatured();
 renderRowFaces();
+renderGraphics();
 
 if (specimenLine && activeSlug) {
   buildCutPicker();
