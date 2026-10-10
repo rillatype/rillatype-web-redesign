@@ -187,6 +187,8 @@
 .editorial .license-section form { margin-top: 20px; }
 .editorial .tester-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin-bottom: 8px; }
 .editorial .tester-frame { margin-top: 24px; border: 1px solid var(--line); overflow: hidden; background: var(--paper); }
+/* Cut yang gagal tidak menampilkan sample yang tidak dapat dipercaya. */
+.editorial .tester-frame[data-state="error"] .tester-stage { display: none; }
 .editorial .tester-stage { padding: 64px 44px; min-height: 320px; display: flex; flex-direction: column; justify-content: center; transition: background-color 160ms var(--ease), color 160ms var(--ease); }
 .editorial .tester-stage[data-theme="light"] { background: var(--paper); color: var(--ink); }
 .editorial .tester-stage[data-theme="dark"] { background: #101318; color: #f5f7fa; }

@@ -29,7 +29,6 @@ function setupTester(product) {
   }
 
   const styles = product.styles || [{ label: 'Regular', file: null, weight: 400 }];
-  let fontFamilies = new Map();
 
   // Produk tanpa style bernama yang terverifikasi tidak pernah menampilkan selector kosong.
   const hasStyles = styles.length > 1 && styles.some(style => style.label);
@@ -85,65 +84,106 @@ function setupTester(product) {
     output.style.fontFeatureSettings = parts.join(', ');
   }
 
-  async function loadStyles() {
-    retry.hidden = true;
-    fontStatus.textContent = 'Loading the product specimen…';
-    fontFamilies = new Map();
-    const familyName = `Rilla-${product.name.replace(/\s+/g, '')}`;
+  function styleUrl(style) {
+    // Direktori berkas berasal dari data style, bukan ditebak dari satu lokasi bersama.
+    return new URL(`${style.dir || window.RillaTester.FONT_DIR}${style.file}`, location.href).href;
+  }
+
+  // Berkas dimuat saat gaya itu dipilih, bukan semuanya sekaligus.
+  const loadedFaces = new Map();
+  const otFeatures = new Map();
+  const glyphs = new Map();
+  const familyName = `Rilla-${product.name.replace(/\s+/g, '')}`;
+  let activeIndex = null;
+
+  function styleStatus(index) {
+    const style = styles[index];
+    const cut = style && style.label ? ` (${style.label})` : '';
+    return `Showing the actual ${product.name}${cut} font, ${styles.length} style${styles.length > 1 ? 's' : ''} available.`;
+  }
+
+  function setStatus(index, message) {
+    fontStatus.textContent = message || styleStatus(index);
+  }
+
+  function renderGlyphs(index, codepoints) {
+    glyphGrid.textContent = '';
+    if (!codepoints.length) {
+      glyphCount.textContent = 'Character list unavailable';
+      return;
+    }
+    const fragment = document.createDocumentFragment();
+    codepoints.forEach(cp => {
+      const cell = document.createElement('span');
+      cell.className = 'glyph-cell';
+      cell.textContent = String.fromCodePoint(cp);
+      cell.title = `U+${cp.toString(16).toUpperCase().padStart(4, '0')}`;
+      fragment.appendChild(cell);
+    });
+    glyphGrid.appendChild(fragment);
+    glyphCount.textContent = `${codepoints.length} characters`;
+  }
+
+  async function loadStyle(index) {
+    const style = styles[index];
+    if (!style || !style.file) return null;
+    if (loadedFaces.has(index)) return loadedFaces.get(index);
+    const face = new FontFace(familyName, `url("${styleUrl(style)}") format("opentype")`, { weight: String(style.weight) });
+    await face.load();
+    document.fonts.add(face);
+    loadedFaces.set(index, face);
+    return face;
+  }
+
+  async function refreshFacts(index) {
+    const style = styles[index];
+    if (!style || !style.file) {
+      configureFeature(ligaInput, ligaSwitch, false, 'Ligatures');
+      configureFeature(saltInput, saltSwitch, false, 'Stylistic alternates');
+      glyphCount.textContent = 'Character list unavailable';
+      return;
+    }
+    const url = styleUrl(style);
+    if (!otFeatures.has(index)) otFeatures.set(index, await window.RillaTester.readOtFeatures(url));
+    const features = otFeatures.get(index);
+    configureFeature(ligaInput, ligaSwitch, Boolean(features && (features.has('liga') || features.has('clig'))), 'Ligatures');
+    configureFeature(saltInput, saltSwitch, Boolean(features && features.has('salt')), 'Stylistic alternates');
+    if (!glyphs.has(index)) glyphs.set(index, await window.RillaTester.readGlyphCodepoints(url));
+    renderGlyphs(index, glyphs.get(index));
+  }
+
+  async function selectStyle(index) {
+    const style = styles[index];
+    if (!style) return;
+    activeIndex = index;
     try {
-      const faces = await Promise.all(styles.map(async (style, index) => {
-        if (!style.file) return null;
-        // Direktori berkas berasal dari data style, bukan ditebak dari satu lokasi bersama.
-        const dir = style.dir || window.RillaTester.FONT_DIR;
-        const source = new URL(`${dir}${style.file}`, location.href).href;
-        const face = new FontFace(familyName, `url("${source}") format("opentype")`, { weight: String(style.weight) });
-        await face.load();
-        document.fonts.add(face);
-        return { index, face };
-      }));
-      faces.filter(Boolean).forEach(entry => fontFamilies.set(entry.index, entry.face));
+      if (style.file) await loadStyle(index);
       output.style.fontFamily = `"${familyName}", sans-serif`;
       testerFrame.hidden = false;
-      fontStatus.textContent = `Showing the actual ${product.name} font, ${styles.length} style${styles.length > 1 ? 's' : ''} available.`;
-
-      // Deteksi OpenType dan daftar glyph membaca berkas yang sama dengan yang dimuat
-      // tester, memakai direktori dari data style.
-      const probe = styles.find(s => s.file);
-      const probeUrl = probe ? new URL(`${probe.dir || window.RillaTester.FONT_DIR}${probe.file}`, location.href).href : null;
-      let features = null;
-      if (probeUrl) {
-        features = await window.RillaTester.readOtFeatures(probeUrl);
-      }
-      const hasLiga = Boolean(features && (features.has('liga') || features.has('clig')));
-      const hasSalt = Boolean(features && features.has('salt'));
-      configureFeature(ligaInput, ligaSwitch, hasLiga, 'Ligatures');
-      configureFeature(saltInput, saltSwitch, hasSalt, 'Stylistic alternates');
-
-      // Panel glyph.
-      if (probeUrl) {
-        const codepoints = await window.RillaTester.readGlyphCodepoints(probeUrl);
-        if (codepoints.length) {
-          const fragment = document.createDocumentFragment();
-          codepoints.forEach(cp => {
-            const cell = document.createElement('span');
-            cell.className = 'glyph-cell';
-            cell.textContent = String.fromCodePoint(cp);
-            cell.title = `U+${cp.toString(16).toUpperCase().padStart(4, '0')}`;
-            fragment.appendChild(cell);
-          });
-          glyphGrid.appendChild(fragment);
-          glyphCount.textContent = `${codepoints.length} characters`;
-        } else {
-          glyphCount.textContent = 'Character list unavailable';
-        }
-      }
       applySample();
       applyFeatures();
+      await refreshFacts(index);
+      if (!style.file) {
+        setStatus(index, `The specimen file for ${product.name} ${style.label} is not available in this preview.`);
+        retry.hidden = true;
+      } else {
+        setStatus(index);
+        retry.hidden = true;
+      }
+      testerFrame.removeAttribute('data-state');
     } catch {
-      testerFrame.hidden = true;
-      fontStatus.textContent = 'The font specimen could not load. You can still view the product images.';
+      // Satu cut yang gagal tidak boleh menyembunyikan tester atau memalsukan font.
+      // Sampel yang tidak dapat dipercaya disembunyikan; panel kontrol tetap ada.
+      testerFrame.dataset.state = 'error';
+      setStatus(index, `The ${style.label} specimen for ${product.name} could not load. The other cuts still work; choose another style or retry.`);
       retry.hidden = false;
     }
+  }
+
+  async function loadStyles() {
+    retry.hidden = true;
+    setStatus(defaultIndex, 'Loading the product specimen…');
+    await selectStyle(Number(styleSelect.value) || defaultIndex);
   }
 
   // Selector style hanya dibangun bila memang ada lebih dari satu style bernama.
@@ -166,7 +206,8 @@ function setupTester(product) {
   size.addEventListener('input', applySample);
   leading.addEventListener('input', applySample);
   tracking.addEventListener('input', applySample);
-  styleSelect.addEventListener('change', applySample);
+  // Memilih style memuat berkasnya sendiri dan mempertahankan seluruh isian pengunjung.
+  styleSelect.addEventListener('change', () => selectStyle(Number(styleSelect.value) || defaultIndex));
   ligaInput.addEventListener('change', applyFeatures);
   saltInput.addEventListener('change', applyFeatures);
   document.querySelectorAll('input[name="align"]').forEach(radio => {
