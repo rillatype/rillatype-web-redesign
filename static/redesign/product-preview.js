@@ -169,9 +169,14 @@ function setupTester(product) {
     return face;
   }
 
-  async function refreshFacts(index) {
+  async function refreshFacts(index, request) {
     const style = styles[index];
+    // Hanya permintaan aktif yang boleh menulis DOM. Pembacaan fakta tetap boleh
+    // selesai untuk mengisi cache, tetapi respons lama tidak boleh menimpa pilihan
+    // terbaru, jadi penjaga ini diperiksa lagi sebelum setiap mutasi setelah await.
+    const stale = () => request !== undefined && request !== styleRequest;
     if (!style || !style.file) {
+      if (stale()) return;
       configureFeature(ligaInput, ligaSwitch, false, 'Ligatures');
       configureFeature(dligInput, dligSwitch, false, 'Discretionary ligatures');
       configureFeature(saltInput, saltSwitch, false, 'Stylistic alternates');
@@ -180,14 +185,15 @@ function setupTester(product) {
     }
     const url = styleUrl(style);
     if (!otFeatures.has(index)) otFeatures.set(index, await window.RillaTester.readOtFeatures(url));
+    if (stale()) return;
     const features = otFeatures.get(index);
     configureFeature(ligaInput, ligaSwitch, Boolean(features && (features.has('liga') || features.has('clig'))), 'Ligatures');
     configureFeature(dligInput, dligSwitch, Boolean(features && features.has('dlig')), 'Discretionary ligatures');
     configureFeature(saltInput, saltSwitch, Boolean(features && features.has('salt')), 'Stylistic alternates');
     if (!glyphs.has(index)) glyphs.set(index, await window.RillaTester.readGlyphCodepoints(url));
+    if (stale()) return;
     renderGlyphs(index, glyphs.get(index));
   }
-
   async function selectStyle(index) {
     const style = styles[index];
     if (!style) return;
@@ -203,7 +209,7 @@ function setupTester(product) {
       testerFrame.hidden = false;
       applySample();
       applyFeatures();
-      await refreshFacts(index);
+      await refreshFacts(index, request);
       if (request !== styleRequest) return;
       if (!style.file) {
         setStatus(index, `The specimen file for ${product.name} ${style.label} is not available in this preview.`);
