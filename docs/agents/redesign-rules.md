@@ -1,6 +1,6 @@
 # Aturan pengerjaan redesign
 
-Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk claim, laporan per task, handoff antar-agent, dan mode bergantian. Rencana rinci baru masih draft; implementasi ditahan oleh AGENTS.md.
+Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk claim, laporan per task, handoff antar-agent, dan mode bergantian. User menyetujui rencana rinci pada 10 Oktober 2026; pelaksana yang ditugaskan mulai dari P01. Ikuti mode dan batas approval dalam AGENTS.md.
 
 ## Mulai dari dokumen aktif
 

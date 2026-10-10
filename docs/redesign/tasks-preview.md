@@ -1,6 +1,6 @@
 # Buku tugas preview
 
-Status: DRAFT. Jalankan setelah user menyetujui rencana. Baca execution-plan.md, product-spec.md, rules.md, dan laporan task sebelum bekerja.
+Status: rencana disetujui user, 10 Oktober 2026. Pelaksana yang ditugaskan mulai dari P01. Baca execution-plan.md, product-spec.md, rules.md, dan laporan task sebelum bekerja.
 Setiap task membutuhkan laporan docs/reports/<ID>.md dan update PROGRESS.md sebelum/selama/setelah kerja. Global check source: git diff --check dan syntax/perilaku yang relevan.
 P01–P20 adalah satu fase. P20 belum selesai hanya karena task sebelumnya lulus pemeriksaan agent.
 

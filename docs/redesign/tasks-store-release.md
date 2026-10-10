@@ -1,6 +1,6 @@
 # Buku tugas toko dan rilis
 
-Status: DRAFT. THEME = rillatype-v2-extracted/rillatype-v2-1/. Baca rules.md, execution-plan.md, product-spec.md, dan laporan task.
+Status: rincian rencana disetujui user, 10 Oktober 2026. THEME = rillatype-v2-extracted/rillatype-v2-1/. Baca rules.md, execution-plan.md, product-spec.md, dan laporan task. Approval transaksi sandbox/publikasi/production pada kartu tetap berlaku.
 Gunakan staging, akun uji, email sandbox, dan gateway sandbox yang terkonfirmasi. HTML statis tidak membuktikan order, email, login, atau unduhan.
 Setiap task melaporkan command/langkah, hasil aktual, bukti, pekerjaan tersisa, dan next action di laporan sendiri serta PROGRESS.md.
 

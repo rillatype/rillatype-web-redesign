@@ -1,6 +1,6 @@
 # Spesifikasi produk dan tampilan
 
-Status: DRAFT. Baca sebelum task yang menyentuh produk, tester, gambar, lisensi, atau harga.
+Status: spesifikasi rencana disetujui user, 10 Oktober 2026. Baca sebelum task yang menyentuh produk, tester, gambar, lisensi, atau harga. Draf lisensi legal dan harga Graphics tetap memerlukan kelengkapan/keputusan yang tercantum.
 
 ## Pisahkan tiga konsep
 

@@ -1,9 +1,9 @@
 ## Redesign aktif
 
-Mode saat ini: PERENCANAAN. User meminta dokumen terlebih dahulu. Jangan mengubah kode website, data toko, atau production sebelum user menyetujui rencana dan memerintahkan mulai implementasi.
+Mode saat ini: PERENCANAAN, menunggu pelaksana P01. User menyetujui rencana pada 10 Oktober 2026. Agent yang menerima perintah mulai menjalankan P01 untuk mencatat aktivasi dan status tugas. Jangan mengubah source website sebelum task terkait ditugaskan dan dependensinya selesai; approval production tetap terpisah.
 
 Sebelum bekerja, baca `rules.md`, `REDESIGN-PLAN.md`, dan bagian redesign aktif di `PROGRESS.md`.
-Untuk rencana rinci terbaru, baca `docs/redesign/execution-plan.md`. Rencana tersebut berstatus draft sampai user menyetujuinya.
+Untuk rencana rinci yang sudah disetujui, baca `docs/redesign/execution-plan.md`.
 Kemudian baca kartu tugas yang dipilih dan `docs/reports/<ID-TUGAS>.md` jika tersedia.
 
 Agent implementasi bekerja bergantian. Hanya satu tugas implementasi yang boleh BERJALAN. Reviewer boleh membaca bersamaan, tetapi tidak mengedit file.

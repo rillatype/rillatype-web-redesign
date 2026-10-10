@@ -1,6 +1,6 @@
 # Aturan kerja dan pelaporan agent
 
-Status: aturan pelaporan disepakati 10 Oktober 2026. Implementasi website masih ditahan sampai user menyetujui rencana.
+Status: aturan pelaporan dan rencana disepakati 10 Oktober 2026. Agent berikutnya yang ditugaskan mulai menjalankan P01 untuk aktivasi dan status. Approval production tetap terpisah.
 
 ## Sumber yang dibaca
 

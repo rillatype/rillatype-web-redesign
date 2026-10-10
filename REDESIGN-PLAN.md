@@ -2,7 +2,7 @@
 
 Tanggal kesepakatan: 9 Oktober 2026.
 
-Revisi perencanaan 10 Oktober 2026: user menyukai konsep R05H dan meminta rencana rinci sebelum implementasi. Baca `docs/redesign/execution-plan.md`, `docs/redesign/product-spec.md`, dan buku tugas fase yang dirujuk. Tambahan ini masih draft sampai user menyetujui rencana. Ikuti `rules.md` untuk pelaporan. Jangan mulai implementasi website selama mode PERENCANAAN pada AGENTS.md masih berlaku.
+Revisi perencanaan 10 Oktober 2026: user menyukai konsep R05H dan menyetujui rencana rinci. Baca `docs/redesign/execution-plan.md`, `docs/redesign/product-spec.md`, dan buku tugas fase yang dirujuk. Pelaksana yang ditugaskan mulai dari P01, lalu mengikuti dependensi. Ikuti `rules.md` untuk pelaporan dan AGENTS.md untuk mode aktif. Persetujuan rencana tidak menggantikan approval acuan visual, staging, atau production.
 
 ## Gunakan rencana ini
 

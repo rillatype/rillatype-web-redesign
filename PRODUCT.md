@@ -26,7 +26,7 @@ Sumber pengembangan tema ditetapkan dalam `docs/redesign-audit.md`.
 
 ## Kemampuan dan batasan
 
-Revisi perencanaan 10 Oktober 2026: font tetap menjadi fokus utama dan Graphics memiliki bagian jelas. Produk dapat mempunyai satu style, style bernama, Sans + Script, beberapa weight, bonus grafis, atau berupa Graphic murni. Style tester terpisah dari variasi lisensi pembelian. Semua preview font 1200x800 tampil utuh pada rasio 3:2. UI English, unggulan dipilih/diurutkan admin, blog tetap diakses, newsletter ringkas di footer. Rencana rinci dan Graphics license draft menunggu persetujuan; implementasi ditahan.
+Revisi perencanaan 10 Oktober 2026: font tetap menjadi fokus utama dan Graphics memiliki bagian jelas. Produk dapat mempunyai satu style, style bernama, Sans + Script, beberapa weight, bonus grafis, atau berupa Graphic murni. Style tester terpisah dari variasi lisensi pembelian. Semua preview font 1200x800 tampil utuh pada rasio 3:2. UI English, unggulan dipilih/diurutkan admin, blog tetap diakses, newsletter ringkas di footer. User menyetujui rencana rinci; pelaksana berikutnya mulai dari P01. Graphics license draft masih membutuhkan kelengkapan legal/harga sebelum publikasi.
 
 - Pertahankan WordPress dan WooCommerce sebagai platform akhir.
 - Sediakan homepage, katalog, pencarian, halaman produk, cart, checkout, serta akun.

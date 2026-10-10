@@ -1,6 +1,6 @@
 # Buku tugas WordPress
 
-Status: DRAFT. THEME = rillatype-v2-extracted/rillatype-v2-1/. Baca execution-plan.md/product-spec.md/rules.md dan laporan task.
+Status: rincian rencana disetujui user, 10 Oktober 2026. THEME = rillatype-v2-extracted/rillatype-v2-1/. Baca execution-plan.md/product-spec.md/rules.md dan laporan task. Dependensi dan approval staging/visual tetap wajib.
 W01–W04 adalah persiapan staging/data yang dapat dilakukan sebelum approval render. W05–W27 mengubah implementasi setelah P20 selesai; W27 menyiapkan data Graphics sebelum W22.
 Setiap task membutuhkan laporan sendiri, update tracker, syntax PHP/JS bila tersedia, serta pemeriksaan nyata pada staging. Jangan menggunakan production sebagai pengganti staging.
 

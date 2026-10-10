@@ -1,8 +1,8 @@
 # Rencana eksekusi redesign Rillatype
 
-Tanggal: 10 Oktober 2026. Status: DRAFT UNTUK PERSETUJUAN. Mode proyek: PERENCANAAN.
+Tanggal: 10 Oktober 2026. Status: DISETUJUI USER, 10 Oktober 2026. Mode proyek: menunggu pelaksana menjalankan P01.
 
-Dokumen ini menerjemahkan keputusan user menjadi 73 tugas kecil. Dokumen bukan izin memulai implementasi, mengubah toko, atau menerbitkan lisensi. User harus menyetujui rencana dan memerintahkan mulai terlebih dahulu.
+Dokumen ini menerjemahkan keputusan user menjadi 73 tugas kecil. User sudah menyetujui rencana dan dapat menugaskan agent berikutnya menjalankan P01. Persetujuan rencana tidak mencakup perubahan production, harga publik, atau penerbitan lisensi draft. Approval pada kartu tugas tetap berlaku.
 
 ## Baca sesuai tugas
 
