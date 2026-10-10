@@ -129,6 +129,90 @@ async def main() -> int:
         check(not errors, f"no page errors during the run ({errors[:2]})")
         await ctx.close()
 
+        # ------------------------------------------------- index 0 is the Thin cut
+        # A02: `Number(value) || fallback` used to swallow index 0. The selector, the
+        # requested file, the status, the weight and the loaded face must all name the
+        # same cut; a computed weight of 100 is not evidence on its own, because the
+        # sample element reads its weight from the form control while the product
+        # loader can still be holding SemiBold.
+        ctx = await browser.new_context(viewport={"width": 1440, "height": 900})
+        page = await ctx.new_page()
+        errors = []
+        page.on("pageerror", lambda e: errors.append(str(e)))
+        page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
+        asked = []
+        tracked(page, asked)
+        await page.goto(f"{BASE}?font=chronoa", wait_until="load")
+        await page.wait_for_function("() => !document.querySelector('#tester-frame').hidden", timeout=15000)
+        await page.fill("#sample-text", "Round trip")
+        await page.fill("#sample-size", "88")
+        await page.fill("#sample-leading", "140")
+        await page.fill("#sample-tracking", "6")
+        await page.click('input[name="align"][value="center"]')
+        await page.click('input[name="theme"][value="dark"]')
+        await page.wait_for_timeout(200)
+
+        def read_state():
+            return page.evaluate("""() => {
+                const select = document.querySelector('#sample-style');
+                const output = document.querySelector('#sample-output');
+                const cs = getComputedStyle(output);
+                return {
+                    cut: select.options[select.selectedIndex].textContent,
+                    status: document.querySelector('#font-status').innerText.trim(),
+                    weight: cs.fontWeight,
+                    family: cs.fontFamily,
+                    faces: [...document.fonts].filter(f => f.family === 'Rilla-Chronoa')
+                                                .map(f => `${f.weight}:${f.status}`),
+                    text: output.innerText,
+                    size: cs.fontSize,
+                    leading: cs.lineHeight,
+                    tracking: cs.letterSpacing,
+                    align: output.dataset.align || '',
+                    theme: document.querySelector('#tester-stage').dataset.theme || '',
+                };
+            }""")
+
+        sequence = [("5", "SemiBold", 600), ("0", "Thin", 100), ("6", "Bold", 700), ("0", "Thin", 100)]
+        rows = []
+        for value, cut, weight in sequence:
+            await page.select_option("#sample-style", value)
+            # The wait is bounded and non-fatal on purpose: a build that never names
+            # the chosen cut must still produce the failing comparison below, instead
+            # of aborting the whole suite with a timeout.
+            try:
+                await page.wait_for_function(
+                    "() => document.querySelector('#font-status').textContent.includes('(%s)')" % cut,
+                    timeout=6000)
+            except Exception:
+                pass
+            await page.wait_for_timeout(200)
+            rows.append((cut, weight, await read_state()))
+
+        cuts = [row[0] for row in rows]
+        check(asked.count("Chronoa-Thin.otf") >= 1,
+              f"choosing index 0 requests the Thin file ({sorted(set(asked))})")
+        check([row[2]["cut"] for row in rows] == cuts,
+              f"the selector labels match the cut that was chosen ({[row[2]['cut'] for row in rows]})")
+        check([row[2]["status"] for row in rows] == [
+            f"Showing the actual Chronoa ({cut}) font, 9 styles available." for cut in cuts],
+              f"the status names the same cut every time ({[row[2]['status'] for row in rows]})")
+        check([row[2]["weight"] for row in rows] == [str(row[1]) for row in rows],
+              f"each cut renders at its own weight ({[row[2]['weight'] for row in rows]})")
+        # The stylesheet's own WOFF2 subsets can satisfy a weight on their own, so this
+        # check states only that a face at the chosen weight is available. The proof
+        # that the product loader picked the cut is the OTF request asserted above.
+        check(all(f"{row[1]}:loaded" in row[2]["faces"] for row in rows),
+              f"a face at each chosen weight is available to the sample "
+              f"({[row[2]['faces'] for row in rows]})")
+        check(all(row[2]["family"].split(",")[0].strip().strip('\"') == "Rilla-Chronoa" for row in rows),
+              f"the product family stays applied ({[row[2]['family'] for row in rows]})")
+        check(all(row[2][key] == rows[0][2][key] for row in rows
+                  for key in ("text", "size", "leading", "tracking", "align", "theme")),
+              f"input and licence-adjacent state survive the round trip ({rows[0][2]})")
+        check(not errors, f"no page errors while choosing index 0 ({errors[:2]})")
+        await ctx.close()
+
         # ------------------------------------------- one cut fails from a cold start
         # The abort has to be installed before the page loads, otherwise the cut is
         # already cached and the failure path is never reached.

@@ -104,12 +104,32 @@ def last_total(out):
     return totals[-1] if totals else None
 
 
-def unguarded_or_true():
-    """`X or True` in real code, so the lesson cannot quietly come back.
+def dead_shapes(tree):
+    """(line, kind) pairs in `tree` where an assertion cannot fail.
 
-    Parsed with ast, not with a text match, so prose that mentions the pattern is
-    ignored and only executable code counts.
+    Two shapes: `X or True`, and a local `check()` call whose first argument is a
+    constant. Detection works on the parsed tree, so prose that mentions either
+    pattern is ignored and only executable code counts.
     """
+    found = []
+    for node in ast.walk(tree):
+        if (isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or)
+                and any(isinstance(value, ast.Constant) and value.value is True
+                        for value in node.values)):
+            found.append((node.lineno, "X or True"))
+        if (isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+                and node.func.id == "check" and node.args
+                and isinstance(node.args[0], ast.Constant)
+                and bool(node.args[0].value)):
+            # A constant first argument can never reflect what the run measured. Only
+            # always-true constants count: `check(False, ...)` is the deliberate
+            # always-fail idiom for a path that must never be reached.
+            found.append((node.lineno, "check takes a constant that is always true"))
+    return sorted(found)
+
+
+def unguarded_or_true():
+    """Every script that still carries a condition which cannot fail."""
     offenders = []
     bom = []
     for path in sorted((ROOT / "scripts").glob("*.py")):
@@ -123,11 +143,8 @@ def unguarded_or_true():
         except SyntaxError as error:
             offenders.append(f"{path.name}: unparsable ({error})")
             continue
-        for node in ast.walk(tree):
-            if isinstance(node, ast.BoolOp) and isinstance(node.op, ast.Or):
-                if any(isinstance(value, ast.Constant) and value.value is True
-                       for value in node.values):
-                    offenders.append(f"{path.name}:{node.lineno}")
+        for line, kind in dead_shapes(tree):
+            offenders.append(f"{path.name}:{line} ({kind})")
     return offenders, bom
 
 
@@ -146,6 +163,13 @@ async def main() -> int:
               f"[A] no script keeps a condition that cannot fail ({offenders})")
         if bom:
             note(f"[A] helper scripts still carrying a UTF-8 BOM (parsed as utf-8-sig): {bom}")
+        # The guard itself must be able to fail, or it is just another check without
+        # teeth: feed it both dead shapes plus a real one and require the exact lines.
+        sample = ast.parse("x = a or True\ny = check(True, 'probe')\n"
+                           "z = check(value != 0, 'real')\nw = check(False, 'bad path')\n")
+        check(dead_shapes(sample) == [(1, "X or True"), (2, "check takes a constant that is always true")],
+              f"[A] the guard flags both dead shapes and leaves real checks alone "
+              f"({dead_shapes(sample)})")
         # ------------------------------------------------ A. dead conditions
         catalog_html = (SRC / "catalog.html").read_text(encoding="utf-8")
         loaded = "font-catalog.js" in catalog_html
@@ -159,8 +183,8 @@ async def main() -> int:
         live = [p["permalink"] for p in data.values() if p.get("storeStatus") == "live"]
         note(f"permalinks: {len(permalinks)} rows, {len(set(permalinks))} unique, "
              f"{len(live)} live ({'unique' if all_unique else 'demo rows repeat a URL'})")
-        check(True, f"[A] the removed all-rows uniqueness condition measured "
-                    f"{all_unique} on real data (the live-only rule is the assertion below it)")
+        note(f"[A] the removed all-rows uniqueness condition measured {all_unique} on real data; "
+             f"the live-only rule below is the requirement that was actually asserted")
 
         css = (SRC / "editorial.css").read_text(encoding="utf-8")
         check("font-synthesis" not in css,

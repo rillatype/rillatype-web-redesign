@@ -55,13 +55,14 @@ check(not bad_title, f"every tracker title matches its card heading (bad: {bad_t
 bad_link = [t for t in expected if t in rows and rows[t]["link"] != expected[t]["link"]]
 check(not bad_link, f"every tracker link points at its card anchor (bad: {bad_link})")
 
+running = []
 for m in re.finditer(r"^\| \[([PWS]\d{2})\]\(([^)]+)\) \| [^|]+ \| ([A-Z ]+?) \|", PROGRESS, re.M):
     state = m.group(3).strip()
     if state == "BERJALAN":
-        check(False, f"{m.group(1)} is BERJALAN; at most one implementation task may run at a time")
+        running.append(m.group(1))
     if state == "SELESAI" and m.group(1) != "P01" and not m.group(1).startswith(("P", "W", "S")):
         check(False, f"unknown closed task {m.group(1)}")
-check(True, "no implementation task is left BERJALAN after P01 activation")
+check(running == [], f"no implementation task is left BERJALAN after P01 activation ({running})")
 check("| Aktifkan rencana yang disetujui | SELESAI |" in PROGRESS, "P01 is closed as SELESAI after activation")
 check("Hanya P01 BERJALAN selama aktivasi" in PROGRESS, "the activation log records that only P01 was BERJALAN")
 check("### 2026-10-10 08:24 WIB | Mulai P01" in REPORT, "the report keeps the start-of-work entry")

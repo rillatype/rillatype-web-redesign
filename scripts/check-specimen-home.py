@@ -71,7 +71,11 @@ async def main() -> int:
 
         # the specimen loads once it is near the viewport
         await page.wait_for_function("() => document.querySelector('#specimen-frame').dataset.state === 'ready'", timeout=15000)
-        check(True, "specimen loads its real font file")
+        loaded_faces = await page.evaluate("""() => [...document.fonts]
+            .filter(f => f.family === 'Rilla-Chronoa')
+            .map(f => `${f.weight}:${f.status}`)""")
+        check("600:loaded" in loaded_faces,
+              f"specimen loads its real font file, not only a stylesheet subset ({loaded_faces})")
         family = await page.eval_on_selector("#specimen-line", "el => getComputedStyle(el).fontFamily")
         check("Rilla-Chronoa" in family, "specimen line is set in the shipped Chronoa face")
         weight = await page.eval_on_selector("#specimen-line", "el => getComputedStyle(el).fontWeight")
@@ -100,8 +104,14 @@ async def main() -> int:
 
         # back to Chronoa default
         await page.locator("#cut-picker label", has_text="Chronoa").first.click()
-        await page.wait_for_function("() => document.querySelector('#specimen-facts').textContent.includes('SemiBold')", timeout=15000)
-        check(True, "switching back restores the Chronoa default cut")
+        try:
+            await page.wait_for_function("() => document.querySelector('#specimen-facts').textContent.includes('SemiBold')", timeout=15000)
+        except Exception:
+            pass
+        restored_facts = await page.locator("#specimen-facts").inner_text()
+        restored_weight = await page.eval_on_selector("#specimen-line", "el => getComputedStyle(el).fontWeight")
+        check("SemiBold" in restored_facts and restored_weight == "600",
+              f"switching back restores the Chronoa default cut ({restored_facts!r}, weight {restored_weight})")
 
         # specimen strips load below the fold
         await page.evaluate("window.scrollTo(0, 900)")
@@ -112,22 +122,31 @@ async def main() -> int:
             ".strip-sample", "els => els.map(el => getComputedStyle(el).fontFamily)")
         check(strips and all("Rilla-Chronoa" in family for family in strips),
               f"specimen strips use the shipped face ({strips[:2]})")
+        row_face = None
         try:
             await page.wait_for_function(
                 "() => getComputedStyle(document.querySelector('.row[data-name=\"Mango Letters\"] .row-name')).fontFamily.includes('Rilla-Mango')",
                 timeout=8000,
             )
-            check(True, "the index applies the Mango face to its row")
+            row_face = await page.eval_on_selector(
+                '.row[data-name="Mango Letters"] .row-name', "el => getComputedStyle(el).fontFamily")
         except Exception:
-            check(False, "the index applies the Mango face to its row")
+            row_face = None
+        check(row_face is not None and "Rilla-Mango" in row_face,
+              f"the index applies the Mango face to its row ({row_face})")
+        mango_faces = None
         try:
             await page.wait_for_function(
                 "() => [...document.fonts].some(f => f.family === 'Rilla-Mango' && f.status === 'loaded')",
                 timeout=8000,
             )
-            check(True, "the Mango index row really renders its own font file")
+            mango_faces = await page.evaluate("""() => [...document.fonts]
+                .filter(f => f.family === 'Rilla-Mango')
+                .map(f => `${f.weight}:${f.status}`)""")
         except Exception:
-            check(False, "the Mango index row really renders its own font file")
+            mango_faces = None
+        check(mango_faces is not None and any(":loaded" in face for face in mango_faces),
+              f"the Mango index row really renders its own font file ({mango_faces})")
 
         # search filters the index
         await page.evaluate("window.scrollTo(0, 0)")
@@ -233,14 +252,15 @@ async def main() -> int:
         page = await ctx.new_page()
         await page.route("**/fonts/web/*.woff2", lambda route: route.abort())
         await page.goto(BASE, wait_until="load")
+        reached_error = True
         try:
             await page.wait_for_function(
                 "() => document.querySelector('#specimen-frame').dataset.state === 'error'",
                 timeout=15000,
             )
-            check(True, "a failed specimen reaches the error state")
         except Exception:
-            check(False, "a failed specimen reaches the error state")
+            reached_error = False
+        check(reached_error, "a failed specimen reaches the error state")
         check(await page.locator("#specimen-line").is_hidden(), "a failed specimen hides the sample, preserving its text")
         check(await page.locator("#specimen-facts").inner_text() == "", "a failed specimen clears the selected cut facts")
         check(await page.locator("#specimen-error").is_visible(), "a failed specimen explains the error in place of the sample")

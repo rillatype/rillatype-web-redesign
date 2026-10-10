@@ -36,9 +36,18 @@ function setupTester(product) {
   const hasStyles = styles.length > 1 && styles.some(style => style.label);
   const defaultIndex = Math.max(0, styles.findIndex(style => style.label === product.defaultStyle));
 
+  // Indeks 0 adalah pilihan yang sah: `Number(value) || defaultIndex` membuangnya dan
+  // memuat cut default. Nilai selector dibaca sekali di sini dan divalidasi ke rentang
+  // yang benar-benar ada, supaya pemuatan awal, perubahan, dan retry memakai satu aturan.
+  function selectedIndex() {
+    if (!hasStyles) return defaultIndex;
+    const index = styleSelect.value === '' ? NaN : Number(styleSelect.value);
+    return Number.isInteger(index) && styles[index] ? index : defaultIndex;
+  }
+
   function currentStyle() {
     if (!hasStyles) return styles[defaultIndex] || styles[0];
-    return styles[Number(styleSelect.value)] || styles[0];
+    return styles[selectedIndex()];
   }
 
   function applySample() {
@@ -200,8 +209,8 @@ function setupTester(product) {
 
   async function loadStyles() {
     retry.hidden = true;
-    setStatus(defaultIndex, 'Loading the product specimen…');
-    await selectStyle(Number(styleSelect.value) || defaultIndex);
+    setStatus(selectedIndex(), 'Loading the product specimen…');
+    await selectStyle(selectedIndex());
   }
 
   // Selector style hanya dibangun bila memang ada lebih dari satu style bernama.
@@ -225,7 +234,7 @@ function setupTester(product) {
   leading.addEventListener('input', applySample);
   tracking.addEventListener('input', applySample);
   // Memilih style memuat berkasnya sendiri dan mempertahankan seluruh isian pengunjung.
-  styleSelect.addEventListener('change', () => selectStyle(Number(styleSelect.value) || defaultIndex));
+  styleSelect.addEventListener('change', () => selectStyle(selectedIndex()));
   ligaInput.addEventListener('change', applyFeatures);
   dligInput.addEventListener('change', applyFeatures);
   saltInput.addEventListener('change', applyFeatures);

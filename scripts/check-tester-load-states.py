@@ -95,7 +95,7 @@ async def main() -> int:
         ctx, page, errors = await session(browser)
 
         async def slow_light(route):
-            await asyncio.sleep(1.5)
+            await asyncio.sleep(4.0)
             await route.continue_()
 
         await page.route("**/Chronoa-Light.otf", slow_light)
@@ -106,7 +106,16 @@ async def main() -> int:
         await page.select_option("#sample-style", "7")
         # the newer choice must be in place well before the older response lands
         await page.wait_for_function("() => getComputedStyle(document.querySelector('#sample-output')).fontWeight === '800'", timeout=8000)
-        check(True, "the fast newer choice renders before the slow older response lands")
+        # The wait above enforces the timing. This measures the same claim as a value
+        # instead of counting a constant: at this instant the newer cut is loaded and
+        # the abandoned one has not landed yet.
+        faces = await page.evaluate("""() => [...document.fonts]
+            .filter(f => f.family === 'Rilla-Chronoa')
+            .map(f => `${f.weight}:${f.status}`)""")
+        check("800:loaded" in faces,
+              f"the newer cut is loaded before the older response lands ({faces})")
+        check("300:loaded" not in faces,
+              f"the abandoned slow cut has not landed yet ({faces})")
         # Cover the abandoned call's own file, feature and glyph requests too.
         await page.wait_for_timeout(6000)
         weight = await page.eval_on_selector("#sample-output", "el => getComputedStyle(el).fontWeight")
@@ -154,6 +163,68 @@ async def main() -> int:
         check(await page.locator("#sample-output").inner_text() == "Retyped", "retyping after clearing works")
         family = await page.eval_on_selector("#sample-output", "el => getComputedStyle(el).fontFamily")
         check("Rilla-MangoLetters" in family, f"the loaded face is not dropped by clearing ({family})")
+        await ctx.close()
+
+        # ------------------- 5. retry repeats the cut the visitor actually chose
+        # A02: the retry button went through loadStyles(), which read the selector as
+        # `Number(value) || defaultIndex`. Thin is index 0, so a retry after a Thin
+        # failure asked for SemiBold instead. The count of real request attempts is
+        # what proves the retry, because an aborted request never produces a response.
+        ctx, page, errors = await session(browser)
+        attempts = []
+
+        async def fail_thin_once(route):
+            # The route stays installed so every attempt is counted: the first one is
+            # aborted, later ones are served, which is what "the network came back"
+            # means for a retry. Unrouting would hide the retry's own request.
+            attempts.append(route.request.url.rsplit("/", 1)[-1])
+            if len(attempts) == 1:
+                await route.abort()
+            else:
+                await route.continue_()
+
+        await page.route("**/Chronoa-Thin.otf", fail_thin_once)
+        await page.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await page.wait_for_function("() => !document.querySelector('#tester-frame').hidden", timeout=15000)
+        await page.select_option("#sample-style", "0")
+        await page.wait_for_timeout(1200)
+        state = await page.eval_on_selector("#tester-frame", "el => el.dataset.state || 'none'")
+        status = await page.locator("#font-status").inner_text()
+        retry_visible = not await page.locator("#retry-font").is_hidden()
+        check(attempts.count("Chronoa-Thin.otf") >= 1,
+              f"choosing Thin asks the loader for the Thin file ({attempts})")
+        check(state == "error" and retry_visible,
+              f"a blocked Thin cut reports the error state and offers retry "
+              f"(state {state}, retry visible {retry_visible}, status {status[:50]!r})")
+
+        # A build that never asks for Thin cannot fail on it, so the button is absent:
+        # keep the run going and let the comparisons below report the real state.
+        if retry_visible:
+            await page.click("#retry-font")
+            try:
+                await page.wait_for_function(
+                    "() => document.querySelector('#tester-frame').dataset.state !== 'error'",
+                    timeout=15000)
+            except Exception:
+                pass
+        await page.wait_for_timeout(400)
+        retried = await page.evaluate("""() => {
+            const select = document.querySelector('#sample-style');
+            const output = document.querySelector('#sample-output');
+            return {
+                cut: select.options[select.selectedIndex].textContent,
+                status: document.querySelector('#font-status').innerText.trim(),
+                weight: getComputedStyle(output).fontWeight,
+                faces: [...document.fonts].filter(f => f.family === 'Rilla-Chronoa')
+                                            .map(f => `${f.weight}:${f.status}`),
+            };
+        }""")
+        check(attempts.count("Chronoa-Thin.otf") >= 2,
+              f"retry asks for the same cut again, not the default ({attempts})")
+        check(retried["cut"] == "Thin" and retried["status"].startswith("Showing the actual Chronoa (Thin)"),
+              f"retry keeps Thin selected and named ({retried['cut']!r}, {retried['status'][:50]!r})")
+        check(retried["weight"] == "100" and "100:loaded" in retried["faces"],
+              f"retry loads the Thin face at weight 100 ({retried['weight']}, {retried['faces']})")
         await ctx.close()
 
         await browser.close()
