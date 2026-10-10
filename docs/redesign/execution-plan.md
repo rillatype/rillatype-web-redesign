@@ -1,13 +1,14 @@
 # Rencana eksekusi redesign Rillatype
 
-Tanggal: 10 Oktober 2026. Status: DISETUJUI USER, 10 Oktober 2026. Mode proyek: menunggu pelaksana menjalankan P01.
+Tanggal: 10 Oktober 2026. Rencana utama disetujui user dan aktif sejak P01. Revisi setelah audit diminta user pada 10 Oktober 2026.
 
-Dokumen ini menerjemahkan keputusan user menjadi 73 tugas kecil. User sudah menyetujui rencana dan dapat menugaskan agent berikutnya menjalankan P01. Persetujuan rencana tidak mencakup perubahan production, harga publik, atau penerbitan lisensi draft. Approval pada kartu tugas tetap berlaku.
+Rencana memuat 73 task utama dan tujuh koreksi tambahan A01–A07, total 80 kartu. Status terkini ada di PROGRESS.md. Revisi ini hanya perencanaan/dokumentasi; implementasi koreksi membutuhkan penugasan. Persetujuan rencana tidak mencakup production, harga publik, atau penerbitan lisensi draft.
 
 ## Baca sesuai tugas
 
 - Semua agent: AGENTS.md, rules.md, bagian aktif PROGRESS.md, lalu dokumen ini.
 - Tugas P01–P20: tasks-preview.md dan product-spec.md.
+- Koreksi audit A01–A07: tasks-audit-corrections.md. Baca sebelum perubahan tester, penutupan ulang P05/P07/P09/P11, atau melanjutkan P12–P20.
 - Tugas W01–W27: tasks-wordpress.md dan product-spec.md.
 - Tugas S01–S26: tasks-store-release.md dan spesifikasi yang dirujuk task.
 - Ketentuan Graphics: graphics-license-draft.md. Draf ini belum boleh ditampilkan sebagai lisensi resmi.
@@ -52,8 +53,8 @@ Rencana ini tidak menambah wishlist, membership, loyalty, perubahan platform, pa
 
 | Belum tersedia | Pengaruh | Task yang berhenti sampai tersedia |
 | --- | --- | --- |
-| Persetujuan rencana dan perintah mulai | Aktivasi implementasi | P01 |
-| Sampel file Sans + Script dan Regular/Rough/Slanted | Bukti perilaku berkas asli | P03, P06, P19 jika kasus belum tersedia |
+| Sampel file Dingbats C05 | Bukti glyph/font asli | P08 dan P19 sampai berkas tersedia |
+| Sampel file Sans + Script dan named styles non-weight | Bukti perilaku berkas asli | P06 dan P19 untuk kasus wajib yang belum tersedia; fixture P03 bukan penutupan bukti berkas asli |
 | Staging, akses, runtime, plugin, payment sandbox | Pemeriksaan toko nyata | W01, lalu task transaksi |
 | Inventory lengkap, attachment, variasi, taxonomy | Data produksi yang benar | W03 dan dependent task |
 | Harga Graphics Extended per produk | Pilihan pembelian Graphics | W22/S23 untuk Graphics |
@@ -63,10 +64,24 @@ Rencana ini tidak menambah wishlist, membership, loyalty, perubahan platform, pa
 
 Task yang independen boleh dilanjutkan setelah task aktif dibuat TERBLOKIR dan handoff disimpan. Jangan melewati dependensi dengan label SELESAI palsu.
 
+## Koreksi audit sebelum fitur lanjutan
+
+Audit baseline `1e6037e` menemukan empat defect runtime dan satu risiko overwrite fakta dari analisis source. Assertion selalu PASS dan timestamp laporan juga bermasalah. Bukti serta prosedur rinci ada di [buku koreksi audit](tasks-audit-corrections.md).
+
+1. A01 membuang atau mengganti assertion dummy dan membuktikan kontrol negatif.
+2. A02 memetakan style indeks nol ke berkas yang benar pada change dan retry.
+3. A03 merender sel glyph dengan font serta cut produk aktif.
+4. A04 memulihkan cut homepage yang pernah gagal tanpa reload halaman.
+5. A05 mereproduksi race parser dan menjaga fakta terbaru sebelum mutasi DOM.
+6. A06 menjaga kontrol ketika font default gagal dari context baru.
+7. A07 menguji ulang acceptance, menutup ulang P05/P07/P09/P11 jika lulus, dan meluruskan handoff tanpa memalsukan timestamp lama.
+
+Urutan koreksi wajib berantai. P12–P20 menunggu A07 SELESAI. A07 tidak menutup P06/P08 tanpa aset asli. Jangan menjadikan status P yang dibuka ulang sebagai dependensi A karena penutupan ulang P dilakukan di A07. W01–W04 tetap persiapan independen bila ditugaskan dan prasyaratnya selesai; perubahan tema tetap menunggu P20.
+
 ## Urutan eksekusi
 
 1. P01–P03: kunci scope, contoh data, dan berkas uji.
-2. P04–P18: sesuaikan prototype dengan semua jenis produk dan aturan gambar.
+2. Untuk kondisi pasca-audit, jalankan A01–A07 sebelum fitur lanjutan. P04–P11 yang dibuka ulang dikoreksi/verifikasi melalui kartu A, kemudian lanjut P12–P18 sesuai dependensi.
 3. P19: buktikan prototype pada seluruh kasus yang diwajibkan.
 4. P20: user meninjau homepage, produk font, produk Graphics, dan family campuran.
 5. W01–W07: staging, inventory, metadata, serta kontrol admin.
@@ -96,6 +111,7 @@ Tulis command yang benar-benar dijalankan dan hasil aktual di laporan. Tidak ter
 Untuk bug, reproduksi sebelum memperbaiki. Tambahkan pemeriksaan perilaku kecil yang gagal sebelum perbaikan dan lulus setelahnya.
 Untuk perubahan layout kecil, gunakan render nyata dan ukuran computed; tidak perlu unit test yang menyalin deklarasi CSS.
 Gunakan test suite repo yang masih sesuai UI. Jika selector sudah historis, sesuaikan test dengan requirement, bukan agar hasil terlihat lulus.
+Untuk koreksi audit, gunakan assertion efektif dan tabel acceptance sesuai rules.md. Test yang mengubah screenshot atau memanggil child suite bukan otomatis read-only. Source analysis yang belum diuji runtime harus diberi label, bukan diklaim FAIL terkonfirmasi.
 
 ## Bukti audit yang menjadi dasar
 
@@ -111,6 +127,8 @@ Audit live 10 Oktober 2026 membaca halaman publik berikut tanpa transaksi:
 - https://rillatype.com/license/ : ketentuan enam lisensi font yang dipublikasikan.
 
 Audit repo menetapkan enqueues nyata di THEME/functions.php, tester di THEME/assets/js/product.js, dan markup di THEME/woocommerce/content-single-product.php. Stub font-tester.js/font-tester.php kosong dan bukan tempat implementasi yang aktif.
+
+Bukti audit live di atas adalah snapshot historis. Untuk inventaris publik berikutnya gunakan `reference-inventory.md` hasil P02 dan tanggal observasinya. Jika berbeda, catat konflik dan gunakan verifikasi W03 untuk keputusan data toko. Angka harga historis tidak menjadi konstanta atau izin perubahan harga.
 
 ## Batas persetujuan
 

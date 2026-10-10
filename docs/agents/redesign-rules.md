@@ -1,6 +1,6 @@
 # Aturan pengerjaan redesign
 
-Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk claim, laporan per task, handoff antar-agent, dan mode bergantian. User menyetujui rencana rinci pada 10 Oktober 2026; pelaksana yang ditugaskan mulai dari P01. Ikuti mode dan batas approval dalam AGENTS.md.
+Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk claim, laporan per task, handoff antar-agent, dan mode bergantian. Rencana sudah aktif sejak P01. Revisi audit 10 Oktober 2026 menambah A01–A07 melalui `docs/redesign/tasks-audit-corrections.md`; status serta next action terkini ada di PROGRESS.md. Ikuti mode dan batas approval dalam AGENTS.md.
 
 ## Mulai dari dokumen aktif
 
@@ -23,6 +23,7 @@ Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk cl
 Satu unit perubahan berarti satu perubahan yang bisa diperiksa, misalnya perbaikan header atau integrasi pilihan lisensi.
 Perubahan lanjutan dalam tugas yang sama tetap memerlukan entri log baru. Jangan menunggu satu fase selesai.
 Tugas tidak boleh berstatus `SELESAI` hanya karena kode sudah ditulis atau halaman statis terlihat benar.
+Saat koreksi audit belum selesai, tugas P12–P20 menunggu A07. P05/P07/P09/P11 yang dibuka ulang ditutup lewat verifikasi A07, bukan klaim PASS historis. Aturan assertion efektif, kontrol negatif, timestamp, efek samping test, dan bukti tester berada di `rules.md`; baca bagian itu sebelum pemeriksaan. Jika dokumen lama memberi instruksi berbeda, rules.md dan revisi audit pada plan berlaku.
 
 ## Catat setiap hasil
 

@@ -1,6 +1,6 @@
 # Aturan kerja dan pelaporan agent
 
-Status: aturan pelaporan dan rencana disepakati 10 Oktober 2026. Agent berikutnya yang ditugaskan mulai menjalankan P01 untuk aktivasi dan status. Approval production tetap terpisah.
+Status: rencana aktif sejak P01. Revisi audit 10 Oktober 2026 menambah A01–A07. Baca status dan handoff terkini di PROGRESS.md sebelum memilih tugas. Approval production tetap terpisah.
 
 ## Sumber yang dibaca
 
@@ -12,10 +12,12 @@ Status: aturan pelaporan dan rencana disepakati 10 Oktober 2026. Agent berikutny
 
 PROGRESS.md adalah sumber status. Laporan tugas menyimpan rincian bukti. Rencana menyimpan spesifikasi, bukan status tugas.
 
+Saat koreksi audit belum selesai, baca `docs/redesign/tasks-audit-corrections.md` sebelum implementasi atau penutupan ulang P05/P07/P09/P11. Kerjakan A01–A07 sesuai urutan kartu. P12–P20 menunggu A07. Laporan P lama tetap bukti historis, bukan status aktif atau izin melewati koreksi.
+
 ## Mulai satu tugas
 
 1. Jalankan git status --short. Catat perubahan yang sudah ada dan pemiliknya jika diketahui.
-2. Temukan satu tugas BELUM yang semua dependensinya SELESAI.
+2. Pilih hanya tugas yang ditugaskan user. Verifikasi semua dependensinya SELESAI dan batas koreksi audit di PROGRESS.md sudah terpenuhi. Daftar next action bukan izin mengerjakan task lain otomatis.
 3. Jika ada tugas implementasi BERJALAN milik agent lain, jangan mengedit. Baca laporan tersebut dan tunggu handoff.
 4. Jika task BERJALAN tampak ditinggalkan, minta penugasan ulang. Jangan mengambil alih hanya berdasarkan umur timestamp.
 5. Ubah baris task di PROGRESS.md menjadi BERJALAN dan tulis identitas agent/session.
@@ -40,6 +42,14 @@ Setelah setiap unit, sebelum unit berikutnya:
 Catat pemeriksaan gagal sebelum memperbaikinya. Simpan riwayat kegagalan dan hasil perbaikannya.
 Untuk observasi baca-saja dalam satu penyelidikan, satu entri boleh menggabungkan beberapa pembacaan yang menghasilkan satu kesimpulan.
 
+### Ambil waktu dari sistem
+
+1. Ambil waktu aktual pada awal dan akhir setiap unit. Pada Windows, gunakan `[TimeZoneInfo]::ConvertTimeBySystemTimeZoneId((Get-Date), 'SE Asia Standard Time').ToString('yyyy-MM-dd HH:mm:ss')` dan tulis suffix WIB.
+2. Catat timestamp setelah tindakan selesai, bukan estimasi durasi atau urutan waktu buatan. Perbarui `Terakhir diperbarui` saat laporan benar-benar disimpan.
+3. Sebelum commit, bandingkan waktu entri baru dengan `git log --format='%h | %aI | %cI | %s'`. Entri pekerjaan yang sudah masuk commit tidak boleh mengaku dilakukan sesudah waktu commit tanpa penjelasan perbedaan jam yang dapat diperiksa.
+4. Jika jam atau laporan lama tidak konsisten, tambahkan addendum dengan waktu sekarang dan bukti konfliknya. Jangan menebak timestamp lama, mengganti tanggal commit, atau menyimpulkan kerja paralel hanya dari timestamp yang bermasalah.
+5. Saat memperbarui handoff, letakkan keadaan terkini lebih dahulu dan tandai bagian lama sebagai riwayat. Satu next action aktif harus konsisten dengan status dan dependensi.
+
 ## Status dan kriteria selesai
 
 | Status | Gunakan saat | Next action wajib |
@@ -53,6 +63,41 @@ Untuk observasi baca-saja dalam satu penyelidikan, satu entri boleh menggabungka
 Kode tertulis, screenshot statis, atau build sukses sendiri tidak cukup untuk menutup task perilaku transaksi.
 Task selesai hanya ketika hasil nyata sesuai kartu, pemeriksaan relevan lulus, laporan terbarui, dan scope tidak menyisakan pekerjaan wajib.
 Jika belum selesai saat sesi berakhir, tetap BERJALAN atau TERBLOKIR dengan handoff. Jangan membuat task tampak SELESAI karena budget habis.
+
+Jika audit menemukan defect pada task SELESAI, buka ulang menjadi BELUM sampai diambil pelaksana. Tulis alasan, acceptance yang gagal, dan kartu koreksi. Gunakan TERBLOKIR hanya bila bukti, data, akses, atau prasyarat tidak tersedia. Pertahankan log dan laporan sebelumnya. Tutup ulang hanya dengan bukti terbaru, bukan angka PASS lama.
+
+## Buktikan perilaku, bukan angka PASS
+
+### Sebelum menjalankan pemeriksaan
+
+1. Baca entry point test dan command anak yang dipanggil. Cari penulisan screenshot, log, fixture, paket, perubahan Git, akses jaringan, dan transaksi.
+2. Catat base URL, HEAD, perubahan working tree, viewport, runtime, dan versi browser. Pastikan server menyajikan workspace yang sedang diperiksa.
+3. Untuk tugas audit read-only, pilih command yang tidak menulis workspace atau arahkan output sementara ke scratch jika tool mendukung. Jika command tidak dapat dibuat read-only, gunakan pemeriksaan lain dan nyatakan suite tidak dijalankan. Jangan menyatakan tidak ada file ditulis jika test memperbarui screenshot ignored.
+4. Simpan ad-hoc probe, backup, output browser, dan helper mutasi sekali pakai di scratch. Simpan test yang dapat dijalankan ulang sebagai file proyek pada scope kartu. Hindari helper sementara baru di root atau scripts proyek.
+
+### Tulis assertion yang dapat gagal
+
+1. Hubungkan tiap assertion dengan acceptance tertentu. Periksa hasil literal yang dilihat pengguna, bukan hanya teks laporan atau deklarasi CSS.
+2. Assertion efektif harus dapat FAIL. Hindari `or True`, `|| true`, exception yang ditelan lalu dianggap sukses, atau kondisi konstan yang selalu lulus.
+3. Untuk assertion baru atau pengganti yang menentukan penutupan task, jalankan kontrol negatif. Sajikan data atau respons salah melalui memory, route override, atau salinan scratch. Buktikan test menolak keadaan itu tanpa mengubah source kerja untuk sementara.
+4. Hapus pemeriksaan duplikat atau tidak berlaku dari jumlah PASS. Catat SKIP/TIDAK BERLAKU beserta alasan. Catat exit code BLOCKED terpisah dari PASS. Jangan menaikkan total hanya untuk mengembalikan angka lama.
+5. Saat test berubah, jelaskan requirement yang tetap diperiksa dan alasan perubahan selector atau serialisasi browser. Normalisasi format setara boleh. Mengganti expected agar bug terlihat benar tidak boleh.
+6. Untuk race, buktikan request lama benar-benar ditahan, pilihan baru sudah selesai, lalu respons lama dilepas. Catat urutan request dan state sebelum/sesudah. Timeout tetap atau assertion weight saja tidak membuktikan fakta terbaru aman.
+
+### Bukti khusus tester font
+
+- Pilihan style harus cocok pada selector, label status, URL berkas yang diminta, family yang loaded, weight/style, glyph, dan fitur yang dirender. Indeks `0` adalah pilihan valid, bukan alasan memilih default lain.
+- Computed weight atau nama family dalam stack CSS bukan bukti berkas yang benar termuat. Periksa request sukses dan face loaded. Bedakan OTF yang diminta loader produk dari subset WOFF2 yang dapat dimuat stylesheet.
+- Panel glyph harus memakai family dan cut produk aktif. Periksa computed style pada sel glyph, count dari file aktif, dan face loaded. Count benar dengan sel Manrope tetap gagal.
+- Retry harus mencoba ulang cut yang gagal setelah jaringan dipulihkan dan berhasil tanpa reload halaman. Berpindah ke cut lain yang sudah sehat tidak memenuhi acceptance retry.
+- Uji cold-default failure dalam context baru sebelum font default pernah berhasil. Kontrol dan retry tetap tersedia, tetapi sample yang gagal tidak boleh berpura-pura memakai font produk. Produk tanpa berkas dibedakan dari kegagalan jaringan.
+- Pemeriksaan request terbaru berlaku sebelum setiap mutasi DOM setelah await, termasuk switch OpenType dan panel glyph. Respons lama boleh selesai untuk cache, tetapi tidak boleh menimpa fakta terbaru.
+- Pertahankan input literal, size, leading, tracking, alignment, theme, dan pilihan lisensi ketika font berubah atau gagal. Buat test sesuai skenario di kartu, tanpa menambah kontrol atau data produk baru.
+
+### Simpan bukti yang dapat diperiksa ulang
+
+Untuk setiap skenario wajib, tulis kondisi awal, command lengkap, expected, actual, exit code, versi runtime, HEAD, dan path output. Bedakan runtime terkonfirmasi, analisis source, fixture sintetis, dan bagian yang belum diperiksa. Source analysis bukan klaim reproduksi browser.
+Ringkasan total PASS tidak menggantikan tabel acceptance. Simpan FAIL sebelum fix serta hasil test yang sama setelah fix. Jika test belum mampu membuka skenario, laporkan keterbatasannya dan perbaiki probe sebelum menyatakan selesai.
 
 ## Bekerja dengan agent berikutnya
 
@@ -81,6 +126,8 @@ Jangan commit pekerjaan agent lain, credential, config lokal, log browser, atau 
 Jika user menahan push, patuhi penahanan tersebut. Jika push gagal, catat commit lokal dan penyebabnya.
 Catat bukti push pada handoff atau unit berikutnya. Hindari commit tambahan hanya untuk mencatat hash commit sebelumnya.
 Jangan force-push, amend, melewati hook, atau melakukan reset destruktif.
+Untuk baseline perbandingan, baca snapshot commit melalui `git show` ke scratch atau pakai worktree terpisah yang diizinkan. Jangan mengganti source working tree dengan `git checkout HEAD -- <file>` lalu memulihkannya sebagai cara mengambil screenshot baseline. Pisahkan baseline dari file yang sedang dikerjakan.
+Jangan menjalankan helper mutasi progress lama tanpa membaca dampak dan status terkini. Jangan menghapus file untracked milik pihak lain. Bukti push setelah commit boleh tetap lokal mengikuti aturan di atas, tetapi harus dicatat pada handoff dan dipertahankan agent berikutnya.
 
 ## Akhir sesi
 

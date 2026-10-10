@@ -6,9 +6,11 @@ Revisi perencanaan 10 Oktober 2026: user menyukai konsep R05H dan menyetujui ren
 
 Aktivasi 10 Oktober 2026: P01 selesai dan rencana berjalan. Mode kerja kini IMPLEMENTASI SESUAI TUGAS (lihat `AGENTS.md`). Tabel status 73 microtask P01–P20/W01–W27/S01–S26 berada di `PROGRESS.md` beserta tautan kartunya. Laporan aktivasi: `docs/reports/P01.md`. Bagian R di bawah tetap menjadi spesifikasi dan riwayat fase lama; jangan menutup ID R sebelum seluruh microtask terkait selesai.
 
+Revisi setelah audit 10 Oktober 2026: pertahankan 73 microtask utama dan tambahkan tujuh koreksi A01–A07 di `docs/redesign/tasks-audit-corrections.md`. P05/P07/P09/P11 dibuka ulang. Selesaikan koreksi dan verifikasi A07 sebelum fitur preview P12–P20. Status dan next action terkini ada di `PROGRESS.md`; laporan lama dipertahankan sebagai sejarah. User meminta pembaruan plan/rules, bukan pelaksanaan fix pada sesi revisi ini.
+
 ## Gunakan rencana ini
 
-Kerjakan tugas di bawah satu per satu. Periksa kriteria selesai sebelum melanjutkan.
+Kerjakan kartu aktif P/W/S atau A yang ditugaskan, satu per satu. Gunakan execution-plan dan buku koreksi untuk urutan terkini. Bagian R di bawah adalah spesifikasi fase lama, bukan antrean implementasi yang melewati microtask.
 Lihat status setiap tugas di `PROGRESS.md`. Ikuti `docs/agents/redesign-rules.md` untuk pencatatan dan GitHub.
 Rencana ini menggantikan arah visual dalam `PLAN.md` untuk pekerjaan baru.
 

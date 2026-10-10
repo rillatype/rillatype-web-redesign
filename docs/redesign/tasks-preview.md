@@ -1,8 +1,10 @@
 # Buku tugas preview
 
-Status: rencana disetujui user, 10 Oktober 2026. Pelaksana yang ditugaskan mulai dari P01. Baca execution-plan.md, product-spec.md, rules.md, dan laporan task sebelum bekerja.
+Status: rencana aktif sejak P01. Revisi audit 10 Oktober 2026 menambah A01–A07 di tasks-audit-corrections.md. Baca execution-plan.md, product-spec.md, rules.md, status terkini, dan laporan task sebelum bekerja.
 Setiap task membutuhkan laporan docs/reports/<ID>.md dan update PROGRESS.md sebelum/selama/setelah kerja. Global check source: git diff --check dan syntax/perilaku yang relevan.
 P01–P20 adalah satu fase. P20 belum selesai hanya karena task sebelumnya lulus pemeriksaan agent.
+
+Koreksi audit mendahului fitur P12–P20. P05/P07/P09/P11 dibuka ulang dalam PROGRESS.md. Gunakan A02–A06 untuk fix dan A07 untuk penutupan ulang, bukan mengulang seluruh kartu P lama. P06/P08 tetap menunggu aset asli. Hasil PASS historis tidak menutup temuan audit.
 
 ## P01. Aktifkan rencana yang disetujui
 
@@ -33,6 +35,7 @@ Selesai: C01 memuat berkas asli; input teks literal; tidak ada selector kosong a
 Dependensi: P04. File: product-preview.js, product.html, editorial.css, data fixture P03.
 Langkah: tampilkan selector hanya bila style valid lebih dari satu; label memakai nama asli; setiap pilihan menunjuk file sendiri. Pertahankan seluruh state input ketika pilihan berubah.
 Selesai: Regular/Rough/Slanted atau contoh bernama lain memilih file yang benar, bukan CSS filter/skew. Uji round-trip style dan input kosong. Jika berkas asli belum ada, hasil UI fixture dicatat terpisah dari verifikasi font nyata.
+Tambahan acceptance audit: style value `0` tetap memilih cut pertama yang valid. Buktikan URL berkas loader, face loaded, selector, status, dan weight sesuai cut itu pada change serta retry. Uji font default gagal sebelum pernah sukses; kontrol tetap tersedia untuk memilih cut sehat. Prosedur rinci A02/A06, penutupan ulang di A07.
 
 ## P06. Periksa family Sans + Script
 
@@ -45,18 +48,21 @@ Selesai: typeface yang berbeda benar-benar tampil, input tidak tertimpa, metadat
 Dependensi: P05. File: font-catalog.js, preview.js, product-preview.js, product.html dan style yang relevan.
 Langkah: gunakan label/file Chronoa yang tersedia; beri satu mekanisme pemilihan yang konsisten; tampilkan kontrol weight hanya pada daftar weight nyata. Font biasa tetap memakai nama style.
 Selesai: Chronoa dapat mencoba cut asli; Mango tidak mendapat kontrol weight; Rough/Script tidak diberi angka weight buatan. Default sesuai data, bukan respons download tercepat.
+Tambahan acceptance audit: memilih Thin harus memuat cut Thin, bukan memakai status/fakta SemiBold sambil hanya mengubah CSS weight 100. Gunakan bukti A02 dan verifikasi ulang A07. Mango tetap tanpa weight controls.
 
 ## P08. Periksa glyph, OpenType, dan Dingbats
 
 Dependensi: P05/P07; bukti Dingbats nyata diperlukan untuk menutup C05. File: tester-core.js, product-preview.js, product.html; data yang relevan.
 Langkah: baca glyph/feature dari file aktif; refresh saat style berubah; tampilkan unavailable jika parser atau file tidak mendukung; untuk Dingbats gunakan karakter yang benar-benar tersedia.
 Selesai: glyph count dan switch sesuai file, glyph panel dapat dibuka/ditutup, fitur unsupported tidak bisa diaktifkan. Jangan menambah parser kompleks hanya untuk menyembunyikan unsupported state; catat batas parser dan kebutuhan nyata.
+Tambahan acceptance audit: ukur family/weight/style pada sel glyph dan face loaded, bukan hanya count. Respons parser style lama tidak boleh mengubah glyph atau switch pilihan terbaru. Prosedur A03/A05. Klaim parsial glyph/OpenType untuk Chronoa/Mango baru diperbarui setelah verifikasi; C05 tetap TERBLOKIR tanpa berkas.
 
 ## P09. Buktikan state pemuatan tester
 
 Dependensi: P04/P05/P07. File: preview.js, product-preview.js, scripts/check-specimen-states.py dan test produk relevan.
 Langkah: reproduksi clear/retype, abort file, retry, pergantian cepat, dan respons lama; pertahankan teks; pastikan hasil request terbaru menang.
 Selesai: test kasus tersebut lulus pada tester homepage dan produk yang memakai perilaku itu. Berkas gagal tidak menampilkan font UI sebagai specimen produk. Catat FAIL sebelum fix jika menemukan regresi.
+Tambahan acceptance audit: coba ulang cut homepage yang benar-benar gagal setelah jaringan pulih, dengan request baru dan state ready tanpa reload. Uji cold-default failure produk dan race parser terhadap jumlah/family glyph serta supported state fitur. Prosedur A04/A05/A06, penutupan ulang di A07. Beralih ke cut sehat atau mengassert weight saja tidak cukup.
 
 ## P10. Terapkan artwork utuh pada seluruh preview
 
@@ -69,10 +75,11 @@ Selesai: C12 lulus pada 320/390/768/1280/1440/1600px. Keempat tepi dan lettering
 Dependensi: P04/P05/P07/P09/P10. File: index.html, home.css, preview.js, data fixture.
 Langkah: pertahankan masthead/field biru R05H; pilih font unggulan dari data contoh yang nanti berasal dari admin; bangun pilihan style sesuai produk; sembunyikan weight saat tidak relevan.
 Selesai: homepage tidak bergantung pada Chronoa atau jumlah 9 weight. Penggantian featured ke font satu style tetap bekerja. Desain tidak berubah menjadi visual world baru.
+Tambahan acceptance audit: gunakan suite homepage-data yang sudah dibersihkan A01. Verifikasi ulang featured default, font satu style, data sintetis, state error, dan retry setelah dependensi tester pulih. Ini revalidasi di A07, bukan izin mengganti visual world.
 
 ## P12. Tambahkan bagian Graphics yang layak
 
-Dependensi: P02/P03/P10/P11. File: index.html, home.css, fixture catalog, ASSETS.md.
+Dependensi: A07/P02/P03/P10/P11. File: index.html, home.css, fixture catalog, ASSETS.md.
 Langkah: pilih ilustrasi/texture pack nyata sesuai referensi; tampilkan artwork utuh, nama, kind, harga Demo, dan route detail yang tepat; letakkan setelah fokus font; sediakan View graphics.
 Selesai: bagian dapat ditemukan di desktop/mobile, tidak memakai lingkaran placeholder sebagai artwork asli, tidak menuju font lain, dan tidak menampilkan type tester pada entri Graphic. Tidak perlu memuat semua produk grafis pada homepage.
 
@@ -114,9 +121,10 @@ Selesai: C10 tidak dipromosikan sebagai gratis untuk seluruh lisensi; C06 tidak 
 
 ## P19. Jalankan pemeriksaan acuan lengkap
 
-Dependensi: P06/P08/P09/P10/P11/P12/P13/P14/P15/P16/P17/P18. File: scripts/check-specimen-home.py, check-specimen-states.py, check-redesign-preview.py atau suite penggantinya; bukti .impeccable/review/.
+Dependensi: A07/P06/P08/P09/P10/P11/P12/P13/P14/P15/P16/P17/P18. File: scripts/check-specimen-home.py, check-specimen-states.py, check-redesign-preview.py atau suite penggantinya; bukti sementara mengikuti rules.md.
 Langkah: petakan C01–C12 ke pemeriksaan; jalankan desktop/mobile dan ukuran gambar wajib; inspect screenshot yang benar-benar dimuat; perbaiki temuan material satu batch lalu konfirmasi.
 Selesai: semua kasus wajib mempunyai hasil PASS atau task tetap TERBLOKIR. Tidak menganggap transaksi nyata diuji lewat HTML statis. Console/error/fokus/long text/cold font error dan gambar utuh diperiksa. Tulis batas pemeriksaan.
+Petakan juga skenario koreksi A02–A06 ke test dan artefak runtime. Catat assertion efektif, negative control, exit BLOCKED, source yang disajikan, dan batas pemeriksaan. Suite yang selalu PASS atau test yang hanya mengukur computed weight tidak cukup untuk menutup bukti font/fakta.
 
 ## P20. Dapatkan persetujuan acuan
 

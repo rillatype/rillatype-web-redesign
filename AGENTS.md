@@ -6,6 +6,8 @@ Sebelum bekerja, baca `rules.md`, `REDESIGN-PLAN.md`, dan bagian redesign aktif 
 Untuk rencana rinci yang sudah disetujui, baca `docs/redesign/execution-plan.md`.
 Kemudian baca kartu tugas yang dipilih dan `docs/reports/<ID-TUGAS>.md` jika tersedia.
 
+Koreksi audit aktif: baca `docs/redesign/tasks-audit-corrections.md` untuk A01–A07 sebelum mengubah tester atau melanjutkan preview. P05/P07/P09/P11 dibuka ulang untuk koreksi/verifikasi. P12–P20 menunggu A07 SELESAI. Penugasan saat revisi ini hanya dokumen; implementasi A01 memerlukan penugasan user. Handoff P11 yang menyuruh langsung P12 kini historis.
+
 Agent implementasi bekerja bergantian. Hanya satu tugas implementasi yang boleh BERJALAN. Reviewer boleh membaca bersamaan, tetapi tidak mengedit file.
 Setiap agent wajib mencatat mulai kerja, perubahan, pemeriksaan, blocker, hasil, dan next action. Ikuti urutan laporan dalam `rules.md`; pekerjaan tanpa laporan belum selesai.
 
