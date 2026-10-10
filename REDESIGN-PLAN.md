@@ -13,7 +13,7 @@ Rencana ini menggantikan arah visual dalam `PLAN.md` untuk pekerjaan baru.
 - Rombak homepage, katalog, halaman produk, cart, checkout, dan akun.
 - Layani desainer dan pemilik brand yang ingin menemukan, mencoba, dan membeli font.
 - Tetap gunakan WordPress dan WooCommerce.
-- Arah visual aktif sejak revisi R05D adalah foundry editorial: tipografi Manrope yang tegas, satu aksen biru, dan fokus pada koleksi serta detail font. User meminta mengganti keseluruhan versi sebelumnya.
+- Arah visual aktif R05H adalah editorial berani: identitas Manrope besar, specimen produk nyata pada bidang biru, indeks font asimetris, dan artwork asli. User meminta tampilan sangat berbeda dan memilih arah ini pada 10 Oktober 2026.
 - Revisi 9 Oktober 2026: user menilai preview awal terlalu sederhana. Pertahankan minimalisme, tetapi perkuat komposisi, skala tipografi, dan dominasi preview unggulan.
 - Gunakan latar terang, teks gelap, serta biru sebagai satu aksen UI. Preview font tetap berwarna.
 - Homepage berisi pembukaan singkat, font pilihan, rilisan terbaru, penjelasan lisensi singkat, dan footer.
@@ -214,9 +214,19 @@ Dependensi: R06A.
 - Pertahankan latar terang, satu aksen, logo, warna artwork, route produk, pencarian header, filter, dan alur lisensi di halaman produk.
 - Selesai jika specimen, indeks, pencarian, menu mobile, fokus keyboard, dan lebar sempit diperiksa pada desktop serta mobile tanpa error.
 
+### R05H. Redesign editorial berani
+
+Dependensi: R05G.
+
+- Permintaan 10 Oktober 2026: user meminta tampilan sangat berbeda, tidak generik, dan menunjukkan keahlian tipografi. User memilih melanjutkan editorial yang berani.
+- Jadikan identitas foundry dan specimen nyata sebagai komposisi pembuka, dengan bidang biru yang utuh, skala huruf besar, dan indeks berirama.
+- Pertahankan logo, aset, pencarian, navigasi, specimen, route produk, serta kontrol aksesibel. Jangan menciptakan fakta lisensi atau format pembelian.
+- Periksa desktop/mobile, font asli, pergantian cut, pencarian, keadaan kosong, keyboard, serta kegagalan aset. Catat hasil dan sinkronkan dokumen desain.
+- Selesai jika homepage pengganti dapat ditinjau. Persetujuan visual dan integrasi WordPress tetap mengikuti R07/R08.
+
 ### R07. Minta persetujuan acuan desain
 
-Dependensi: R05F dan R06.
+Dependensi: R05H dan R06.
 
 - Tampilkan kedua preview kepada user dengan link atau screenshot.
 - Minta feedback tentang hierarki, kepadatan, navigasi, tester, dan pilihan lisensi.

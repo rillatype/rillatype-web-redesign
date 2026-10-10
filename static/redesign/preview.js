@@ -61,6 +61,7 @@ const SPECIMENS = {
 
 const specimenFrame = document.querySelector('#specimen-frame');
 const specimenLine = document.querySelector('#specimen-line');
+const specimenError = document.querySelector('#specimen-error');
 const specimenStatus = document.querySelector('#specimen-status');
 const specimenFacts = document.querySelector('#specimen-facts');
 const cutPicker = document.querySelector('#cut-picker');
@@ -70,9 +71,12 @@ const inFlight = new Map();
 let activeCut = 'chronoa';
 let activeWeight = SPECIMENS.chronoa.defaultWeight;
 let userTyped = false;
+let specimenRequest = 0;
 
 function setFrameState(state) {
   if (specimenFrame) specimenFrame.dataset.state = state;
+  if (specimenLine) specimenLine.hidden = state === 'error';
+  if (specimenError) specimenError.hidden = state !== 'error';
 }
 
 // One loader for every cut, so the specimen band and the index can never
@@ -100,27 +104,18 @@ async function registerFace(cutKey, weight) {
   }
 }
 
-async function loadCut(cutKey, weight) {
+async function showSpecimen(cutKey, weight, fallbackText) {
+  const request = ++specimenRequest;
   setFrameState('loading');
   const style = await registerFace(cutKey, weight);
+  if (request !== specimenRequest) return;
+  const cut = SPECIMENS[cutKey];
   if (!style) {
     setFrameState('error');
-    const cut = SPECIMENS[cutKey];
-    // A failed specimen must never be dressed up as a sample of the UI font,
-    // so the line is emptied and only the status sentence speaks.
-    specimenLine.style.fontFamily = '';
-    specimenLine.style.fontWeight = '';
-    specimenLine.textContent = '';
-    if (specimenStatus) specimenStatus.textContent = `Could not load ${cut.label}. Check the connection, then pick the cut again. Nothing else on the page is affected.`;
-    return null;
+    if (specimenFacts) specimenFacts.textContent = '';
+    if (specimenStatus) specimenStatus.textContent = `Could not load ${cut.label}. Check your connection, then select another cut to retry.`;
+    return;
   }
-  return style;
-}
-
-async function showSpecimen(cutKey, weight, fallbackText) {
-  const style = await loadCut(cutKey, weight);
-  if (!style) return;
-  const cut = SPECIMENS[cutKey];
   // The line belongs to the visitor: only seed it while they have not typed.
   if (!userTyped) specimenLine.textContent = fallbackText;
   specimenLine.style.fontFamily = `"${cut.family}", "Manrope", sans-serif`;
@@ -128,7 +123,7 @@ async function showSpecimen(cutKey, weight, fallbackText) {
   specimenLine.style.letterSpacing = cutKey === 'mango' ? '0' : '-.04em';
   setFrameState('ready');
   if (specimenFacts) specimenFacts.textContent = `${cut.label} ${style.name} · ${cut.glyphs} glyphs · ${cut.features}`;
-  if (specimenStatus) specimenStatus.textContent = `${cut.label} ${style.name} is loaded from the shipped font file. Type over the line, or pick another cut.`;
+  if (specimenStatus) specimenStatus.textContent = `Type your own words. Switch fonts and keep your text.`;
 }
 
 function buildWeightPicker(cutKey) {
@@ -185,11 +180,6 @@ if (specimenLine) {
   });
   specimenLine.addEventListener('input', () => {
     userTyped = true;
-    if (specimenFrame.dataset.state !== 'ready') return;
-    if (!specimenLine.textContent.trim()) {
-      specimenLine.style.fontFamily = '';
-      specimenLine.style.fontWeight = '';
-    }
   });
   specimenLine.addEventListener('keydown', event => {
     if (event.key === 'Enter') {
@@ -272,6 +262,7 @@ if (searchForm) {
   let category = 'all';
   let tag = 'none';
   const params = new URLSearchParams(location.search);
+  if (params.get('category')) category = params.get('category');
   if (params.get('tag')) tag = params.get('tag');
   if (params.get('q')) query.value = params.get('q');
 
@@ -326,6 +317,6 @@ if (searchForm) {
     updateResults();
     query.focus();
   });
-  if (tag !== 'none' || query.value) updateResults();
+  if (category !== 'all' || tag !== 'none' || query.value) updateResults();
 }
 }

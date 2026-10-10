@@ -4,7 +4,7 @@
 > Update file ini SETIAP kali selesai ngerjain sesuatu. Jangan skip.
 >
 > Format: `Tanggal | Task # | Status ✅❌🔄 | Deskripsi | Notes | Durasi`
-> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05F` dari `REDESIGN-PLAN.md`.
+> Task lama memakai nomor dari `STATUS.md`. Redesign aktif memakai ID `R00` sampai `R25` beserta revisi `R05A` sampai `R05H` dari `REDESIGN-PLAN.md`.
 
 ## Redesign aktif: foundry editorial
 
@@ -28,7 +28,8 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
 | R06A | Tester produk profesional | SELESAI | Tester dibangun ulang dengan bidang specimen, tiga slider, segmented align serta tema, sakelar OpenType yang dideteksi dari berkas font, dan panel glyph. Chronoa 9 style masuk katalog. Browser check PASS. Persetujuan visual menunggu R07. |
 | R05G | Homepage arah specimen hall | SELESAI | Tiga comp arah diperiksa pada 1440px dan 390px; user memilih specimen hall. Homepage diganti: hero artwork asli + pelat informasi, specimen hidup dengan Berkas WOFF2 asli, indeks koleksi satu baris per typeface, rak Beyond type, galeri in use. scripts/check-specimen-home.py 30/30 PASS. Persetujuan visual menunggu R07. |
-| R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05G, detail produk R06, dan tester R06A siap ditinjau. Belum ada persetujuan visual. |
+| R05H | Redesign editorial berani | SELESAI | Homepage baru, 49/49 pemeriksaan halaman, 6/6 regresi tester, serta dokumen desain selesai. Review perbaikan ship untuk empat temuan resolved. Persetujuan hasil visual tetap R07. |
+| R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05H dan detail produk R06/R06A dapat ditinjau. Persetujuan arah editorial tidak dianggap persetujuan hasil visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
 | R09 | Homepage dinamis | BELUM | Hubungkan data produk asli. |
 | R10 | Halaman produk dinamis | BELUM | Hubungkan gallery dan informasi produk. |
@@ -51,6 +52,12 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 ### Log perubahan redesign
 | Tanggal | ID | Perubahan dan file | Pemeriksaan dan hasil | Tersisa atau blocker | Langkah berikutnya |
 | --- | --- | --- | --- | --- | --- |
+| 2026-10-10 | R05H | Review perbaikan memberi disposition ship untuk empat temuan resolved. Dokumenter memperbarui DESIGN.md dan .impeccable/design.json sesuai homepage baru tanpa mengubah bahasa visual produk/katalog. | YAML/JSON valid; dokumenter memeriksa 104 token reference serta 9 component reference, parity metadata, urutan heading, dan whitespace. Parent memverifikasi parse YAML/JSON serta git diff --check. Hook final tanpa temuan, tidak ada suppression. | Harga/lisensi tetap contoh; preview bukan transaksi WooCommerce. Staging belum tersedia. | Simpan unit terverifikasi ke GitHub dan minta tinjauan visual R07. |
+| 2026-10-10 | R05H | Perbaiki tiga bug specimen di satu fungsi bersama: request terbaru menang, konfigurasi cut bertahan ketika teks kosong, dan error menyembunyikan sample tanpa membuang teks. Hapus entri brush yang membuka Bawden dari indeks font. | check-specimen-states.py 6/6 PASS sesudah 6/6 FAIL sebelum perbaikan; check-specimen-home.py 49/49 PASS. Screenshot final desktop/mobile diperbarui dan dibaca. Lebar 320/768/1280/1600 juga tidak overflow. Tidak menambah dependensi. | Verdict perbaikan dan dokumentasi sedang berjalan. Pembayaran/login/unduhan WordPress tidak diuji. | Selesaikan dokumentasi, commit, dan push unit R05H. |
+| 2026-10-10 | R05H | Review memberi verdict fix untuk tiga bug specimen dan route Watercolor Wash. Tambahkan check-specimen-states.py sebelum perbaikan. | Enam pemeriksaan regresi gagal pada kode lama: Light/Mango setelah hapus teks, preservasi melalui error, sampel tersembunyi saat gagal, retry, dan respons load terlambat. | Perbaikan belum diverifikasi. | Pertahankan teks di DOM dengan sample hidden saat error, hapus reset font ketika kosong, batasi hasil load ke request terbaru, dan hapus brush dari indeks font. |
+| 2026-10-10 | R05H | Perbaiki spasi judul mobile dan clipping body. Hapus rak Beyond type karena artwork-nya placeholder lingkaran; katalog penuh tetap dapat diakses. Pindahkan status hasil dekat koleksi dan pertahankan galeri saat pencarian aktif. | Putaran konfirmasi Chromium 49/49 PASS pada 1440x900 dan 390x844, termasuk kategori URL font/brush/graphic/bundle, Freebies, nol hasil, reset, dan kegagalan specimen. Hook HTML tidak menemukan masalah deterministik. Tidak ada ignore/suppression. | Review independen, sinkronisasi DESIGN.md/sidecar, dan penyimpanan Git belum selesai. | Review render final dan dokumentasikan sistem yang benar-benar dibangun. |
+| 2026-10-10 | R05H | Bangun masthead, specimen biru, feature Chronoa, indeks asimetris, galeri, serta footer dalam index.html/home.css. Pertahankan font dan gambar asli. preview.js menerima kategori URL untuk tautan koleksi. | node --check dan git diff --check lulus. Putaran browser pertama 37/40; tiga assertion masih mengharapkan hero lama dan perlu disesuaikan dengan brief terbaru. Fungsi specimen, pengetikan, pencarian, menu, error font, serta overflow lulus. Render desktop/mobile dibaca. | Konfirmasi final, link kategori, dan dokumentasi belum selesai. Temuan visual: spasi judul mobile hilang; artwork Beyond type hanya placeholder. | Perbaiki temuan dalam satu batch, sesuaikan assertion, dan konfirmasi dua viewport. |
+| 2026-10-10 | R05H | Catat brief terbaru sebelum implementasi. Cakupan: homepage aktif, aturan komposisi khusus homepage, pemanggil specimen/pencarian, pemeriksaan, serta dokumen desain. | Git bersih; preview port 9402 melayani repo ini. Baseline first viewport dibaca. Issue GitHub terbuka tidak ada. Impeccable context dan concept-seed dijalankan. User memilih editorial berani; arah ini mengalahkan alternatif roll. | Belum mengubah UI. Staging dan transaksi tetap belum tersedia. | Bangun pembukaan foundry dengan specimen nyata sebagai bagian pertama. |
 | 2026-10-09 | R00 | Tulis REDESIGN-PLAN.md dan docs/agents/redesign-rules.md. Hubungkan AGENTS.md, PLAN.md, STATUS.md, serta tracker ini. | Periksa remote, branch master, status Git, rencana historis, dan lokasi tema. Temukan beberapa salinan tema yang perlu diaudit. | Belum memeriksa dokumen akhir atau push. UI belum diubah. | Periksa konsistensi tugas dan simpan dokumen ke GitHub. |
 | 2026-10-09 | R00 | Periksa dokumen persiapan. User meminta langsung mulai setelah persiapan selesai. | git diff --check lulus. Rencana memiliki 26 ID R00 sampai R25 yang cocok dengan tabel status. Periksa aturan progress dan dependensi. | Commit dan push belum dijalankan. | Simpan persiapan, lalu mulai R01 tanpa meminta persetujuan ulang. |
 | 2026-10-09 | R00 | Commit 619afe5 menyimpan dokumen persiapan dan konfigurasi skill. | Push awal gagal karena Git tidak mendapat credential. gh auth status menunjukkan akun rillatype aktif. Push dengan credential helper gh per-command berhasil ke origin/master tanpa mengubah git config. | Audit tema belum selesai. | Mulai R01. |
@@ -114,11 +121,12 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 
 ### Handoff aktif
 
-- Hasil terbaru: R05G selesai. Homepage diganti ke arah specimen hall yang dipilih user: hero memakai artwork dan pelat informasi, specimen hidup yang memuat berkas font asli, dan indeks koleksi satu baris per typeface menggantikan lima grid kartu berulang.
-- Menunggu tinjauan visual user pada R07. Jangan lanjut ke integrasi WordPress sebelum arah ini disetujui.
+- Hasil terbaru: homepage R05H mengganti R05G dengan editorial berani yang dipilih user. Masthead Manrope besar, bidang specimen biru memakai Chronoa/Mango asli, artwork tanpa overlay, indeks sembilan font, galeri asimetris, dan footer besar. Review perbaikan berstatus ship, empat temuan resolved.
+- Menunggu tinjauan hasil visual pada R07. Persetujuan arah editorial tidak dianggap persetujuan homepage/produk. Jangan lanjut ke integrasi WordPress sebelum acuan disetujui dan staging tersedia.
 - Homepage preview: http://localhost:9402/static/redesign/index.html (jalankan `node server.js` dari root repo).
 - Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu indeks memiliki route detail.
-- Pemeriksaan terbaru: `python scripts/check-specimen-home.py` 30/30 PASS pada 1440x900 dan 390x844. Screenshot ada di `.impeccable/review/desktop.png` dan `mobile.png` (folder ini tidak disimpan ke Git).
+- Pemeriksaan terbaru: `python scripts/check-specimen-home.py` 49/49 PASS pada 1440x900 dan 390x844; `python scripts/check-specimen-states.py` 6/6 PASS setelah reproduksi 6/6 FAIL sebelum perbaikan. Lebar 320/768/1280/1600 tidak overflow. Screenshot desktop/mobile/home-viewport berada di `.impeccable/review/`, tidak disimpan ke Git.
+- Clipping body diperbaiki; tidak ada ignore atau aturan pemeriksaan yang dinonaktifkan. Hook HTML final tanpa temuan deterministik.
 - Subset specimen web dibangun ulang dengan `python scripts/build-font-subsets.py` bila berkas OTF berubah.
 - Harga, kategori, dan nama lisensi tetap contoh. Tidak ada cart, pesanan, atau pembayaran nyata.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.

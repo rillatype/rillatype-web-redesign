@@ -41,7 +41,7 @@ Sumber pengembangan tema ditetapkan dalam `docs/redesign-audit.md`.
 
 Pertahankan nama Rillatype, aset logo, serta warna asli gambar preview produk.
 User mengizinkan satu warna aksen. Setelah kembali menolak keseluruhan R05C, user meminta desain baru.
-Arah implementasi R05D memakai foundry editorial, Manrope, serta satu aksen biru. Arah ini belum memperoleh persetujuan visual user.
+Arah R05H memakai editorial berani, identitas Manrope besar, specimen produk asli pada bidang biru, serta indeks font asimetris. User memilih arah editorial berani pada 10 Oktober 2026; hasil visual masih perlu ditinjau pada R07.
 Animasi tetap ringan. Kemudahan penggunaan dan beban halaman tetap menjadi prioritas.
 Jangan menambahkan klaim tentang pelanggan, ulasan, penjualan, lisensi, atau manfaat yang belum terbukti.
 

@@ -66,8 +66,8 @@ async def main() -> int:
         # ---------------------------------------------------------- desktop
         ctx, page, errors = await new_page(browser, 1440, 900)
 
-        check(await page.locator("h1").inner_text() == "Chronoa", "hero heading is the featured typeface")
-        check(await page.locator(".hero-art img").is_visible(), "hero shows real product artwork")
+        check(await page.locator("h1").inner_text() == "Rillatype.", "masthead identifies the foundry")
+        check(await page.locator(".featured-art img").is_visible(), "featured font shows real product artwork")
 
         # the specimen loads once it is near the viewport
         await page.wait_for_function("() => document.querySelector('#specimen-frame').dataset.state === 'ready'", timeout=15000)
@@ -133,7 +133,7 @@ async def main() -> int:
         check(visible == ["Moyshire", "Radiant Summertime"], f"search filters the index (got {visible})")
         await page.fill("#query", "")
         await page.wait_for_timeout(250)
-        check(len(await page.eval_on_selector_all(".row[data-name]", "els => els.filter(e => !e.hidden)")) == 10, "clearing the search restores every row")
+        check(len(await page.eval_on_selector_all(".row[data-name]", "els => els.filter(e => !e.hidden)")) == 9, "clearing the search restores every typeface")
 
         # keyboard focus reaches the first row action
         await page.locator(".row > a").first.focus()
@@ -169,7 +169,14 @@ async def main() -> int:
         await page.emulate_media(reduced_motion="reduce")
         await page.evaluate("window.scrollTo(0, 0)")
         await page.wait_for_timeout(300)
-        check(await page.locator(".hero-plate h1").is_visible(), "hero stays visible under reduced motion")
+        check(await page.locator(".masthead h1").is_visible(), "masthead stays visible under reduced motion")
+
+        await page.fill("#query", "zz-no-match-zz")
+        check(await page.locator("#empty-results").is_visible(), "a search with no match explains the empty result")
+        check("0 of 9" in await page.locator("#result-count").inner_text(), "zero-result count stays visible outside the hidden collection")
+        check(await page.locator(".gallery").is_visible(), "search does not hide the application gallery")
+        await page.click("#reset-search")
+        check(await page.locator(".row:not([hidden])").count() == 9, "reset restores all nine typefaces")
 
         await ctx.close()
 
@@ -201,6 +208,7 @@ async def main() -> int:
         # desktop capture
         ctx, page, errors = await new_page(browser, 1440, 900)
         await page.wait_for_function("() => document.querySelector('#specimen-frame').dataset.state === 'ready'", timeout=15000)
+        await page.screenshot(path=str(SHOTS / "home-viewport.png"))
         await capture(page, "desktop.png")
         await ctx.close()
 
@@ -229,17 +237,9 @@ async def main() -> int:
             check(True, "a failed specimen reaches the error state")
         except Exception:
             check(False, "a failed specimen reaches the error state")
-        err_family = await page.eval_on_selector("#specimen-line", "el => getComputedStyle(el).fontFamily")
-        err_text = (await page.locator("#specimen-line").inner_text()).strip()
-        check(err_text == "", f"a failed specimen shows no sample text (got {err_text!r})")
-        check(
-            "Rilla-" not in err_family,
-            f"a failed specimen drops the product font stack (got {err_family})",
-        )
-        err_prompt = await page.eval_on_selector(
-            "#specimen-line", "el => getComputedStyle(el, '::before').content"
-        )
-        check("did not load" in err_prompt, f"a failed specimen says so in place of the sample ({err_prompt})")
+        check(await page.locator("#specimen-line").is_hidden(), "a failed specimen hides the sample, preserving its text")
+        check(await page.locator("#specimen-facts").inner_text() == "", "a failed specimen clears the selected cut facts")
+        check(await page.locator("#specimen-error").is_visible(), "a failed specimen explains the error in place of the sample")
         status = await page.locator("#specimen-status").inner_text()
         check("Could not load" in status, f"the failure is stated in words ({status!r})")
         await ctx.close()
@@ -260,6 +260,12 @@ async def main() -> int:
         check(after > 0, f"a catalog filter keeps matching products visible (got {after})")
         check(hidden_sections < total_sections, f"a catalog filter keeps its section visible ({hidden_sections}/{total_sections} hidden)")
         check(not errors, f"the catalog page has no page errors ({errors[:2]})")
+        for category, expected in [("font", 9), ("brush", 3), ("graphic", 2), ("bundle", 2)]:
+            await page.goto(f"{catalog}?category={category}", wait_until="load")
+            visible = await page.eval_on_selector_all(".product[data-name]", "els => els.filter(e => !e.hidden).map(e => e.dataset.style)")
+            check(visible == [category] * expected, f"URL category {category} opens exactly its {expected} products")
+        await page.goto(f"{catalog}?tag=free", wait_until="load")
+        check(await page.locator('.product:not([hidden])').count() == 2, "Freebies route opens both matching products")
         await browser.close()
 
     failed = sum(1 for ok, _ in results if not ok)
