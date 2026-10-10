@@ -93,8 +93,11 @@ const catalog = new Map([
       { label: 'Script Regular', file: null, available: false },
       { label: 'Sans Regular', file: null, available: false }
     ],
+    // Urutan default diambil dari deskripsi toko, yang menyebut script lebih dulu.
+    // Nilai ini belum dapat diverifikasi sampai kedua berkasnya ada.
+    defaultStyle: 'Script Regular',
     evidence: 'C03: deskripsi toko menyebut "script & sans font duo". Entri ini menandai keluarga campuran.',
-    needs: 'Berkas script dan sans Dockhand yang terverifikasi user.',
+    needs: 'Dua berkas: script dan sans Dockhand. Nama yang diharapkan dan cara verifikasinya ada di static/redesign/ASSETS.md.',
   }],
   ['wildkins', {
     name: "Wildkins Hiker's Bundle",

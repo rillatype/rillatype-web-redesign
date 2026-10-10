@@ -37,6 +37,24 @@ Entri berikut sudah ada di `font-catalog.js` dengan nama style asli dari deskrip
 
 C03 Sans + Script dinyatakan tersedia sebagai produk toko oleh P02. Yang belum ada adalah berkasnya, bukan produknya.
 
+## Cara membuka blokir C03 (Dockhand)
+
+Kartu P06 berstatus TERBLOKIR sampai dua berkas ini ada. Setelah keduanya tersedia, tidak ada perubahan kode yang diperlukan: entri data sudah memuat dua nama style, urutan default, dan direktori berkas.
+
+| Yang dibutuhkan | Nilai |
+| --- | --- |
+| Berkas 1 | `static/redesign/fonts/Dockhand-Script.otf` |
+| Berkas 2 | `static/redesign/fonts/Dockhand-Sans.otf` |
+| Nama style pada data | `Script Regular` dan `Sans Regular` |
+| Urutan default | `Script Regular`, diambil dari deskripsi toko yang menyebut script lebih dulu |
+| Label keluaran | `Script Regular` dan `Sans Regular`, bukan angka weight |
+| Format | OTF atau TTF. Ganti nama berkas pada entri `font-catalog.js` bila namanya berbeda. |
+| Izin | Hak distribusi berkas specimen web perlu dikonfirmasi sebelum production (W04/W19) |
+
+Setelah berkas ada, jalankan `python scripts/check-tester-mixed-family.py`. Skrip itu berhenti melaporkan BLOCKED dan mulai memverifikasi bahwa kedua pilihan memuat berkas masing-masing, bahwa keduanya merender berbeda, dan bahwa metadata tidak diwariskan dari pilihan sebelumnya.
+
+Alternatif bila berkas Dockhand tidak tersedia: Highway Patrol, Goodneigbor, Mondriel, atau Brika juga duo Sans + Script. Yang diperlukan tetap dua berkas dengan nama style yang jelas.
+
 ## Gambar preview
 
 - `../previews/` memuat gambar font yang sudah ada di repo. Tidak ada gambar AI atau gambar stock baru.

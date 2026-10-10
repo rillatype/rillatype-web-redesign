@@ -24,7 +24,7 @@ function setupTester(product) {
   const saltInput = document.querySelector('#opentype-salt');
 
   if (!product.specimen) {
-    fontStatus.textContent = 'No specimen file is available for this font yet. You can still review the product images above.';
+    fontStatus.textContent = `No specimen file is available for ${product.name} yet. You can still review the product images above.`;
     return;
   }
 
