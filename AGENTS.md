@@ -12,7 +12,7 @@ Agent implementasi bekerja bergantian. Hanya satu tugas implementasi yang boleh 
 Setiap agent wajib mencatat mulai kerja, perubahan, pemeriksaan, blocker, hasil, dan next action. Ikuti urutan laporan dalam `rules.md`; pekerjaan tanpa laporan belum selesai.
 
 Sumber tema resmi: `rillatype-v2-extracted/rillatype-v2-1/`. Preview: `static/redesign/`. Jangan mengedit salinan tema lain.
-Pertahankan arah editorial R05H. Semua preview font 1200x800 harus tampil utuh pada rasio 3:2.
+Untuk homepage, baca arah aktif G01 di `docs/reports/G01.md` dan `.impeccable/surfaces/static-redesign-index-html.md`; keputusan user menggantikan R05H dan The Glazing Grid. Halaman lain mengikuti sistem yang ada sampai ditugaskan. Semua preview font 1200x800 tampil utuh pada rasio 3:2.
 
 ## Agent skills
 

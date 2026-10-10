@@ -1,7 +1,6 @@
 ---
 name: Rillatype
-description: 'Homepage R05H editorial berani: masthead Manrope, specimen biru, artwork asli; katalog serta detail
-  R06/R06A mempertahankan sistem bersama.'
+description: 'G01 homepage: electric-blue editable type poster, lime actions, rounded white artwork collection. Shared R06/R06A catalog and product system retained.'
 colors:
   accent: '#2247c8'
   rule: '#12151c'
@@ -14,8 +13,12 @@ colors:
   base-line: '#d9d9d9'
   base-wash: '#f4f4f4'
   base-ink-hover: '#333'
-  blue-line: '#6079d7'
-  blue-muted: '#e0e7ff'
+  blue-line: '#7298f1'
+  blue-muted: '#e3ebff'
+  home-blue: '#0644df'
+  home-blue-deep: '#0335b4'
+  home-lime: '#c4ff00'
+  home-wash: '#eef1f6'
 typography:
   body:
     fontFamily: '"Manrope", sans-serif'
@@ -24,15 +27,15 @@ typography:
     lineHeight: 1.55
   display:
     fontFamily: '"Manrope", sans-serif'
-    fontSize: clamp(76px, 14vw, 202px)
-    fontWeight: 650
-    lineHeight: 1.05
+    fontSize: clamp(32px, 3vw, 44px)
+    fontWeight: 750
+    lineHeight: 1.1
     letterSpacing: -.04em
   display-mobile:
     fontFamily: '"Manrope", sans-serif'
-    fontSize: clamp(54px, 16vw, 102px)
-    fontWeight: 650
-    lineHeight: 1.05
+    fontSize: 32px
+    fontWeight: 750
+    lineHeight: 1.1
     letterSpacing: -.04em
   headline:
     fontFamily: '"Manrope", sans-serif'
@@ -43,20 +46,20 @@ typography:
   specimen-heading:
     fontFamily: '"Manrope", sans-serif'
     fontSize: 18px
-    fontWeight: 500
+    fontWeight: 550
     lineHeight: 1
     letterSpacing: -.02em
   specimen-line:
     fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
-    fontSize: clamp(64px, 15.5vw, 224px)
+    fontSize: clamp(88px, 18vw, 260px)
     fontWeight: 600
-    lineHeight: 1.1
+    lineHeight: 1.12
     letterSpacing: -.04em
   specimen-line-mobile:
     fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
-    fontSize: clamp(62px, 20vw, 120px)
+    fontSize: clamp(64px, 19vw, 120px)
     fontWeight: 600
-    lineHeight: 1.1
+    lineHeight: 1.2
     letterSpacing: -.04em
   strip-sample:
     fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
@@ -67,7 +70,7 @@ typography:
   index-name:
     fontFamily: '"Manrope", sans-serif'
     fontSize: clamp(24px, 2.7vw, 38px)
-    fontWeight: 500
+    fontWeight: 650
     lineHeight: 1.08
     letterSpacing: -.025em
   index-name-specimen:
@@ -91,13 +94,13 @@ typography:
   license-headline:
     fontFamily: '"Manrope", sans-serif'
     fontSize: clamp(36px, 4vw, 54px)
-    fontWeight: 500
+    fontWeight: 650
     lineHeight: 1.08
     letterSpacing: -.03em
   footer-wordmark:
     fontFamily: '"Manrope", sans-serif'
     fontSize: clamp(64px, 13vw, 188px)
-    fontWeight: 650
+    fontWeight: 750
     lineHeight: 1.05
     letterSpacing: -.04em
   product-display:
@@ -235,14 +238,14 @@ typography:
   collection-heading:
     fontFamily: '"Manrope", sans-serif'
     fontSize: clamp(40px, 4.8vw, 64px)
-    fontWeight: 500
-    lineHeight: 1.03
+    fontWeight: 650
+    lineHeight: 1.06
     letterSpacing: -.04em
   collection-heading-mobile:
     fontFamily: '"Manrope", sans-serif'
-    fontSize: 48px
-    fontWeight: 500
-    lineHeight: 1.03
+    fontSize: 40px
+    fontWeight: 650
+    lineHeight: 1.06
     letterSpacing: -.04em
   featured-heading:
     fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
@@ -259,13 +262,13 @@ typography:
   specimen-heading-mobile:
     fontFamily: '"Manrope", sans-serif'
     fontSize: 15px
-    fontWeight: 500
+    fontWeight: 550
     lineHeight: 1
     letterSpacing: -.02em
   index-name-mobile:
     fontFamily: '"Manrope", sans-serif'
     fontSize: 28px
-    fontWeight: 500
+    fontWeight: 650
     lineHeight: 1.08
     letterSpacing: -.025em
   index-name-mango-mobile:
@@ -277,7 +280,7 @@ typography:
   specimen-facts:
     fontFamily: '"Manrope", sans-serif'
     fontSize: 12px
-    fontWeight: 500
+    fontWeight: 600
     lineHeight: 1.55
     letterSpacing: '0'
   specimen-status:
@@ -286,11 +289,35 @@ typography:
     fontWeight: 400
     lineHeight: 1.55
     letterSpacing: '0'
+  home-glyph-accent:
+    fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
+    fontSize: 112px
+    fontWeight: 600
+    lineHeight: .55
+  home-glyph-accent-mobile:
+    fontFamily: '"Rilla-Chronoa", "Manrope", sans-serif'
+    fontSize: 80px
+    fontWeight: 600
+    lineHeight: .55
+  graphic-name:
+    fontFamily: '"Manrope", sans-serif'
+    fontSize: 20px
+    fontWeight: 650
+    lineHeight: 1.55
+    letterSpacing: -.02em
+  specimen-status-mobile:
+    fontFamily: '"Manrope", sans-serif'
+    fontSize: 11px
+    fontWeight: 400
+    lineHeight: 1.55
 rounded:
   control: 4px
   imagery: '0'
   base-control: 6px
-  home-control: '0'
+  home-control: 8px
+  home-field: 32px
+  home-surface: 40px
+  home-mobile-surface: 24px
 spacing:
   measure: 1240px
   desktop-gutter: 40px
@@ -304,7 +331,7 @@ spacing:
   row-gap: 24px
   header-gap: 24px
   section-heading: 22px
-  specimen-stage: 26px 0 22px
+  specimen-stage: 16px 0 24px
   strip-padding: 30px 24px 26px
   gallery-gap: 24px
   section-top: 68px
@@ -315,13 +342,13 @@ spacing:
   glyph-panel-max: 420px
   mobile-section-top: 46px
   home-measure: 1280px
-  masthead-padding: 44px 0
+  masthead-padding: 40px 0 32px
   featured-gap: 64px
-  featured-padding: 72px 0 48px
-  collection-gap: 48px
-  collection-top: 88px
-  license-gap: 80px
-  home-footer-padding: 30px 0
+  featured-padding: 64px 0 48px
+  collection-gap: 32px
+  collection-top: 80px
+  license-gap: 64px
+  home-footer-padding: 40px 0 24px
 components:
   button-primary:
     backgroundColor: '{colors.rule}'
@@ -361,7 +388,7 @@ components:
   index-row-thumb:
     backgroundColor: '{colors.wash}'
     rounded: '{rounded.imagery}'
-    width: 100px
+    width: 100%
     height: auto
   index-row-price:
     typography: '{typography.row-price}'
@@ -371,7 +398,7 @@ components:
     rounded: '{rounded.home-control}'
     padding: 0 8px
   index-row-action-active:
-    backgroundColor: '{colors.rule}'
+    backgroundColor: '{colors.home-blue}'
     textColor: '{colors.paper}'
   index-row-name-hover:
     textColor: '{colors.accent}'
@@ -397,8 +424,8 @@ components:
     rounded: '{rounded.home-control}'
     padding: 0 13px
   specimen-picker-selected:
-    backgroundColor: '{colors.paper}'
-    textColor: '{colors.accent}'
+    backgroundColor: '{colors.home-lime}'
+    textColor: '{colors.ink}'
   strip:
     padding: '{spacing.strip-padding}'
   strip-sample:
@@ -488,175 +515,118 @@ components:
   base-button-primary-hover:
     backgroundColor: '{colors.base-ink-hover}'
   home-button-primary:
-    backgroundColor: '{colors.rule}'
-    textColor: '{colors.paper}'
+    backgroundColor: '{colors.home-lime}'
+    textColor: '{colors.ink}'
     typography: '{typography.button}'
     rounded: '{rounded.home-control}'
     padding: 10px 19px
   home-search-input:
-    backgroundColor: '{colors.paper}'
-    textColor: '{colors.ink}'
+    backgroundColor: '{colors.home-blue-deep}'
+    textColor: '{colors.paper}'
     typography: '{typography.search}'
     rounded: '{rounded.home-control}'
     padding: 10px 14px
   specimen-band:
-    backgroundColor: '{colors.accent}'
+    backgroundColor: '{colors.home-blue}'
     textColor: '{colors.paper}'
 ---
 
 # Design System: Rillatype
 
-## Overview
+## Overview / scope
 
-**Creative North Star: "Editorial berani"**
+G01 replaces the homepage's R05H/The Glazing Grid direction with a user-pinned electric-blue type poster. Real editable white letters are the centerpiece, not a brand slogan or the crypto reference's layout. A compact foundry introduction, lime catalog action and typographic asterisk support the specimen. Original artwork, Graphics, licensing and the footer remain below.
 
-Homepage R05H memakai identitas Rillatype dalam Manrope besar, lalu satu bidang biru penuh dengan specimen putih yang dapat diketik. Artwork asli tampil sesudah specimen tanpa teks overlay. Ukuran huruf dan komposisi asimetris membawa arah yang dipilih user. Permintaan ini menggantikan visual homepage R05G.
+`.editorial.home` loads `home.css` after unchanged shared styles. Product/catalog retain R06/R06A: #2247c8 accent, white/ink, Rule buttons, 4px controls and existing tester/gallery layouts. `colors.accent`, shared typography and components remain shared. `home-*`, `blue-line`, `blue-muted` and display/specimen/index roles are homepage-specific. Pinned lime/roundness replaces earlier homepage-only one-accent/square rules, not the shared system. Font core and catalog source data are unchanged.
 
-Homepage memuat `style.css`, `editorial.css`, lalu `home.css` pada body `.editorial.home`. Halaman produk dan katalog tetap memakai `.editorial` tanpa `home.css`. Warna bersama, kontrol 4px, tester, dan susunan detail R06/R06A dipertahankan. Token `base-*` tetap milik component lab dalam `style.css`.
+## Color and type
 
-Dokumen merekam nilai yang dibangun, bukan persetujuan visual atau kesiapan transaksi. Arah dipilih user; hasil render masih menunggu R07. Strategi homepage berada di `docs/redesign-home-direction.md`, dan fakta produk berada di `PRODUCT.md`.
+Blue #0644df owns header/intro/specimen; #0335b4 is search/hover fill. White is display and lower surface. Lime #c4ff00 is action, selection and caret, not body copy. Blue-field secondary text is #e3ebff, borders #7298f1. Ink/muted on white remain #171717/#606060. Manrope supports controls, compact identity (32–44px), headings (40–64px) and footer. Actual Chronoa/Mango web subsets render specimen at clamp(88px,18vw,260px), mobile clamp(64px,19vw,120px). User-pinned oversized display is intentional. Tracking follows font data.
 
-**Key Characteristics:**
+Catalog owns names, files, default cuts and glyph/features; home fixture owns order/prose. Homepage picker offers only actual web subsets. Mondriel remains integrated on its product page; G01 invents no subset or cut mapping for it. Available collection names use their own faces; unavailable names use Manrope while complete artwork demonstrates their type.
 
-- Manrope untuk identitas, navigasi, metadata, heading section, dan footer homepage.
-- Rilla-Chronoa dan Rilla-Mango untuk specimen produk asli.
-- Bidang biru dengan teks putih dan kontrol bersudut siku pada homepage.
-- Indeks koleksi, artwork dengan rasio asli, dan galeri asimetris.
-- Search sticky, radio native, fokus keyboard, dan catatan preview yang terlihat.
+## Layout and rhythm
 
-## Colors
+16px outer margin desktop, 8px mobile; maximum 1280px content, 48px minimum desktop inset, 32px at <=1100px, 20px at <=640px. Blue header corners 32px (24px mobile); light lower surface 40px (24px mobile). Compact intro/action precedes full-width real specimen; controls and active facts occupy default first viewport. Long literal text wraps and expands the field, never scroll-crops or hides overflow.
 
-### Primary
+Featured artwork/facts form a 1.5fr/1fr spread, then specimen strips. Collection and Graphics have two full-artwork columns, one on mobile. Application gallery keeps asymmetric 1.5fr/1fr spread. Licensing and visible preview disclosure close the white content; blue wordmark anchors the footer. Rhythm is 8/16/24/32/48/64/80px. All 1200x800 artwork remains whole at 3:2, object-fit contain, without overlays or zoom.
 
-Accent blue adalah bidang specimen, titik masthead, fokus keyboard, dan hover nama indeks. Rule ink adalah tombol utama serta keadaan terpilih pada kontrol produk/katalog. Homepage memakai picker specimen aktif Paper/Accent. Blue line memisahkan caption dan memberi border picker yang belum dipilih. Blue muted adalah hint, status, placeholder specimen, dan scrollbar dalam bidang biru. Kedua token biru tambahan hanya milik `.home`.
+## Controls and states
 
-### Neutral
+Homepage controls: 8px corners, native button/input/radio semantics, minimum 44px targets. Lime/ink primary, white/ink hover; lime/ink selected radios, blue-field inactive borders. Focus: 3px blue on white, lime within blue, white around picker labels, dashed lime around editable lettering. Selection lime/ink. Header is intentionally nonsticky on homepage; shared navigation remains unchanged.
 
-Paper adalah halaman dan header homepage yang opak. Ink adalah teks utama. Muted dipakai deskripsi, kategori, dan catatan preview. Line memisahkan indeks, strip, lisensi, dan kontrol produk. Wash tetap dipakai kontrol katalog serta tester, sedangkan search homepage memakai Paper. Transparent dipakai picker homepage dan galeri tanpa bingkai.
+Search includes font and Graphics name/style/text, counts both separately, hides empty sections and offers real empty/reset states. Reset restores both kinds and focuses search. Catalog product/count behavior is preserved. Zero Graphics base values say `See license options`: they establish neither Extended pricing nor free-download rights. Positive example values remain Demo. No commerce/rights invented.
 
-Nilai normatif berada di frontmatter. `base-line`, `base-wash`, dan `base-ink-hover` adalah nilai sebelum override editorial. `--accent-hover` masih dideklarasikan dalam CSS tetapi tidak dipakai, sehingga tidak menjadi token frontmatter. Hover tombol utama memakai literal `#2c2f36`.
+Loading dims only specimen and announces state with aria-busy; controls stay available. Error hides sample without deleting visitor text, clears facts and exposes `Retry this cut`. Retry genuinely refetches same failed cut without reload. Request sequencing/cache release preserve race safeguards. Successful switches retain literal text and whitespace. Empty sample keeps face and shows `Your words` prompt.
 
-**The One Accent Rule.** Gunakan biru sebagai satu aksen UI dan pertahankan warna asli artwork. Bidang specimen memakai aksen pada area luas; aturan ini tidak membatasi persentase warna.
+## Motion / assets
 
-## Typography
+Immediate color/press feedback 140/100ms cubic-bezier(.16,1,.3,1). Ready type settles 360ms; four Graphics entries use 24ms stagger. Content is visible by default. Reduced motion removes animation/transitions and smooth scrolling. No dependency, transition-all, decorative shadow, gradient or glass.
 
-Manrope variable lokal `manrope.ttf` memakai `font-display: swap`, weight 200 sampai 800, dan fallback sans-serif. Asal file serta OFL dicatat di `static/redesign/ASSETS.md`. Role tanpa `fontFamily` mewarisi font UI halaman.
+Logo and existing artwork unchanged; provenance remains `static/redesign/ASSETS.md`. No raster generated. Fixture values remain demo, preview disclosure visible. WordPress, checkout, live prices, public licensing and production approval are outside G01.
 
-### Hierarchy
+## Verification / boundaries
 
-- `display` adalah masthead Manrope 650, clamp 76px sampai 202px, line-height 1.05. Mobile memakai `display-mobile`, clamp 54px sampai 102px. Titik memakai Accent.
-- `headline` adalah H2 homepage Manrope 500. Koleksi memakai clamp 40px sampai 64px dan 48px pada mobile. Lisensi memakai clamp 36px sampai 54px.
-- `featured-heading` mencetak nama Chronoa dalam font produk, clamp 52px sampai 88px dan 64px pada mobile.
-- `specimen-heading` adalah Try the type. dalam Manrope 18px/500, turun ke 15px pada mobile. Sample Chronoa 600 memakai clamp 64px sampai 224px dan line-height 1.1; mobile clamp 62px sampai 120px. Mango memakai weight 400 dan tracking 0 saat dipilih.
-- `strip-sample` tetap Chronoa clamp 34px sampai 54px. Tiga strip memakai weight 300 Light, 500 Medium, dan 600 SemiBold. Caption numerals tidak mengklaim feature OpenType.
-- `index-name` memakai Manrope 500 clamp 24px sampai 38px, 28px pada mobile. Chronoa dan Mango memakai font produk clamp 38px sampai 58px, 40px pada mobile. Harga 12px/500, aksi 13px/700 dengan tracking 0 dan case biasa.
-- `footer-wordmark` memakai Manrope 650 clamp 64px sampai 188px, line-height 1.05. Footer produk/katalog tetap memakai Chronoa dalam `editorial.css`.
-- `product-display` tetap H1 detail clamp 34px sampai 50px, line-height 1.15. Tester mulai 64px dengan line-height 1.2 lalu mengikuti slider.
+BrowserPreview target `static/redesign/index.html`. Playwright verifies 1440x900, 390x844, 320x844, 768x1024; default/long-text geometry, focus/reduced motion, whole artwork, search/counts, cold same-cut retry and held-response race. G01 report owns results, not historical R05H PASS summaries. Read-only finish review and user visual acceptance remain parent-owned; documentation/runtime checks are not production approval.
 
-### Specimen asli dan base
+## Do / Don't
 
-Homepage memakai WOFF2 di `fonts/web/`. CSS mendaftarkan sembilan weight Chronoa dan Mango 400 dengan `font-display: block`. Picker menawarkan setiap style katalog yang punya berkas `web`: Chronoa kesembilan cut 100–900 dengan default 600 dari `defaultStyle`, Mango satu style. Daftar cut hanya hidup di `font-catalog.js`; `home-fixture.js` memilih produk yang tampil dan teks editorialnya, dan `preview.js` tidak menyebut nama font sama sekali.
+- Do let real editable type dominate and keep active facts/controls in default first viewport.
+- Do preserve literal input, same-cut retry and data-derived facts/counts.
+- Do use whole artwork for fonts without sources; never invent face files.
+- Do scope pinned blue/lime/roundness to homepage and preserve shared product/catalog.
+- Don't copy crypto, profiles, wallets, fake stats, glass cards or reference layout.
+- Don't infer download rights or Extended prices from a zero base value.
+- Don't clip long text, obscure artwork, or confuse a PASS with user/production approval.
 
-Fakta specimen (`specimenFamily`, `specimenDir`, `specimenTracking`, `specimenFacts`, dan berkas `web` per style) ada di `font-catalog.js` dan mengikuti berkas asli: Chronoa 219 glyph dan 218 codepoint tanpa feature GSUB, Mango 184 glyph dan 181 codepoint dengan discretionary ligatures. Jumlah codepoint tidak ditampilkan dalam baris fakta. Detail memakai OTF penuh melalui `tester-core.js`. Token `base-*` tetap mencatat system sans, ukuran heading/tombol, serta radius 6px component lab. Token `tester-*`, `license-*`, `segmented`, dan `product-display` mempertahankan nilai bersama.
+## G01 active user revision: open hero
 
-**The Product Font Rule.** Sample hanya tampil setelah berkas asli berhasil dimuat. Saat gagal, sembunyikan sample tanpa menghapus teks pengunjung dan tampilkan penjelasan dalam Manrope.
+The latest request replaces the boxed specimen-first hero with an open Manrope poster: Type with / character. White and lime on #0644df, low-opacity moving background typography. Native Try the fonts disclosure retains existing specimen controls and text preservation below the hero. Header spans the viewport at top: transparent navy tint, 24px backdrop blur and masked soft lower edge, no card border/radius/shadow. Mobile keeps readable headline and stacks catalog action before pause. This supersedes earlier first-viewport specimen requirements; shared pages are unchanged.
 
-## Layout
+## Latest G01 revision: floating glass and bold poster
 
-### Homepage R05H
+User now pins a visibly bounded floating glass header: 16px inset desktop, 12px mobile, 1px translucent white edge, 16px corners, navy translucent fill and 24px blur. Remove the soft edge mask. Hero uses uppercase Manrope 900 with tight line-height; white TYPE WITH and lime CHARACTER, splitting CHAR / ACTER on mobile to keep poster scale. Overrides preceding edge-free glass and mixed-case headline requirements.
 
-Wrapper `.home` maksimum 1280px; wrapper bersama 1240px. Gutter 40px per sisi, 24px pada max-width 900px, 20px pada max-width 640px. Homepage memakai `overflow-x: visible`; sample panjang menggulir dalam bidangnya sendiri.
+## Latest G01: continuous top glass / MAKE SOME NOISE
 
-Header sticky pada top 0 dan z-index 10 memakai Paper opak tanpa backdrop blur. Baris minimum desktop 88px, gap bersama 24px, navigasi 28px, search 300px. Pada max-width 1000px minimum menjadi 72px, header membungkus, dan search mengambil baris penuh. Mobile Menu mengatur navigasi tersembunyi; search berada di luar menu. Skip link z-index 20 di atas header.
+User replaces inset glass with full-width top-attached navigation, no top/side border, visible lower edge and lower corners only. Headline changes to MAKE SOME / NOISE., using self-hosted Chronoa Black (Home Display), oversized lime lettering and an authored floral O. Supporting copy: Give your next idea a voice. Explore fonts & graphics by Rillatype. Pause control removed; background animation now lasts four seconds once, with reduced-motion disabled. Previous uppercase Manrope / CHARACTER contract superseded.
 
-Masthead memakai padding 44px atas/bawah. Baris pengantar memakai grid `1fr 1fr auto`, gap 32px dan margin atas 24px. Pada max-width 1000px deskripsi kedua disembunyikan dan grid menjadi `1fr auto`. Mobile memakai padding 26px/28px, gap 20px, dan CTA minimum 44px.
+## Active G01 — ordinary bold sans and logo
 
-Specimen adalah bidang Accent selebar halaman tanpa margin awal/border frame. Isi memakai wrapper. Kepala padding atas 24px. Stage padding 26px 0 22px, min-height 280px, overflow visible. Sample selebar bidang, nowrap, overflow-x auto. Caption border Blue line dan padding 16px 0 22px, menjadi kolom pada max-width 1000px. Mobile stage minimum 150px dengan padding 24px/16px dan picker weight membungkus. Anchor specimen offset 104px.
+Latest user rejects product fonts in the hero. Use Arial Black, Arial, sans-serif 900 for the four-line GOOD TYPE. / BOLD IDEAS. / YOUR NEXT / BIG THING. headline. Lime highlights YOUR NEXT. Left headline/copy/action, right original Rillatype logo, rendered white through invert/screen CSS without altering the asset. Stack logo below text/action on mobile. Chronoa hero face and floral O removed. User request for an ordinary font overrides the skill default against system display fonts. Navbar remains attached to top and sides; no pause control.
 
-Featured Chronoa setelah specimen memakai grid `1.5fr 1fr`, gap 64px, padding 72px 0 48px. Artwork width 100%, height auto. Tabel spec padding 11px 0 dengan garis atas/bawah. Pada max-width 1000px gap 32px; mobile satu kolom, gap 28px, padding 40px. Tiga strip memakai grid tiga kolom, padding horizontal 24px, min-height 156px. Mobile satu kolom dengan padding 24px 0 dan minimum 120px.
+## G01 accepted direction refinements
 
-Koleksi memakai pengantar dan indeks dalam grid `1fr 3fr`, gap 48px, padding atas 88px. Pada max-width 1000px menjadi `1fr 2.8fr` dengan gap 32px; mobile satu kolom, gap 24px, padding atas 48px. Indeks bergaris atas Ink. Anchor memakai area `face thumb action` dan `face thumb price`, padding 24px 0, column-gap 24px. Thumbnail 100px berasio 3:2, menjadi 80px pada max-width 1000px. Mobile menyembunyikan thumbnail dan memakai `face action` serta `face price`. Anchor `#fonts` offset 110px.
+Logo scales 1.1 on desktop, aligns to headline/copy row only and shifts up 16px; tablet/mobile omit scale to avoid overflow. Remove hero minimum viewport height and reduce bottom padding to 16px. Mobile logo precedes CTA so the action stays close to the following divider. Restore 52s/64s continuous background type loops per user; reduced-motion still disables animation. No visible pause button as explicitly requested.
 
-Galeri Mango memakai `1.5fr 1fr`, gap 24px, tanpa background/border frame. Gambar pertama mencakup dua baris dan rata tengah. Semua gambar height auto dengan rasio asli, caption statis di bawah dan padding 12px 0. Mobile satu kolom. Lisensi tetap grid `1.15fr 1fr`, kini gap 80px dan padding 48px 0; pada max-width 1000px satu kolom, mobile gap 24px. Catatan preview terlihat dengan padding 16px 0 dan border atas Line.
+G01 spacing refinement: hero top padding 96px desktop / 168px mobile. Navbar home link shows logo alone, retaining accessible Rillatype home name. Removes duplicate visible Rillatype label.
 
-Footer memakai wordmark besar di atas baris link/teks, gap 32px, padding 30px 0. Mobile menumpuk link/teks dengan gap 20px. Link footer minimum 44px.
+G01 navbar: no logo/brand, menu centered in symmetric desktop grid. Home, Fonts, Graphics, Freebies, Licensing, Contact; search on right. All navbar links/input/buttons use self-hosted Montserrat variable (100–900) copied from installed C:/Windows/Fonts/Montserrat-VariableFont_wght.ttf. Tablet search on second row, mobile centered Menu trigger with existing Escape support.
 
-### Produk dan katalog
+G01 navbar search simplified: Search text + authored magnifier SVG in centered navigation, native details opens compact input/form below. No separate persistent search bar or lime Search button. Montserrat retained. Mobile search lives inside expanded Menu.
 
-R05H tidak mengubah stylesheet produk/katalog. Detail tetap gallery/summary `1.4fr 1fr`, gap 52px; turun ke 30px pada max-width 1000px dan satu kolom dengan gap 28px pada mobile. Urutan breadcrumb, gallery/summary, tester, lisensi, Font information. Gallery memiliki empat kolom thumbnail, gap 10px.
+Search final refinement: accessible magnifier-only native summary; input reveals inline on its right. No visible Search text or submit button. Existing live filter and Enter submission preserved. Menu wraps at narrow widths.
 
-Tester margin atas 64px, stage padding 64px/44px dan minimum 320px tanpa override mobile. Panel empat kolom, dua pada max-width 900px, satu pada max-width 640px. Glyph panel maksimum 420px dengan scroll vertikal. Lisensi maksimum 640px dalam section sendiri. Katalog mempertahankan grid produk, filter kategori/tag, dan search. Header produk tidak memiliki search.
+Approved Q1–Q3: hero directs discovery with Find the right type for your next idea. and Browse fonts CTA to #fonts. Product artwork/content immediately follows hero; native tester moves after product content. Background type opacity reduced 25% (.08→.06, second row .06→.045). Identity/headline preserved.
 
-## Elevation & Depth
+G01 Selected fonts: reuse Mango featured block as large left artwork/caption; move existing Chronoa and Bawden rows into two stacked right artworks. Asymmetric 1.7:1 columns, 24px gap, whole 3:2 contain images with 16px corners; captions outside artwork. Mobile stacks in reading order. No trending claim. #fonts now targets selection section; remaining collection retains other rows. Navbar font 15px, hero row gap 16px to raise CTA.
 
-Homepage tanpa shadow dekoratif, backdrop blur, atau overlay artwork. Whitespace, garis tipis, dan bidang biru memisahkan bagian. Header produk/katalog tetap `rgba(255,255,255,.94)` dengan `backdrop-filter: blur(10px)`. Thumb slider mempertahankan cincin 1px. Skip link z-index 20 lebih tinggi dari header 10.
+Selected fonts revision: large navy mat with inset white featured label/actions above whole 3:2 artwork. Sidebar pale mats with navy captions and lime links. Contact us lime text/button with connected email-icon lobe. Label reserved space avoids obscuring original preview; no artwork crop. Caption type Montserrat, not the display product face.
 
-## Shapes
+Selected fonts rebalance: 2.4:1 columns with stretched aligned bottom, compact featured white label with arrow-only detail link, unlayered pale sidebar tiles with concise names/prices. All fonts catalog action sits in white inset notch at upper right of grid. Contact/email removed. Artwork remains whole 3:2; mobile stacks.
 
-Homepage memakai radius 0 untuk tombol, search, picker, thumbnail indeks, serta aksi baris. Fokus bersama biru 2px dengan offset 3px dan radius 2px. Dalam bidang biru, picker memakai outline putih, sample memakai outline putih dashed 1px dengan offset 8px. Anchor indeks offset 6px.
+Selected fonts: Mango upper-right facts come from catalog style/count. Chronoa selection replaced by Mondriel Font Duo, Regular face rendered directly from existing Mondriel-Regular.otf (hash matches supplied source); large 130px condensed-heavy name on lime 3:2 panel, no synthetic bold. View font points to Mondriel details, Demo $17 from catalog.
 
-Produk/katalog tetap radius kontrol 4px. Sakelar tester track 38x22px dengan radius 999px. Gambar bersudut siku; base component lab radius 6px. Picker homepage, aksi baris, dan navigasi minimum 44px. Search minimum 42px; CTA masthead 48px desktop dan 44px mobile.
+Selected fonts dense mosaic: dark shared mat, 12px gutters, artwork edge-to-edge in panels with whole 3:2 images. Mango image first, pale compact caption/facts footer; remove large white header, blue mat and all spacer-driven vertical balancing. Mondriel lime + Bawden artwork stack at right with compact captions. All fonts returns to section heading.
 
-## Components
+User refinement: remove shared dark mat and outer padding/radius from selected-grid, desktop/mobile. Colored tiles now sit directly on white with narrow gutters; no dark filler under Mango.
 
-### Buttons dan search
+Latest user correction: retain the shared mosaic mat in brand blue (var(--accent)), with compact outer padding and rounded corners. This supersedes the transparent-mat refinement. Mondriel currently uses a live specimen; replace it with its whole 1200x800 cover when that asset is available.
 
-Tombol bersama Rule/Paper memakai padding 10px/19px, font 13px/650, hover `#2c2f36`, disabled opacity .55. Homepage menimpa radius menjadi 0. Sekunder Paper/Ink dengan hover Wash.
+Find your style follows Selected fonts: blue introduction column + four contiguous ruled typography fields inspired by the user reference. Mood labels: Bold & loud, Soft & playful, Elegant & editorial, Handwritten & personal. Actual specimen faces Selected Mondriel, Style Mango, Style Chronoa, Style Handwritten; metadata Montserrat. Paper #f8f6ef, cream #fff1c8, blue-muted and brand blue/lime. Existing font-only catalog search routes (category=font with q=sans/display/script), not a new mood taxonomy. Mobile stacks; tablet introduction above 2x2 fields. Cover Mondriel remains deferred.
 
-Search homepage Paper, border Line 1px, label aksesibel Find a font. Query mencocokkan nama, style, dan teks produk tanpa membedakan kapitalisasi. Selector `.row[data-name], .product[data-name]` mendukung indeks dan katalog. Parameter `category` serta `tag` dibaca; legacy `style` tidak dibaca. Submit menggulir ke hasil pertama; reset membersihkan query/filter/parameter dan mengembalikan fokus. Count serta empty state mengikuti hasil dengan polite live region.
+Find your style revision supersedes the reference-like blue sidebar and ruled grid: heading above four horizontal specimen strips, rounded16px, with alternating inset widths/alignment (cream right88%, lime left88%). Blue/lime bold strip, cream playful, paper editorial, lime handwritten. No flower/sidebar/shared table borders. Mobile full-width strips; existing fonts and font-category search links retained.
 
-### Live specimen
+Latest style strip refinement: all four panels full width with shared left/right edges; larger specimens (desktop max144px Mondriel,92px Mango,84px Chronoa,116px Handwritten), responsive sizes preserved. Supersedes alternating inset widths.
 
-Contenteditable berperan textbox satu baris. Fokus memilih teks, Enter keluar dari bidang. `userTyped` menjaga kata pengunjung saat cut/weight berubah dan setelah gagal lalu mencoba cut lain. Mengosongkan teks mempertahankan font terpilih. Picker native dibangun dari katalog dan fixture; kontrol weight disembunyikan saat produk hanya punya satu style, dan kontrol font disembunyikan saat hanya satu produk punya specimen.
-
-Font diambil saat sample mendekati viewport atau cut dipilih. Loader menyimpan hasil dan permintaan berjalan; nomor permintaan menjaga hasil lama tidak menimpa pilihan terbaru. Strip memuat cut unggulan yang labelnya ada di fixture saat mendekati viewport, dan barisnya disembunyikan bila tersisa kurang dari dua cut; baris indeks menghangatkan berkas produknya sendiri lewat `data-slug`. Kegagalan menyembunyikan `#specimen-line`, mempertahankan isinya, menampilkan `#specimen-error`, membersihkan fakta cut, dan menulis status koneksi. Cut yang berhasil menampilkan kembali kata pengunjung. State loading memakai opacity .38. Error CSS lama tidak merender sample karena atribut hidden.
-
-### Indeks, artwork, dan galeri
-
-Sembilan baris font adalah satu anchor native masing-masing, mencakup nama, metadata, thumbnail, harga Demo, dan aksi. Chronoa/Mango memakai font produk; nama lainnya Manrope. Hover nama menjadi Accent; hover atau fokus anchor menyalakan aksi Rule/Paper. Koleksi penuh tetap tersedia melalui link katalog; jumlah baris mengikuti konten, bukan token desain.
-
-Featured Chronoa serta tiga gambar aplikasi Mango memakai aset asli. Caption galeri Sticker sheet, Shop sign, Poster. Gambar berdimensi HTML 1200x800 dan lazy loading; homepage menghapus transform hover. Tidak ada Beyond type atau hero artwork dengan pelat informasi pada R05H.
-
-### Navigation
-
-Homepage memiliki Fonts, Freebies, Licensing, Contact. Fonts menuju katalog; Freebies memakai `?tag=free`; Licensing `#licenses`; Contact email. Footer menambah Shop dan Fonts dengan `?category=font`. Menu mengatur `aria-expanded`/`is-open`, menutup sesudah klik link, Escape mengembalikan fokus. Search tetap terlihat saat menu ditutup.
-
-### Kontrol produk dan katalog
-
-Filter katalog native `aria-pressed`, radius 4px, padding 10px/18px, minimum 44px; aktif Rule/Paper. Gallery produk memakai tombol thumbnail `aria-pressed`, border aktif Rule, fokus keyboard. Mango memiliki empat gambar; produk lain mengikuti `font-catalog.js`.
-
-Lisensi Standard/Extended dan harga Demo adalah contoh. Extended menggandakan harga contoh; submit hanya konfirmasi pilihan. Preview selection disabled sampai pilihan valid. Tester memiliki textarea maxlength 300, select style, slider ukuran 16 sampai 200px, leading 0.8 sampai 2.6, tracking -0.10 sampai 0.30em, segmented align/tema, sakelar OpenType, dan panel glyph. Output memakai `textContent`.
-
-Chronoa memuat sembilan OTF dan Mango satu. Feature `liga`/`clig` serta `salt` dideteksi dari GSUB; kontrol tanpa feature disabled dengan keterangan. Tema gelap `#101318`/`#f5f7fa`; glyph membaca cmap format 4. Produk tanpa berkas hanya memberi keterangan tanpa kontrol tester. Kegagalan menawarkan Retry font. Font information menjelaskan berkas preview tanpa mengarang file pembelian atau terms final.
-
-### Aset, route, dan bukti
-
-Logo tetap `logo.png`. Artwork berasal dari `static/previews/`; asal dicatat di `static/redesign/ASSETS.md`. OFL Manrope tidak memberi hak artwork atau font produk. R05H tidak membuat raster baru.
-
-Detail dibatasi Map dengan sembilan slug font. Slug tidak dikenal menampilkan Font not found; URL tidak membentuk path bebas. Katalog masih memiliki link non-font placeholder tanpa detail sendiri; beberapa menuju slug tidak dikenal dan Watercolor Wash menuju produk default. Ini batas preview di luar perubahan visual homepage. Data toko, lisensi final, pembayaran, dan unduhan menunggu staging.
-
-Homepage mematikan animasi masuk specimen dan transform galeri. Feedback kontrol mengikuti reduced motion. Aturan bersama memakai easing `cubic-bezier(.2, .8, .2, 1)`, feedback 160ms, active shift 1px. Catatan preview terlihat dan menyatakan harga/kategori contoh serta tidak ada pesanan/pembayaran.
-
-Agent utama melaporkan 49/49 pemeriksaan R05H dan 6/6 regresi PASS, serta tanpa overflow pada lebar tambahan 320, 768, 1280, 1600px. Reviewer memberi verdict ship pada empat perbaikan yang dinilai resolved. Dokumenter memeriksa source, token, referensi, YAML/JSON, dan paritas sidecar; tidak menjalankan ulang browser atau mengukur performa. Persetujuan visual R07 masih menunggu user.
-
-## Do's and Don'ts
-
-### Do:
-
-- Do gunakan Manrope untuk identitas homepage dan font asli untuk specimen.
-- Do gunakan bidang Accent dengan specimen Paper dan picker aktif Paper/Accent.
-- Do pertahankan kata pengunjung saat cut berubah, sample kosong, atau font gagal dimuat.
-- Do pertahankan rasio artwork dan caption statis di bawah galeri asimetris.
-- Do jaga search di luar menu mobile, fokus keyboard, dan reduced motion.
-- Do batasi masthead besar serta kontrol siku pada homepage; pertahankan token produk/katalog bersama.
-- Do tampilkan catatan preview dan label Demo pada harga contoh.
-
-### Don't:
-
-- Don't kembalikan headline overlay artwork, Beyond type, atau grid card berulang pada homepage R05H.
-- Don't tampilkan Manrope sebagai specimen produk saat font gagal.
-- Don't mengarang glyph, feature, harga nyata, terms lisensi, atau bukti pelanggan.
-- Don't menyalin route placeholder non-font sebagai pola detail produk.
-- Don't membentuk path bebas dari URL atau menyebut Preview selection sebagai cart/pembayaran.
-- Don't menerapkan radius homepage pada tester/filter katalog yang tetap 4px.
-- Don't mengartikan dokumentasi, PASS, atau verdict reviewer sebagai persetujuan visual user.
+Find your style now uses full-bleed brand-blue background after white Selected fonts, rounded top40px (mobile24px), internal shared wrap, white/lime heading. Bold strip deep blue for separation. Other specimen colors and equal widths retained.

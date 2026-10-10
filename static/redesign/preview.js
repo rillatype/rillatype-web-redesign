@@ -76,8 +76,11 @@ let activeWeight = activeSlug ? (defaultStyle(fontData.get(activeSlug)) || {}).w
 let userTyped = false;
 let specimenRequest = 0;
 
+const specimenRetry = document.querySelector('#specimen-retry');
+if (specimenRetry) specimenRetry.addEventListener('click', () => showSpecimen(activeSlug, activeWeight, currentText()));
 function setFrameState(state) {
-  if (specimenFrame) specimenFrame.dataset.state = state;
+  if (specimenFrame) { specimenFrame.dataset.state = state; specimenFrame.setAttribute('aria-busy', String(state === 'loading')); }
+  if (specimenRetry) specimenRetry.disabled = state === 'loading';
   if (specimenLine) specimenLine.hidden = state === 'error';
   if (specimenError) specimenError.hidden = state !== 'error';
 }
@@ -136,12 +139,13 @@ async function showSpecimen(slug, weight, fallbackText) {
   if (!product) return;
   const request = ++specimenRequest;
   setFrameState('loading');
+  if (specimenStatus) specimenStatus.textContent = `Loading ${product.name}. Your text will stay.`;
   const style = await registerFace(slug, weight);
   if (request !== specimenRequest) return;
   if (!style) {
     setFrameState('error');
     if (specimenFacts) specimenFacts.textContent = '';
-    if (specimenStatus) specimenStatus.textContent = `Could not load ${product.name}. Check your connection, then select another cut to retry.`;
+    if (specimenStatus) specimenStatus.textContent = `Could not load ${product.name}. Check your connection and retry this cut, or choose another.`;
     return;
   }
   // The line belongs to the visitor: only seed it while they have not typed.
@@ -299,6 +303,11 @@ function renderFeatured() {
     link.setAttribute('href', route);
     link.innerHTML = `Explore ${product.name} <span aria-hidden="true">↗</span>`;
   }
+  const category = document.querySelector('#featured-category');
+  const styleCount = document.querySelector('#featured-stylecount');
+  if (category) category.textContent = product.style;
+  const count = (product.styles || []).length;
+  if (styleCount) styleCount.textContent = `${count} ${count === 1 ? 'style' : 'styles'}`;
   buildSpecSheet(document.querySelector('#featured-specs'), product);
 }
 
@@ -351,6 +360,8 @@ function renderGraphics() {
     card.href = `product.html?font=${slug}`;
     card.dataset.kind = product.kind;
     card.dataset.slug = slug;
+    card.dataset.name = product.name;
+    card.dataset.style = product.style || product.kind;
     const art = document.createElement('span');
     art.className = 'graphic-art';
     const source = (product.images || [])[0];
@@ -379,7 +390,8 @@ function renderGraphics() {
     meta.textContent = product.style || product.kind;
     const price = document.createElement('span');
     price.className = 'graphic-price';
-    price.textContent = typeof product.price === 'number' ? `Demo $${product.price}` : 'Demo';
+    // A zero base value does not establish a free download or Extended price.
+    price.textContent = typeof product.price === 'number' && product.price > 0 ? `Demo $${product.price}` : 'See license options';
     label.append(name, meta, price);
     card.append(art, label);
     grid.append(card);
@@ -455,7 +467,7 @@ if (document.querySelector('#specimen-frame') || document.querySelector('#font-s
   // ---------------------------------------------------------------- search
   // One filter serves both surfaces: the homepage collection is an index of
   // .row entries, the catalog page is a grid of .product cards.
-  const SEARCHABLE = '.row[data-name], .product[data-name]';
+  const SEARCHABLE = '.row[data-name], .product[data-name], .home .graphic-card[data-name]';
   const searchForm = document.querySelector('#font-search');
 if (searchForm) {
   const query = document.querySelector('#query');
@@ -464,6 +476,9 @@ if (searchForm) {
   const products = [...document.querySelectorAll(SEARCHABLE)];
   const resultCount = document.querySelector('#result-count');
   const collectionCount = document.querySelector('#collection-count');
+  const graphicsCount = document.querySelector('#graphics-count');
+  const fontProducts = products.filter(product => !product.matches('.graphic-card'));
+  const graphicProducts = products.filter(product => product.matches('.graphic-card'));
   const totalProducts = products.length;
   let category = 'all';
   let tag = 'none';
@@ -487,12 +502,17 @@ if (searchForm) {
     document.querySelectorAll('[data-collection]').forEach(section => {
       section.hidden = ![...section.querySelectorAll(SEARCHABLE)].some(item => !item.hidden);
     });
+    const visibleFonts = fontProducts.filter(product => !product.hidden).length;
+    const visibleGraphics = graphicProducts.filter(product => !product.hidden).length;
     if (resultCount) {
       resultCount.textContent = text || category !== 'all' || tag !== 'none'
-        ? `Showing ${count} of ${totalProducts} products in this preview.`
+        ? document.body.classList.contains('home')
+          ? `Showing ${visibleFonts} of ${fontProducts.length} typefaces and ${visibleGraphics} of ${graphicProducts.length} graphics in this preview.`
+          : `Showing ${count} of ${totalProducts} products in this preview.`
         : '';
     }
-    if (collectionCount) collectionCount.textContent = `${count} of ${totalProducts} products`;
+    if (collectionCount) collectionCount.textContent = document.body.classList.contains('home') ? `${visibleFonts} of ${fontProducts.length} typefaces` : `${count} of ${totalProducts} products`;
+    if (graphicsCount) graphicsCount.textContent = text ? `${visibleGraphics} of ${graphicProducts.length} graphics` : `${graphicProducts.length} graphics`;
     const empty = document.querySelector('#empty-results');
     if (empty) empty.hidden = count > 0;
     categoryFilters.forEach(filter => filter.setAttribute('aria-pressed', String(filter.dataset.category === category)));

@@ -14,25 +14,21 @@
 window.RillaHome = {
   // Ditawarkan di specimen band, urut. Yang pertama dipilih saat halaman muat.
   // Satu slug berarti kontrol pemilih font disembunyikan.
-  specimen: ['chronoa', 'mango'],
+  specimen: ['mango', 'chronoa'],
 
   // Blok unggulan di bawah specimen band. Judul, route, artwork, alt, tabel spec,
   // dan label tautan diturunkan dari data katalog; hanya prosa dan alt yang
   // ditulis di sini karena keduanya teks editorial.
   featured: {
-    slug: 'chronoa',
-    copy: 'One family. Nine weights.<br>A different voice in every cut.',
-    artAlt: 'Chronoa specimen sheet showing nine weights and the alphabet'
+    slug: 'mango',
+    copy: 'Handwritten type for your next idea.',
+    artAlt: 'Mango Letters specimen sheet'
   },
 
   // Contoh cut di bawah blok unggulan, dipilih per label style produk unggulan.
   // Label yang tidak ada di produk itu dilewati. Kalau tersisa kurang dari dua,
   // barisnya disembunyikan: satu cut tidak bisa menjadi "tiga cut berdampingan".
-  strips: [
-    { style: 'Light', text: 'Aa Bb Cc', caption: '219 glyphs · latin' },
-    { style: 'Medium', text: '0123456789', caption: 'numerals' },
-    { style: 'SemiBold', text: 'Aa Bb Cc', caption: 'the cut used above' }
-  ],
+  strips: [],
 
   // Bagian Graphics di bawah koleksi font. Isinya slug katalog yang memang produk
   // graphic, dan urutannya urutan tampil. Nama, alt, harga, artwork, serta route

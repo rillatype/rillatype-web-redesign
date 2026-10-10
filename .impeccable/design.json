@@ -1,458 +1,144 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T00:23:58.649638+00:00",
+  "generatedAt": "2026-10-10T11:36:25+00:00",
   "title": "Design System: Rillatype",
   "extensions": {
     "colorMeta": {
-      "accent": {
-        "role": "primary",
-        "displayName": "Accent"
-      },
-      "rule": {
-        "role": "primary",
-        "displayName": "Rule"
-      },
-      "paper": {
-        "role": "neutral",
-        "displayName": "Paper"
-      },
-      "ink": {
-        "role": "neutral",
-        "displayName": "Ink"
-      },
-      "muted": {
-        "role": "neutral",
-        "displayName": "Muted"
-      },
-      "line": {
-        "role": "neutral",
-        "displayName": "Line"
-      },
-      "wash": {
-        "role": "neutral",
-        "displayName": "Wash"
-      },
-      "transparent": {
-        "role": "neutral",
-        "displayName": "Transparent"
-      },
-      "base-line": {
-        "role": "neutral",
-        "displayName": "Base Line"
-      },
-      "base-wash": {
-        "role": "neutral",
-        "displayName": "Base Wash"
-      },
-      "base-ink-hover": {
-        "role": "neutral",
-        "displayName": "Base Ink Hover"
-      },
-      "blue-line": {
-        "role": "primary",
-        "displayName": "Blue Line"
-      },
-      "blue-muted": {
-        "role": "primary",
-        "displayName": "Blue Muted"
-      }
+      "accent": { "role": "primary", "displayName": "Shared editorial blue (product/catalog)" },
+      "rule": { "role": "neutral", "displayName": "Shared button ink" },
+      "paper": { "role": "neutral", "displayName": "Paper" },
+      "ink": { "role": "neutral", "displayName": "Ink" },
+      "muted": { "role": "neutral", "displayName": "Muted" },
+      "line": { "role": "neutral", "displayName": "Line" },
+      "wash": { "role": "neutral", "displayName": "Shared wash" },
+      "transparent": { "role": "neutral", "displayName": "Transparent" },
+      "base-line": { "role": "neutral", "displayName": "Base line" },
+      "base-wash": { "role": "neutral", "displayName": "Base wash" },
+      "base-ink-hover": { "role": "neutral", "displayName": "Base ink hover" },
+      "blue-line": { "role": "primary", "displayName": "Homepage blue-field border" },
+      "blue-muted": { "role": "primary", "displayName": "Homepage blue-field secondary text" },
+      "home-blue": { "role": "primary", "displayName": "Homepage electric blue" },
+      "home-blue-deep": { "role": "primary", "displayName": "Homepage deep blue" },
+      "home-lime": { "role": "primary", "displayName": "Homepage action/selection lime" },
+      "home-wash": { "role": "neutral", "displayName": "Homepage outer field" }
     },
     "typographyMeta": {
-      "body": {
-        "displayName": "Body",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "display": {
-        "displayName": "Display",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "display-mobile": {
-        "displayName": "Display mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "headline": {
-        "displayName": "Headline",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-heading": {
-        "displayName": "Specimen heading",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-line": {
-        "displayName": "Specimen line",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-line-mobile": {
-        "displayName": "Specimen line mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "strip-sample": {
-        "displayName": "Strip sample",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name": {
-        "displayName": "Index name",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name-specimen": {
-        "displayName": "Index name specimen",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name-specimen-mobile": {
-        "displayName": "Index name specimen mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name-mango": {
-        "displayName": "Index name mango",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "license-headline": {
-        "displayName": "License headline",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "footer-wordmark": {
-        "displayName": "Footer wordmark",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "product-display": {
-        "displayName": "Product display",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "brand": {
-        "displayName": "Brand",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "brand-mobile": {
-        "displayName": "Brand mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "navigation": {
-        "displayName": "Navigation",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "button": {
-        "displayName": "Button",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "search": {
-        "displayName": "Search",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "filter": {
-        "displayName": "Filter",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "text-link": {
-        "displayName": "Text link",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "small": {
-        "displayName": "Small",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "spec-label": {
-        "displayName": "Spec label",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "spec-value": {
-        "displayName": "Spec value",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "row-price": {
-        "displayName": "Row price",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "row-action": {
-        "displayName": "Row action",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "strip-cap": {
-        "displayName": "Strip cap",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "picker": {
-        "displayName": "Picker",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "segmented": {
-        "displayName": "Segmented",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "legend": {
-        "displayName": "Legend",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "license-name": {
-        "displayName": "License name",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "product-price": {
-        "displayName": "Product price",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "tester": {
-        "displayName": "Tester",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "tester-input": {
-        "displayName": "Tester input",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "tester-select": {
-        "displayName": "Tester select",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "tester-label": {
-        "displayName": "Tester label",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "tester-value": {
-        "displayName": "Tester value",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-body": {
-        "displayName": "Base body",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-display": {
-        "displayName": "Base display",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-headline": {
-        "displayName": "Base headline",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-heading-small": {
-        "displayName": "Base heading small",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-title": {
-        "displayName": "Base title",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "base-button": {
-        "displayName": "Base button",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "collection-heading": {
-        "displayName": "Collection heading",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "collection-heading-mobile": {
-        "displayName": "Collection heading mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "featured-heading": {
-        "displayName": "Featured heading",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "featured-heading-mobile": {
-        "displayName": "Featured heading mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-heading-mobile": {
-        "displayName": "Specimen heading mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name-mobile": {
-        "displayName": "Index name mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "index-name-mango-mobile": {
-        "displayName": "Index name mango mobile",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-facts": {
-        "displayName": "Specimen facts",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      },
-      "specimen-status": {
-        "displayName": "Specimen status",
-        "purpose": "Nilai normatif di frontmatter DESIGN.md; role base/product dipertahankan, role homepage mengikuti R05H."
-      }
+      "body": { "displayName": "Body", "purpose": "Shared Manrope UI. Normative values in DESIGN.md." },
+      "display": { "displayName": "Homepage compact identity", "purpose": "32–44px Manrope; actual specimen, not identity, owns oversized display." },
+      "display-mobile": { "displayName": "Homepage mobile identity", "purpose": "32px Manrope." },
+      "specimen-line": { "displayName": "Homepage editable specimen", "purpose": "Actual loaded product face, up to 260px; wraps long literal input." },
+      "specimen-line-mobile": { "displayName": "Homepage mobile specimen", "purpose": "64–120px, 1.2 line height." },
+      "collection-heading": { "displayName": "Homepage section heading", "purpose": "40–64px Manrope 650." },
+      "collection-heading-mobile": { "displayName": "Mobile section heading", "purpose": "40px Manrope 650." },
+      "index-name": { "displayName": "Collection name", "purpose": "Manrope for unavailable face sources; full artwork demonstrates the font." },
+      "index-name-specimen": { "displayName": "Collection actual font", "purpose": "Actual available Chronoa/Mango face only." },
+      "product-display": { "displayName": "Product display", "purpose": "Shared R06/R06A remains 34–50px, 600, 1.15 line height." },
+      "tester": { "displayName": "Product tester", "purpose": "Shared default 64px, actual cut controls own size/leading/tracking." },
+      "tester-input": { "displayName": "Tester input", "purpose": "Shared control role unchanged." },
+      "tester-select": { "displayName": "Tester style selector", "purpose": "Shared control role unchanged." },
+      "license-name": { "displayName": "License name", "purpose": "Shared role unchanged; preview values are demo." },
+      "segmented": { "displayName": "Segmented control", "purpose": "Shared role unchanged." },
+      "base-body": { "displayName": "Base UI", "purpose": "Component lab system sans remains unchanged." }
     },
     "shadows": [
-      {
-        "name": "tester-thumb-ring",
-        "value": "0 0 0 1px var(--line)",
-        "purpose": "Cincin slider produk; homepage tanpa shadow dekoratif."
-      }
+      { "name": "tester-thumb-ring", "value": "0 0 0 1px var(--line)", "purpose": "Shared product slider; no homepage decorative shadow." }
     ],
     "motion": [
-      {
-        "name": "ease",
-        "value": "cubic-bezier(.2, .8, .2, 1)",
-        "purpose": "Easing kontrol bersama."
-      },
-      {
-        "name": "control-feedback",
-        "value": "160ms",
-        "purpose": "Feedback background/color/border; active shift 1px mengikuti no-preference."
-      },
-      {
-        "name": "home-specimen-motion",
-        "value": "none",
-        "purpose": "Homepage menghapus animasi masuk specimen dan transform hover galeri."
-      }
+      { "name": "ease", "value": "cubic-bezier(.2, .8, .2, 1)", "purpose": "Unchanged shared control easing." },
+      { "name": "control-feedback", "value": "160ms", "purpose": "Shared feedback unchanged." },
+      { "name": "home-control-feedback", "value": "140ms cubic-bezier(.16,1,.3,1)", "purpose": "Homepage color feedback; press 100ms, 2px shift." },
+      { "name": "home-specimen-motion", "value": "360ms cubic-bezier(.16,1,.3,1)", "purpose": "Ready specimen settles; Graphics uses 24ms stagger. Reduced motion removes transitions/animations." }
     ],
     "breakpoints": [
-      {
-        "name": "editorial-narrow-max",
-        "value": "1000px"
-      },
-      {
-        "name": "base-tablet-max",
-        "value": "900px"
-      },
-      {
-        "name": "mobile-max",
-        "value": "640px"
-      }
+      { "name": "home-narrow-max", "value": "1100px" },
+      { "name": "editorial-narrow-max", "value": "1000px" },
+      { "name": "base-tablet-max", "value": "900px" },
+      { "name": "mobile-max", "value": "640px" }
     ],
     "scope": {
-      "homepage": "index.html: style.css, editorial.css, home.css; body editorial home",
-      "shared": "product.html dan catalog.html: style.css, editorial.css; body editorial"
+      "homepage": "index.html: style.css, editorial.css, home.css; body editorial home. G01 user-pinned blue/lime/rounded world.",
+      "shared": "product.html/catalog.html retain style.css/editorial.css, #2247c8 shared accent and 4px controls. Font/tester core unchanged.",
+      "normativeTokens": "DESIGN.md frontmatter. home-* roles are route-scoped, not global replacements."
     },
     "layout": {
       "homepage": {
         "measureToken": "spacing.home-measure",
-        "featuredGrid": "minmax(0, 1.5fr) minmax(0, 1fr)",
-        "collectionGrid": "minmax(0, 1fr) minmax(0, 3fr)",
+        "opening": "Integrated blue navigation, compact foundry intro, lime catalog action; dominant full-width actual editable type, controls/facts within default first viewport.",
+        "featuredGrid": "minmax(0,1.5fr) minmax(0,1fr)",
+        "collectionGrid": "repeat(2,minmax(0,1fr)); one column mobile; complete 3:2 artwork",
+        "graphicsGrid": "repeat(2,minmax(0,1fr)); one column mobile",
         "galleryGrid": "1.5fr 1fr",
         "galleryFirstFigure": "grid-row: span 2",
-        "previewNote": "visible"
+        "previewNote": "visible",
+        "shape": "32px blue outer header / 40px light lower surface / 8px controls; mobile fields 24px"
       },
-      "product": "R06/R06A gallery/summary, tester, license, Font information dipertahankan."
+      "product": "Unchanged R06/R06A: gallery/summary 1.4fr 1fr, gap 52px; tester, license, Font information. Tester controls four/two/one columns, 4px corners.",
+      "catalog": "Unchanged native category/tag filters and product grid, 4px controls, shared Rule/Paper selected state."
     },
     "specimen": {
-      "error": "Sample hidden, teks dipertahankan, penjelasan #specimen-error terlihat, fakta cut kosong. Retry cut berhasil mengembalikan teks.",
-      "race": "Nomor permintaan mengabaikan hasil lama sesudah pilihan berubah.",
-      "empty": "Family terpilih dipertahankan saat teks kosong."
+      "loading": "Dim sample, aria-busy and visible loading status; retain control access.",
+      "error": "Hide sample but retain literal text, clear facts, expose same-cut Retry this cut.",
+      "race": "Latest request only may mutate facts/face; failed in-flight promises are released for retry.",
+      "empty": "Keep active face; prompt Your words is not saved visitor text.",
+      "longText": "pre-wrap, overflow-wrap anywhere, visible overflow; field grows rather than clipping."
     },
     "evidence": {
-      "documentationChecks": "Source extraction, YAML/JSON, token references, schema property names, sidecar parity. Dokumenter tidak mengulang browser/performa.",
-      "behaviorReport": "Agent utama: 49/49 pemeriksaan dan 6/6 regresi PASS; lebar tambahan 320/768/1280/1600 tanpa overflow.",
-      "reviewReport": "Reviewer ship pada empat perbaikan yang dinilai resolved.",
-      "approval": "R07 menunggu persetujuan visual user."
+      "behaviorReport": "G01 report and scratch logs own current runtime evidence, not old R05H PASS totals.",
+      "viewports": "1440x900, 390x844, 320x844, 768x1024",
+      "reviewReport": "Read-only finish review pending parent arrangement.",
+      "approval": "User visual acceptance and production approval remain separate. No new shipping raster."
     }
   },
   "components": [
     {
-      "name": "Shared primary button",
-      "kind": "button",
-      "refersTo": "button-primary",
-      "description": "Produk/katalog mempertahankan radius 4px; homepage menimpa menjadi 0.",
-      "html": "<button class=\"ds-primary\" type=\"button\">Preview selection</button>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-primary,.ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border:1px solid var(--rule,#12151c);border-radius:4px;font:650 13px/1.55 Manrope,sans-serif;text-decoration:none;cursor:pointer}.ds-primary{background:var(--rule,#12151c);color:var(--paper,#fff)}.ds-primary:hover{background:#2c2f36;border-color:#2c2f36}.ds-secondary{background:var(--paper,#fff);color:var(--ink,#171717)}.ds-secondary:hover{background:var(--wash,#f4f4f2)}.ds-primary:focus-visible,.ds-secondary:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}@media(prefers-reduced-motion:no-preference){.ds-primary:active,.ds-secondary:active{transform:translateY(1px)}}"
+      "name": "Shared primary button", "kind": "button", "refersTo": "button-primary",
+      "description": "Product/catalog retain Rule/Paper, radius 4px, minimum 44px. Homepage has its own lime role.",
+      "html": "<button class=\"ds-shared-primary\" type=\"button\">Preview selection</button>",
+      "css": ".ds-shared-primary{min-height:44px;padding:10px 19px;border:1px solid #12151c;border-radius:4px;background:#12151c;color:#fff;font:650 13px/1.55 Manrope,sans-serif}.ds-shared-primary:hover{background:#2c2f36}.ds-shared-primary:focus-visible{outline:2px solid #2247c8;outline-offset:3px}"
     },
     {
-      "name": "Shared secondary button",
-      "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Paper/Ink dengan hover Wash.",
-      "html": "<button class=\"ds-secondary\" type=\"button\">Show all</button>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-primary,.ds-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 19px;border:1px solid var(--rule,#12151c);border-radius:4px;font:650 13px/1.55 Manrope,sans-serif;text-decoration:none;cursor:pointer}.ds-primary{background:var(--rule,#12151c);color:var(--paper,#fff)}.ds-primary:hover{background:#2c2f36;border-color:#2c2f36}.ds-secondary{background:var(--paper,#fff);color:var(--ink,#171717)}.ds-secondary:hover{background:var(--wash,#f4f4f2)}.ds-primary:focus-visible,.ds-secondary:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}@media(prefers-reduced-motion:no-preference){.ds-primary:active,.ds-secondary:active{transform:translateY(1px)}}"
+      "name": "Homepage primary action", "kind": "button", "refersTo": "home-button-primary",
+      "description": "Pinned lime/ink, 8px corners, 44px minimum; white hover.",
+      "html": "<a class=\"ds-home-action\" href=\"/static/redesign/index.html#fonts\">Explore fonts</a>",
+      "css": ".ds-home-action{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;background:#c4ff00;color:#171717;font:650 13px/1.55 Manrope,sans-serif;text-decoration:none}.ds-home-action:hover{background:#fff}.ds-home-action:focus-visible{outline:3px solid #0644df;outline-offset:4px}"
     },
     {
-      "name": "Homepage search",
-      "kind": "input",
-      "refersTo": "home-search-input",
-      "description": "Field Paper, border Line, radius 0. Snippet tidak menjalankan filter.",
-      "html": "<form class=\"ds-search\"><label for=\"ds-query\">Find a font</label><div><input id=\"ds-query\" type=\"search\" placeholder=\"Search the collection\"><button type=\"button\">Search</button></div></form>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-search{font-family:Manrope,sans-serif}.ds-search label{display:block;font-size:14px;margin-bottom:8px}.ds-search>div{display:flex;gap:8px}.ds-search input{min-width:0;flex:1;min-height:42px;padding:10px 14px;border:1px solid var(--line,#d9d9d4);border-radius:0;background:var(--paper,#fff);color:var(--ink,#171717);font:400 16px/1.55 Manrope,sans-serif}.ds-search button{min-height:44px;padding:10px 19px;border:1px solid var(--rule,#12151c);border-radius:0;background:var(--rule,#12151c);color:#fff;font:650 13px/1.55 Manrope,sans-serif;cursor:pointer}.ds-search button:hover{background:#2c2f36}.ds-search input:focus-visible,.ds-search button:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}.ds-search input:focus{border-color:var(--rule,#12151c)}"
+      "name": "Homepage search", "kind": "input", "refersTo": "home-search-input",
+      "description": "Deep blue/white, 8px corners, 44px minimum. Runtime filter searches fonts and Graphics.",
+      "html": "<label for=\"ds-query\">Find fonts or graphics</label><input class=\"ds-home-search\" id=\"ds-query\" type=\"search\" placeholder=\"Search fonts & graphics\">",
+      "css": ".ds-home-search{min-height:44px;padding:10px 12px;border:1px solid #7298f1;border-radius:8px;background:#0335b4;color:#fff;font:400 16px/1.55 Manrope,sans-serif}.ds-home-search::placeholder{color:#e3ebff}.ds-home-search:focus-visible{outline:3px solid #c4ff00;outline-offset:4px}"
     },
     {
-      "name": "Homepage specimen picker",
-      "kind": "custom",
-      "refersTo": "specimen-picker",
-      "description": "Radio putih di bidang biru; snippet menunjukkan state native tanpa pemuatan font.",
-      "html": "<fieldset class=\"ds-picker\"><legend>Font</legend><label><input type=\"radio\" name=\"ds-cut\" checked><span>Chronoa</span></label><label><input type=\"radio\" name=\"ds-cut\"><span>Mango Letters</span></label></fieldset>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-picker{display:flex;gap:0;margin:0;padding:24px;border:0;background:var(--accent,#2247c8);color:#fff;font:650 12px/1.55 Manrope,sans-serif}.ds-picker legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.ds-picker label{position:relative}.ds-picker input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}.ds-picker span{display:flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--blue-line,#6079d7);border-radius:0}.ds-picker label+label span{border-left:0}.ds-picker input:checked+span{background:#fff;color:var(--accent,#2247c8);border-color:#fff}.ds-picker input:focus-visible+span{outline:2px solid #fff;outline-offset:3px}.ds-picker label:hover span{border-color:#fff}"
+      "name": "Homepage specimen picker", "kind": "custom", "refersTo": "specimen-picker",
+      "description": "Native radio, 8px separate corners; selected lime/ink, white focus. Actual cut list derives from catalog, not a snippet."
     },
     {
-      "name": "Homepage index row",
-      "kind": "custom",
-      "refersTo": "index-row",
-      "description": "Nama dan aksi dalam satu anchor. Snippet menampilkan baris tanpa thumbnail.",
-      "html": "<a class=\"ds-row\" href=\"/static/redesign/product.html?font=bawden\"><span class=\"ds-row-face\"><strong>Bawden</strong><small>Slab serif display · Regular · stamp · rough</small></span><span class=\"ds-row-action\">Details</span><span class=\"ds-row-price\">Demo $24</span></a>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-row{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:\"face action\" \"face price\";align-items:center;gap:8px 24px;padding:24px 0;border-bottom:1px solid var(--line,#d9d9d4);background:#fff;color:var(--ink,#171717);text-decoration:none;font-family:Manrope,sans-serif}.ds-row-face{grid-area:face;min-width:0}.ds-row strong{display:block;font-size:clamp(24px,2.7vw,38px);font-weight:500;line-height:1.08;letter-spacing:-.025em}.ds-row small{display:block;margin-top:8px;font-size:11px;color:var(--muted,#606060)}.ds-row-action{grid-area:action;display:flex;align-items:center;justify-content:center;min-width:68px;min-height:44px;padding:0 8px;font-size:13px;font-weight:700}.ds-row-price{grid-area:price;font-size:12px;font-weight:500;text-align:center;font-variant-numeric:tabular-nums}.ds-row:hover strong{color:var(--accent,#2247c8)}.ds-row:hover .ds-row-action,.ds-row:focus-visible .ds-row-action{background:var(--rule,#12151c);color:#fff}.ds-row:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:6px}"
+      "name": "Homepage artwork-led collection", "kind": "custom", "refersTo": "index-row",
+      "description": "One native product anchor: complete 3:2 artwork, name/metadata, demo price and Details/Try. Actual available faces only."
     },
     {
-      "name": "Shared category filters",
-      "kind": "chip",
-      "refersTo": "filter",
-      "description": "Radius katalog 4px dan pilihan aktif Rule/Paper.",
-      "html": "<div class=\"ds-filters\"><button type=\"button\" aria-pressed=\"true\">All</button><button type=\"button\" aria-pressed=\"false\">Fonts</button></div>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-filters{display:flex;gap:8px}.ds-filters button{min-height:44px;padding:10px 18px;border:1px solid transparent;border-radius:4px;background:#fff;color:var(--ink,#171717);font:400 13px/1.55 Manrope,sans-serif;cursor:pointer}.ds-filters button[aria-pressed=true]{background:var(--rule,#12151c);color:#fff}.ds-filters button:hover{border-color:var(--rule,#12151c)}.ds-filters button:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}"
+      "name": "Shared category filters", "kind": "chip", "refersTo": "filter",
+      "description": "Catalog unchanged: native aria-pressed, 4px radius, 44px minimum, selected Rule/Paper."
     },
     {
-      "name": "Homepage navigation",
-      "kind": "nav",
-      "refersTo": "navigation-link",
-      "description": "Empat link dengan minimum 44px. Menu collapse dimiliki preview.js.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/static/redesign/catalog.html\">Fonts</a><a href=\"/static/redesign/catalog.html?tag=free\">Freebies</a><a href=\"/static/redesign/index.html#licenses\">Licensing</a><a href=\"mailto:gustian@rillatype.com\">Contact</a></nav>",
-      "css": "@font-face{font-family:Manrope;src:url(\"/static/redesign/manrope.ttf\") format(\"truetype\");font-weight:200 800;font-display:swap}.ds-nav{display:flex;flex-wrap:wrap;gap:28px;font:600 13px/1.55 Manrope,sans-serif;color:var(--ink,#171717)}.ds-nav a{display:flex;align-items:center;min-height:44px;color:inherit;text-decoration:none}.ds-nav a:hover{text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}"
+      "name": "Shared license radios", "kind": "custom", "refersTo": "license-option",
+      "description": "Native radios; demo variation values only. Preview selection disabled until valid; no orders/payment. Shared 4px corners unchanged."
     },
     {
-      "name": "Native example license radios",
-      "kind": "custom",
-      "refersTo": "license-option",
-      "description": "Radio group native memakai contoh harga Mango $18/$36; snippet tidak menghitung harga atau membuat pesanan.",
-      "html": "<fieldset class=\"ds-licenses\"><legend>Choose a license (demo)</legend><label class=\"ds-license\"><input type=\"radio\" name=\"ds-license\" value=\"standard\" required><span class=\"ds-license-text\"><strong>Standard License</strong><small>Example choice. Final usage terms come from the store.</small></span><span class=\"ds-license-price\">Demo $18</span></label><label class=\"ds-license\"><input type=\"radio\" name=\"ds-license\" value=\"extended\"><span class=\"ds-license-text\"><strong>Extended License</strong><small>Example choice. Final usage terms come from the store.</small></span><span class=\"ds-license-price\">Demo $36</span></label></fieldset>",
-      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-licenses{margin:26px 0 20px;padding:0;border:0;color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-licenses legend{font-size:15px;font-weight:600;margin-bottom:12px}.ds-license{display:flex;align-items:start;gap:12px;padding:14px;margin-bottom:10px;border:1px solid var(--line,#d9d9d4);border-radius:4px;cursor:pointer}.ds-license:has(input:checked){border-color:var(--rule,#12151c);background:var(--wash,#f4f4f2)}.ds-license input{margin:5px 0 0;accent-color:var(--rule,#12151c)}.ds-license input:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:4px}.ds-license-text{flex:1}.ds-license strong{font-size:14px;font-weight:600}.ds-license small{display:block;font-size:13px;color:var(--muted,#606060);margin-top:4px}.ds-license-price{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}"
-    },
-    {
-      "name": "Product tester controls",
-      "kind": "custom",
-      "refersTo": "tester-panel",
-      "description": "Kontrol tester R06A untuk Mango dan Chronoa. Snippet memuat teks, style, tiga slider, segmented align/tema, dan sakelar OpenType; panel tidak memuat specimen atau mengunduh berkas font.",
-      "html": "<div class=\"ds-tester-controls\"><div class=\"ds-field ds-field-wide\"><label for=\"ds-sample-text\">Sample text</label><textarea id=\"ds-sample-text\" maxlength=\"300\">A little character.</textarea></div><div class=\"ds-field\"><label for=\"ds-sample-style\">Style</label><select id=\"ds-sample-style\"><option>Regular</option></select></div><div class=\"ds-field\"><label for=\"ds-sample-size\">Size <span class=\"ds-value\">64 px</span></label><input id=\"ds-sample-size\" type=\"range\" min=\"16\" max=\"200\" value=\"64\"></div><div class=\"ds-field\"><label for=\"ds-sample-leading\">Leading <span class=\"ds-value\">1.20</span></label><input id=\"ds-sample-leading\" type=\"range\" min=\"0.8\" max=\"2.6\" step=\"0.01\" value=\"1.2\"></div><div class=\"ds-field\"><label for=\"ds-sample-tracking\">Tracking <span class=\"ds-value\">0.00 em</span></label><input id=\"ds-sample-tracking\" type=\"range\" min=\"-0.1\" max=\"0.3\" step=\"0.01\" value=\"0\"></div><div class=\"ds-options\"><fieldset class=\"ds-segmented\"><legend>Align</legend><label><input type=\"radio\" name=\"ds-align\" value=\"left\" checked><span>Left</span></label><label><input type=\"radio\" name=\"ds-align\" value=\"center\"><span>Center</span></label><label><input type=\"radio\" name=\"ds-align\" value=\"right\"><span>Right</span></label></fieldset><label class=\"ds-switch\"><input type=\"checkbox\" checked><span class=\"ds-switch-track\"></span>Light background</label><label class=\"ds-switch\"><input type=\"checkbox\" disabled><span class=\"ds-switch-track\"></span>Ligatures <small>Not in font</small></label></div></div>",
-      "css": "@font-face{font-family:'Manrope';src:url('/static/redesign/manrope.ttf') format('truetype');font-weight:200 800;font-style:normal;font-display:swap}.ds-tester-controls{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 24px;padding:26px 30px;color:var(--ink,#171717);font:400 16px/1.55 'Manrope',sans-serif}.ds-field{display:flex;flex-direction:column;min-width:0}.ds-field-wide{grid-column:1/-1}.ds-tester-controls label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:8px;font-size:12px;font-weight:650;letter-spacing:.04em;text-transform:uppercase;color:var(--muted,#606060)}.ds-value{font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:0;text-transform:none;color:var(--ink,#171717)}.ds-tester-controls textarea,.ds-tester-controls select{width:100%;min-width:0;min-height:44px;padding:11px 14px;border:1px solid var(--line,#d9d9d4);border-radius:4px;background:var(--wash,#f4f4f2);color:inherit;font:inherit;resize:vertical}.ds-tester-controls input[type='range']{-webkit-appearance:none;appearance:none;width:100%;min-height:44px;background:transparent}.ds-tester-controls input[type='range']::-webkit-slider-runnable-track{height:4px;border-radius:2px;background:var(--line,#d9d9d4)}.ds-tester-controls input[type='range']::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-7px;border-radius:50%;background:var(--rule,#12151c);cursor:pointer}.ds-options{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;padding-top:18px;border-top:1px solid var(--line,#d9d9d4)}.ds-segmented{display:inline-flex;margin:0;padding:3px;border:1px solid var(--line,#d9d9d4);border-radius:4px;gap:2px}.ds-segmented legend,.ds-segmented input{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.ds-segmented label{cursor:pointer;margin:0}.ds-segmented span{display:inline-flex;align-items:center;min-height:38px;padding:0 16px;border-radius:2px;font-size:13px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--ink,#171717)}.ds-segmented input:checked+span{background:var(--ink,#171717);color:var(--paper,#fff)}.ds-switch{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--ink,#171717);cursor:pointer;margin:0}.ds-switch input{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.ds-switch-track{position:relative;flex:none;width:38px;height:22px;border-radius:11px;background:var(--line,#d9d9d4);transition:background-color 160ms}.ds-switch-track::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 160ms}.ds-switch input:checked+.ds-switch-track{background:var(--rule,#12151c)}.ds-switch input:checked+.ds-switch-track::after{transform:translateX(16px)}.ds-switch:has(input:disabled){opacity:.5;cursor:not-allowed}.ds-switch small{font-weight:600;color:var(--muted,#606060)}@media(max-width:640px){.ds-tester-controls{grid-template-columns:1fr;gap:18px;padding:20px}} .ds-tester-controls textarea:focus-visible,.ds-tester-controls select:focus-visible,.ds-tester-controls input[type=range]:focus-visible{outline:2px solid var(--accent,#2247c8);outline-offset:3px}.ds-segmented input:focus-visible+span,.ds-switch input:focus-visible+.ds-switch-track{outline:2px solid var(--accent,#2247c8);outline-offset:3px}@media(max-width:900px){.ds-tester-controls{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.ds-tester-controls{grid-template-columns:1fr}}"
+      "name": "Shared product tester controls", "kind": "custom", "refersTo": "tester-panel",
+      "description": "Unchanged textarea maxlength 300, real style select, size 16–200px, leading .8–2.6, tracking -.10–.30em, segmented alignment/theme, detected OpenType switches/glyph panel. Theme dark #101318/#f5f7fa, native focus and disabled states. Mondriel named OTF styles remain integrated on product; homepage introduces no new font-core mapping."
     }
   ],
   "narrative": {
-    "northStar": "Editorial berani",
-    "overview": "**Creative North Star: \"Editorial berani\"**\n\nHomepage R05H memakai identitas Rillatype dalam Manrope besar, lalu satu bidang biru penuh dengan specimen putih yang dapat diketik. Artwork asli tampil sesudah specimen tanpa teks overlay. Ukuran huruf dan komposisi asimetris membawa arah yang dipilih user. Permintaan ini menggantikan visual homepage R05G.\n\nHomepage memuat `style.css`, `editorial.css`, lalu `home.css` pada body `.editorial.home`. Halaman produk dan katalog tetap memakai `.editorial` tanpa `home.css`. Warna bersama, kontrol 4px, tester, dan susunan detail R06/R06A dipertahankan. Token `base-*` tetap milik component lab dalam `style.css`.\n\nDokumen merekam nilai yang dibangun, bukan persetujuan visual atau kesiapan transaksi. Arah dipilih user; hasil render masih menunggu R07. Strategi homepage berada di `docs/redesign-home-direction.md`, dan fakta produk berada di `PRODUCT.md`.",
-    "keyCharacteristics": [
-      "Manrope untuk identitas, navigasi, metadata, heading section, dan footer homepage.",
-      "Rilla-Chronoa dan Rilla-Mango untuk specimen produk asli.",
-      "Bidang biru dengan teks putih dan kontrol bersudut siku pada homepage.",
-      "Indeks koleksi, artwork dengan rasio asli, dan galeri asimetris.",
-      "Search sticky, radio native, fokus keyboard, dan catatan preview yang terlihat."
-    ],
+    "northStar": "Real type in electric blue",
+    "overview": "G01 homepage is a working font poster: actual editable white specimen dominates an integrated blue field, lime actions/selection and a rounded white full-artwork collection follow. User-pinned direction replaces The Glazing Grid and seed e7218d38. Shared product/catalog world remains intact.",
+    "keyCharacteristics": ["Real editable specimen first", "Royal blue/white with lime action and selected states", "Rounded outer/light fields, original 3:2 artwork", "Literal input preservation, same-cut retry, truthful font/Graphics search", "Homepage-only scope"],
     "rules": [
-      {
-        "name": "The One Accent Rule",
-        "body": "Gunakan biru sebagai satu aksen UI dan pertahankan warna asli artwork. Specimen homepage memakai aksen pada area luas.",
-        "section": "colors"
-      },
-      {
-        "name": "The Product Font Rule",
-        "body": "Sample tampil setelah font berhasil dimuat; gagal menyembunyikan sample tanpa menghapus teks pengunjung, dengan penjelasan Manrope.",
-        "section": "typography"
-      }
+      { "name": "Homepage pinned palette", "body": "Blue #0644df/deep #0335b4, white and lime #c4ff00. Overrides old homepage one-accent rule; shared accent remains #2247c8.", "section": "colors" },
+      { "name": "Product Font Rule", "body": "Only render product sample after real font success; failures hide sample without deleting visitor text. Unavailable collection sources use intact artwork.", "section": "typography" },
+      { "name": "Price and rights truth", "body": "Zero Graphics base values are not free-download/Extended-price evidence. Use See license options; label positive fixture values Demo.", "section": "components" }
     ],
-    "dos": [
-      "Do gunakan Manrope untuk identitas homepage dan font asli untuk specimen.",
-      "Do gunakan bidang Accent dengan specimen Paper dan picker aktif Paper/Accent.",
-      "Do pertahankan kata pengunjung saat cut berubah, sample kosong, atau font gagal dimuat.",
-      "Do pertahankan rasio artwork dan caption statis di bawah galeri asimetris.",
-      "Do jaga search di luar menu mobile, fokus keyboard, dan reduced motion.",
-      "Do batasi masthead besar serta kontrol siku pada homepage; pertahankan token produk/katalog bersama.",
-      "Do tampilkan catatan preview dan label Demo pada harga contoh."
-    ],
-    "donts": [
-      "Don't kembalikan headline overlay artwork, Beyond type, atau grid card berulang pada homepage R05H.",
-      "Don't tampilkan Manrope sebagai specimen produk saat font gagal.",
-      "Don't mengarang glyph, feature, harga nyata, terms lisensi, atau bukti pelanggan.",
-      "Don't menyalin route placeholder non-font sebagai pola detail produk.",
-      "Don't membentuk path bebas dari URL atau menyebut Preview selection sebagai cart/pembayaran.",
-      "Don't menerapkan radius homepage pada tester/filter katalog yang tetap 4px.",
-      "Don't mengartikan dokumentasi, PASS, atau verdict reviewer sebagai persetujuan visual user."
-    ]
+    "dos": ["Keep editable type dominant and active facts in default first viewport", "Retain literal input, race safeguards, native focus and reduced motion", "Show whole 3:2 artwork and clear fixture disclosure", "Preserve product/catalog source styles and font core"],
+    "donts": ["No crypto, wallets, profiles, glass cards, fake stats or reference-layout clone", "No invented face sources, rights, download buttons or public prices", "No overflow clipping to conceal long-text defects", "No global propagation of homepage lime/radius", "No inference of user/production approval from tests"]
   }
 }

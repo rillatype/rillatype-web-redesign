@@ -11,6 +11,72 @@
         ],
         "createdAt": "2026-10-10T00:27:18.175Z",
         "reason": "Agent verified Chromium 390px and 1440px: specimen text inset >=20px, strips bottom >=26px and actual right borders have 24px padding, index text top >=26px; section-heading/gallery have no border. Static scan misreads scoped .home overrides and child insets."
+      },
+      {
+        "rule": "design-system-font",
+        "value": "style mango",
+        "createdAt": "2026-10-10T13:32:34.878Z",
+        "reason": "Codex: product specimen from the actual Mango font, requested by user for style panels"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "style chronoa",
+        "createdAt": "2026-10-10T13:32:34.933Z",
+        "reason": "Codex: actual product specimen face for the approved style panels"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "style handwritten",
+        "createdAt": "2026-10-10T13:32:34.986Z",
+        "reason": "Codex: actual Mondriel Handwritten specimen for the approved style panels"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "selected mondriel",
+        "createdAt": "2026-10-10T13:32:35.034Z",
+        "reason": "user confirmed: requested actual Mondriel large heavy specimen"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "montserrat",
+        "createdAt": "2026-10-10T13:32:35.084Z",
+        "reason": "user confirmed: explicitly requested Montserrat navigation"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "arial black",
+        "createdAt": "2026-10-10T13:32:35.143Z",
+        "reason": "user confirmed: ordinary heavy hero face approved before current section"
+      },
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-10-10T13:32:35.203Z",
+        "reason": "user confirmed: explicitly requested Montserrat"
+      },
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-10-10T13:32:35.261Z",
+        "reason": "user confirmed: ordinary bold hero face approved"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "static/redesign/index.html"
+        ],
+        "createdAt": "2026-10-10T13:32:35.320Z",
+        "reason": "user confirmed: requested background text animation continue; decorative pointer-inert backdrop and reduced-motion supported"
+      },
+      {
+        "rule": "gray-on-color",
+        "value": "*",
+        "files": [
+          "static/redesign/index.html"
+        ],
+        "createdAt": "2026-10-10T13:34:03.111Z",
+        "reason": "Codex: remaining detector pair is hidden featured-copy prose; visible metadata uses ink, footer muted now white, browser computed styles verified"
       }
     ]
   }

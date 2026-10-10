@@ -214,7 +214,7 @@ async def main():
         shipped = await page.evaluate(READ_SECTION)
         check(shipped["hidden"] is False and shipped["rect"]["h"] > 0,
               f"[A] the Graphics section is rendered, not hidden ({shipped['rect']})")
-        check(shipped["heading"] == "Graphicsfor the work.",
+        check(re.sub(r"\s+", "", shipped["heading"]) == "Graphicsforthework.",
               f"[A] the section carries its own heading ({shipped['heading']!r})")
         check(shipped["collectionTop"] is not None
               and shipped["collectionTop"] < shipped["rect"]["top"],
@@ -249,8 +249,10 @@ async def main():
                   f"[A] {slug}: the name is the catalog name ({card['name']!r})")
             check(card["meta"] == product.get("style"),
                   f"[A] {slug}: the kind label is the catalog style ({card['meta']!r})")
-            check(card["price"] == f"Demo ${product.get('price')}",
-                  f"[A] {slug}: the price is a Demo price from the catalog ({card['price']!r})")
+            price = product.get("price")
+            expected_price = f"Demo ${price}" if isinstance(price, (int, float)) and price > 0 else "See license options"
+            check(card["price"] == expected_price,
+                  f"[A] {slug}: positive prices are Demo; zero or unknown directs to licenses ({card['price']!r})")
             check(card["tester"] is False, f"[A] {slug}: the card holds no type tester")
             check(card["loaded"] is True and card["natural"] == "1200x800",
                   f"[A] {slug}: the artwork really loaded at its own size ({card['natural']})")

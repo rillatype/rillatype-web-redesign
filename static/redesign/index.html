@@ -19,88 +19,120 @@
   <a class="skip" href="#main">Skip to content</a>
   <header class="header">
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="Rillatype home"><img src="../../logo.png" width="56" height="56" alt="Rillatype"><span>Rillatype</span></a>
       <button class="button menu-button" aria-expanded="false" aria-controls="navigation">Menu</button>
-      <nav class="nav" id="navigation" aria-label="Main navigation"><a href="catalog.html">Fonts</a><a href="catalog.html?tag=free">Freebies</a><a href="#licenses">Licensing</a><a href="mailto:gustian@rillatype.com">Contact</a></nav>
-      <form class="search header-search" id="font-search" action="#fonts"><label class="visually-hidden" for="query">Find a font</label><div class="search-row"><input id="query" name="q" type="search" placeholder="Search the collection" autocomplete="off"><button class="button primary" type="submit">Search</button></div></form>
+      <nav class="nav" id="navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="catalog.html">Fonts</a><a href="catalog.html?category=graphic">Graphics</a><a href="catalog.html?tag=free">Freebies</a><a href="#licenses">Licensing</a><a href="mailto:gustian@rillatype.com">Contact</a><details class="nav-search"><summary aria-label="Open search"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></summary><form class="search header-search" id="font-search" action="#fonts"><label class="visually-hidden" for="query">Find fonts or graphics</label><div class="search-row"><input id="query" name="q" type="search" autocomplete="off"></div></form></details></nav>
+
     </div>
   </header>
 
   <main id="main">
+    <div class="hero-scene" id="hero-scene" data-motion="running">
+      <div class="type-backdrop" aria-hidden="true">
+        <div class="type-track"><span>TYPE WITH CHARACTER&nbsp; TYPE WITH CHARACTER&nbsp; </span><span>TYPE WITH CHARACTER&nbsp; TYPE WITH CHARACTER&nbsp; </span></div>
+        <div class="type-track"><span>MAKE IT YOURS&nbsp; MAKE IT YOURS&nbsp; </span><span>MAKE IT YOURS&nbsp; MAKE IT YOURS&nbsp; </span></div>
+        <div class="type-track"><span>RILLATYPE&nbsp; RILLATYPE&nbsp; </span><span>RILLATYPE&nbsp; RILLATYPE&nbsp; </span></div>
+      </div>
     <section class="wrap masthead" aria-labelledby="hero-title">
-      <h1 id="hero-title">Rillatype<span>.</span></h1>
-      <div class="masthead-bottom">
-        <p>Typefaces with character.<br>For the work you put your name on.</p>
-        <p class="masthead-description">Explore the collection.<br>Find a font. Make it yours.</p>
-        <a class="button primary" href="#fonts">Explore fonts <span aria-hidden="true">↗</span></a>
+      <div class="foundry-intro">
+        <h1 id="hero-title"><span>GOOD TYPE.</span><span>BOLD IDEAS.</span><span class="hero-accent">YOUR NEXT</span><span>BIG THING.</span></h1>
+        <p>Find the right type for your next idea.</p>
       </div>
+      <div class="hero-logo"><img src="../../logo.png" width="3000" height="3000" alt="Rillatype"></div>
+      <a class="button primary explore-button" href="#fonts">Browse fonts <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
     </section>
 
-    <!-- LIVE SPECIMEN: the real font files, loaded on first use.
-         The pickers and the strips are built from font-catalog.js + home-fixture.js,
-         so this markup carries no font name and no cut list. -->
-    <section class="specimen-band" id="live-specimen" aria-labelledby="specimen-title">
-      <div class="specimen-frame" id="specimen-frame">
-        <div class="wrap specimen-head">
-          <h2 id="specimen-title">Try the type.</h2>
-          <fieldset class="cut-picker" id="cut-picker">
-            <legend class="visually-hidden">Font</legend>
-          </fieldset>
-        </div>
-        <div class="wrap specimen-stage">
-          <p id="specimen-error" hidden>The specimen did not load. Select another cut to retry.</p>
-          <!-- Fallback teks untuk paint pertama dan untuk pengunjung tanpa JS.
-               preview.js menggantinya dari data begitu skrip jalan, jadi nama ini
-               bukan dependensi perilaku; fase C/D pemeriksaan membuktikannya.
-               Tanpa teks ini, state kosong memakai prompt :empty yang jauh lebih
-               panjang dan meluber keluar panggung (ditemukan saat P11). -->
-          <p class="specimen-line" id="specimen-line" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="false" aria-label="Type to test the selected font">Chronoa</p>
-        </div>
-        <div class="wrap specimen-controls">
-          <fieldset class="weight-picker" id="weight-picker">
-            <legend class="visually-hidden">Weight</legend>
-          </fieldset>
-          <p class="specimen-hint">Click the letters. Type something.</p>
-        </div>
-        <div class="wrap specimen-caption">
-          <p class="specimen-facts" id="specimen-facts"></p>
-          <p class="specimen-copy" id="specimen-status" role="status" aria-live="polite">Choose a font and type your own words.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
-    <div class="wrap">
+
+
+    <div class="home-content"><div class="wrap">
+      <section class="selected-fonts" id="fonts" aria-labelledby="selected-title">
+        <div class="section-heading"><h2 id="selected-title">Selected fonts.</h2><a class="selected-browse" href="catalog.html"><span>All fonts</span><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
+        <div class="selected-grid">
+
       <section class="featured-type" aria-labelledby="featured-title">
-        <a class="featured-art" id="featured-art" href="product.html?font=chronoa" aria-label="View the featured font details"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="Chronoa specimen sheet showing nine weights and the alphabet" loading="lazy"></a>
+        <div class="featured-top">
         <div class="featured-copy">
-          <h2 id="featured-title" class="specimen-face">Chronoa</h2>
-          <p id="featured-copy">One family. Nine weights.<br>A different voice in every cut.</p>
-          <dl class="spec-sheet" id="featured-specs"><div><dt>Family</dt><dd>9 weights</dd></div><div><dt>Glyphs per cut</dt><dd>219</dd></div><div><dt>Preview price</dt><dd>Demo $24</dd></div></dl>
+          <h2 id="featured-title" class="specimen-face">Mango Letters</h2>
+          <p id="featured-copy">Handwritten type for your next idea.</p>
           <a class="text-link" id="featured-link" href="product.html?font=chronoa">Explore Chronoa <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="featured-facts"><span id="featured-category">Handwritten display</span><span id="featured-stylecount">1 style</span></div>
+        </div>
+        <a class="featured-art" id="featured-art" href="product.html?font=mango" aria-label="View the featured font details"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters specimen sheet" loading="lazy"></a>
+
+      </section>
+        <div class="selected-side"><article class="row" data-name="Mondriel Font Duo" data-style="sans">
+            <a href="product.html?font=mondriel">
+              <span class="row-face"><span class="row-name">Mondriel</span></span>
+              <span class="row-thumb mondriel-specimen" aria-label="Mondriel Regular font specimen"><span class="mondriel-word">MONDRIEL</span><span class="mondriel-cut">Regular / Font duo</span></span>
+              <span class="row-price">Demo $17</span>
+              <span class="row-action">View font</span>
+            </a>
+          </article>
+<article class="row" data-name="Bawden" data-style="serif">
+            <a href="product.html?font=bawden">
+              <span class="row-face"><span class="row-name">Bawden</span><span class="row-meta"><em>Slab serif display</em>Regular · stamp · rough</span></span>
+              <span class="row-thumb"><img src="../previews/bawden-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $24</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article></div>
         </div>
       </section>
       <!-- SPECIMEN STRIPS: cuts sampled from the featured family. Built from data,
            and hidden when the featured family has fewer than two of the named cuts. -->
       <div class="strips" id="specimen-strips"></div>
 
-      <div id="fonts"></div>
+
 
       <!-- THE COLLECTION: type first, one row per typeface -->
+    </div>
+      <section class="style-finder" aria-labelledby="style-title"><div class="wrap">
+        <svg class="style-sticker" viewBox="0 0 160 160" aria-hidden="true" focusable="false">
+          <path d="M22 8h116l14 14v116l-14 14H22L8 138V22Z" fill="#c4ff00" stroke="#171717" stroke-width="3"/>
+          <path d="M28 18h104l10 10v104l-10 10H28l-10-10V28Z" fill="none" stroke="#171717" stroke-width="1"/>
+          <text class="sticker-name" x="80" y="76" text-anchor="middle" fill="#171717">RTYP</text>
+          <path d="M32 89h96" stroke="#171717" stroke-width="2"/>
+          <text class="sticker-studio" x="80" y="124" text-anchor="middle" fill="#171717">STD</text>
+        </svg>
+        <div class="style-intro">
+          <h2 id="style-title">Find your <span>style.</span></h2>
+          <p>Start with a feeling.<br>Find the type to match.</p>
+        </div>
+        <div class="style-options">
+          <a class="style-option style-bold" href="catalog.html?category=font&amp;q=sans">
+            <span class="style-option-label">Bold &amp; loud <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></span>
+            <span class="style-sample">MAKE SOME<br>NOISE.</span>
+            <span class="style-option-note">Explore sans fonts <span>Mondriel Regular</span></span>
+          </a>
+          <a class="style-option style-playful" href="catalog.html?category=font&amp;q=display">
+            <span class="style-option-label">Soft &amp; playful <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></span>
+            <span class="style-sample">Good<br>company</span>
+            <span class="style-option-note">Explore display fonts <span>Mango Letters</span></span>
+          </a>
+          <a class="style-option style-editorial" href="catalog.html?category=font&amp;q=sans">
+            <span class="style-option-label">Elegant &amp; editorial <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></span>
+            <span class="style-sample">A different<br>perspective.</span>
+            <span class="style-option-note">Explore sans fonts <span>Chronoa</span></span>
+          </a>
+          <a class="style-option style-personal" href="catalog.html?category=font&amp;q=script">
+            <span class="style-option-label">Handwritten &amp; personal <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18 18 6M6 6h12v12"/></svg></span></span>
+            <span class="style-sample">Yours, truly.</span>
+            <span class="style-option-note">Explore script fonts <span>Mondriel Handwritten</span></span>
+          </a>
+        </div>
+      </div></section>
+
+    <div class="wrap">
       <section class="section collection" data-collection aria-labelledby="collection-title">
         <div class="section-heading">
-          <h2 id="collection-title">Find your <br>type.</h2>
+          <h2 id="collection-title">Find your type.</h2>
           <div class="section-tools"><span class="small muted" id="collection-count">9 typefaces</span><a class="section-link" href="catalog.html">Browse the full collection <span aria-hidden="true">↗</span></a></div>
-          <p class="collection-description">Display, serif, script.<br>A different shape for every idea.</p>
+          <p class="collection-description">Display, serif, script. A different shape for every idea.</p>
         </div>
         <div class="index">
-          <article class="row" data-name="Chronoa" data-slug="chronoa" data-style="sans">
-            <a href="product.html?font=chronoa">
-              <span class="row-face"><span class="row-name">Chronoa</span><span class="row-meta"><em>Display family</em>9 weights<span>Try the real font</span></span></span>
-              <span class="row-thumb"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
-              <span class="row-price">Demo $24</span>
-              <span class="row-action">Try</span>
-            </a>
-          </article>
+
           <article class="row" data-name="Mango Letters" data-slug="mango" data-style="display">
             <a href="product.html?font=mango">
               <span class="row-face"><span class="row-name">Mango Letters</span><span class="row-meta"><em>Handwritten display</em>1 style<span>Specimen ready</span></span></span>
@@ -109,14 +141,7 @@
               <span class="row-action">Try</span>
             </a>
           </article>
-          <article class="row" data-name="Bawden" data-style="serif">
-            <a href="product.html?font=bawden">
-              <span class="row-face"><span class="row-name">Bawden</span><span class="row-meta"><em>Slab serif display</em>Regular · stamp · rough</span></span>
-              <span class="row-thumb"><img src="../previews/bawden-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
-              <span class="row-price">Demo $24</span>
-              <span class="row-action">Details</span>
-            </a>
-          </article>
+
           <article class="row" data-name="Crimson Queen" data-style="serif">
             <a href="product.html?font=crimson">
               <span class="row-face"><span class="row-name">Crimson Queen</span><span class="row-meta"><em>Serif display</em>Poster and packaging</span></span>
@@ -176,11 +201,11 @@
            home-fixture.js; names, kind labels, prices, artwork, and routes are
            read from font-catalog.js, so this markup names no product. A Graphic
            entry never gets a type tester (product-spec, kasus C06). -->
-      <section class="section graphics" id="graphics" aria-labelledby="graphics-title">
+      <section class="section graphics" id="graphics" data-collection aria-labelledby="graphics-title">
         <div class="section-heading">
-          <h2 id="graphics-title">Graphics<br>for the work.</h2>
+          <h2 id="graphics-title">Graphics for the work.</h2>
           <div class="section-tools"><span class="small muted" id="graphics-count">From the shop</span><a class="section-link" href="catalog.html?category=graphic">View graphics <span aria-hidden="true">↗</span></a></div>
-          <p class="graphics-description">Illustration sets and texture packs.<br>Made for the work you put your name on.</p>
+          <p class="graphics-description">Illustration sets and texture packs. Made for the work you put your name on.</p>
         </div>
         <div class="graphics-grid" id="graphics-grid"></div>
       </section>
@@ -208,7 +233,37 @@
         </div>
       </section>
       <p class="preview-note" id="preview-note">Design preview. Prices and product categories are examples. No orders or payments are processed.</p>
-    </div>
+    </div></div>
+    <details class="type-lab">
+      <summary class="wrap">Try the fonts <span aria-hidden="true">+</span></summary>
+    <!-- LIVE SPECIMEN: the real font files, loaded on first use.
+         The pickers and the strips are built from font-catalog.js + home-fixture.js,
+         so this markup carries no font name and no cut list. -->
+    <section class="specimen-band" id="live-specimen" aria-labelledby="specimen-title">
+      <div class="specimen-frame" id="specimen-frame">
+        <div class="wrap specimen-head">
+          <h2 id="specimen-title">Your words. Our type.</h2>
+          <fieldset class="cut-picker" id="cut-picker">
+            <legend class="visually-hidden">Font</legend>
+          </fieldset>
+        </div>
+        <div class="wrap specimen-stage">
+          <div id="specimen-error" hidden><p>The font could not load. Your text is safe.</p><button class="button" id="specimen-retry" type="button">Retry this cut</button></div>
+          <p class="specimen-line" id="specimen-line" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="false" aria-label="Type to test the selected font" aria-describedby="specimen-status">Mango Letters</p>
+        </div>
+        <div class="wrap specimen-controls">
+          <fieldset class="weight-picker" id="weight-picker">
+            <legend class="visually-hidden">Weight</legend>
+          </fieldset>
+          <p class="specimen-hint">Click the type to make it yours.</p>
+        </div>
+        <div class="wrap specimen-caption">
+          <p class="specimen-facts" id="specimen-facts"></p>
+          <p class="specimen-copy" id="specimen-status" role="status" aria-live="polite">Choose a font and type your own words.</p>
+        </div>
+      </div>
+    </section>
+    </details>
   </main>
 
   <footer class="wrap footer">

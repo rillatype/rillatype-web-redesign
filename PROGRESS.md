@@ -29,14 +29,29 @@ P05/P07/P09/P11 dibuka ulang, bukan dihapus. Hasil lama dan log commit tetap riw
 
 Pekerjaan dokumentasi PLAN-AUDIT dan implementasi A01–A07 SELESAI. Laporan: [docs/reports/PLAN-AUDIT.md](docs/reports/PLAN-AUDIT.md) dan [docs/reports/A01.md](docs/reports/A01.md) sampai [docs/reports/A07.md](docs/reports/A07.md). Tidak ada task implementasi BERJALAN. Task berikutnya hanya dikerjakan setelah user menugaskannya.
 
+### Perombakan dunia visual homepage (G01)
+
+User menyatakan pada 10 Oktober 2026 bahwa tampilan depan homepage masih kurang disukai, **warnanya oke**, dan ingin visual pokok yang terlihat beda dari toko biasanya. Warna lama dipin; dunia visualnya diganti. Prosedur memakai playbook impeccable (`new-work`/`visualize`) dan kontrak arah tersimpan di brief permukaan. Task P/W/S yang ada tidak memuat pekerjaan ini, jadi dicatat sebagai G01.
+
+| ID | Tugas | Status | Dependensi | Bukti atau next action |
+| --- | --- | --- | --- | --- |
+| [G01](docs/reports/G01.md) | Redesign homepage dari referensi biru/lime | MENUNGGU USER | P12/P06/A01-A07 SELESAI; revisi user | 2026-10-10 21:09:20 WIB: checkpoint tersimpan; galeri2x2 + stiker lime RTYP/STD, kedua baris Montserrat900/34px sama. PASS1440/390/320. Next action tunggu arahan user; cover Mondriel ditunda. [Laporan](docs/reports/G01.md). |
+
+Catatan: `docs/reports/G01.md` juga memuat riwayat keputusan, skor critique 19/32, dan lima temuan prioritas yang harus ditutup di dunia baru. Rencana P13-P20 tetap berlaku setelahnya; P08 dan P13 masih menunggu penugasan.
+
 ### Handoff aktif
 
+- Kondisi aktif 2026-10-10 18:49:01 WIB: G01 BERJALAN untuk revisi user, hero lebih simpel dengan specimen awal Mango, navbar frosted sticky dan tipografi background bergerak dengan pause/reduced-motion. Homepage saja. Handoff sebelumnya riwayat.
+- Kondisi terkini 2026-10-10 17:50 WIB: G01 BERJALAN (dunia visual homepage diganti ke The Glazing Grid atas pilihan user; palet lama dipin). Satu next action aktif: bangun dunia itu di homepage dan tutup P0-P3 critique. P08 dan P13 tetap siap bila ditugaskan.
+- Keputusan user hari ini: (1) homepage kurang disukai pada tampilannya tetapi warnanya dipertahankan; (2) visual pokok diganti supaya terlihat beda dari toko font biasa; (3) arah terpilih dari structured question tool = The Glazing Grid (challenger `craft-making-glazier-colorfield-partition`). Halaman keputusan `serve-question` mati dua kali sehingga substitusi ke structured tool dipakai dan dicatat.
+- Bukti ronde arah: `.impeccable/surfaces/static-redesign-index-html.md` (kontrak enam blok + seed `e7218d38`), `.impeccable/critique/2026-10-10T10-27-35Z__static-redesign-index-html.md` (snapshot critique), dan laporan [docs/reports/G01.md](docs/reports/G01.md).
 - Update aset user 10 Oktober 2026: P12 dan A01–A07 tetap SELESAI; P06/P08 kembali BELUM, bukan lagi TERBLOKIR karena file hilang. Source Mondriel lima style serta Brika Dingbats sudah tersedia, integrasi belum dikerjakan. Next action prioritas: user menugaskan P06 saja, memakai [handoff aset](docs/redesign/font-test-handoff.md). P13 tetap independen dan siap jika ditugaskan; tidak semua P01–P12 tuntas.
 - Kondisi terkini 2026-10-10 17:04 WIB: P06 SELESAI untuk C03 (Mondriel, lima style dari user) dan P01–P12 tuntas. Satu next action aktif: user menugaskan P08 (Brika Dingbats, C05) atau P13; keduanya siap.
 - Hasil P06: lima OTF user disalin byte-identik (SHA256 dicatat di `ASSETS.md`) ke `static/redesign/fonts/`, entri katalog `mondriel` dengan lima `id` style, dan identitas face per style (`faceFamily`) di loader generik `product-preview.js` karena kelima berkas memakai family `RT Mondriel` dan weight 400 yang sama. Suite `scripts/check-tester-mixed-family.py` 65/65 exit 0 dengan kontrol negatif yang menolak saat lima style diarahkan ke satu berkas.
 - Tiga FAIL yang ditemukan sendiri dan diperbaiki pada P06: batas parser `0x2FFF` membuat Handwritten terbaca 184 padahal berkasnya memetakan 187 (`U+E92C`, `U+E93D`, `U+FB00`) — diperbaiki di `tester-core.js` dan `scripts/_p08_font_facts.mjs`; assertion Chronoa di `check-glyph-facts.py` mengukur seluruh isi direktori sehingga ikut menghitung specimen baru (kini dibatasi ke `Chronoa-*.otf`, 46/46); dan ekspektasi "tidak ada console error" pada abort yang disengaja di bagian E suite C03.
 - Perluasan scope P06 yang dicatat: `tester-core.js`, `scripts/_p08_font_facts.mjs`, `scripts/check-glyph-facts.py`, lima berkas di `static/redesign/fonts/`, dan `docs/redesign/reference-inventory.md`.
 - Temuan untuk P08: Brika Dingbats 234 glyph/233 codepoint format 4 dengan 2 codepoint kontrol; jumlah ikon terlihat harus dipisahkan dari jumlah codepoint. Temuan untuk P19: `check-redesign-preview.py` dan `_p01_verify.py` masih menunggu pensiun.
+- Bukti penyimpanan P06: commit `3e5176e` dipush ke `origin/master`; output push `b9b723b..3e5176e master -> master` dan `git ls-remote origin master` mengembalikan `3e5176e1fdd2890d6594bca38803c3e75f1e3c1e` yang sama dengan `git rev-parse HEAD`. Commit memuat source, lima specimen Mondriel, dua test yang diperluas, tiga dokumen, dan seluruh dokumen audit PLAN-ASSETS yang tadinya lokal. Uji ulang pada kondisi ter-commit: mixed-family 65/65, glyph-facts 46/46, data P03 183/183, kontrol A01 13/13, semuanya exit 0 — dua yang terakhir sebelumnya merah hanya karena `AGENTS.md` belum di-commit. Baris bukti ini disimpan lokal mengikuti pola task sebelumnya; tidak ada commit tambahan hanya untuk hash.
 - Dokumen audit PLAN-ASSETS (AGENTS.md, kartu P06/P08, execution-plan, ASSETS.md, font-test-handoff.md, PLAN-ASSETS.md) ikut di-commit bersama P06 karena menjadi prasyarat kartu dan agar penjaga scope `_p03_verify.py` tidak lagi menolak `AGENTS.md` yang masih lokal.
 - Update instruksi aset selesai; laporan dan prompt P06 siap salin: [docs/reports/PLAN-ASSETS.md](docs/reports/PLAN-ASSETS.md). Validasi enam path/raw metadata, pointer, status BELUM dan diff dokumen PASS. Source/font/test tidak diubah. Update ini belum commit/push.
 - Kondisi P12: bagian Graphics di homepage memakai empat artwork produk toko nyata (katalog `distressed-overlays`, `palm-tree`, `cowboy-horseback`, `cowboy-bear`), dirender dari data katalog oleh `preview.js`, tanpa type tester, dengan tautan View graphics ke `catalog.html?category=graphic`. Bukti: [docs/reports/P12.md](docs/reports/P12.md), suite `scripts/check-homepage-graphics.py` 94/94 exit 0, kontrol negatif exit 1.
@@ -229,6 +244,7 @@ Buku tugas: [`tasks-store-release.md`](docs/redesign/tasks-store-release.md)
 | 2026-10-10 16:40:49 WIB | PLAN-ASSETS | User menyediakan lima Mondriel dan RT Brika Dingbats. Perbarui kartu P06/P08, inventaris, pointer, laporan, dan handoff; source/test/font tidak diubah. | Path dan metadata fontTools sudah dibaca; bukti runtime baru tidak dijalankan. Dokumen rinci: docs/redesign/font-test-handoff.md. | P06/P08 BELUM untuk integrasi, bukan SELESAI. Approval production tetap terpisah. | Validasi dokumen, lalu user menugaskan P06 saja. |
 | 2026-10-10 16:50 WIB | P06 | Ambil P06 lanjutan (Mondriel, C03). Baca kartu, `font-test-handoff.md`, laporan P06 lama, source tester (`product-preview.js`, `tester-core.js`), dan suite mixed-family. Verifikasi enam path aset + hash + cmap/glyph dengan fontTools, dan cek produk Mondriel Font Duo di toko (read-only). | Semua enam berkas ada dengan hash tercatat; Mondriel Regular/Slant/Outline/Outline Slant 195 glyph/194 cmap dengan 2 codepoint kontrol (0x00, 0x0D) dan tanpa GSUB; Handwritten 219/187 dengan `liga`+`dlig`. Toko: `https://rillatype.com/product/mondriel-font-duo/` HTTP 200, post 1972, `product-type-variable`, harga terlihat `$17`, kategori memuat sans-serif + script/handwritten. Temuan: keempat berkas selain Handwritten memakai nameID 16 `RT Mondriel`, weight 400, italic flag false, sehingga descriptor FontFace tidak dapat membedakan face. | Implementasi belum jalan; tidak ada source/aset yang diubah pada unit ini. | Salin lima OTF, tambah entri katalog, lalu beri identitas face per style. |
 | 2026-10-10 17:04 WIB | P06 | Selesaikan integrasi Mondriel: lima OTF user disalin byte-identik ke `static/redesign/fonts/`, entri katalog `mondriel` ditambah, identitas face per style (`faceFamily`) dipakai loader generik, dan suite `check-tester-mixed-family.py` ditulis ulang ke lima berkas + bagian kontrol negatif. Dokumentasi aset diperbarui di `ASSETS.md` dan `reference-inventory.md`. | Suite C03 65/65 exit 0 (lima URL berkas berbeda, lima face loaded, lima render berbeda 3,37-15,17, round-trip lolos, abort+retry Outline Slant pulih, balapan Handwritten tidak menimpa Regular, Dockhand tetap state tidak tersedia). Tiga FAIL ditemukan sendiri: parser 0x2FFF membuat Handwritten terbaca 184 padahal berkasnya 187 (diperbaiki di `tester-core.js` dan `_p08_font_facts.mjs`), assertion Chronoa di `check-glyph-facts.py` mengukur seluruh isi direktori sehingga ikut menghitung berkas baru (kini dibatasi `Chronoa-*.otf`, 46/46), dan ekspektasi console error pada abort yang disengaja. Regresi: styles 37/37, load-states 42/42, fact-races 12/12, single-style 26/26, weight-controls 22/22, homepage-data 70/70, specimen-home 49/49, specimen-states exit 0, artwork 1037/1037, graphics 94/94, smoke 13 route. | `data-P03` dan `audit-assertions` sempat merah karena `AGENTS.md` dari update aset masih lokal; keduanya hijau setelah dokumen audit ikut di-commit. Hak distribusi web specimen tetap W04/W19. | Tutup P06, commit, push, lalu user menugaskan P08 atau P13. |
+| 2026-10-10 17:50 WIB | G01 | Ronde arah dunia visual homepage ditutup: critique dua agen (19/32, P0-P3), `concept-seed` seed `e7218d38` (assign = kandidat ke-7 daftar saya, tujuh challenger), dan user memilih **The Glazing Grid** lewat structured question tool setelah `serve-question` mati dua kali. Kontrak arah ditulis ke `.impeccable/surfaces/static-redesign-index-html.md`, telemetri dikirim, dan laporan `docs/reports/G01.md` dibuat sebelum source disentuh. | `surface-brief write` exit 0 dan `surface-brief read` memverifikasi THESIS/OWN-WORLD/STORY/FIRST VIEWPORT/FORM/SIGNATURE/FINISH + seed; `concept-seed --kind challenger --chosen challenger-glazier` mencetak `choice recorded`; dua referensi quality bar diunduh (420.424 B dan 433.768 B). Tidak ada source website yang diubah pada unit ini. | Image generation tidak tersedia (`IMAGE_NOT_CONFIGURED`) sehingga ronde ini code-led tanpa comp; lima temuan critique belum diperbaiki. | Bangun homepage dalam dunia The Glazing Grid dan tutup P0-P3. |
 | 2026-10-10 11:02 WIB | PLAN-AUDIT | Mulai revisi dokumentasi atas perintah user. Scope: rules, plan, kartu, pointer, template, tracker, dan laporan. Source/test/aset tidak diubah. | Baca dokumen wajib; `git status --short`, waktu sistem, dan HEAD `1e6037e` terverifikasi. Laporan: [docs/reports/PLAN-AUDIT.md](docs/reports/PLAN-AUDIT.md). | Semua bug audit masih terbuka. Perubahan lokal P11 dan file untracked dipertahankan. | Tulis tujuh kartu koreksi A01–A07 dan aturan pembuktian. |
 | 2026-10-10 11:09:02 WIB | PLAN-AUDIT | Tulis buku A01–A07, perbarui rules/pointer/plan/template, dan buka ulang P05/P07/P09/P11. Pertahankan seluruh kartu utama serta log lama. | Kartu menyebut reproduksi, scope, negative control, command regresi, acceptance, dan handoff. Validasi otomatis belum berjalan. | Semua bug audit belum diperbaiki; aset C03/C05 tetap belum tersedia. | Periksa 80 ID, dependensi, anchor, status, dan diff dokumentasi. |
 | 2026-10-10 11:13:08 WIB | PLAN-AUDIT | Tutup revisi dokumentasi dan handoff. Tambahkan command lengkap, aturan exit code, serta laporan hasil. A01–A07 tetap BELUM. | Validator scratch PASS 885/885: 80 kartu, 80 status, dependency graph/anchor/pointer valid. `git diff --check` PASS. Source/test/aset/tema tidak berubah. | Bug audit dan aset C03/C05 belum diperbaiki/disediakan. Commit/push revisi tidak dilakukan. | User menugaskan A01 saja; P12 menunggu A07. |
@@ -521,3 +537,89 @@ Atau format ringkas (kalau males tabel):
 ## Penutupan update aset 2026-10-10 16:44:17 WIB
 
 PLAN-ASSETS SELESAI untuk dokumen. Enam source font dan raw metadata fontTools tervalidasi, P06/P08 BELUM konsisten pada kartu/tracker/laporan, pointer handoff tersedia, git diff --check PASS. Tidak ada implementasi/salin font/ubah test. Bukti: docs/reports/PLAN-ASSETS.md. Next action: penugasan P06 saja.
+
+- 2026-10-10 19:07:06 WIB: G01 MENUNGGU USER; hero kotak dihapus, tester disclosure, navbar frosted transparan mengikuti referensi kedua. Regresi empat viewport dan kontrol negatif PASS; inspeksi desktop/mobile selesai. Perubahan lokal belum commit/push. Next action: tinjauan user. Laporan docs/reports/G01.md.
+
+- 2026-10-10 19:14:29 WIB: G01 MENUNGGU USER; floating glass berbatas jelas dan headline uppercase poster tebal sesuai referensi terbaru. Regresi empat viewport PASS. Next action tinjauan preview user; laporan G01.
+
+- 2026-10-10 19:21:14 WIB: G01 MENUNGGU USER: navbar menyatu atas/kiri/kanan, hero MAKE SOME NOISE dengan Chronoa Black dan floral O, tombol pause dihapus. Regresi empat viewport PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 19:25:14 WIB: G01 MENUNGGU USER; hero Arial Black biasa, teks empat baris kiri dan logo Rillatype kanan, mobile stacked. Regresi empat viewport dan inspeksi pixel desktop/mobile PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 19:28:34 WIB: G01 MENUNGGU USER, logo diperbesar/naik, spacing CTA-divider dipadatkan, background infinite dipulihkan. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 19:31:20 WIB: G01 MENUNGGU USER; jarak atas hero dirapatkan, label brand repetitif navbar dihapus. Empat viewport PASS; next action tinjauan user, laporan G01.
+
+- 2026-10-10 19:36:28 WIB: G01 MENUNGGU USER, navbar tanpa logo, Montserrat self-hosted, menu tengah dan search. Regresi empat viewport dan probe navbar PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 19:38:37 WIB: G01 MENUNGGU USER; Search ikon/teks masuk menu tengah dan input dibuka sesuai kebutuhan. Regresi empat viewport PASS; next action tinjauan user, laporan G01.
+
+- 2026-10-10 19:40:45 WIB: G01 MENUNGGU USER: search ikon-only dengan input inline kanan, tanpa tombol. Empat viewport PASS; next action tinjauan user, laporan G01.
+
+- 2026-10-10 19:41:57 WIB: G01 MENUNGGU USER; search pill radius 999px, diff check PASS. Next action tinjauan preview; laporan G01.
+
+- 2026-10-10 19:44:13 WIB: G01 MENUNGGU USER; placeholder search dihapus atas permintaan user. Label aksesibilitas dipertahankan; next action tinjauan preview.
+
+- 2026-10-10 19:50:03 WIB: G01 MENUNGGU USER; keputusan Q1–Q3 diterapkan: Browse fonts/copy baru, produk sebelum tester, background 25% lebih redup. Empat viewport PASS; next action tinjauan user; laporan G01.
+
+- 2026-10-10 19:56:08 WIB: G01 MENUNGGU USER; Selected fonts asimetris Mango/Chronoa/Bawden, artwork utuh3:2; CTA naik/navbar15px. Regresi empat viewport dan artwork PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 20:00:43 WIB: G01 MENUNGGU USER; panel Selected fonts berkontras navy/wash, label inset dan Contact tersambung ikon. Empat viewport/artwork3:2 PASS; next action tinjauan user, laporan G01.
+
+- 2026-10-10 20:04:34 WIB: G01 MENUNGGU USER; komposisi Selected fonts diseimbangkan, label ringkas, All fonts pada notch grid. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 20:12:41 WIB: G01 MENUNGGU USER; Mango metadata kanan atas, selected Mondriel actual Regular besar di bidang lime. Face/hash/route/regresi empat viewport PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 20:17:29 WIB: G01 MENUNGGU USER; Selected fonts dense mosaic tanpa ruang navy/header besar. Empat viewport/artwork3:2 PASS. Next action tinjauan user; laporan G01.
+
+- 2026-10-10 20:19:19 WIB: G01 MENUNGGU USER; alas hitam/filler bawah Mango dihapus. Regresi empat viewport PASS; next action tinjauan user, laporan G01.
+
+- 2026-10-10 20:23:54 WIB: checkpoint G01 disimpan atas permintaan user. Alas mosaic biru dipertahankan; Mondriel masih specimen dan cover final ditunda. Regresi terakhir empat viewport PASS. Next action tunggu penugasan user; belum commit/push/live.
+
+- 2026-10-10 20:33:55 WIB: G01 MENUNGGU USER; Find your style diterapkan dari referensi, empat panel font asli dan filter katalog existing. Overflow320 diperbaiki, regresi empat viewport PASS. Next action tinjauan user. Cover Mondriel tetap ditunda; belum live.
+
+- 2026-10-10 20:38:03 WIB: G01 MENUNGGU USER; Find your style strip horizontal/alignment bergantian menggantikan sidebar/grid referensi. Empat viewport PASS; next action tinjauan user. Belum production.
+
+- 2026-10-10 20:39:52 WIB: G01 MENUNGGU USER; empat strip Find your style kini full-width sejajar dan specimen lebih besar. Probe alignment/overflow dan regresi empat viewport PASS. Next action tinjau user; belum production.
+
+- 2026-10-10 20:45:29 WIB: G01 MENUNGGU USER; Find your style kini background biru full-width setelah putih, sudut atas melengkung. Empat viewport PASS; next action tinjau user. Belum live.
+
+### 2026-10-10 20:47:34 WIB | G01 rapikan layout Find your style
+
+- Codex/01a12610: revisi user pada screenshot; dependensi G01 terpenuhi, tidak ada pelaksana lain BERJALAN. Scope home.css, dokumen G01 dan brief. Perubahan lokal sebelumnya dipertahankan. Next action: specimen full-width, metadata footer, render empat viewport.
+
+### 2026-10-10 20:48:52 WIB | G01 layout siap ditinjau
+
+- home.css: label atas, specimen penuh dan footer nama/tautan dengan garis pembatas; jarak handwritten dikoreksi. PASS browser1440/768/390/320 untuk font loaded, overflow, posisi footer; regresi hero empat viewport dan diff --check PASS. Next action tinjau user. Belum commit/push/production.
+
+### 2026-10-10 20:52:36 WIB | G01 konsep galeri poster
+
+- User menolak strip dan memilih galeri poster2x2 melalui pertanyaan terstruktur. Codex/01a12610 mengambil revisi G01; dependensi terpenuhi, perubahan lokal lama dipertahankan. Scope index.html/home.css, brief dan laporan. Next action ganti komposisi, verifikasi render dan reviewer read-only.
+
+### 2026-10-10 20:55:41 WIB | G01 galeri poster siap ditinjau
+
+- index.html/home.css: ganti strip menjadi galeri poster2x2 dengan komposisi font asli dan footer ringkas; mobile satu kolom. PASS lima viewport/font/overflow/link/focus, regresi hero empat viewport, diff --check. Reviewer fresh SHIP pada section. Next action tinjau user; tidak ada production/commit/push.
+
+### 2026-10-10 21:01:58 WIB | G01 stiker transisi RTYP
+
+- User meminta stiker seperti referensi pada pertemuan Selected fonts/Find your style. Codex/01a12610 mengambil revisi lokal, dependensi G01 terpenuhi; perubahan lama dipertahankan. Scope index.html/home.css/brief/laporan. Next action stiker bulat geometris RTYP dan cek posisi/overflow desktop-mobile.
+
+### 2026-10-10 21:03:38 WIB | G01 stiker RTYP siap ditinjau
+
+- Inline SVG pink/cream/blue144px desktop104px mobile, centered overlap seam, heading clearance aman. PASS geometry/RTYP/overflow empat viewport, regresi hero empat viewport, diff --check. Capture desktop/mobile diperiksa. Tidak ada suppression kontras; foreground section diperbaiki. Next action review user; belum production/commit/push.
+
+### 2026-10-10 21:05:34 WIB | G01 ganti stiker RTYP STD
+
+- User menolak kemiripan stiker radial dan meminta RTYP di atas STD. Codex/01a12610 mengambil revisi lokal G01, dependensi terpenuhi dan perubahan terdahulu dipertahankan. Scope index.html/home.css/brief/laporan. Next action label persegi bersudut potong, cek teks/clearance empat viewport.
+
+### 2026-10-10 21:06:28 WIB | G01 label RTYP STD siap ditinjau
+
+- SVG label bersudut potong lime/ink dan9deg, teks RTYP/STD dua baris. PASS1440/768/390/320 untuk teks, posisi seam, clearance, glyph bounds/overflow dan diff --check. Next action review user; belum production.
+
+### 2026-10-10 21:08:50 WIB | G01 samakan lettering dan checkpoint
+
+- User meminta RTYP/STD sama font, weight, size dan mencatat progress. Codex/01a12610 mengambil revisi lokal; dependensi G01 terpenuhi, perubahan sebelumnya dipertahankan. Scope CSS lettering/brief/laporan/tracker. Next action satu aturan text untuk kedua baris dan periksa render.
+
+### 2026-10-10 21:09:20 WIB | G01 checkpoint lettering seragam
+
+- RTYP dan STD kini satu aturan Montserrat900/34px/tracking-.04em. PASS computed typography identik, glyph bounds dan no overflow1440/390/320; diff --check PASS. Progress/laporan/brief disimpan. G01 MENUNGGU USER, cover Mondriel ditunda; belum commit/push/production. Next action tunggu penugasan berikutnya.
