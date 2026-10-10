@@ -16,6 +16,9 @@ BASE = "http://127.0.0.1:9402/static/redesign"
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / ".impeccable" / "review"
 PREFIX = sys.argv[1] if len(sys.argv) > 1 else "P10"
+# Which capture set to diff against; override to compare a later task's work
+# against a baseline taken at its own HEAD.
+BASE_PREFIX = sys.argv[2] if len(sys.argv) > 2 else "PRE"
 OUT.mkdir(parents=True, exist_ok=True)
 SHOTS = [
     ("home", "/index.html", "rillatype-home"),
@@ -53,8 +56,8 @@ async def main():
                 out = OUT / f"{PREFIX}-{label}-{mode}.png"
                 await page.screenshot(path=str(out), full_page=True)
                 size = Image.open(out).size
-                base = OUT / f"PRE-{label}-{mode}.png"
-                if PREFIX == "PRE":
+                base = OUT / f"{BASE_PREFIX}-{label}-{mode}.png"
+                if PREFIX == BASE_PREFIX:
                     base = None
                 note = "no PRE baseline captured"
                 if base.exists():

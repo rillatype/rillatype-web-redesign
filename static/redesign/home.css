@@ -57,7 +57,7 @@
 .home .index { border-top: 1px solid var(--ink); }
 .home .row > a { grid-template-columns: minmax(0, 1fr) 100px auto; grid-template-areas: "face thumb action" "face thumb price"; column-gap: 24px; row-gap: 8px; padding: 24px 0; }
 .home .row-name { font-weight: 500; font-size: clamp(24px, 2.7vw, 38px); white-space: normal; }
-.home .row-name.chronoa, .home .row-name.mango { font-size: clamp(38px, 4.1vw, 58px); }
+.home .row-name[data-face] { font-size: clamp(38px, 4.1vw, 58px); }
 .home .row-meta { font-size: 11px; gap: 10px; }
 .home .row-thumb { width: 100px; height: auto; aspect-ratio: 3 / 2; border-radius: 0; }
 .home .row-action { min-width: 68px; min-height: 44px; border: 0; border-radius: 0; padding: 0 8px; letter-spacing: 0; text-transform: none; font-size: 13px; }
@@ -123,7 +123,7 @@
   .collection-description { margin-top: 16px; }
   .home .row > a { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "face action" "face price"; gap: 8px 12px; }
   .home .row-name { font-size: 28px; }
-  .home .row-name.chronoa, .home .row-name.mango { font-size: 40px; }
+  .home .row-name[data-face] { font-size: 40px; }
   .home .row-action { min-width: 56px; }
   .home .gallery { grid-template-columns: 1fr; gap: 24px; }
   .home .gallery figure:first-child { grid-row: auto; }

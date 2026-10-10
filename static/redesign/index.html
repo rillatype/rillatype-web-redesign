@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="editorial.css">
   <link rel="stylesheet" href="home.css">
+  <!-- Data dulu, perilaku terakhir: katalog memegang fakta font, fixture memegang
+       pilihan konten, dan preview.js tidak menyebut nama font sama sekali (P11). -->
+  <script src="font-catalog.js" defer></script>
+  <script src="home-fixture.js" defer></script>
   <script src="preview.js" defer></script>
 </head>
 <body class="editorial home">
@@ -32,30 +36,29 @@
       </div>
     </section>
 
-    <!-- LIVE SPECIMEN: the real font files, loaded on first use -->
+    <!-- LIVE SPECIMEN: the real font files, loaded on first use.
+         The pickers and the strips are built from font-catalog.js + home-fixture.js,
+         so this markup carries no font name and no cut list. -->
     <section class="specimen-band" id="live-specimen" aria-labelledby="specimen-title">
       <div class="specimen-frame" id="specimen-frame">
         <div class="wrap specimen-head">
           <h2 id="specimen-title">Try the type.</h2>
           <fieldset class="cut-picker" id="cut-picker">
             <legend class="visually-hidden">Font</legend>
-            <label><input type="radio" name="specimen-cut" value="chronoa" checked><span>Chronoa</span></label>
-            <label><input type="radio" name="specimen-cut" value="mango"><span class="mango-label">Mango Letters</span></label>
           </fieldset>
         </div>
         <div class="wrap specimen-stage">
           <p id="specimen-error" hidden>The specimen did not load. Select another cut to retry.</p>
+          <!-- Fallback teks untuk paint pertama dan untuk pengunjung tanpa JS.
+               preview.js menggantinya dari data begitu skrip jalan, jadi nama ini
+               bukan dependensi perilaku; fase C/D pemeriksaan membuktikannya.
+               Tanpa teks ini, state kosong memakai prompt :empty yang jauh lebih
+               panjang dan meluber keluar panggung (ditemukan saat P11). -->
           <p class="specimen-line" id="specimen-line" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="false" aria-label="Type to test the selected font">Chronoa</p>
         </div>
         <div class="wrap specimen-controls">
           <fieldset class="weight-picker" id="weight-picker">
             <legend class="visually-hidden">Weight</legend>
-            <label><input type="radio" name="specimen-weight" value="200"><span>200</span></label>
-            <label><input type="radio" name="specimen-weight" value="300"><span>300</span></label>
-            <label><input type="radio" name="specimen-weight" value="400"><span>400</span></label>
-            <label><input type="radio" name="specimen-weight" value="600" checked><span>600</span></label>
-            <label><input type="radio" name="specimen-weight" value="800"><span>800</span></label>
-            <label><input type="radio" name="specimen-weight" value="900"><span>900</span></label>
           </fieldset>
           <p class="specimen-hint">Click the letters. Type something.</p>
         </div>
@@ -68,29 +71,17 @@
 
     <div class="wrap">
       <section class="featured-type" aria-labelledby="featured-title">
-        <a class="featured-art" href="product.html?font=chronoa" aria-label="View Chronoa font details"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="Chronoa specimen sheet showing nine weights and the alphabet" loading="lazy"></a>
+        <a class="featured-art" id="featured-art" href="product.html?font=chronoa" aria-label="View the featured font details"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="Chronoa specimen sheet showing nine weights and the alphabet" loading="lazy"></a>
         <div class="featured-copy">
-          <h2 id="featured-title" class="chronoa">Chronoa</h2>
-          <p>One family. Nine weights.<br>A different voice in every cut.</p>
-          <dl class="spec-sheet"><div><dt>Family</dt><dd>9 weights</dd></div><div><dt>Glyphs per cut</dt><dd>219</dd></div><div><dt>Preview price</dt><dd>Demo $24</dd></div></dl>
-          <a class="text-link" href="product.html?font=chronoa">Explore Chronoa <span aria-hidden="true">↗</span></a>
+          <h2 id="featured-title" class="specimen-face">Chronoa</h2>
+          <p id="featured-copy">One family. Nine weights.<br>A different voice in every cut.</p>
+          <dl class="spec-sheet" id="featured-specs"><div><dt>Family</dt><dd>9 weights</dd></div><div><dt>Glyphs per cut</dt><dd>219</dd></div><div><dt>Preview price</dt><dd>Demo $24</dd></div></dl>
+          <a class="text-link" id="featured-link" href="product.html?font=chronoa">Explore Chronoa <span aria-hidden="true">↗</span></a>
         </div>
       </section>
-      <!-- SPECIMEN STRIPS: three real cuts side by side -->
-      <div class="strips">
-        <div class="strip">
-          <p class="strip-sample" id="strip-light">Aa Bb Cc</p>
-          <p class="strip-cap"><b>Chronoa 300 Light</b><span>219 glyphs · latin</span></p>
-        </div>
-        <div class="strip">
-          <p class="strip-sample" id="strip-medium">0123456789</p>
-          <p class="strip-cap"><b>Chronoa 500 Medium</b><span>numerals</span></p>
-        </div>
-        <div class="strip">
-          <p class="strip-sample" id="strip-semibold">Aa Bb Cc</p>
-          <p class="strip-cap"><b>Chronoa 600 SemiBold</b><span>the cut used above</span></p>
-        </div>
-      </div>
+      <!-- SPECIMEN STRIPS: cuts sampled from the featured family. Built from data,
+           and hidden when the featured family has fewer than two of the named cuts. -->
+      <div class="strips" id="specimen-strips"></div>
 
       <div id="fonts"></div>
 
@@ -102,17 +93,17 @@
           <p class="collection-description">Display, serif, script.<br>A different shape for every idea.</p>
         </div>
         <div class="index">
-          <article class="row" data-name="Chronoa" data-style="sans">
+          <article class="row" data-name="Chronoa" data-slug="chronoa" data-style="sans">
             <a href="product.html?font=chronoa">
-              <span class="row-face"><span class="row-name chronoa">Chronoa</span><span class="row-meta"><em>Display family</em>9 weights<span>Try the real font</span></span></span>
+              <span class="row-face"><span class="row-name">Chronoa</span><span class="row-meta"><em>Display family</em>9 weights<span>Try the real font</span></span></span>
               <span class="row-thumb"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
               <span class="row-price">Demo $24</span>
               <span class="row-action">Try</span>
             </a>
           </article>
-          <article class="row" data-name="Mango Letters" data-style="display">
+          <article class="row" data-name="Mango Letters" data-slug="mango" data-style="display">
             <a href="product.html?font=mango">
-              <span class="row-face"><span class="row-name mango">Mango Letters</span><span class="row-meta"><em>Handwritten display</em>1 style<span>Specimen ready</span></span></span>
+              <span class="row-face"><span class="row-name">Mango Letters</span><span class="row-meta"><em>Handwritten display</em>1 style<span>Specimen ready</span></span></span>
               <span class="row-thumb"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
               <span class="row-price">Demo $18</span>
               <span class="row-action">Try</span>

@@ -106,8 +106,12 @@ async def main() -> int:
         # specimen strips load below the fold
         await page.evaluate("window.scrollTo(0, 900)")
         await page.wait_for_timeout(1200)
-        strip = await page.eval_on_selector("#strip-indent" if False else "#strip-light", "el => getComputedStyle(el).fontFamily")
-        check("Rilla-Chronoa" in strip, "specimen strips use the shipped face")
+        # The strips are built from data now, so they are addressed by class
+        # rather than by the name of a cut (P11 removed the #strip-<cut> ids).
+        strips = await page.eval_on_selector_all(
+            ".strip-sample", "els => els.map(el => getComputedStyle(el).fontFamily)")
+        check(strips and all("Rilla-Chronoa" in family for family in strips),
+              f"specimen strips use the shipped face ({strips[:2]})")
         try:
             await page.wait_for_function(
                 "() => getComputedStyle(document.querySelector('.row[data-name=\"Mango Letters\"] .row-name')).fontFamily.includes('Rilla-Mango')",

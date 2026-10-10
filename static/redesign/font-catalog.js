@@ -24,7 +24,16 @@ const catalog = new Map([
     licenseCount: 6,
     images: ['../previews/mango-1.jpg', '../previews/mango-2.jpg', '../previews/mango-3.jpg', '../previews/mango-4.jpg'],
     specimen: true,
-    styles: [{ label: 'Regular', file: 'mango-letter.otf', dir: '../previews/', weight: 400 }],
+    styles: [{ label: 'Regular', file: 'mango-letter.otf', dir: '../previews/', weight: 400, web: 'mango-letters.woff2' }],
+    // Fakta specimen web. Dipakai tester homepage, jadi ditulis di sini sekali
+    // saja: sebelumnya daftar cut hidup di dua tempat (berkas ini dan preview.js)
+    // dan kesamaannya hanya dijaga pemeriksaan (catatan P07).
+    specimenFamily: 'Rilla-Mango',
+    specimenDir: 'fonts/web/',
+    // Huruf tulis tangan tidak boleh dirapatkan; nilainya dibaca tester, bukan
+    // ditebak dari nama font.
+    specimenTracking: '0',
+    specimenFacts: { glyphs: 184, codepoints: 181, features: 'discretionary ligatures' },
     features: { liga: false, salt: false },
     evidence: 'C01: satu specimen OTF asli. Deskripsi toko tidak menyebut style bernama lain.',
   }],
@@ -42,17 +51,21 @@ const catalog = new Map([
     images: ['../previews/chronoa-1.jpg'],
     specimen: true,
     styles: [
-      { label: 'Thin', file: 'Chronoa-Thin.otf', weight: 100, available: true },
-      { label: 'ExtraLight', file: 'Chronoa-ExtraLight.otf', weight: 200, available: true },
-      { label: 'Light', file: 'Chronoa-Light.otf', weight: 300, available: true },
-      { label: 'Regular', file: 'Chronoa-Regular.otf', weight: 400, available: true },
-      { label: 'Medium', file: 'Chronoa-Medium.otf', weight: 500, available: true },
-      { label: 'SemiBold', file: 'Chronoa-SemiBold.otf', weight: 600, available: true },
-      { label: 'Bold', file: 'Chronoa-Bold.otf', weight: 700, available: true },
-      { label: 'ExtraBold', file: 'Chronoa-ExtraBold.otf', weight: 800, available: true },
-      { label: 'Black', file: 'Chronoa-Black.otf', weight: 900, available: true }
+      { label: 'Thin', file: 'Chronoa-Thin.otf', weight: 100, available: true, web: 'chronoa-thin.woff2' },
+      { label: 'ExtraLight', file: 'Chronoa-ExtraLight.otf', weight: 200, available: true, web: 'chronoa-extralight.woff2' },
+      { label: 'Light', file: 'Chronoa-Light.otf', weight: 300, available: true, web: 'chronoa-light.woff2' },
+      { label: 'Regular', file: 'Chronoa-Regular.otf', weight: 400, available: true, web: 'chronoa-regular.woff2' },
+      { label: 'Medium', file: 'Chronoa-Medium.otf', weight: 500, available: true, web: 'chronoa-medium.woff2' },
+      { label: 'SemiBold', file: 'Chronoa-SemiBold.otf', weight: 600, available: true, web: 'chronoa-semibold.woff2' },
+      { label: 'Bold', file: 'Chronoa-Bold.otf', weight: 700, available: true, web: 'chronoa-bold.woff2' },
+      { label: 'ExtraBold', file: 'Chronoa-ExtraBold.otf', weight: 800, available: true, web: 'chronoa-extrabold.woff2' },
+      { label: 'Black', file: 'Chronoa-Black.otf', weight: 900, available: true, web: 'chronoa-black.woff2' }
     ],
     defaultStyle: 'SemiBold',
+    specimenFamily: 'Rilla-Chronoa',
+    specimenDir: 'fonts/web/',
+    specimenTracking: '-.04em',
+    specimenFacts: { glyphs: 219, codepoints: 218, features: 'no OpenType features' },
     features: { liga: false, salt: false },
     evidence: 'C04: sembilan cut OTF asli. Deskripsi toko menyebut Thin sampai Black.',
   }],

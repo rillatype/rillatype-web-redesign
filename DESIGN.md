@@ -555,9 +555,9 @@ Manrope variable lokal `manrope.ttf` memakai `font-display: swap`, weight 200 sa
 
 ### Specimen asli dan base
 
-Homepage memakai WOFF2 di `fonts/web/`. CSS mendaftarkan sembilan weight Chronoa dan Mango 400 dengan `font-display: block`. Picker menawarkan Chronoa 200, 300, 400, 500, 600, 800, 900, default 600. Mango memiliki satu style. Weight 100 dan 700 ada di CSS tetapi tidak ditawarkan picker.
+Homepage memakai WOFF2 di `fonts/web/`. CSS mendaftarkan sembilan weight Chronoa dan Mango 400 dengan `font-display: block`. Picker menawarkan setiap style katalog yang punya berkas `web`: Chronoa kesembilan cut 100–900 dengan default 600 dari `defaultStyle`, Mango satu style. Daftar cut hanya hidup di `font-catalog.js`; `home-fixture.js` memilih produk yang tampil dan teks editorialnya, dan `preview.js` tidak menyebut nama font sama sekali.
 
-Fakta di `SPECIMENS` mengikuti berkas asli: Chronoa 219 glyph dan 218 codepoint tanpa feature GSUB, Mango 184 glyph dan 181 codepoint dengan discretionary ligatures. Jumlah codepoint tidak ditampilkan dalam baris fakta. Detail memakai OTF penuh melalui `tester-core.js`. Token `base-*` tetap mencatat system sans, ukuran heading/tombol, serta radius 6px component lab. Token `tester-*`, `license-*`, `segmented`, dan `product-display` mempertahankan nilai bersama.
+Fakta specimen (`specimenFamily`, `specimenDir`, `specimenTracking`, `specimenFacts`, dan berkas `web` per style) ada di `font-catalog.js` dan mengikuti berkas asli: Chronoa 219 glyph dan 218 codepoint tanpa feature GSUB, Mango 184 glyph dan 181 codepoint dengan discretionary ligatures. Jumlah codepoint tidak ditampilkan dalam baris fakta. Detail memakai OTF penuh melalui `tester-core.js`. Token `base-*` tetap mencatat system sans, ukuran heading/tombol, serta radius 6px component lab. Token `tester-*`, `license-*`, `segmented`, dan `product-display` mempertahankan nilai bersama.
 
 **The Product Font Rule.** Sample hanya tampil setelah berkas asli berhasil dimuat. Saat gagal, sembunyikan sample tanpa menghapus teks pengunjung dan tampilkan penjelasan dalam Manrope.
 
@@ -607,9 +607,9 @@ Search homepage Paper, border Line 1px, label aksesibel Find a font. Query menco
 
 ### Live specimen
 
-Contenteditable berperan textbox satu baris. Fokus memilih teks, Enter keluar dari bidang. `userTyped` menjaga kata pengunjung saat cut/weight berubah dan setelah gagal lalu mencoba cut lain. Mengosongkan teks mempertahankan font terpilih. Picker native dibangun dari `SPECIMENS` dan disembunyikan untuk Mango.
+Contenteditable berperan textbox satu baris. Fokus memilih teks, Enter keluar dari bidang. `userTyped` menjaga kata pengunjung saat cut/weight berubah dan setelah gagal lalu mencoba cut lain. Mengosongkan teks mempertahankan font terpilih. Picker native dibangun dari katalog dan fixture; kontrol weight disembunyikan saat produk hanya punya satu style, dan kontrol font disembunyikan saat hanya satu produk punya specimen.
 
-Font diambil saat sample mendekati viewport atau cut dipilih. Loader menyimpan hasil dan permintaan berjalan; nomor permintaan menjaga hasil lama tidak menimpa pilihan terbaru. Strip memuat Chronoa 300/500/600 saat mendekati viewport; indeks Mango menghangatkan berkas sendiri. Kegagalan menyembunyikan `#specimen-line`, mempertahankan isinya, menampilkan `#specimen-error`, membersihkan fakta cut, dan menulis status koneksi. Cut yang berhasil menampilkan kembali kata pengunjung. State loading memakai opacity .38. Error CSS lama tidak merender sample karena atribut hidden.
+Font diambil saat sample mendekati viewport atau cut dipilih. Loader menyimpan hasil dan permintaan berjalan; nomor permintaan menjaga hasil lama tidak menimpa pilihan terbaru. Strip memuat cut unggulan yang labelnya ada di fixture saat mendekati viewport, dan barisnya disembunyikan bila tersisa kurang dari dua cut; baris indeks menghangatkan berkas produknya sendiri lewat `data-slug`. Kegagalan menyembunyikan `#specimen-line`, mempertahankan isinya, menampilkan `#specimen-error`, membersihkan fakta cut, dan menulis status koneksi. Cut yang berhasil menampilkan kembali kata pengunjung. State loading memakai opacity .38. Error CSS lama tidak merender sample karena atribut hidden.
 
 ### Indeks, artwork, dan galeri
 

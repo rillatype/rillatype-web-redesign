@@ -1,6 +1,11 @@
 // Homepage behaviour: mobile menu, collection search, and the live specimen.
 // The specimen font files are fetched only when a visitor asks for them, so the
 // page renders without waiting on 265 KB of OTF.
+//
+// This file names no font, no font file, and no cut count. Every font fact comes
+// from font-catalog.js and every content choice from home-fixture.js, so the
+// featured font can be swapped -- including to a single-style font -- without
+// editing behaviour (P11).
 
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('#navigation');
@@ -27,42 +32,34 @@ if (menuButton && navigation) {
 }
 
 // ---------------------------------------------------------------- specimen
-// Real cuts, with the glyph and codepoint counts read from the shipped files.
-// Daftar weight adalah cut Chronoa yang benar-benar punya subset web; setiap cut
-// pada data produk harus punya berkas di `fonts/web/`, kalau tidak picker akan
-// menawarkan pilihan yang gagal dimuat.
-const SPECIMENS = {
-  chronoa: {
-    label: 'Chronoa',
-    family: 'Rilla-Chronoa',
-    dir: 'fonts/web/',
-    defaultWeight: 600,
-    weights: {
-      100: { file: 'chronoa-thin.woff2', name: 'Thin' },
-      200: { file: 'chronoa-extralight.woff2', name: 'ExtraLight' },
-      300: { file: 'chronoa-light.woff2', name: 'Light' },
-      400: { file: 'chronoa-regular.woff2', name: 'Regular' },
-      500: { file: 'chronoa-medium.woff2', name: 'Medium' },
-      600: { file: 'chronoa-semibold.woff2', name: 'SemiBold' },
-      700: { file: 'chronoa-bold.woff2', name: 'Bold' },
-      800: { file: 'chronoa-extrabold.woff2', name: 'ExtraBold' },
-      900: { file: 'chronoa-black.woff2', name: 'Black' }
-    },
-    glyphs: 219,
-    codepoints: 218,
-    features: 'no OpenType features'
-  },
-  mango: {
-    label: 'Mango Letters',
-    family: 'Rilla-Mango',
-    dir: 'fonts/web/',
-    defaultWeight: 400,
-    weights: { 400: { file: 'mango-letters.woff2', name: 'Regular' } },
-    glyphs: 184,
-    codepoints: 181,
-    features: 'discretionary ligatures'
-  }
-};
+const fontData = (window.RillaCatalog && window.RillaCatalog.catalog) || new Map();
+const homeData = window.RillaHome || {};
+
+// A product can be tried live only when the catalog gives it a family and its
+// styles a web subset. Both are facts about the font, so both live in the
+// catalog; nothing here knows how many cuts a family has.
+function specimenStyles(product) {
+  if (!product || !product.specimenFamily) return [];
+  return (product.styles || [])
+    .filter(style => style && style.web)
+    .sort((a, b) => (a.weight || 0) - (b.weight || 0));
+}
+
+function defaultStyle(product) {
+  const styles = specimenStyles(product);
+  return styles.find(style => style.label === product.defaultStyle) || styles[0] || null;
+}
+
+const specimenProducts = (homeData.specimen || [])
+  .map(slug => ({ slug, product: fontData.get(slug) }))
+  .filter(entry => entry.product && specimenStyles(entry.product).length);
+
+const featuredEntry = (() => {
+  const slug = homeData.featured && homeData.featured.slug;
+  const product = slug ? fontData.get(slug) : null;
+  if (product) return { slug, product };
+  return specimenProducts[0] || null;
+})();
 
 const specimenFrame = document.querySelector('#specimen-frame');
 const specimenLine = document.querySelector('#specimen-line');
@@ -71,10 +68,11 @@ const specimenStatus = document.querySelector('#specimen-status');
 const specimenFacts = document.querySelector('#specimen-facts');
 const cutPicker = document.querySelector('#cut-picker');
 const weightPicker = document.querySelector('#weight-picker');
+const stripsRow = document.querySelector('#specimen-strips');
 const loadedFaces = new Set();
 const inFlight = new Map();
-let activeCut = 'chronoa';
-let activeWeight = SPECIMENS.chronoa.defaultWeight;
+let activeSlug = specimenProducts.length ? specimenProducts[0].slug : null;
+let activeWeight = activeSlug ? (defaultStyle(fontData.get(activeSlug)) || {}).weight : null;
 let userTyped = false;
 let specimenRequest = 0;
 
@@ -84,18 +82,23 @@ function setFrameState(state) {
   if (specimenError) specimenError.hidden = state !== 'error';
 }
 
-// One loader for every cut, so the specimen band and the index can never
-// fetch the same face twice.
-async function registerFace(cutKey, weight) {
-  const cut = SPECIMENS[cutKey];
-  const style = cut.weights[weight];
+function faceStack(product) {
+  return `"${product.specimenFamily}", "Manrope", sans-serif`;
+}
+
+// One loader for every cut, so the specimen band, the strips, and the index can
+// never fetch the same face twice.
+async function registerFace(slug, weight) {
+  const product = fontData.get(slug);
+  const style = specimenStyles(product).find(item => item.weight === weight);
   if (!style) return null;
-  const key = `${cutKey}-${weight}`;
+  const key = `${slug}-${weight}`;
   if (loadedFaces.has(key)) return style;
   if (!inFlight.has(key)) {
-    const source = new URL(`${cut.dir}${style.file}`, location.href).href;
+    const dir = product.specimenDir || 'fonts/web/';
+    const source = new URL(`${dir}${style.web}`, location.href).href;
     inFlight.set(key, (async () => {
-      const face = new FontFace(cut.family, `url("${source}") format("woff2")`, { weight: String(weight) });
+      const face = new FontFace(product.specimenFamily, `url("${source}") format("woff2")`, { weight: String(style.weight) });
       await face.load();
       document.fonts.add(face);
       loadedFaces.add(key);
@@ -109,73 +112,217 @@ async function registerFace(cutKey, weight) {
   }
 }
 
-async function showSpecimen(cutKey, weight, fallbackText) {
+function factsLine(product, style) {
+  const facts = product.specimenFacts || {};
+  return [
+    `${product.name} ${style.label}`,
+    facts.glyphs ? `${facts.glyphs} glyphs` : null,
+    facts.features || null
+  ].filter(Boolean).join(' · ');
+}
+
+async function showSpecimen(slug, weight, fallbackText) {
+  const product = fontData.get(slug);
+  if (!product) return;
   const request = ++specimenRequest;
   setFrameState('loading');
-  const style = await registerFace(cutKey, weight);
+  const style = await registerFace(slug, weight);
   if (request !== specimenRequest) return;
-  const cut = SPECIMENS[cutKey];
   if (!style) {
     setFrameState('error');
     if (specimenFacts) specimenFacts.textContent = '';
-    if (specimenStatus) specimenStatus.textContent = `Could not load ${cut.label}. Check your connection, then select another cut to retry.`;
+    if (specimenStatus) specimenStatus.textContent = `Could not load ${product.name}. Check your connection, then select another cut to retry.`;
     return;
   }
   // The line belongs to the visitor: only seed it while they have not typed.
-  if (!userTyped) specimenLine.textContent = fallbackText;
-  specimenLine.style.fontFamily = `"${cut.family}", "Manrope", sans-serif`;
-  specimenLine.style.fontWeight = String(weight);
-  specimenLine.style.letterSpacing = cutKey === 'mango' ? '0' : '-.04em';
+  if (!userTyped) specimenLine.textContent = fallbackText || product.name;
+  specimenLine.style.fontFamily = faceStack(product);
+  specimenLine.style.fontWeight = String(style.weight);
+  // Tracking is a property of the face: handwriting wants none, a geometric sans
+  // wants it tight. Read from the catalog instead of guessing from the name.
+  specimenLine.style.letterSpacing = product.specimenTracking || '0';
   setFrameState('ready');
-  if (specimenFacts) specimenFacts.textContent = `${cut.label} ${style.name} · ${cut.glyphs} glyphs · ${cut.features}`;
+  if (specimenFacts) specimenFacts.textContent = factsLine(product, style);
   if (specimenStatus) specimenStatus.textContent = `Type your own words. Switch fonts and keep your text.`;
 }
 
-function buildWeightPicker(cutKey) {
+function buildCutPicker() {
+  if (!cutPicker) return;
+  cutPicker.textContent = '';
+  specimenProducts.forEach(({ slug, product }) => {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = 'specimen-cut';
+    input.value = slug;
+    input.checked = slug === activeSlug;
+    const span = document.createElement('span');
+    span.textContent = product.name;
+    label.append(input, span);
+    cutPicker.append(label);
+  });
+  cutPicker.hidden = specimenProducts.length < 2;
+}
+
+function buildWeightPicker(slug) {
   if (!weightPicker) return;
-  const cut = SPECIMENS[cutKey];
   weightPicker.textContent = '';
-  const weights = Object.keys(cut.weights).map(Number).sort((a, b) => a - b);
-  weights.forEach(weight => {
+  const styles = specimenStyles(fontData.get(slug));
+  styles.forEach(style => {
     const label = document.createElement('label');
     const input = document.createElement('input');
     input.type = 'radio';
     input.name = 'specimen-weight';
-    input.value = String(weight);
-    input.checked = weight === cut.defaultWeight;
+    input.value = String(style.weight);
+    input.checked = style.weight === activeWeight;
     const span = document.createElement('span');
-    span.textContent = String(weight);
+    span.textContent = String(style.weight);
     label.append(input, span);
     weightPicker.append(label);
   });
-  weightPicker.hidden = weights.length < 2;
+  // A single cut has no weight to choose.
+  weightPicker.hidden = styles.length < 2;
 }
 
-function currentText() {
-  const text = (specimenLine.textContent || '').trim();
-  return text || 'Your brand name';
+function observeOnce(nodes, callback) {
+  if (!nodes.length) return;
+  if (!('IntersectionObserver' in window)) {
+    nodes.forEach(callback);
+    return;
+  }
+  const watcher = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      watcher.unobserve(entry.target);
+      callback(entry.target);
+    });
+  }, { rootMargin: '150px' });
+  nodes.forEach(node => watcher.observe(node));
 }
 
-if (specimenLine) {
-  buildWeightPicker(activeCut);
+// The strips sample named cuts of the featured family. Fewer than two resolved
+// cuts cannot be "three real cuts side by side", so the row hides instead of
+// stretching one cut across the grid.
+function buildStrips(slug) {
+  if (!stripsRow) return;
+  const product = fontData.get(slug);
+  const styles = specimenStyles(product);
+  const resolved = (homeData.strips || [])
+    .map(item => ({ item, style: styles.find(style => style.label === item.style) }))
+    .filter(entry => entry.style);
+  stripsRow.textContent = '';
+  stripsRow.hidden = resolved.length < 2;
+  if (stripsRow.hidden) return;
+  resolved.forEach(({ item, style }) => {
+    const strip = document.createElement('div');
+    strip.className = 'strip';
+    const sample = document.createElement('p');
+    sample.className = 'strip-sample';
+    sample.textContent = item.text;
+    sample.style.fontFamily = faceStack(product);
+    sample.style.fontWeight = String(style.weight);
+    const caption = document.createElement('p');
+    caption.className = 'strip-cap';
+    const name = document.createElement('b');
+    name.textContent = `${product.name} ${style.weight} ${style.label}`;
+    const note = document.createElement('span');
+    note.textContent = item.caption;
+    caption.append(name, note);
+    strip.append(sample, caption);
+    stripsRow.append(strip);
+  });
+  observeOnce([...stripsRow.querySelectorAll('.strip-sample')],
+    node => registerFace(slug, Number(node.style.fontWeight)));
+}
+
+function buildSpecSheet(list, product) {
+  if (!list) return;
+  const styles = specimenStyles(product);
+  const facts = product.specimenFacts || {};
+  const rows = [];
+  if (styles.length) rows.push(['Family', styles.length === 1 ? '1 style' : `${styles.length} weights`]);
+  if (facts.glyphs) rows.push(['Glyphs per cut', String(facts.glyphs)]);
+  if (typeof product.price === 'number') rows.push(['Preview price', `Demo $${product.price}`]);
+  list.textContent = '';
+  rows.forEach(([term, value]) => {
+    const row = document.createElement('div');
+    const dt = document.createElement('dt');
+    dt.textContent = term;
+    const dd = document.createElement('dd');
+    dd.textContent = value;
+    row.append(dt, dd);
+    list.append(row);
+  });
+}
+
+// The featured block is editorial content about one product. Everything that is
+// a fact about the font -- name, route, artwork, family, weight, cut count,
+// glyph count, price -- is derived; only the prose and the alt text are authored.
+function renderFeatured() {
+  if (!featuredEntry) return;
+  const { slug, product } = featuredEntry;
+  const style = defaultStyle(product);
+  const route = `product.html?font=${slug}`;
+  const art = document.querySelector('#featured-art');
+  const image = art && art.querySelector('img');
+  if (image) {
+    if (product.images && product.images.length) {
+      image.src = product.images[0];
+      image.alt = (homeData.featured && homeData.featured.artAlt) || `${product.name} specimen sheet`;
+      image.hidden = false;
+    } else {
+      image.hidden = true;
+    }
+  }
+  if (art) art.setAttribute('href', route);
+  const title = document.querySelector('#featured-title');
+  if (title) {
+    title.textContent = product.name;
+    if (product.specimenFamily) title.style.fontFamily = faceStack(product);
+    if (style) title.style.fontWeight = String(style.weight);
+    if (product.specimenTracking === '0') title.style.letterSpacing = '0';
+  }
+  const copy = document.querySelector('#featured-copy');
+  if (copy && homeData.featured) copy.innerHTML = homeData.featured.copy;
+  const link = document.querySelector('#featured-link');
+  if (link) {
+    link.setAttribute('href', route);
+    link.innerHTML = `Explore ${product.name} <span aria-hidden="true">↗</span>`;
+  }
+  buildSpecSheet(document.querySelector('#featured-specs'), product);
+}
+
+// An index row that has a specimen is set in that product's own typeface. Rows
+// without one keep the UI face, because there is no font file to show.
+function renderRowFaces() {
+  document.querySelectorAll('.row[data-slug]').forEach(row => {
+    const product = fontData.get(row.dataset.slug);
+    const style = defaultStyle(product);
+    const name = row.querySelector('.row-name');
+    if (!style || !name) return;
+    name.style.fontFamily = faceStack(product);
+    name.style.fontWeight = String(style.weight);
+    name.dataset.face = '';
+    if (product.specimenTracking === '0') name.dataset.tracking = 'open';
+    observeOnce([name], node => registerFace(row.dataset.slug, Number(node.style.fontWeight)));
+  });
+}
+
+renderFeatured();
+renderRowFaces();
+
+if (specimenLine && activeSlug) {
+  buildCutPicker();
+  buildWeightPicker(activeSlug);
+  buildStrips(featuredEntry ? featuredEntry.slug : activeSlug);
   let armed = false;
   const arm = () => {
     if (armed) return;
     armed = true;
-    showSpecimen(activeCut, activeWeight, 'Chronoa');
+    showSpecimen(activeSlug, activeWeight, fontData.get(activeSlug).name);
   };
   // Load only when the specimen is near the viewport, so the first paint is free.
-  if ('IntersectionObserver' in window) {
-    const watcher = new IntersectionObserver(entries => {
-      if (entries.some(entry => entry.isIntersecting)) {
-        watcher.disconnect();
-        arm();
-      }
-    }, { rootMargin: '200px' });
-    watcher.observe(specimenLine);
-  } else {
-    arm();
-  }
+  observeOnce([specimenLine], arm);
   specimenLine.addEventListener('focus', () => {
     const range = document.createRange();
     range.selectNodeContents(specimenLine);
@@ -192,59 +339,34 @@ if (specimenLine) {
       specimenLine.blur();
     }
   });
+} else if (specimenFrame) {
+  // No product has a web specimen: there is nothing to try, so the band says so
+  // by leaving rather than showing controls that cannot load anything.
+  const band = specimenFrame.closest('.specimen-band');
+  if (band) band.hidden = true;
 }
 
 if (cutPicker) {
   cutPicker.addEventListener('change', event => {
     if (!event.target.matches('input[name="specimen-cut"]')) return;
-    activeCut = event.target.value;
-    activeWeight = SPECIMENS[activeCut].defaultWeight;
-    buildWeightPicker(activeCut);
-    showSpecimen(activeCut, activeWeight, SPECIMENS[activeCut].label);
+    activeSlug = event.target.value;
+    const product = fontData.get(activeSlug);
+    activeWeight = (defaultStyle(product) || {}).weight;
+    buildWeightPicker(activeSlug);
+    showSpecimen(activeSlug, activeWeight, product.name);
   });
 }
 if (weightPicker) {
   weightPicker.addEventListener('change', event => {
     if (!event.target.matches('input[name="specimen-weight"]')) return;
     activeWeight = Number(event.target.value);
-    showSpecimen(activeCut, activeWeight, currentText());
+    showSpecimen(activeSlug, activeWeight, currentText());
   });
 }
 
-// Strip cuts beyond the specimen band load as they scroll into view.
-const stripCuts = [
-  { id: '#strip-light', weight: 300 },
-  { id: '#strip-medium', weight: 500 },
-  { id: '#strip-semibold', weight: 600 }
-];
-const stripNodes = stripCuts.map(item => document.querySelector(item.id)).filter(Boolean);
-if (stripNodes.length && 'IntersectionObserver' in window) {
-  const stripWatcher = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      stripWatcher.unobserve(entry.target);
-      const cut = stripCuts.find(item => item.id === `#${entry.target.id}`);
-      registerFace('chronoa', cut.weight);
-    });
-  }, { rootMargin: '150px' });
-  stripNodes.forEach(node => stripWatcher.observe(node));
-}
-
-// Warm the Mango face before the index row scrolls in, so its letterforms
-// render on first paint instead of swapping in later. The @font-face for
-// Mango lives in the stylesheet; this only asks for the file.
-const mangoRowName = document.querySelector('.row[data-name="Mango Letters"] .row-name');
-if (mangoRowName) {
-  if ('IntersectionObserver' in window) {
-    const rowWatcher = new IntersectionObserver(entries => {
-      if (!entries.some(entry => entry.isIntersecting)) return;
-      rowWatcher.disconnect();
-      registerFace('mango', 400);
-    }, { rootMargin: '400px' });
-    rowWatcher.observe(mangoRowName);
-  } else {
-    registerFace('mango', 400);
-  }
+function currentText() {
+  const text = (specimenLine.textContent || '').trim();
+  return text || 'Your brand name';
 }
 
 /* eslint-disable no-unused-vars */
