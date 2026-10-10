@@ -37,7 +37,7 @@
 .home .specimen-copy { color: var(--blue-muted); font-size: 12px; text-align: right; max-width: 45ch; }
 .featured-type { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 64px; padding: 72px 0 48px; align-items: center; }
 .featured-art { display: block; }
-.featured-art img { width: 100%; height: auto; }
+.featured-art img { width: 100%; height: auto; object-fit: contain; }
 .featured-copy h2 { font-size: clamp(52px, 6vw, 88px); line-height: 1.1; font-weight: 600; }
 .featured-copy > p { margin-top: 20px; font-size: 17px; color: var(--muted); }
 .featured-copy .spec-sheet { margin: 28px 0; }
@@ -67,7 +67,7 @@
 .home .gallery { grid-template-columns: 1.5fr 1fr; gap: 24px; border: 0; background: transparent; }
 .home .gallery figure { aspect-ratio: auto; overflow: visible; background: transparent; }
 .home .gallery figure:first-child { grid-row: span 2; align-self: center; }
-.home .gallery img { height: auto; transform: none; }
+.home .gallery img { height: auto; }
 .home .gallery figcaption { position: static; background: transparent; padding: 12px 0; font-size: 12px; font-weight: 500; letter-spacing: 0; text-transform: none; }
 .home .license-note { gap: 80px; padding: 48px 0; }
 .home .license-note h2 { font-family: "Manrope", sans-serif; font-weight: 500; font-size: clamp(36px, 4vw, 54px); line-height: 1.08; letter-spacing: -.03em; }
