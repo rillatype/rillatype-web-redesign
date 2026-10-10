@@ -19,8 +19,10 @@ function setupTester(product) {
   const glyphGrid = document.querySelector('#glyph-grid');
   const glyphCount = document.querySelector('#glyph-count');
   const ligaSwitch = document.querySelector('#liga-switch');
+  const dligSwitch = document.querySelector('#dlig-switch');
   const saltSwitch = document.querySelector('#salt-switch');
   const ligaInput = document.querySelector('#opentype-liga');
+  const dligInput = document.querySelector('#opentype-dlig');
   const saltInput = document.querySelector('#opentype-salt');
 
   if (!product.specimen) {
@@ -79,6 +81,10 @@ function setupTester(product) {
     const parts = [];
     if (ligaInput.checked && !ligaInput.disabled) parts.push('"liga" 1', '"clig" 1');
     else parts.push('"liga" 0', '"clig" 0');
+    // Discretionary ligatures are a separate feature; a font can carry dlig
+    // without carrying liga, so the two are never collapsed into one switch.
+    if (dligInput.checked && !dligInput.disabled) parts.push('"dlig" 1');
+    else parts.push('"dlig" 0');
     if (saltInput.checked && !saltInput.disabled) parts.push('"salt" 1');
     else parts.push('"salt" 0');
     output.style.fontFeatureSettings = parts.join(', ');
@@ -139,6 +145,7 @@ function setupTester(product) {
     const style = styles[index];
     if (!style || !style.file) {
       configureFeature(ligaInput, ligaSwitch, false, 'Ligatures');
+      configureFeature(dligInput, dligSwitch, false, 'Discretionary ligatures');
       configureFeature(saltInput, saltSwitch, false, 'Stylistic alternates');
       glyphCount.textContent = 'Character list unavailable';
       return;
@@ -147,6 +154,7 @@ function setupTester(product) {
     if (!otFeatures.has(index)) otFeatures.set(index, await window.RillaTester.readOtFeatures(url));
     const features = otFeatures.get(index);
     configureFeature(ligaInput, ligaSwitch, Boolean(features && (features.has('liga') || features.has('clig'))), 'Ligatures');
+    configureFeature(dligInput, dligSwitch, Boolean(features && features.has('dlig')), 'Discretionary ligatures');
     configureFeature(saltInput, saltSwitch, Boolean(features && features.has('salt')), 'Stylistic alternates');
     if (!glyphs.has(index)) glyphs.set(index, await window.RillaTester.readGlyphCodepoints(url));
     renderGlyphs(index, glyphs.get(index));
@@ -209,6 +217,7 @@ function setupTester(product) {
   // Memilih style memuat berkasnya sendiri dan mempertahankan seluruh isian pengunjung.
   styleSelect.addEventListener('change', () => selectStyle(Number(styleSelect.value) || defaultIndex));
   ligaInput.addEventListener('change', applyFeatures);
+  dligInput.addEventListener('change', applyFeatures);
   saltInput.addEventListener('change', applyFeatures);
   document.querySelectorAll('input[name="align"]').forEach(radio => {
     radio.addEventListener('change', () => {
