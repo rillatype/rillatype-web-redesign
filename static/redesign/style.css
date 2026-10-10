@@ -28,7 +28,7 @@ h3 { font-size: 19px; font-weight: 600; }
 .wrap { width: min(var(--measure), calc(100% - 80px)); margin-inline: auto; }
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
-.skip { position: absolute; left: 16px; top: -100px; padding: 12px; background: var(--paper); z-index: 10; }
+.skip { position: absolute; left: 16px; top: -100px; padding: 12px; background: var(--paper); z-index: 20; }
 .skip:focus { top: 12px; }
 .header { border-bottom: 1px solid var(--line); }
 .header-inner { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }

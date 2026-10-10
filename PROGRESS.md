@@ -27,7 +27,8 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R05F | Copy anti-AI-slop dan hapus blok bawah | SELESAI | Blok dan CSS dihapus. Copy diringkas, aturan unslop dicatat, navigasi Freebies menuju koleksi asli yang diperiksa. |
 | R06 | Preview produk | SELESAI | 8 route detail, gallery Mango, lisensi contoh, tester nyata, state error, dan retry diperiksa. Data serta transaksi WooCommerce belum terhubung. |
 | R06A | Tester produk profesional | SELESAI | Tester dibangun ulang dengan bidang specimen, tiga slider, segmented align serta tema, sakelar OpenType yang dideteksi dari berkas font, dan panel glyph. Chronoa 9 style masuk katalog. Browser check PASS. Persetujuan visual menunggu R07. |
-| R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05D, detail produk R06, dan tester R06A siap ditinjau. Belum ada persetujuan visual. |
+| R05G | Homepage arah specimen hall | SELESAI | Tiga comp arah diperiksa pada 1440px dan 390px; user memilih specimen hall. Homepage diganti: hero artwork asli + pelat informasi, specimen hidup dengan Berkas WOFF2 asli, indeks koleksi satu baris per typeface, rak Beyond type, galeri in use. scripts/check-specimen-home.py 30/30 PASS. Persetujuan visual menunggu R07. |
+| R07 | Persetujuan acuan desain | MENUNGGU USER | Homepage pengganti R05G, detail produk R06, dan tester R06A siap ditinjau. Belum ada persetujuan visual. |
 | R08 | Fondasi, header, footer | BELUM | Terapkan ke tema resmi setelah persetujuan. |
 | R09 | Homepage dinamis | BELUM | Hubungkan data produk asli. |
 | R10 | Halaman produk dinamis | BELUM | Hubungkan gallery dan informasi produk. |
@@ -48,7 +49,6 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | R25 | Paket dan handoff | BELUM | Siapkan paket, panduan, dan status rilis. |
 
 ### Log perubahan redesign
-
 | Tanggal | ID | Perubahan dan file | Pemeriksaan dan hasil | Tersisa atau blocker | Langkah berikutnya |
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-09 | R00 | Tulis REDESIGN-PLAN.md dan docs/agents/redesign-rules.md. Hubungkan AGENTS.md, PLAN.md, STATUS.md, serta tracker ini. | Periksa remote, branch master, status Git, rencana historis, dan lokasi tema. Temukan beberapa salinan tema yang perlu diaudit. | Belum memeriksa dokumen akhir atau push. UI belum diubah. | Periksa konsistensi tugas dan simpan dokumen ke GitHub. |
@@ -104,20 +104,24 @@ Tabel ini adalah sumber status redesign. Kriteria selesai berada pada masing-mas
 | 2026-10-09 | R05E | Perbaikan pertama belum cukup: selector .product > a:hover .card-action masih menyala saat hover card. Hapus pemicu hover-card sepenuhnya; tombol hanya menyala saat .card-action:hover. | editorial.css: pemicu hover card dihapus dari aturan card-action dan fallback hover:none. Browser check PASS. | Persetujuan visual R07 tetap menunggu user. | Commit dan push (15ee58c). |
 | 2026-10-10 | R05E | User: CTA card "View font" kurang tepat karena produk tidak hanya font. Ubah semua label menjadi "View details" (lead Bawden, 8 card koleksi, link license). | index.html: 10 label di-update. DESIGN.md: 2 referensi sinkron. Browser check PASS. Verifikasi Playwright: semua CTA konsisten "View details". | Commit dan push (f6a754b). | R07 menunggu tinjauan user. |
 | 2026-10-10 | R09 | User: produk ke depan bukan cuma font (bundle font, graphic, brush Procreate). Homepage perlu section dinamis. | 4 section baru ditambahkan: New drops, Trending, Sale, Freebies (urutan final per saran: New drops paling atas karena traffic belum ramai, Freebies paling bawah). 7 gambar placeholder untuk produk non-font. Update CSS (.old-price) dan check script (20 product cards). Browser check PASS. Commit dan push (f230142, 6711cf6). | Data masih placeholder — gambar dan harga adalah contoh. | Tunggu tinjauan visual user untuk R07. |
+| 2026-10-10 | R05G | Catat temuan user atas homepage R05D: headline bertabrakan dengan tulisan di artwork, tipografi headline kurang berkarakter, dan kartu terasa template. Bangun tiga comp halaman penuh (specimen hall, night marquee, press grid) di 1440px dan 390px memakai file Chronoa/Mango asli. | Ketiga comp diperiksa: `document.fonts.ready`, semua gambar ter-decode, deteksi overflow per viewport, dan penangkapan console/pageerror/requestfailed. Hasil akhir 0 error, 0 gambar rusak, 0 overflow. Screenshot halaman penuh dibaca per bagian dan empat cacat diperbaiki (huruf terpotong pada `object-fit: cover`, teks hero bertabrakan di opsi 3, indeks tidak rata, caption galeri kurang kontras). | Arah belum dipilih. | Tampilkan tiga comp dan minta user memilih arah. |
+| 2026-10-10 | R05G | User memilih Specimen Hall. Tulis ulang `static/redesign/index.html` dan `editorial.css`, perluas `preview.js` dengan specimen hidup, dan tambahkan `scripts/build-font-subsets.py`. Subset WOFF2 dibangun dari OTF asli: 264,7 KB menjadi 126,1 KB untuk sembilan cut Chronoa ditambah Mango. | Fakta font diambil dari berkas, bukan dikarang: Chronoa 219 glyph dan 218 codepoint pada sembilan berkas dengan GSUB tanpa feature; Mango 184 glyph, 181 codepoint, dan fitur `dlig`. Comp pemenang diperiksa terhadap craft floor: label kecil di atas headline dan nomor urut 01–09 dibuang karena dilarang. | Pemeriksaan browser belum dijalankan. Berkas WOFF2 belum diverifikasi di halaman. | Jalankan pemeriksaan specimen pada desktop dan mobile. |
+| 2026-10-10 | R05G | Tambahkan `scripts/check-specimen-home.py` dan jalankan pada Chromium 1440x900 serta 390x844. Satu bug ditemukan dan diperbaiki: satu kurung kurawal penutup `preview.js` hilang sehingga seluruh skrip gagal parse dan specimen tidak pernah dimuat. | Pemeriksaan menutup hero, pemuatan specimen, computed font-family dan weight, jumlah glyph nyata di UI, pengetikan, ganti weight, ganti cut ke Mango, pemilih weight tersembunyi untuk font satu cut, strips, pencarian, fokus keyboard, gambar rusak, overflow horizontal, error console/page/request, reduced motion, dan menu mobile. | Dua bug lanjutan belum diperbaiki: ketikan pengunjung tertimpa pesan status saat cut dimuat, dan baris indeks Mango memakai stack Mango tanpa mendaftarkan berkasnya sehingga diam-diam jatuh ke Manrope. | Perbaiki keduanya lalu periksa ulang. |
+| 2026-10-10 | R05G | Perbaiki kedua bug: status pemuatan pindah dari baris specimen ke baris status dengan penanda `userTyped`, dan keluarga Mango didaftarkan lewat `@font-face` di stylesheet sementara `preview.js` hanya menghangatkan berkasnya saat baris mendekati viewport. | Assertion baru membuktikan baris indeks Mango benar-benar memuat berkasnya (`Rilla-Mango` berstatus loaded), bukan hanya memakai stack-nya. Detector menemukan dua temuan nyata: keluarga `Rilla-Chronoa` dan `Rilla-Mango` belum dideklarasikan di DESIGN.md. | Dokumentasi arah baru belum ditulis. | Jalankan review akhir dan perbarui dokumen desain. |
 
 ### Handoff aktif
 
-- Hasil terbaru: R05F selesai. Blok Room to experiment dihapus, copy lebih langsung, dan aturan unslop berlaku untuk copy berikutnya. Menunggu tinjauan R07.
-- Sesi dijeda atas permintaan user. Lanjutkan dari tinjauan R07 atau perbaikan spesifik yang diminta user, bukan langsung integrasi production.
-- Homepage preview: http://localhost:9402/static/redesign/index.html.
+- Hasil terbaru: R05G selesai. Homepage diganti ke arah specimen hall yang dipilih user: hero memakai artwork dan pelat informasi, specimen hidup yang memuat berkas font asli, dan indeks koleksi satu baris per typeface menggantikan lima grid kartu berulang.
+- Menunggu tinjauan visual user pada R07. Jangan lanjut ke integrasi WordPress sebelum arah ini disetujui.
+- Homepage preview: http://localhost:9402/static/redesign/index.html (jalankan `node server.js` dari root repo).
+- Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu indeks memiliki route detail.
+- Pemeriksaan terbaru: `python scripts/check-specimen-home.py` 30/30 PASS pada 1440x900 dan 390x844. Screenshot ada di `.impeccable/review/desktop.png` dan `mobile.png` (folder ini tidak disimpan ke Git).
+- Subset specimen web dibangun ulang dengan `python scripts/build-font-subsets.py` bila berkas OTF berubah.
+- Harga, kategori, dan nama lisensi tetap contoh. Tidak ada cart, pesanan, atau pembayaran nyata.
 - Sumber tema: rillatype-v2-extracted/rillatype-v2-1/. Lihat docs/redesign-audit.md.
-- Preview detail: http://localhost:9402/static/redesign/product.html?font=mango. Semua kartu memiliki route detail.
-- Staging, sumber lisensi, aset font, dan konfigurasi pembayaran belum diverifikasi.
-- Server preview sudah dihentikan atas permintaan user. Port 9402 terverifikasi tertutup.
-- Untuk membuka preview pada sesi berikutnya, jalankan `node server.js` dari root repo, lalu buka URL homepage atau detail di atas.
-- Konfigurasi skill sebelumnya di AGENTS.md dan docs/agents/ ikut disimpan bersama dokumen persiapan.
-- Commit fitur terakhir: 92a9b28, sudah dipush ke origin/master.
-- Pemeriksaan terbaru: scripts/check-redesign-preview.py PASS. Harga serta lisensi tetap contoh dan tidak ada pembayaran nyata.
+- Staging, sumber lisensi, aset font lengkap, dan konfigurasi pembayaran belum diverifikasi.
+- Server preview: port 9402 sudah melayani repo ini. Hentikan prosesnya bila sesi berakhir atas permintaan user.
+- `static/redesign/rillatype-*.png` adalah screenshot versi lama yang belum pernah di-commit; perlu diperbarui atau dihapus sebelum handoff.
 
 Bagian berikut menyimpan riwayat pekerjaan sebelum brief redesign ini.
 

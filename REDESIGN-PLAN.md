@@ -202,6 +202,18 @@ Dependensi: R05E.
 - Ringkas filler pada pembukaan, deskripsi font, dan informasi lisensi tanpa mengubah arah visual.
 - Selesai jika preview diperiksa, tautan tidak rusak, serta aturan copy dan progress diperbarui.
 
+### R05G. Ganti homepage dengan arah specimen hall
+
+Dependensi: R06A.
+
+- User menilai homepage R05D belum bagus dan profesional. Tiga temuan yang disebut: headline hero bertabrakan dengan tulisan di artwork, tipografi headline kurang berkarakter, dan kartu masih terasa template.
+- User memilih arah specimen hall dari tiga comp halaman penuh (specimen hall, night marquee, press grid) yang diperiksa pada 1440px dan 390px.
+- Jadikan huruf produk sebagai isi utama: hero memakai artwork asli, bukan headline di atas gambar.
+- Sediakan specimen hidup yang memuat berkas font asli saat dibutuhkan dan dapat diketik pengunjung.
+- Ganti grid kartu berulang dengan indeks koleksi satu baris per typeface.
+- Pertahankan latar terang, satu aksen, logo, warna artwork, route produk, pencarian header, filter, dan alur lisensi di halaman produk.
+- Selesai jika specimen, indeks, pencarian, menu mobile, fokus keyboard, dan lebar sempit diperiksa pada desktop serta mobile tanpa error.
+
 ### R07. Minta persetujuan acuan desain
 
 Dependensi: R05F dan R06.

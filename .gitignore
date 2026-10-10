@@ -14,3 +14,9 @@ opencode.jsonc
 __pycache__/
 *.pyc
 .preview-shots/
+
+# Artefak kerja review desain: mockup arah, screenshot periksa, dan salinan aset
+# sementara. Bukan bagian dari tema atau preview yang dikirim.
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/build/

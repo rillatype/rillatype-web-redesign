@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Browse Rillatype fonts for branding and packaging.">
-  <title>The type collection | Rillatype</title>
+  <meta name="description" content="Rillatype type foundry: try the real fonts before you buy, and browse the collection, freebies, and bundles.">
+  <title>Rillatype — try the type, then take it home</title>
   <link rel="preload" href="manrope.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="editorial.css">
@@ -21,111 +21,224 @@
     </div>
   </header>
 
-  <!-- HERO: full-bleed typographic statement -->
-  <section class="hero" aria-label="Introduction">
-    <div class="hero-bg" aria-hidden="true">
-      <img src="../previews/bawden-1.jpg" alt="" fetchpriority="high">
-    </div>
-    <div class="wrap hero-content">
-      <p class="hero-eyebrow">Handcrafted type for branding &amp; packaging</p>
-      <h1>Type, with<br><em>perspective.</em></h1>
-      <div class="hero-cta">
-        <a class="button primary" href="catalog.html">Shop now</a>
-        <a class="text-link" href="#fonts">Browse the collection</a>
-      </div>
-    </div>
-    <div class="hero-scroll-hint" aria-hidden="true"><span></span></div>
-  </section>
-
-  <main id="main" class="wrap">
-    <div id="fonts"></div>
-
-    <!-- EDITOR'S PICK: asymmetric split -->
-    <section class="lead-collection" data-collection aria-labelledby="bawden-title">
-      <div class="section-heading"><h2>Editor's pick</h2></div>
-      <article class="product lead-product" id="bawden" data-name="Bawden" data-style="serif">
-        <a class="lead-card-link" href="product.html?font=bawden" aria-label="View Bawden details">
-          <div class="lead-art"><div class="product-image"><img src="../previews/bawden-1.jpg" width="1200" height="800" alt="Bawden slab serif display font cover" fetchpriority="high"></div></div>
-          <div class="lead-information">
-            <div class="product-info"><div><h2 id="bawden-title">Bawden</h2><p>Slab serif display</p></div></div>
-            <span class="price lead-price">Demo $24</span>
-            <p class="lead-description">Regular, stamp, and rough styles shown on the cover.</p>
-            <div class="lead-bottom"><span class="button primary">View details</span></div>
+  <main id="main">
+    <div class="wrap">
+      <!-- HERO: real product artwork leads; no text sits on top of it -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art">
+          <img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="Chronoa geometric sans specimen sheet: nine weights from thin to black" fetchpriority="high">
+        </div>
+        <div class="hero-plate">
+          <h1 id="hero-title">Chronoa</h1>
+          <p class="hero-copy">A geometric sans in nine weights, cut for signage, packaging, and long-form setting.</p>
+          <dl class="spec-sheet">
+            <div><dt>Weights</dt><dd>9 · 100–900</dd></div>
+            <div><dt>Glyphs</dt><dd>219</dd></div>
+            <div><dt>Formats</dt><dd>OTF · TTF · WOFF2</dd></div>
+            <div><dt>License</dt><dd>Standard · Extended</dd></div>
+          </dl>
+          <div class="hero-actions">
+            <a class="button primary" href="product.html?font=chronoa">Open Chronoa</a>
+            <a class="text-link" href="#live-specimen">Try it below</a>
           </div>
-        </a>
-      </article>
-    </section>
+        </div>
+      </section>
+    </div>
 
-    <!-- THE COLLECTION: staggered grid -->
-    <section class="section collection" data-collection>
-      <div class="section-heading"><h2>The collection</h2><a class="section-link" href="catalog.html">View all →</a></div>
-      <div class="products">
-        <article class="product" id="mango" data-name="Mango Letters" data-style="display"><a href="product.html?font=mango"><div class="product-image"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters handwritten display font cover" loading="lazy"></div><div class="product-info"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class="price">Demo $18</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" id="chronoa" data-name="Chronoa" data-style="sans"><a href="product.html?font=chronoa"><div class="product-image"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="Chronoa geometric sans font cover" loading="lazy"></div><div class="product-info"><div><h3>Chronoa</h3><p>Geometric sans · 9 styles</p></div><span class="price">Demo $24</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Baldock" data-style="display"><a href="product.html?font=baldock"><div class="product-image"><img src="../previews/baldock-1.jpg" width="1200" height="800" alt="Baldock retro display font cover" loading="lazy"></div><div class="product-info"><div><h3>Baldock</h3><p>Retro display</p></div><span class="price">Demo $24</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Daisy Hotline" data-style="display"><a href="product.html?font=daisy"><div class="product-image"><img src="../previews/daisy-hotline-1.jpg" width="1200" height="800" alt="Daisy Hotline font cover" loading="lazy"></div><div class="product-info"><div><h3>Daisy Hotline</h3><p>Display</p></div><span class="price">Demo $20</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Crimson Queen" data-style="serif"><a href="product.html?font=crimson"><div class="product-image"><img src="../previews/crimson-queen-1.jpg" width="1200" height="800" alt="Crimson Queen font cover" loading="lazy"></div><div class="product-info"><div><h3>Crimson Queen</h3><p>Serif display</p></div><span class="price">Demo $22</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Mordial" data-style="serif"><a href="product.html?font=mordial"><div class="product-image"><img src="../previews/mordial-1.jpg" width="1200" height="800" alt="Mordial font cover" loading="lazy"></div><div class="product-info"><div><h3>Mordial</h3><p>Modern serif</p></div><span class="price">Demo $24</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Moyshire" data-style="script"><a href="product.html?font=moyshire"><div class="product-image"><img src="../previews/moyshire-1.jpg" width="1200" height="800" alt="Moyshire font cover" loading="lazy"></div><div class="product-info"><div><h3>Moyshire</h3><p>Vintage script</p></div><span class="price">Demo $20</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Radiant Summertime" data-style="script"><a href="product.html?font=radiant"><div class="product-image"><img src="../previews/radiant-summertime-1.jpg" width="1200" height="800" alt="Radiant Summertime font cover" loading="lazy"></div><div class="product-info"><div><h3>Radiant Summertime</h3><p>Handwritten script</p></div><span class="price">Demo $20</span></div><span class="card-action">View details</span></a></article>
+    <!-- LIVE SPECIMEN: the real font files, loaded on first use -->
+    <section class="specimen-band" id="live-specimen" aria-labelledby="specimen-title">
+      <div class="wrap">
+        <div class="specimen-head">
+          <h2 id="specimen-title">Type your own line</h2>
+          <p class="specimen-copy" id="specimen-status">Chronoa and Mango Letters ship with web specimens. Pick one and type.</p>
+        </div>
+      </div>
+      <div class="specimen-frame" id="specimen-frame">
+        <div class="specimen-stage">
+          <p class="specimen-line" id="specimen-line" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="false" aria-label="Type to test the selected font">Chronoa</p>
+        </div>
+        <div class="wrap specimen-controls">
+          <fieldset class="cut-picker" id="cut-picker">
+            <legend class="visually-hidden">Font</legend>
+            <label><input type="radio" name="specimen-cut" value="chronoa" checked><span>Chronoa</span></label>
+            <label><input type="radio" name="specimen-cut" value="mango"><span class="mango-label">Mango Letters</span></label>
+          </fieldset>
+          <fieldset class="weight-picker" id="weight-picker">
+            <legend class="visually-hidden">Weight</legend>
+            <label><input type="radio" name="specimen-weight" value="200"><span>200</span></label>
+            <label><input type="radio" name="specimen-weight" value="300"><span>300</span></label>
+            <label><input type="radio" name="specimen-weight" value="400"><span>400</span></label>
+            <label><input type="radio" name="specimen-weight" value="600" checked><span>600</span></label>
+            <label><input type="radio" name="specimen-weight" value="800"><span>800</span></label>
+            <label><input type="radio" name="specimen-weight" value="900"><span>900</span></label>
+          </fieldset>
+          <p class="specimen-hint">Click the line and type your own words.<span class="specimen-facts" id="specimen-facts"></span></p>
+        </div>
       </div>
     </section>
 
-    <section class="empty" id="empty-results" hidden><h2>No products found</h2><p>Try another name.</p><button class="button" id="reset-search">Show all</button></section>
-    <p class="small muted" id="result-count" role="status" aria-live="polite"></p>
-
-    <!-- NEW DROPS: horizontal scroll row -->
-    <section class="section" data-collection aria-labelledby="newdrops-title">
-      <div class="section-heading"><h2 id="newdrops-title">New drops</h2><a class="section-link" href="catalog.html?tag=new">View all →</a></div>
-      <div class="products products--row">
-        <article class="product" data-name="Marker Toolkit" data-style="brush"><a href="product.html?font=brush-set-2"><div class="product-image"><img src="../previews/brush-set-2.jpg" width="1200" height="800" alt="Marker Toolkit — Procreate brushes" loading="lazy"></div><div class="product-info"><div><h3>Marker Toolkit</h3><p>Procreate brushes</p></div><span class="price">$14</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Label and Tag Pack" data-style="graphic"><a href="product.html?font=graphic-pack-2"><div class="product-image"><img src="../previews/graphic-pack-2.jpg" width="1200" height="800" alt="Label and Tag Pack — graphic elements" loading="lazy"></div><div class="product-info"><div><h3>Label &amp; Tag Pack</h3><p>Graphic elements</p></div><span class="price">$8</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Display Duo" data-style="bundle"><a href="product.html?font=font-bundle-2"><div class="product-image"><img src="../previews/font-bundle-2.jpg" width="1200" height="800" alt="Display Duo — 2 fonts, 6 styles" loading="lazy"></div><div class="product-info"><div><h3>Display Duo</h3><p>Font bundle · 2 fonts</p></div><span class="price">$34</span></div><span class="card-action">View details</span></a></article>
+    <div class="wrap">
+      <!-- SPECIMEN STRIPS: three real cuts side by side -->
+      <div class="strips">
+        <div class="strip">
+          <p class="strip-sample" id="strip-light">Aa Bb Cc</p>
+          <p class="strip-cap"><b>Chronoa 300 Light</b><span>219 glyphs · latin</span></p>
+        </div>
+        <div class="strip">
+          <p class="strip-sample" id="strip-medium">0123456789</p>
+          <p class="strip-cap"><b>Chronoa 500 Medium</b><span>tabular figures</span></p>
+        </div>
+        <div class="strip">
+          <p class="strip-sample" id="strip-semibold">Aa Bb Cc</p>
+          <p class="strip-cap"><b>Chronoa 600 SemiBold</b><span>the cut used above</span></p>
+        </div>
       </div>
-    </section>
 
-    <!-- TRENDING: bento-style asymmetric grid -->
-    <section class="section" data-collection aria-labelledby="trending-title">
-      <div class="section-heading"><h2 id="trending-title">Trending</h2><a class="section-link" href="catalog.html?tag=trending">View all →</a></div>
-      <div class="products products--bento">
-        <article class="product product--wide" data-name="Foundry Bundle Vol. 1" data-style="bundle"><a href="product.html?font=font-bundle-1"><div class="product-image"><img src="../previews/font-bundle-1.jpg" width="1200" height="800" alt="Foundry Bundle Vol. 1 — 3 fonts, 12 styles" loading="lazy"></div><div class="product-info"><div><h3>Foundry Bundle Vol. 1</h3><p>Font bundle · 3 fonts</p></div><span class="price">$49</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Ink Brush Set" data-style="brush"><a href="product.html?font=brush-set-1"><div class="product-image"><img src="../previews/brush-set-1.jpg" width="1200" height="800" alt="Ink Brush Set for Procreate" loading="lazy"></div><div class="product-info"><div><h3>Ink Brush Set</h3><p>Procreate brushes</p></div><span class="price">$12</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Stamp and Badge Pack" data-style="graphic"><a href="product.html?font=graphic-pack-1"><div class="product-image"><img src="../previews/graphic-pack-1.jpg" width="1200" height="800" alt="Stamp and Badge Pack — graphic elements" loading="lazy"></div><div class="product-info"><div><h3>Stamp &amp; Badge Pack</h3><p>Graphic elements</p></div><span class="price">$9</span></div><span class="card-action">View details</span></a></article>
-      </div>
-    </section>
+      <div id="fonts"></div>
 
-    <!-- SALE: editorial split with accent -->
-    <section class="section section--sale" data-collection aria-labelledby="sale-title">
-      <div class="section-heading"><h2 id="sale-title">Sale</h2><a class="section-link" href="catalog.html?tag=sale">View all →</a></div>
-      <div class="products">
-        <article class="product" data-name="Crimson Queen" data-style="serif"><a href="product.html?font=crimson"><div class="product-image"><img src="../previews/crimson-queen-1.jpg" width="1200" height="800" alt="Crimson Queen font cover" loading="lazy"></div><div class="product-info"><div><h3>Crimson Queen</h3><p>Serif display</p></div><span class="price"><s class="old-price">$22</s> $14</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Moyshire" data-style="script"><a href="product.html?font=moyshire"><div class="product-image"><img src="../previews/moyshire-1.jpg" width="1200" height="800" alt="Moyshire font cover" loading="lazy"></div><div class="product-info"><div><h3>Moyshire</h3><p>Vintage script</p></div><span class="price"><s class="old-price">$20</s> $12</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Daisy Hotline" data-style="display"><a href="product.html?font=daisy"><div class="product-image"><img src="../previews/daisy-hotline-1.jpg" width="1200" height="800" alt="Daisy Hotline font cover" loading="lazy"></div><div class="product-info"><div><h3>Daisy Hotline</h3><p>Display</p></div><span class="price"><s class="old-price">$20</s> $13</span></div><span class="card-action">View details</span></a></article>
-      </div>
-    </section>
+      <!-- THE COLLECTION: type first, one row per typeface -->
+      <section class="section collection" data-collection aria-labelledby="collection-title">
+        <div class="section-heading">
+          <h2 id="collection-title">The collection</h2>
+          <div class="section-tools"><span class="small muted" id="collection-count">10 typefaces</span><a class="section-link" href="catalog.html">All 20 products →</a></div>
+        </div>
+        <div class="index">
+          <article class="row" data-name="Chronoa" data-style="sans">
+            <a href="product.html?font=chronoa">
+              <span class="row-face"><span class="row-name chronoa">Chronoa</span><span class="row-meta"><em>Geometric sans</em>9 weights<span>Specimen ready</span></span></span>
+              <span class="row-thumb"><img src="../previews/chronoa-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $24</span>
+              <span class="row-action">Try</span>
+            </a>
+          </article>
+          <article class="row" data-name="Mango Letters" data-style="display">
+            <a href="product.html?font=mango">
+              <span class="row-face"><span class="row-name mango">Mango Letters</span><span class="row-meta"><em>Handwritten display</em>1 style<span>Specimen ready</span></span></span>
+              <span class="row-thumb"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $18</span>
+              <span class="row-action">Try</span>
+            </a>
+          </article>
+          <article class="row" data-name="Bawden" data-style="serif">
+            <a href="product.html?font=bawden">
+              <span class="row-face"><span class="row-name">Bawden</span><span class="row-meta"><em>Slab serif display</em>Regular · stamp · rough</span></span>
+              <span class="row-thumb"><img src="../previews/bawden-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $24</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Crimson Queen" data-style="serif">
+            <a href="product.html?font=crimson">
+              <span class="row-face"><span class="row-name">Crimson Queen</span><span class="row-meta"><em>Serif display</em>Poster and packaging</span></span>
+              <span class="row-thumb"><img src="../previews/crimson-queen-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $22</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Moyshire" data-style="script">
+            <a href="product.html?font=moyshire">
+              <span class="row-face"><span class="row-name">Moyshire</span><span class="row-meta"><em>Vintage script</em>Stylistic alternates</span></span>
+              <span class="row-thumb"><img src="../previews/moyshire-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $20</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Baldock" data-style="display">
+            <a href="product.html?font=baldock">
+              <span class="row-face"><span class="row-name">Baldock</span><span class="row-meta"><em>Retro display</em>Back-to-the-80s lettering</span></span>
+              <span class="row-thumb"><img src="../previews/baldock-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $24</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Radiant Summertime" data-style="script">
+            <a href="product.html?font=radiant">
+              <span class="row-face"><span class="row-name">Radiant Summertime</span><span class="row-meta"><em>Handwritten script</em>Editorial and menu work</span></span>
+              <span class="row-thumb"><img src="../previews/radiant-summertime-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $20</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Mordial" data-style="serif">
+            <a href="product.html?font=mordial">
+              <span class="row-face"><span class="row-name">Mordial</span><span class="row-meta"><em>Modern serif</em>High-contrast headlines</span></span>
+              <span class="row-thumb"><img src="../previews/mordial-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $24</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Daisy Hotline" data-style="display">
+            <a href="product.html?font=daisy">
+              <span class="row-face"><span class="row-name">Daisy Hotline</span><span class="row-meta"><em>Display</em>Bold label work</span></span>
+              <span class="row-thumb"><img src="../previews/daisy-hotline-1.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Demo $20</span>
+              <span class="row-action">Details</span>
+            </a>
+          </article>
+          <article class="row" data-name="Watercolor Wash" data-style="brush" data-tags="free">
+            <a href="product.html">
+              <span class="row-face"><span class="row-name">Watercolor Wash</span><span class="row-meta"><em>Procreate brushes</em>Free set</span></span>
+              <span class="row-thumb"><img src="../previews/brush-set-3.jpg" width="1200" height="800" alt="" loading="lazy"></span>
+              <span class="row-price">Free</span>
+              <span class="row-action">Get</span>
+            </a>
+          </article>
+        </div>
+      </section>
 
-    <!-- FREEBIES: minimal, light -->
-    <section class="section section--free" data-collection aria-labelledby="freebies-title">
-      <div class="section-heading"><h2 id="freebies-title">Freebies</h2><a class="section-link" href="catalog.html?tag=free">View all →</a></div>
-      <div class="products">
-        <article class="product" data-name="Watercolor Wash" data-style="brush"><a href="product.html?font=brush-set-3"><div class="product-image"><img src="../previews/brush-set-3.jpg" width="1200" height="800" alt="Watercolor Wash — Procreate brushes" loading="lazy"></div><div class="product-info"><div><h3>Watercolor Wash</h3><p>Procreate brushes</p></div><span class="price price--free">Free</span></div><span class="card-action">View details</span></a></article>
-        <article class="product" data-name="Mango Letters" data-style="display"><a href="product.html?font=mango"><div class="product-image"><img src="../previews/mango-1.jpg" width="1200" height="800" alt="Mango Letters handwritten display font cover" loading="lazy"></div><div class="product-info"><div><h3>Mango Letters</h3><p>Handwritten display</p></div><span class="price price--free">Free</span></div><span class="card-action">View details</span></a></article>
-      </div>
-    </section>
+      <section class="empty" id="empty-results" hidden><h2>No products found</h2><p>Try another name or style.</p><button class="button" id="reset-search">Show all</button></section>
 
-    <!-- LICENSE: editorial statement -->
-    <section class="license-note" id="licenses">
-      <h2>Choose a license<br>for your project.</h2>
-      <div>
-        <p>License choices here are examples. Final terms will come from the store.</p>
-        <a class="text-link" href="product.html?font=bawden">View details</a>
-      </div>
-    </section>
-    <p class="preview-note" id="preview-note" hidden>Design preview. Prices, categories, and selections are illustrative. Product details are local demos. No order or payment is processed. Non-font products (brushes, graphic packs, bundles) are sample entries pending real data.</p>
+      <!-- BEYOND TYPE: the products that are not fonts -->
+      <section class="section" data-collection aria-labelledby="beyond-title">
+        <div class="section-heading">
+          <h2 id="beyond-title">Beyond type</h2>
+          <div class="section-tools"><span class="small muted">7 products</span><a class="section-link" href="catalog.html?tag=new">View all →</a></div>
+        </div>
+        <div class="shelf">
+          <figure class="shelf-art">
+            <img src="../previews/bawden-1.jpg" width="1200" height="800" alt="Bawden slab serif display cover" loading="lazy">
+          </figure>
+          <div class="shelf-copy">
+            <h3>Brushes, packs, and bundles.</h3>
+            <p>Non-font products ship with their own preview sets. Procreate brushes, graphic elements, and multi-font bundles sit here, while the collection above stays type-only.</p>
+            <div class="shelf-actions">
+              <a class="button" href="catalog.html?tag=new">Procreate brushes</a>
+              <a class="button" href="catalog.html?tag=sale">Graphic packs</a>
+              <a class="button" href="catalog.html">Bundles</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IN USE: real application shots from the product galleries -->
+      <section class="section" data-collection aria-labelledby="inuse-title">
+        <div class="section-heading">
+          <h2 id="inuse-title">Mango Letters in use</h2>
+          <div class="section-tools"><span class="small muted">From the product gallery</span><a class="section-link" href="product.html?font=mango">Open Mango →</a></div>
+        </div>
+        <div class="gallery">
+          <figure><img src="../previews/mango-2.jpg" width="1200" height="800" alt="Mango Letters applied to fruit stickers: Sunny Market, Bloom Club, Little Deli" loading="lazy"><figcaption>Sticker sheet</figcaption></figure>
+          <figure><img src="../previews/mango-3.jpg" width="1200" height="800" alt="Mango Letters applied to a hanging shop sign reading Sunbeam Market" loading="lazy"><figcaption>Shop sign</figcaption></figure>
+          <figure><img src="../previews/mango-4.jpg" width="1200" height="800" alt="Mango Letters applied to a poster reading Wander Bloom" loading="lazy"><figcaption>Poster</figcaption></figure>
+        </div>
+      </section>
+
+      <p class="small muted result-count" id="result-count" role="status" aria-live="polite"></p>
+
+      <!-- LICENSE -->
+      <section class="license-note" id="licenses">
+        <h2>One license,<br>every project size.</h2>
+        <div>
+          <p>Standard covers desktop, web, and app use for one brand. Extended adds client work and products for resale. Final terms come from the store.</p>
+          <a class="text-link" href="product.html?font=chronoa">Read the license</a>
+        </div>
+      </section>
+      <p class="preview-note" id="preview-note" hidden>Design preview. Prices, categories, and selections are illustrative. Product details are local demos. No order or payment is processed. Non-font products (brushes, graphic packs, bundles) are sample entries pending real data.</p>
+    </div>
   </main>
 
   <footer class="wrap footer">
-    <a class="footer-wordmark" href="index.html">rillatype.</a>
+    <a class="footer-wordmark chronoa" href="index.html">rillatype.</a>
     <div>
       <nav aria-label="Footer navigation"><a href="catalog.html">Shop</a><a href="catalog.html?style=display">Font</a><a href="catalog.html?tag=free">Freebies</a><a href="#licenses">License</a><a href="mailto:gustian@rillatype.com">Contact</a></nav>
       <p class="small muted">The type collection.</p>
