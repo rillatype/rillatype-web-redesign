@@ -8,8 +8,11 @@ Rules from the card:
 
 Usage: python scripts/check-weight-controls.py [base-url]
 Exit 0 only when every assertion passes.
+
+RILLA_CATALOG may name a scratch copy of the catalog, for A01 negative controls.
 """
 import asyncio
+import os
 import re
 import sys
 from pathlib import Path
@@ -19,7 +22,7 @@ from playwright.async_api import async_playwright
 ROOT = Path(__file__).resolve().parent.parent
 BASE = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "http://127.0.0.1:9402/static/redesign"
 WEB = ROOT / "static" / "redesign" / "fonts" / "web"
-CATALOG = (ROOT / "static" / "redesign" / "font-catalog.js").read_text(encoding="utf-8")
+CATALOG = Path(os.environ.get("RILLA_CATALOG") or (ROOT / "static" / "redesign" / "font-catalog.js")).read_text(encoding="utf-8")
 results = []
 
 
@@ -46,8 +49,17 @@ async def main() -> int:
     available = available_web_cuts()
     check(len(declared) == 9, f"the catalog declares nine Chronoa cuts ({declared})")
     check(available, f"web subsets exist on disk ({sorted(available)})")
-    check(all(name.lower().replace("extralight", "extralight") in {a for a in available} or True for name in declared),
-          "declared cut names are comparable with the files on disk")
+    def slug(name):
+        return re.sub(r"[^a-z0-9]", "", name.lower())
+
+    # A01 replaced the check that stood here: it read
+    # `all(... or True for name in declared)` with a no-op
+    # `replace("extralight", "extralight")`, so it could never fail. The requirement
+    # it named is real, so it is measured here: every declared cut label must have a
+    # subset on disk.
+    on_disk = {slug(name) for name in available}
+    unmatched = [name for name in declared if slug(name) not in on_disk]
+    check(not unmatched, f"every declared cut name has a subset on disk (unmatched {unmatched})")
 
     async with async_playwright() as p:
         browser = await p.chromium.launch()

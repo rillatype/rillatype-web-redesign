@@ -2,12 +2,13 @@
  * P03 helper: print the font catalog as JSON so checks read the real data
  * instead of pattern-matching the source.
  *
- * Usage: node scripts/_p03_catalog_json.mjs
+ * Usage: node scripts/_p03_catalog_json.mjs [path-to-font-catalog.js]
  */
 import fs from "node:fs";
 import vm from "node:vm";
 
-const code = fs.readFileSync("static/redesign/font-catalog.js", "utf8");
+const file = process.argv[2] || "static/redesign/font-catalog.js";
+const code = fs.readFileSync(file, "utf8");
 const sandbox = { window: {}, document: undefined };
 vm.createContext(sandbox);
 try {

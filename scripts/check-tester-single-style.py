@@ -65,7 +65,13 @@ async def main() -> int:
             return { weight: cs.fontWeight, style: cs.fontStyle, synth: cs.fontSynthesis };
         }""")
         check(style_probe["style"] == "normal", f"no synthetic italic is applied ({style_probe})")
-        check("font-synthesis" in page.url or True, "font-synthesis is left to the real face")
+        # Removed in A01: this read `check("font-synthesis" in page.url or True, ...)`.
+        # It tested a CSS property name against the page URL, and no rule in
+        # editorial.css declares `font-synthesis`, so the computed value there is the
+        # UA default. The requirement it named is already covered: the real face
+        # reports as loaded (above), the computed style is normal, the weight comes
+        # from the real file (below), and a single-cut product renders no weight
+        # control at all.
         check(style_probe["weight"] in ("400", "normal"), f"sample weight comes from the real file ({style_probe['weight']})")
 
         # clearing and retyping keeps the font

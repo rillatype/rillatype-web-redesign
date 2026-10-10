@@ -11,8 +11,9 @@ data at the same URLs with Playwright route overrides and asserts the page
 follows it:
 
   A. one source   - the cut list may only live in the catalog. Static assertions
-                    on preview.js, plus a runtime proof: drop a cut from the
-                    catalog and the homepage picker must lose it too.
+                    catalog and the homepage picker must lose it too. A paired control
+                    then moves the declared default, so the rendered facts line has to
+                    follow the new default instead of an authored string.
   B. default      - with the shipped fixture, every rendered string is asserted
                     against the catalog, so the current design is pinned exactly.
   C. single style - the fixture points at a one-style product: no weight picker,
@@ -73,8 +74,11 @@ def static_single_source():
     check(all(pos is not None for pos in order) and order == sorted(order),
           f"[A] index.html loads the catalog, then the fixture, then the behaviour "
           f"(positions {order})")
-    check("font-catalog.js" in (SRC / "catalog.html").read_text(encoding="utf-8")
-          or True, "[A] catalog page unchanged in this respect")    # The catalog must carry the web subset facts, or the behaviour would have to.
+    # Removed in A01: this check read `"font-catalog.js" in catalog.html` but was
+    # neutralised with `or True`, because the condition is false by design. catalog.html
+    # is a short page of authored <article class="product"> cards that loads only
+    # preview.js, and preview.js reads `(window.RillaCatalog && ...) || new Map()`.
+    # It measured no requirement; the data-driven behaviour is proven by phases A-D.
     catalog = (SRC / "font-catalog.js").read_text(encoding="utf-8")
     check(catalog.count("specimenFamily") >= 2,
           f"[A] the catalog carries specimen families ({catalog.count('specimenFamily')} products)")
@@ -87,6 +91,10 @@ def static_single_source():
 CATALOG_PATCH_DROP_THIN = """
 { const p = window.RillaCatalog.catalog.get('chronoa');
   p.styles = p.styles.filter(s => s.label !== 'Thin'); }
+"""
+
+CATALOG_PATCH_DEFAULT_THIN = """
+{ const p = window.RillaCatalog.catalog.get('chronoa'); p.defaultStyle = 'Thin'; }
 """
 
 CATALOG_PATCH_PROBE = """
@@ -232,7 +240,20 @@ async def main() -> int:
         s = await specimen_state(page)
         check(s["weights"] == [200, 300, 400, 500, 600, 700, 800, 900],
               f"[A] dropping a cut from the catalog drops it from the homepage picker ({s['weights']})")
-        check("Thin" not in s["facts"] or True, "[A] the picker follows the catalog, it is not a copy")
+        check(s["facts"] == "Chronoa SemiBold · 219 glyphs · no OpenType features",
+              f"[A] the facts line names the catalog's default cut, not the dropped one ({s['facts']!r})")
+        check(not errors, f"[A] dropping a cut raises no console or page errors ({errors[:2]})")
+        await ctx.close()
+
+        # Negative control for the assertion above, kept inside the suite so it runs on
+        # every pass: move the declared default to another declared cut. An authored
+        # facts line would keep naming SemiBold here and this check would fail.
+        ctx, page, errors = await open_page(browser, catalog_patch=CATALOG_PATCH_DEFAULT_THIN)
+        s = await specimen_state(page)
+        check(s["facts"] == "Chronoa Thin · 219 glyphs · no OpenType features",
+              f"[A] the facts line follows the declared default, it is not a copy ({s['facts']!r})")
+        check(s["checked"] == "100" and len(s["weights"]) == 9,
+              f"[A] the declared default drives the checked cut ({s['checked']!r})")
         await ctx.close()
 
         # -------------------------------------------- C. featured = one style

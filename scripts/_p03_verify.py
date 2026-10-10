@@ -3,15 +3,19 @@ real assets for C01/C04, honest unavailable states.
 
 Usage: python scripts/_p03_verify.py
 Exit 0 only when every P03 acceptance criterion has evidence.
+
+RILLA_CATALOG may name a scratch copy of the catalog, so A01 negative controls can
+run these same assertions against corrupted data without touching the repo source.
 """
 import json
+import os
 import re
 import subprocess
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATALOG = ROOT / "static" / "redesign" / "font-catalog.js"
+CATALOG = Path(os.environ.get("RILLA_CATALOG") or (ROOT / "static" / "redesign" / "font-catalog.js"))
 PREVIEWS = ROOT / "static" / "previews"
 FONTS = ROOT / "static" / "redesign" / "fonts"
 ASSETS = (ROOT / "static" / "redesign" / "ASSETS.md").read_text(encoding="utf-8")
@@ -32,7 +36,7 @@ def run(cmd):
 
 # The catalog is a JS Map literal of plain objects. Read it through Node so the
 # check inspects the real data instead of a regex guess.
-parsed = run("node scripts/_p03_catalog_json.mjs")
+parsed = run(f'node scripts/_p03_catalog_json.mjs "{CATALOG}"')
 try:
     data = json.loads(parsed.stdout)
 except Exception as error:
@@ -48,7 +52,10 @@ for key in data:
     check(re.fullmatch(r"[a-z0-9-]+", key) is not None, f"key is a stable slug: {key}")
 permalinks = [p.get("permalink", "") for p in data.values()]
 check(all(p.startswith("https://rillatype.com/") for p in permalinks), "every product carries a real permalink")
-check(len(permalinks) == len(set(permalinks)) or True, "permalinks are unique per live product")
+# Removed in A01: `len(permalinks) == len(set(permalinks)) or True` counted every
+# permalink, demo rows included, and was neutralised with `or True`. Uniqueness
+# across demo rows was never the requirement (demo entries may share a reference
+# URL); the live-only requirement is asserted directly below.
 live = {k: v for k, v in data.items() if v.get("storeStatus") == "live"}
 live_permalinks = [v["permalink"] for v in live.values()]
 check(len(live_permalinks) == len(set(live_permalinks)), f"live permalinks are unique ({len(live_permalinks)} live products)")
