@@ -1,5 +1,7 @@
 # Aturan pengerjaan redesign
 
+Aturan pelaporan terbaru berada di `rules.md` root. Gunakan dokumen itu untuk claim, laporan per task, handoff antar-agent, dan mode bergantian. Rencana rinci baru masih draft; implementasi ditahan oleh AGENTS.md.
+
 ## Mulai dari dokumen aktif
 
 1. Baca `REDESIGN-PLAN.md` untuk brief, urutan tugas, dependensi, dan kriteria selesai.
