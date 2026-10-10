@@ -101,6 +101,9 @@ function setupTester(product) {
   const glyphs = new Map();
   const familyName = `Rilla-${product.name.replace(/\s+/g, '')}`;
   let activeIndex = null;
+  // Setiap pemilihan style menaikkan nomor ini. Pemanggilan lama yang selesai
+  // belakangan melihat nomornya sudah usang dan berhenti tanpa menulis apa pun.
+  let styleRequest = 0;
 
   function styleStatus(index) {
     const style = styles[index];
@@ -163,14 +166,20 @@ function setupTester(product) {
   async function selectStyle(index) {
     const style = styles[index];
     if (!style) return;
+    const request = ++styleRequest;
     activeIndex = index;
     try {
       if (style.file) await loadStyle(index);
+      // Respons lama tidak boleh menimpa pilihan terbaru. Berat dan keluarga
+      // memang dibaca ulang dari selector, tetapi status dan fakta tidak, jadi
+      // pemanggilan yang sudah usang berhenti di sini.
+      if (request !== styleRequest) return;
       output.style.fontFamily = `"${familyName}", sans-serif`;
       testerFrame.hidden = false;
       applySample();
       applyFeatures();
       await refreshFacts(index);
+      if (request !== styleRequest) return;
       if (!style.file) {
         setStatus(index, `The specimen file for ${product.name} ${style.label} is not available in this preview.`);
         retry.hidden = true;
@@ -180,6 +189,7 @@ function setupTester(product) {
       }
       testerFrame.removeAttribute('data-state');
     } catch {
+      if (request !== styleRequest) return;
       // Satu cut yang gagal tidak boleh menyembunyikan tester atau memalsukan font.
       // Sampel yang tidak dapat dipercaya disembunyikan; panel kontrol tetap ada.
       testerFrame.dataset.state = 'error';
