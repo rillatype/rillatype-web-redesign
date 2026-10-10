@@ -227,6 +227,206 @@ async def main() -> int:
               f"retry loads the Thin face at weight 100 ({retried['weight']}, {retried['faces']})")
         await ctx.close()
 
+
+        # ------------------------- 6. a cut that fails cold keeps the controls usable
+        # A06: the frame was only unhidden on the success path, so a cold failure of the
+        # default cut left a status message telling the visitor to pick another cut or
+        # retry, with every control invisible. The sample must stay out of sight; the
+        # controls must not.
+        ctx, page, errors = await session(browser)
+        bold_requests = []
+
+        async def count_bold(route):
+            bold_requests.append(route.request.url.rsplit("/", 1)[-1])
+            await route.continue_()
+
+        await page.route("**/Chronoa-SemiBold.otf", lambda route: route.abort())
+        await page.route("**/Chronoa-Bold.otf", count_bold)
+        await page.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await page.wait_for_timeout(1200)
+        cold = await page.evaluate("""() => {
+            const frame = document.querySelector('#tester-frame');
+            const output = document.querySelector('#sample-output');
+            const select = document.querySelector('#sample-style');
+            const retry = document.querySelector('#retry-font');
+            return {
+                state: frame.dataset.state || 'none',
+                frameHidden: frame.hidden,
+                framePainted: Boolean(frame.offsetWidth || frame.offsetHeight),
+                textPainted: Boolean(document.querySelector('#sample-text').offsetWidth),
+                selectPainted: Boolean(select.offsetWidth),
+                selectOptions: select.options.length,
+                retryPainted: Boolean(retry.offsetWidth),
+                samplePainted: Boolean(output.offsetWidth),
+                status: document.querySelector('#font-status').innerText.trim(),
+                family: getComputedStyle(output).fontFamily,
+            };
+        }""")
+        check(cold["state"] == "error", f"the cold default failure is stated ({cold['state']})")
+        check(not cold["frameHidden"] and cold["framePainted"],
+              f"the control frame stays visible when the default cut fails ({cold})")
+        check(cold["textPainted"] and cold["selectPainted"] and cold["retryPainted"],
+              f"input, style selector and retry all stay usable ({cold})")
+        check(not cold["samplePainted"],
+              f"the untrustworthy sample stays hidden ({cold['samplePainted']})")
+        check("could not load" in cold["status"].lower() and "retry" in cold["status"].lower(),
+              f"the status explains the failure and names the way out ({cold['status'][:70]!r})")
+        focused = True
+        try:
+            await page.locator("#retry-font").focus()
+            focused = await page.evaluate("() => document.activeElement.id") == "retry-font"
+        except Exception:
+            focused = False
+        check(focused, "the retry button can be reached with the keyboard")
+        healthy_selected = True
+        try:
+            await page.select_option("#sample-style", "6")
+        except Exception:
+            healthy_selected = False
+        recovered_healthy = healthy_selected
+        try:
+            await page.wait_for_function(
+                "() => document.querySelector('#tester-frame').dataset.state !== 'error'"
+                " && getComputedStyle(document.querySelector('#sample-output')).fontWeight === '700'",
+                timeout=8000)
+        except Exception:
+            recovered_healthy = False
+        healthy_status = await page.locator("#font-status").inner_text()
+        check(recovered_healthy and "Bold" in healthy_status,
+              f"a healthy cut loads while the failed default stays blocked ({healthy_status[:60]!r})")
+        check(bold_requests, f"the healthy cut fetched its own file ({bold_requests})")
+        await ctx.close()
+
+        # ------------------- 6b. retry without touching the style reloads that style
+        ctx, page, errors = await session(browser)
+        default_attempts = []
+
+        async def fail_default_once(route):
+            default_attempts.append(route.request.url.rsplit("/", 1)[-1])
+            if len(default_attempts) == 1:
+                await route.abort()
+            else:
+                await route.continue_()
+
+        await page.route("**/Chronoa-SemiBold.otf", fail_default_once)
+        await page.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await page.wait_for_timeout(1200)
+        typed = True
+        try:
+            await page.fill("#sample-text", "Kept while broken")
+        except Exception:
+            typed = False
+        check(typed, "the visitor can still type while the default cut is broken")
+        retry_painted = await page.locator("#retry-font").is_visible()
+        if retry_painted:
+            await page.click("#retry-font")
+        retried_default = True
+        try:
+            await page.wait_for_function(
+                "() => document.querySelector('#tester-frame').dataset.state !== 'error'"
+                " && getComputedStyle(document.querySelector('#sample-output')).fontWeight === '600'",
+                timeout=8000)
+        except Exception:
+            retried_default = False
+        after_retry = await page.evaluate("""() => ({
+            status: document.querySelector('#font-status').innerText.trim(),
+            weight: getComputedStyle(document.querySelector('#sample-output')).fontWeight,
+            text: document.querySelector('#sample-text').value,
+        })""")
+        check(retried_default and "SemiBold" in after_retry["status"],
+              f"retry without changing the style reloads the same cut ({after_retry['status'][:60]!r})")
+        check(len(default_attempts) >= 2,
+              f"the retry asked the network for the default cut again ({default_attempts})")
+        check(after_retry["text"] == "Kept while broken",
+              f"the text kept through the failure survives the retry ({after_retry['text']!r})")
+        await ctx.close()
+
+        # ------------------------------ 6c. a single-style product, default broken
+        ctx, page, errors = await session(browser)
+        mango_attempts = []
+
+        async def fail_mango_once(route):
+            mango_attempts.append(route.request.url.rsplit("/", 1)[-1])
+            if len(mango_attempts) == 1:
+                await route.abort()
+            else:
+                await route.continue_()
+
+        await page.route("**/mango-letter.otf", fail_mango_once)
+        await page.goto(f"{BASE}/product.html?font=mango", wait_until="load")
+        await page.wait_for_timeout(1200)
+        mango = await page.evaluate("""() => {
+            const frame = document.querySelector('#tester-frame');
+            const select = document.querySelector('#sample-style');
+            return {
+                state: frame.dataset.state || 'none',
+                framePainted: Boolean(frame.offsetWidth || frame.offsetHeight),
+                textPainted: Boolean(document.querySelector('#sample-text').offsetWidth),
+                retryPainted: Boolean(document.querySelector('#retry-font').offsetWidth),
+                selectPainted: Boolean(select.offsetWidth),
+                selectOptions: select.options.length,
+                status: document.querySelector('#font-status').innerText.trim(),
+            };
+        }""")
+        check(mango["state"] == "error" and mango["framePainted"] and mango["textPainted"] and mango["retryPainted"],
+              f"a broken single-style default keeps its controls ({mango})")
+        check(not mango["selectPainted"] and mango["selectOptions"] == 0,
+              f"a single-style product still offers no style selector ({mango['selectOptions']} options)")
+        mango_typed = True
+        try:
+            await page.fill("#sample-text", "Typed while mango was broken")
+        except Exception:
+            mango_typed = False
+        check(mango_typed, "Mango's input stays usable while its only file is broken")
+        if mango["retryPainted"]:
+            await page.click("#retry-font")
+        mango_recovered = True
+        try:
+            await page.wait_for_function(
+                "() => document.querySelector('#tester-frame').dataset.state !== 'error'", timeout=8000)
+        except Exception:
+            mango_recovered = False
+        mango_after = await page.evaluate("""() => ({
+            family: getComputedStyle(document.querySelector('#sample-output')).fontFamily,
+            text: document.querySelector('#sample-text').value,
+            status: document.querySelector('#font-status').innerText.trim(),
+        })""")
+        check(mango_recovered and "Rilla-MangoLetters" in mango_after["family"],
+              f"the recovered Mango specimen is the real product face ({mango_after['family']})")
+        check(mango_after["text"] == "Typed while mango was broken",
+              f"the text typed during Mango's failure survives ({mango_after['text']!r})")
+        await ctx.close()
+
+        # ---------------- 6d. the same failure at 390px, and a product with no file
+        ctx, page, errors = await session(browser, width=390, height=844)
+        await page.route("**/Chronoa-SemiBold.otf", lambda route: route.abort())
+        await page.goto(f"{BASE}/product.html?font=chronoa", wait_until="load")
+        await page.wait_for_timeout(1200)
+        small = await page.evaluate("""() => {
+            const frame = document.querySelector('#tester-frame');
+            return {
+                framePainted: Boolean(frame.offsetWidth || frame.offsetHeight),
+                textPainted: Boolean(document.querySelector('#sample-text').offsetWidth),
+                retryPainted: Boolean(document.querySelector('#retry-font').offsetWidth),
+                selectPainted: Boolean(document.querySelector('#sample-style').offsetWidth),
+                overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+            };
+        }""")
+        check(small["framePainted"] and small["textPainted"] and small["retryPainted"] and small["selectPainted"],
+              f"the controls survive the failure at 390px too ({small})")
+        check(small["overflow"] <= 1, f"the failed state causes no horizontal overflow ({small['overflow']}px)")
+        await ctx.close()
+
+        ctx, page, errors = await session(browser)
+        await page.goto(f"{BASE}/product.html?font=dockhand", wait_until="load")
+        await page.wait_for_timeout(600)
+        no_file = await page.evaluate("""() => ({
+            status: document.querySelector('#font-status').innerText.trim(),
+            framePainted: Boolean(document.querySelector('#tester-frame').offsetWidth),
+        })""")
+        check("no specimen file" in no_file["status"].lower() and "could not load" not in no_file["status"].lower(),
+              f"a product with no specimen file is not reported as a network failure ({no_file['status'][:70]!r})")
+        await ctx.close()
         await browser.close()
 
     failed = 0

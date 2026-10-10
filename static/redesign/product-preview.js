@@ -222,8 +222,11 @@ function setupTester(product) {
     } catch {
       if (request !== styleRequest) return;
       // Satu cut yang gagal tidak boleh menyembunyikan tester atau memalsukan font.
-      // Sampel yang tidak dapat dipercaya disembunyikan; panel kontrol tetap ada, dan
-      // panel glyph dikosongkan supaya glyph cut lain tidak tampil seolah cut ini.
+      // Frame-nya tetap ditampilkan karena di sinilah satu-satunya tempat visitor bisa
+      // memilih cut lain atau menekan retry; yang disembunyikan hanya sampelnya, lewat
+      // aturan CSS untuk `data-state='error'`. Panel glyph dikosongkan supaya glyph cut
+      // lain tidak tampil seolah cut yang gagal ini.
+      testerFrame.hidden = false;
       testerFrame.dataset.state = 'error';
       setStatus(index, `The ${style.label} specimen for ${product.name} could not load. The other cuts still work; choose another style or retry.`);
       clearGlyphs('Character list unavailable');
